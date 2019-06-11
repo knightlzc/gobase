@@ -12,16 +12,4 @@
     <module>gobase-service</module>
     <module>gobase-platform</module>
   </modules>
-  <distributionManagement>
-		<repository>
-			<id>archiva.internal</id>
-			<name>Internal Release Repository</name>
-			<url>http://repos.fenqi.d.xiaonei.com/nexus/content/repositories/releases/</url>
-		</repository>
-		<snapshotRepository>
-			<id>archiva.snapshots</id>
-			<name>Internal Snapshot Repository</name>
-			<url>http://repos.fenqi.d.xiaonei.com/nexus/content/repositories/snapshots/</url>
-		</snapshotRepository>
-	</distributionManagement>
 </project>
