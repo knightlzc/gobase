@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="context1">
+    <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
+      <javaModelGenerator targetPackage="com.gobase.component.bean.mall.oper" targetProject="gobase-component" />
+    <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.oper" targetProject="gobase-component" />
+    <javaClientGenerator targetPackage="com.gobase.component.dao.mall.oper" targetProject="gobase-component" type="XMLMAPPER" />
+    <table tableName="banner" domainObjectName="Banner">
+    </table>
+  </context>
+<!--   <context id="context1"> -->
+<!--     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/video" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" /> -->
+<!--     <javaModelGenerator targetPackage="com.renren.auto.test.component" targetProject="renren-auto-video-component" /> -->
+<!--     <sqlMapGenerator targetPackage="com.renren.auto.test.component" targetProject="renren-auto-video-component" /> -->
+<!--     <javaClientGenerator targetPackage="com.renren.auto.test.component" targetProject="renren-auto-video-component" type="XMLMAPPER" /> -->
+<!--     <table tableName="user_recommend_record" domainObjectName="UserRecommendRecord"> -->
+<!--     </table> -->
+<!--   </context> -->
+</generatorConfiguration>
