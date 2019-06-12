@@ -15,10 +15,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.alibaba.fastjson.JSONObject;
 import com.gobase.component.bean.mall.goods.GoodsCategory;
 import com.gobase.component.bean.mall.goods.GoodsCategoryExample;
 import com.gobase.component.dao.mall.goods.GoodsCategoryMapper;
+import com.gobase.tools.response.ResultResponse;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -34,11 +34,11 @@ public class TestController {
 	
 	
 	@RequestMapping("/category/list")
-	public String testVideo() {
+	public ResultResponse<List<GoodsCategory>> testVideo() {
 		GoodsCategoryExample example = new GoodsCategoryExample();
 		example.createCriteria().andPcodeEqualTo("");
 		List<GoodsCategory> list = goodsCategoryMapper.selectByExample(example);
-		return JSONObject.toJSONString(list);
+		return ResultResponse.success(list, "查询分类成功");
 	}
 	
     
