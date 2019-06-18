@@ -42,6 +42,11 @@
 			<artifactId>guava</artifactId>
 			<version>16.0.1</version>
 		</dependency>
+		<dependency>
+			<groupId>com.gobase</groupId>
+			<artifactId>gobase-tools</artifactId>
+			<version>1.0.0-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>
