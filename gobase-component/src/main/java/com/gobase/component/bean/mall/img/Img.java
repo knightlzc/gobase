@@ -19,6 +19,10 @@ public class Img {
 	private String bizId="";
 
 	/**
+	 *业务类型 1 商品
+	 */
+	public static int TYPE_GOODS = 1; 
+	/**
 	*业务类型 1 商品
 	*/
 	private int bizType;
