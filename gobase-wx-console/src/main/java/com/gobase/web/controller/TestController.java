@@ -32,7 +32,11 @@ public class TestController {
 	@Autowired
 	private GoodsCategoryMapper goodsCategoryMapper;
 	
-	
+	/**
+	 * <br/>Description:
+	 * <p>Author:zcliu/刘子萃</p>
+	 * @return
+	 */
 	@RequestMapping("/category/list")
 	public ResultResponse<List<GoodsCategory>> testVideo() {
 		GoodsCategoryExample example = new GoodsCategoryExample();
