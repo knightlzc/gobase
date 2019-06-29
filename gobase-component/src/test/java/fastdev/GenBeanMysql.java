@@ -23,7 +23,7 @@ public class GenBeanMysql {
          
           String packageOutPath = "com.renren.fenqi.admin.component.model.car";
           String authorName = "zicui.liu/刘子萃";
-          String tablename = "goods_param";
+          String tablename = "user";
          
 //          new GenEntityMysql(packageOutPath,authorName,tablename).toJavaBean().showColumnNames();
           new GenBeanMysql(packageOutPath,authorName,tablename,"").toJavaBean();

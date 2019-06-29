@@ -56,7 +56,7 @@ public class GoodsHome {
 	 * @param shopId
 	 * @return
 	 */
-	public PageContent<GoodsDO> pageGoods(String search,String category1,String category2,String category3,Integer cityId,Integer shopId){
+	public PageContent<GoodsDO> pageGoods(String search,String category1,String category2,String category3,Integer cityId,Integer shopId,int pageNum,int pageSize){
 		
 		
 		return null;

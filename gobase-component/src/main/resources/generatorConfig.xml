@@ -10,13 +10,18 @@
 <!--     </table> -->
 	<context id="context1">
     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
-<!--     java bean的位置 -->
-      <javaModelGenerator targetPackage="com.gobase.component.bean.mall.goods" targetProject="gobase-component" />
-<!--     xml跟 dao 的位置 -->
-    <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.goods" targetProject="gobase-component" />
-    <javaClientGenerator targetPackage="com.gobase.component.dao.mall.goods" targetProject="gobase-component" type="XMLMAPPER" />
-    <table tableName="goods_param" domainObjectName="GoodsParam">
+      <javaModelGenerator targetPackage="com.gobase.component.bean.mall.user" targetProject="gobase-component" />
+    <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.user" targetProject="gobase-component" />
+    <javaClientGenerator targetPackage="com.gobase.component.dao.mall.user" targetProject="gobase-component" type="XMLMAPPER" />
+    <table tableName="user" domainObjectName="User">
     </table>
+<!-- 	<context id="context1"> -->
+<!--     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" /> -->
+<!--       <javaModelGenerator targetPackage="com.gobase.component.bean.mall.goods" targetProject="gobase-component" /> -->
+<!--     <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.goods" targetProject="gobase-component" /> -->
+<!--     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.goods" targetProject="gobase-component" type="XMLMAPPER" /> -->
+<!--     <table tableName="goods_param" domainObjectName="GoodsParam"> -->
+<!--     </table> -->
   </context>
 <!--   <context id="context1"> -->
 <!--     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/video" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" /> -->
