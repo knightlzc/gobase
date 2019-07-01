@@ -8,8 +8,15 @@
  */
 package com.gobase.web.controller.shop;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.gobase.component.bean.mall.goods.GoodsDO;
+import com.gobase.component.home.goods.GoodsHome;
+import com.gobase.tools.response.ResultResponse;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -19,5 +26,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("shop")
 @RestController
 public class ShopController {
-
+	
+	@Autowired
+	private GoodsHome goodsHome;
+	/**
+	 *@description 查询果蔬食品/商家入驻列表
+	 */
+	@RequestMapping("/list/shop")
+	public ResultResponse<List<GoodsDO>> getShopList(Integer shopId){
+		List<GoodsDO> listGoods = goodsHome.listGoods(null, null, null, null, null, shopId);
+		return ResultResponse.success(listGoods,"查询所有商品的商家及商家列表成功,sql需要添加shop列表");
+	}
 }
