@@ -4389,6 +4389,21 @@ CREATE TABLE `user_payment_record` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
+
 -- ----------------------------
 -- Records of user_payment_record
 -- ----------------------------
+
+DROP TABLE IF EXISTS `img`;
+
+CREATE TABLE `img` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `biz_id` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '业务id',
+  `biz_type` int(11) NOT NULL DEFAULT '0' COMMENT '业务类型 1 商品',
+  `img_url` varchar(200) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0 有效 -1 删除',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `biz_id` (`biz_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
