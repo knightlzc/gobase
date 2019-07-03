@@ -75,7 +75,7 @@ CREATE TABLE `goods` (
   `category3` varchar(50) NOT NULL DEFAULT '' COMMENT '三级分类',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '商品状态 0有效 -1 无效',
   `remark` varchar(300) NOT NULL DEFAULT '' COMMENT '备注',
-  `shop_id` int(11) NOT NULL COMMENT '店铺id',
+  `shop_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
   `audit_status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '审核状态',
   `real_price` decimal(10,0) NOT NULL DEFAULT '0' COMMENT '商品销售价格',
   `ori_price` decimal(10,0) NOT NULL DEFAULT '0' COMMENT '原价',

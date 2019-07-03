@@ -15,9 +15,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gobase.component.bean.mall.goods.Goods;
 import com.gobase.component.bean.mall.goods.GoodsCategory;
 import com.gobase.component.bean.mall.goods.GoodsCategoryExample;
+import com.gobase.component.bean.mall.goods.GoodsExample;
 import com.gobase.component.dao.mall.goods.GoodsCategoryMapper;
+import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.tools.response.ResultResponse;
 
 /** 
@@ -31,6 +34,8 @@ public class TestController {
 	
 	@Autowired
 	private GoodsCategoryMapper goodsCategoryMapper;
+	@Autowired
+	private GoodsMapper goodsMapper;
 	
 	
 	@RequestMapping("/category/list")
@@ -39,6 +44,11 @@ public class TestController {
 		example.createCriteria().andPcodeEqualTo("");
 		List<GoodsCategory> list = goodsCategoryMapper.selectByExample(example);
 		return ResultResponse.success(list, "查询分类成功");
+	}
+	@RequestMapping("/goods/list")
+	public ResultResponse<List<Goods>> testVideo(String search) {
+		List<Goods> list =  goodsMapper.searchGoods(search, null, null, null, null, null, 0, 10);
+		return ResultResponse.success(list, "查询列表成功");
 	}
 	
     
