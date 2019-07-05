@@ -8,13 +8,14 @@
 <!--     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.img" targetProject="gobase-component" type="XMLMAPPER" /> -->
 <!--     <table tableName="img" domainObjectName="Img"> -->
 <!--     </table> -->
-	<context id="context1">
+<!-- 	<context id="context1">
     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
       <javaModelGenerator targetPackage="com.gobase.component.bean.mall.user" targetProject="gobase-component" />
     <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.user" targetProject="gobase-component" />
     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.user" targetProject="gobase-component" type="XMLMAPPER" />
     <table tableName="user" domainObjectName="User">
     </table>
+    </context> -->
 <!-- 	<context id="context1"> -->
 <!--     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" /> -->
 <!--       <javaModelGenerator targetPackage="com.gobase.component.bean.mall.goods" targetProject="gobase-component" /> -->
@@ -22,7 +23,7 @@
 <!--     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.goods" targetProject="gobase-component" type="XMLMAPPER" /> -->
 <!--     <table tableName="goods_param" domainObjectName="GoodsParam"> -->
 <!--     </table> -->
-  </context>
+<!--   </context> -->
 <!--   <context id="context1"> -->
 <!--     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/video" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" /> -->
 <!--     <javaModelGenerator targetPackage="com.renren.auto.test.component" targetProject="renren-auto-video-component" /> -->
@@ -31,4 +32,30 @@
 <!--     <table tableName="user_recommend_record" domainObjectName="UserRecommendRecord"> -->
 <!--     </table> -->
 <!--   </context> -->
+
+<!-- Shop生成部分 x -->
+<!-- <context id="context1">
+    <jdbcConnection connectionURL="jdbc:mysql://192.168.0.199:3306/mall" driverClass="com.mysql.jdbc.Driver" password="456qqq...B" userId="gobase" />
+    <javaModelGenerator targetPackage="com.gobase.component.bean.mall.shop" targetProject="gobase-component" />
+    <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.shop" targetProject="gobase-component" />
+    <javaClientGenerator targetPackage="com.gobase.component.dao.mall.shop" targetProject="gobase-component" type="XMLMAPPER" />
+    <table tableName="shop" domainObjectName="Shop">
+    </table>
+</context> -->
+<context id="context2">
+    <jdbcConnection connectionURL="jdbc:mysql://192.168.0.199:3306/mall" driverClass="com.mysql.jdbc.Driver" password="456qqq...B" userId="gobase" />
+    <javaModelGenerator targetPackage="com.gobase.component.bean.mall.shop" targetProject="gobase-component" />
+    <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.shop" targetProject="gobase-component" />
+    <javaClientGenerator targetPackage="com.gobase.component.dao.mall.shop" targetProject="gobase-component" type="XMLMAPPER" />
+    <table tableName="shop_account" domainObjectName="ShopAccount">
+    </table>
+</context>
+<context id="context3">
+    <jdbcConnection connectionURL="jdbc:mysql://192.168.0.199:3306/mall" driverClass="com.mysql.jdbc.Driver" password="456qqq...B" userId="gobase" />
+    <javaModelGenerator targetPackage="com.gobase.component.bean.mall.shop" targetProject="gobase-component" />
+    <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.shop" targetProject="gobase-component" />
+    <javaClientGenerator targetPackage="com.gobase.component.dao.mall.shop" targetProject="gobase-component" type="XMLMAPPER" />
+    <table tableName="shop_trade_record" domainObjectName="ShopTradeRecord">
+    </table>
+</context>
 </generatorConfiguration>
