@@ -63,6 +63,17 @@ public class GoodsController {
 		return ResultResponse.success(pageGoods, "查询生活空间具体某分类列表和商品成功");
 	}
 	/**
+	 *@description 根据shopid查商品列表
+	 *@param  shopId 店铺Id
+	 *@url /goods/list/shop_goods?shopId=1&pageNum=0&pageSize=10
+	 */
+	@RequestMapping("/list/shop_goods")
+	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,int shopId,int pageNum,int pageSize){
+		shopId = shopId==0?1:shopId;
+		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3,null, shopId, pageNum, pageSize);
+		return ResultResponse.success(pageGoods, "查询店铺分类列表商品成功");
+	}
+	/**
 	 *@description 暂时不查询(模块暂时不做)
 	 *@param cityId
 	 *@param groupCode
@@ -82,4 +93,5 @@ public class GoodsController {
 		GoodsDO goodsDO = goodsHome.selectGoodsByPrimaryKey(id);
 		return ResultResponse.success(goodsDO, "查询商品详情成功");
 	}
+	
 }
