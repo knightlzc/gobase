@@ -102,6 +102,7 @@ public class GoodsHome {
 			example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
 			List<GoodsParam> paramList = goodsParamMapper.selectByExample(example);
 			goodsDO.setParamList(paramList);
+			goodsList.add(goodsDO);
 		}
 		return goodsList;
 	}  
