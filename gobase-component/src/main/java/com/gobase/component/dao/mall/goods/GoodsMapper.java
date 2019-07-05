@@ -72,6 +72,7 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		"</script>")
     int countSearchGoods(@Param("search")String search,@Param("category1")String category1,
     		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId);
+    
     /**
      * x自定义xml查询商品列表
      */
