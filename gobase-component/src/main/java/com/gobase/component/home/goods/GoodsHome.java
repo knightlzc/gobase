@@ -10,7 +10,6 @@ package com.gobase.component.home.goods;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,28 +79,5 @@ public class GoodsHome {
 		return goodsList;
 	}  
 	
-	/**
-	 *x 自定义查询商品列表
-	 */
-	public List<GoodsDO> myListGoods(Map<String, Object> params){
-		List<GoodsDO> goodsList = new ArrayList<>();
-		List<Goods> list = goodsMapper.mySearchGoods(params);
-		if(CollectionUtils.isEmpty(list)) {
-			return goodsList;
-		}
-		for (Goods goods : list) {
-			GoodsDO goodsDO = new GoodsDO();
-			BeanUtils.copyProperties(goods, goodsDO);
-			
-			List<Img> imgs = imgHome.listImg(goods.getGoodsId(),Img.TYPE_GOODS );
-			goodsDO.setImgs(imgs);
-			
-			GoodsParamExample example = new GoodsParamExample();
-			example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
-			List<GoodsParam> paramList = goodsParamMapper.selectByExample(example);
-			goodsDO.setParamList(paramList);
-			goodsList.add(goodsDO);//缺少这句代码
-		}
-		return goodsList;
-	}
+	
 }

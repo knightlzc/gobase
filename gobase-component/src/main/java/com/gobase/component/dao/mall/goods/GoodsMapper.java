@@ -1,7 +1,6 @@
 package com.gobase.component.dao.mall.goods;
 
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -75,8 +74,4 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     int countSearchGoods(@Param("search")String search,@Param("category1")String category1,
     		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId,
     		@Param("start")Integer start,@Param("limit")Integer limit);
-    /**
-     * x自定义xml查询商品列表
-     */
-    List<Goods> mySearchGoods(@Param("mygoodsdto") Map<String, Object> params);
 }
