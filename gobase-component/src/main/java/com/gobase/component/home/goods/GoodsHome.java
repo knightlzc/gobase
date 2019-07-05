@@ -44,7 +44,7 @@ public class GoodsHome {
 	private ImgHome imgHome;
 	
 	/**
-	 * <br/>Description:
+	 * <br/>Description:分页查询
 	 * <p>Author:zcliu/刘子萃</p>
 	 * @param search
 	 * @param category1
