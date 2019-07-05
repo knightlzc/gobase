@@ -34,14 +34,16 @@ public class PageContent<T> implements Serializable {
      * 总共多少页
      */
     private int totalPages;
+    
+    
+    public PageContent (){}
 
-    public PageContent<T> getData(int pageNum, int pageSize, int totalNum, List<T> content) {
+    public PageContent(int pageNum, int pageSize, int totalNum, List<T> content) {
         this.pageNum = pageNum;
         this.pageSize = pageSize;
         this.totalNum = totalNum;
         this.totalPages = (totalNum + pageSize - 1) / pageSize;
         this.content = content;
-        return this;
     }
 
     public List<T> getContent() {

@@ -25,6 +25,7 @@ import com.gobase.component.bean.mall.img.Img;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.goods.GoodsParamMapper;
 import com.gobase.component.home.img.ImgHome;
+import com.gobase.tools.page.PageUtil;
 import com.gobase.tools.response.PageContent;
 
 /** 
@@ -55,9 +56,35 @@ public class GoodsHome {
 	 * @return
 	 */
 	public PageContent<GoodsDO> pageGoods(String search,String category1,String category2,String category3,Integer cityId,Integer shopId,int pageNum,int pageSize){
-		
-		
-		return null;
+		List<GoodsDO> goodsList = new ArrayList<>();
+		if(pageNum <= 0) {
+			pageNum = 1;
+		}
+		if(pageSize <= 0) {
+			pageSize = 10;
+		}
+		int count = goodsMapper.countSearchGoods(search, category1, category2, category3, cityId, shopId);
+		if(count <= 0) {
+			return new PageContent<GoodsDO>(pageNum,pageSize,count,goodsList);
+		}
+		List<Goods> list = goodsMapper.searchGoods(search, category1, category2, category3, cityId, shopId,PageUtil.getStart(pageNum, pageSize), PageUtil.getLimit(pageNum, pageSize));
+		if(CollectionUtils.isEmpty(list)) {
+			return new PageContent<GoodsDO>(pageNum,pageSize,count,goodsList);
+		}
+		for (Goods goods : list) {
+			GoodsDO goodsDO = new GoodsDO();
+			BeanUtils.copyProperties(goods, goodsDO);
+			
+			List<Img> imgs = imgHome.listImg(goods.getGoodsId(),Img.TYPE_GOODS );
+			goodsDO.setImgs(imgs);
+			
+			GoodsParamExample example = new GoodsParamExample();
+			example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
+			List<GoodsParam> paramList = goodsParamMapper.selectByExample(example);
+			goodsDO.setParamList(paramList);
+			goodsList.add(goodsDO);
+		}
+		return new PageContent<GoodsDO>(pageNum,pageSize,count,goodsList);
 	}  
 	public List<GoodsDO> listGoods(String search,String category1,String category2,String category3,Integer cityId,Integer shopId){
 		List<GoodsDO> goodsList = new ArrayList<>();

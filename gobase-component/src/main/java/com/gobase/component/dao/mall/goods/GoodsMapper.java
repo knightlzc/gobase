@@ -47,6 +47,7 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     List<Goods> searchGoods(@Param("search")String search,@Param("category1")String category1,
     		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId,
     		@Param("start")Integer start,@Param("limit")Integer limit);
+    
     @Select("<script>"+
     		" select count(1) from "+TABLE+ " g left join shop s on s.id = g.shop_id"+
     		" where 1=1 "+
@@ -68,13 +69,9 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" <if test='shopId != null'> "+
     		" and s.shop_id = #{shopId} "+
     		" </if>"+
-    		" <if test='start != null and limit != null '> "+
-    		" limit #{start},#{limit} "+
-    		" </if>"+
     		"</script>")
     int countSearchGoods(@Param("search")String search,@Param("category1")String category1,
-    		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId,
-    		@Param("start")Integer start,@Param("limit")Integer limit);
+    		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId);
     /**
      * x自定义xml查询商品列表
      */
