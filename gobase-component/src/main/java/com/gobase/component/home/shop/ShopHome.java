@@ -12,12 +12,10 @@ import org.springframework.util.CollectionUtils;
 import com.gobase.component.bean.mall.goods.Goods;
 import com.gobase.component.bean.mall.goods.GoodsExample;
 import com.gobase.component.bean.mall.goods.GoodsExample.Criteria;
-import com.gobase.component.bean.mall.order.OrderExample;
 import com.gobase.component.bean.mall.shop.Shop;
 import com.gobase.component.bean.mall.shop.ShopDO;
 import com.gobase.component.bean.mall.shop.ShopExample;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
-import com.gobase.component.dao.mall.order.OrderMapper;
 import com.gobase.component.dao.mall.shop.ShopMapper;
 import com.gobase.tools.response.PageContent;
 
@@ -34,8 +32,8 @@ public class ShopHome{
 	
 	@Autowired
 	private GoodsMapper goodsMapper;
-	@Autowired
-	private OrderMapper orderMapper;
+//	@Autowired
+//	private OrderMapper orderMapper;
 	/**
 	 *@description 查询店铺并查询几张热销商品和统计销量 
 	 *@param params 店铺名称等
@@ -52,8 +50,8 @@ public class ShopHome{
 		}
 		GoodsExample goodsExample = new GoodsExample();
 		Criteria goodscri = goodsExample.createCriteria();
-		OrderExample orderExample = new OrderExample();
-		com.gobase.component.bean.mall.order.OrderExample.Criteria ordercri = orderExample.createCriteria();
+//		OrderExample orderExample = new OrderExample();
+//		com.gobase.component.bean.mall.order.OrderExample.Criteria ordercri = orderExample.createCriteria();
 		for(Shop shop:list){
 			ShopDO shopDO = new ShopDO();
 			BeanUtils.copyProperties(shop, shopDO);
@@ -62,15 +60,15 @@ public class ShopHome{
 			List<Goods> goodsLi = goodsMapper.selectByExample(goodsExample);
 			if(!CollectionUtils.isEmpty(goodsLi)) {
 				shopDO.setGoodsList(goodsLi);
-				for(Goods goods:goodsLi) {
-					ordercri.andGoodsIdEqualTo(goods.getGoodsId());
-					long ordcount = orderMapper.countByExample(orderExample);
-					shopDO.setSaleCount(ordcount);
-				}
+//				for(Goods goods:goodsLi) {
+//					ordercri.andGoodsIdEqualTo(goods.getGoodsId());
+//					long ordcount = orderMapper.countByExample(orderExample);
+//					shopDO.setSaleCount(ordcount);
+//				}
 			}
 			shopsList.add(shopDO);
 		}
 		
-		return new PageContent<ShopDO>((int)params.get("pageNum"),(int)params.get("pageSize"),(int)count,shopsList);
+		return new PageContent<ShopDO>((int)params.get("offset"),(int)params.get("limit"),(int)count,shopsList);
 	}
 }

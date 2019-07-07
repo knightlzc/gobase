@@ -37,7 +37,7 @@ public class PageUtil {
 	 */
 	public static Integer getStart(Integer pageNum,Integer pageSize) {
 		if(pageNum == null || pageSize == null) {
-			return null;
+			return 0;
 		}
 		if (pageNum <= 0) {
 			pageNum = DEF_PAGE_NUM;
@@ -58,7 +58,7 @@ public class PageUtil {
 	 */
 	public static Integer getLimit(Integer pageNum,Integer pageSize) {
 		if(pageNum == null || pageSize == null) {
-			return null;
+			return DEF_PAGE_SIZE;
 		}
 		if (pageSize <= 0) {
 			return DEF_PAGE_SIZE;

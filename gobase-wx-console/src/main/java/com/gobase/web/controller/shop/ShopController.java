@@ -8,8 +8,8 @@
  */
 package com.gobase.web.controller.shop;
 
+import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.gobase.component.bean.mall.shop.ShopDO;
 import com.gobase.component.home.shop.ShopHome;
+import com.gobase.tools.page.PageUtil;
 import com.gobase.tools.response.PageContent;
 import com.gobase.tools.response.ResultResponse;
 
@@ -42,25 +43,19 @@ public class ShopController {
 	 *@param status
 	 *@param pageNum
 	 *@param pageSize
-	 *@url shop/list/shop?
+	 *@url shop/list/shop?pageNum=0&pageSize=10
 	 */
 	@RequestMapping("/list/shop")
-	public ResultResponse<PageContent<ShopDO>> getShopList(String shopName,String licenseNo,int pageNum,int pageSize){
-		if(pageNum < 0) {
-			pageNum = 1;
-		}
-		if(pageSize <= 0) {
-			pageSize = 10;
-		}
-		 Map<String,Object> params = new ConcurrentHashMap<String, Object>();//参数处理容器 params.clear();
-//		 params.put("shopName","");
+	public ResultResponse<PageContent<ShopDO>> getShopList(String shopName,Integer pageNum,Integer pageSize){
+		 Map<String,Object> params = new HashMap<String, Object>();//参数处理容器 params.clear();
+		 params.put("shopName",shopName);
 //		 params.put("licenseNo", null);
 //		 params.put("provinceId", null);
 //		 params.put("cityId",null);
 //		 params.put("pfUserId",null);
 //		 params.put("status",null);
-		 params.put("pageNum",pageNum);
-		 params.put("pageSize",pageSize);
+		 params.put("offset",PageUtil.getStart(pageNum, pageSize));
+		 params.put("limit",PageUtil.getLimit(pageNum, pageSize));
 		 System.out.println(params);
 		 PageContent<ShopDO> pageShops = shopHome.pageShops(params);
 		return ResultResponse.success(pageShops,"查询所有商品的商家及商家列表成功");

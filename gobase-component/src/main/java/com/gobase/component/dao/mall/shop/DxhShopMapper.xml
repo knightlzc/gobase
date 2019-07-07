@@ -27,8 +27,8 @@
     <if test="shopsdto.status != null">
     AND status = #{shopsdto.status}
     </if>
-    <if test="shopsdto.pageNum != null and shopsdto.pageSize != null">
-    LIMIT #{shopsdto.pageNum},#{shopsdto.pageSize}
+    <if test="shopsdto.offset != null and shopsdto.limit != null">
+    LIMIT #{shopsdto.offset},#{shopsdto.limit}
     </if>
   </select>
 </mapper>
