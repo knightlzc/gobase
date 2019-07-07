@@ -46,7 +46,7 @@ public class GoodsController {
 	@RequestMapping("/list/space_category")
 	public ResultResponse<List<GoodsCategory>> getSpaceCategoryList(String pcode,String groupCode){
 		List<GoodsCategory> listByPcodeAndGroupCode = goodsCategoryHome.listByPcodeAndGroupCode(pcode, groupCode);
-		return ResultResponse.success(listByPcodeAndGroupCode, "查询生活空间所有分类列表成功");
+		return ResultResponse.success(listByPcodeAndGroupCode, "查询生活空间创意空间所有分类列表成功");
 	}
 	
 	/**
@@ -55,21 +55,26 @@ public class GoodsController {
 	 *@param  category1  一级分类  （ 生活空间shkj，创意空间cykj）
 	 *@param  category2  二级分类  （ 生活空间shkj:rcyp:ys，创意空间cykj:jiaju:cl）
 	 *@param  category3  三级分类  （ 生活空间rcyp:ys，创意空间jiaju:cl）
-	 *@url /goods/list/space_goods?category1=shkj&category2=rcyp&category3=ys&pageNum=0&pageSize=10
+	 *@url1 /goods/list/space_goods?category1=shkj&category2=rcyp&category3=ys&pageNum=0&pageSize=10
+	 *@url2 /goods/list/space_goods?category1=cykj&category2=jiaju&category3=cl&pageNum=0&pageSize=10
 	 */
 	@RequestMapping("/list/space_goods")
-	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,int pageNum,int pageSize){
+	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,Integer pageNum,Integer pageSize){
+		pageNum = null==pageNum?0:pageNum;
+		pageSize = null==pageSize?10:pageSize;
 		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3, null, null, pageNum, pageSize);
 		return ResultResponse.success(pageGoods, "查询生活空间具体某分类列表和商品成功");
 	}
 	/**
 	 *@description 根据shopid查商品列表
 	 *@param  shopId 店铺Id
-	 *@url /goods/list/shop_goods?shopId=1&pageNum=0&pageSize=10
+	 *@url /goods/list/shop_goods?shopId=1
 	 */
 	@RequestMapping("/list/shop_goods")
-	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,int shopId,int pageNum,int pageSize){
-		shopId = shopId==0?1:shopId;
+	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,Integer shopId,Integer pageNum,Integer pageSize){
+		shopId = null==shopId?1:shopId;
+		pageNum = null==pageNum?0:pageNum;
+		pageSize = null==pageSize?10:pageSize;
 		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3,null, shopId, pageNum, pageSize);
 		return ResultResponse.success(pageGoods, "查询店铺分类列表商品成功");
 	}
@@ -77,7 +82,7 @@ public class GoodsController {
 	 *@description 暂时不查询(模块暂时不做)
 	 *@param cityId
 	 *@param groupCode
-	 *@url list/recommend?cityId=0&groupCode=kj
+	 *@url /goods/list/recommend?cityId=0&groupCode=kj
 	 */
 	@RequestMapping("/list/recommend")
 	public ResultResponse<PageContent<GoodsDO>> getRecommendGoodsList(String cityId,String groupCode){

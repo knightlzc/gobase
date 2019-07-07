@@ -37,7 +37,7 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" and s.city_id = #{cityId} "+
     		" </if>"+
     		" <if test='shopId != null'> "+
-    		" and s.shop_id = #{shopId} "+
+    		" and s.id = #{shopId} "+
     		" </if>"+
     		" <if test='start != null and limit != null '> "+
     		" limit #{start},#{limit} "+
@@ -66,7 +66,7 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" and s.city_id = #{cityId} "+
     		" </if>"+
     		" <if test='shopId != null'> "+
-    		" and s.shop_id = #{shopId} "+
+    		" and s.id = #{shopId} "+
     		" </if>"+
     		"</script>")
     int countSearchGoods(@Param("search")String search,@Param("category1")String category1,
