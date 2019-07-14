@@ -9,6 +9,7 @@
 package com.gobase.web.controller.shop;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gobase.component.bean.mall.goods.GoodsCategoryDO;
 import com.gobase.component.bean.mall.shop.ShopDO;
 import com.gobase.component.home.shop.ShopHome;
 import com.gobase.tools.page.PageUtil;
@@ -69,9 +71,9 @@ public class ShopController {
 	 */
 	 @RequestMapping("/list/shopcategory")
 	 @ResponseBody
-	 public ResultResponse<Map<String,Object>> getShopCatrgoryByShopId(Integer shopId){
+	 public ResultResponse<List <GoodsCategoryDO>> getShopCatrgoryByShopId(Integer shopId){
 		 shopId = null ==shopId?1:shopId; 
-		 Map<String,Object> res = shopHome.getShopCatrgoryByShopId(shopId);
+		 List <GoodsCategoryDO> res = shopHome.getShopCatrgoryByShopId(shopId);
 		 return ResultResponse.success(res,"查询店铺id查询店铺商品分类列表");
 	 }
 	

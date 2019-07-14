@@ -1,7 +1,6 @@
 package com.gobase.component.home.shop;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +11,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.gobase.component.bean.mall.goods.Goods;
 import com.gobase.component.bean.mall.goods.GoodsCategory;
-import com.gobase.component.bean.mall.goods.GoodsDO;
+import com.gobase.component.bean.mall.goods.GoodsCategoryDO;
 import com.gobase.component.bean.mall.goods.GoodsExample;
 import com.gobase.component.bean.mall.goods.GoodsExample.Criteria;
 import com.gobase.component.bean.mall.shop.Shop;
@@ -21,7 +20,7 @@ import com.gobase.component.bean.mall.shop.ShopExample;
 import com.gobase.component.dao.mall.goods.GoodsCategoryMapper;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.shop.ShopMapper;
-import com.gobase.component.home.goods.GoodsHome;
+import com.gobase.component.home.goods.GoodsCategoryHome;
 import com.gobase.tools.response.PageContent;
 
 /** 
@@ -41,7 +40,7 @@ public class ShopHome{
 	private GoodsCategoryMapper goodsCategoryMapper;
 	
 	@Autowired
-	private GoodsHome goodsHome;
+	private GoodsCategoryHome goodsCategoryHome;
 //	@Autowired
 //	private OrderMapper orderMapper;
 	/**
@@ -81,32 +80,24 @@ public class ShopHome{
 		
 		return new PageContent<ShopDO>((int)params.get("offset"),(int)params.get("limit"),(int)count,shopsList);
 	}
-	
-	public Map<String,Object> getShopCatrgoryByShopId(Integer shopId){
-		List<GoodsDO> listGoods = goodsHome.listGoods(null, null, null, null, null, shopId);
-		List<GoodsCategory> sublist=null;
-		GoodsCategory cate = null;
-		if(!listGoods.isEmpty()) {
-			 Map<String,Object> categorys = new HashMap<String, Object>(); 
-			 for (GoodsDO item :listGoods) {
-				 if (null!=item.getCategory2()&null!=item.getCategory3()) {
-					 if(categorys.containsKey(item.getCategory2())) {
-						 sublist = (ArrayList<GoodsCategory>) categorys.get(item.getCategory2());
-						 cate = new GoodsCategory();
-						 cate.setCode(item.getCategory3());
-						 sublist.add(cate);
-					 }else {
-						 sublist =new ArrayList<GoodsCategory>();
-						 cate = new GoodsCategory();
-						 cate.setCode(item.getCategory3());
-						 sublist.add(cate);
-						 categorys.put(item.getCategory2(), sublist);
-					 }
-					 
-				 }
-			 }
-			return categorys;
-		 }
-		return null;
+	/**
+	 *@description 通过店铺查询商品类别列表，并返回树
+	 *@param shopId 店铺ID等
+	 */
+	public List<GoodsCategoryDO> getShopCatrgoryByShopId(Integer shopId){
+		List<GoodsCategoryDO> result = new ArrayList<GoodsCategoryDO>();
+		List<GoodsCategory> shopGoodsCategoryLi = goodsCategoryMapper.searchShopGoodsCategory(shopId);
+		if(!shopGoodsCategoryLi.isEmpty()) {
+			for (GoodsCategory item :shopGoodsCategoryLi) {
+				List<GoodsCategory> listByPcodeAndGroupCode = goodsCategoryHome.listByPcodeAndGroupCode(item.getCode(),null);
+				GoodsCategoryDO catedo = new GoodsCategoryDO();
+				BeanUtils.copyProperties(item, catedo);
+				catedo.setSublist(listByPcodeAndGroupCode);
+				result.add(catedo);
+			}
+			return result;
+		}else {
+			return null;
+		}
 	}
 }
