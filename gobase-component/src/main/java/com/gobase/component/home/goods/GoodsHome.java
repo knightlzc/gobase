@@ -11,15 +11,12 @@ package com.gobase.component.home.goods;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gobase.component.bean.mall.goods.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 
-import com.gobase.component.bean.mall.goods.Goods;
-import com.gobase.component.bean.mall.goods.GoodsDO;
-import com.gobase.component.bean.mall.goods.GoodsParam;
-import com.gobase.component.bean.mall.goods.GoodsParamExample;
 import com.gobase.component.bean.mall.img.Img;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.goods.GoodsParamMapper;
@@ -117,6 +114,27 @@ public class GoodsHome {
 		GoodsDO goodsDO = new GoodsDO();
 		Goods goods = goodsMapper.selectByPrimaryKey(id);
 		BeanUtils.copyProperties(goods, goodsDO);
+		return goodsDO;
+	}
+
+	public GoodsDO getByGoodsId(String goodsId) {
+		GoodsDO goodsDO = new GoodsDO();
+		GoodsExample example = new GoodsExample();
+		example.createCriteria().andGoodsIdEqualTo(goodsId);
+		List<Goods> goodsList = goodsMapper.selectByExample(example);
+		if(CollectionUtils.isEmpty(goodsList)){
+			return goodsDO;
+		}
+		Goods goods = goodsList.get(0);
+		BeanUtils.copyProperties(goods, goodsDO);
+
+		List<Img> imgs = imgHome.listImg(goods.getGoodsId(),Img.TYPE_GOODS );
+		goodsDO.setImgs(imgs);
+
+		GoodsParamExample goodsParamExample = new GoodsParamExample();
+		example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
+		List<GoodsParam> paramList = goodsParamMapper.selectByExample(goodsParamExample);
+		goodsDO.setParamList(paramList);
 		return goodsDO;
 	}
 	
