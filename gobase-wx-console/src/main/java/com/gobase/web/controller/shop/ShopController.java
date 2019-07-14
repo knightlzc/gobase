@@ -67,9 +67,10 @@ public class ShopController {
 	 *@description 通过店铺id查询店铺商品分类列表 
 	 *@param shopId 店铺Id
 	 */
-	 @RequestMapping("/list/shopcatrgory")
+	 @RequestMapping("/list/shopcategory")
 	 @ResponseBody
 	 public ResultResponse<Map<String,Object>> getShopCatrgoryByShopId(Integer shopId){
+		 shopId = null ==shopId?1:shopId; 
 		 Map<String,Object> res = shopHome.getShopCatrgoryByShopId(shopId);
 		 return ResultResponse.success(res,"查询店铺id查询店铺商品分类列表");
 	 }
