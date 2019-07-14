@@ -13,6 +13,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.gobase.component.bean.mall.shop.ShopDO;
@@ -25,6 +26,7 @@ import com.gobase.tools.response.ResultResponse;
  * <p>Copyright: All Rights Reserved</p>  
  * <p>Description:  </p> 
  * <p>Author:zcliu/刘子萃</p>
+ * @param <GoodsCategory>
  */
 @RequestMapping("shop")
 @RestController
@@ -32,6 +34,7 @@ public class ShopController {
 	
 	@Autowired
 	private ShopHome shopHome;
+	
 	
 	/**
 	 *@description 查询店铺并查询几张热销商品和统计销量 
@@ -60,6 +63,15 @@ public class ShopController {
 		 PageContent<ShopDO> pageShops = shopHome.pageShops(params);
 		return ResultResponse.success(pageShops,"查询所有商品的商家及商家列表成功");
 	}
-	
+	/**
+	 *@description 通过店铺id查询店铺商品分类列表 
+	 *@param shopId 店铺Id
+	 */
+	 @RequestMapping("/list/shopcatrgory")
+	 @ResponseBody
+	 public ResultResponse<Map<String,Object>> getShopCatrgoryByShopId(Integer shopId){
+		 Map<String,Object> res = shopHome.getShopCatrgoryByShopId(shopId);
+		 return ResultResponse.success(res,"查询店铺id查询店铺商品分类列表");
+	 }
 	
 }
