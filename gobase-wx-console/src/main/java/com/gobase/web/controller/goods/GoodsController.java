@@ -48,6 +48,21 @@ public class GoodsController {
 		List<GoodsCategory> listByPcodeAndGroupCode = goodsCategoryHome.listByPcodeAndGroupCode(pcode, groupCode);
 		return ResultResponse.success(listByPcodeAndGroupCode, "查询生活空间创意空间所有分类列表成功");
 	}
+	/**
+	 * 备用写死查2级分类 备用（查询生活空间和创意空间所有分类列表）
+	 */
+	/*
+	 * @RequestMapping("/list/recursive_category") public
+	 * ResultResponse<List<GoodsCategoryDO>> recursiveSpaceCategoryList(String
+	 * pcode,String groupCode){ List<GoodsCategory> list =
+	 * goodsCategoryHome.listByPcodeAndGroupCode(pcode, groupCode);
+	 * List<GoodsCategoryDO> reslist = new ArrayList<GoodsCategoryDO>(); if
+	 * (!list.isEmpty()) { list.forEach(item ->{ GoodsCategoryDO innerdo = new
+	 * GoodsCategoryDO(); BeanUtils.copyProperties(item, innerdo);
+	 * innerdo.setSublist(goodsCategoryHome.listByPcodeAndGroupCode(item.getCode(),
+	 * groupCode)); reslist.add(innerdo); }); } return
+	 * ResultResponse.success(reslist, "查询生活空间创意空间,两极分类列表成功"); }
+	 */
 	
 	/**
 	 *@description 查询生活空间和创意空间所有分类列表
