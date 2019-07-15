@@ -43,27 +43,28 @@ public class BackstageGoodsCategoryHome {
 		}
 	}
 	/**
-	 * @description 修改前查詢
+	 * @description 修改前查询
 	 * 
 	 */
 	public List <GoodsCategory> categoryBeforeUpdate(GoodsCategory record) {
 		List <GoodsCategory> res = new ArrayList<GoodsCategory>();
 		GoodsCategory select1 = goodsCategoryMapper.selectByPrimaryKey(record.getId());
 		if (null!=select1.getPcode()) {
-			recursiveQuery(record,res);//遞歸查詢父級目錄
+			recursiveQuery(select1,res);//递归查询父类
 			res.add(0, select1);
 		}
 		return res;
 	}
 	/**
-	 * 遞歸查詢父類 
+	 * 递归查询父类
 	 */
 	private List <GoodsCategory> recursiveQuery(GoodsCategory record ,List <GoodsCategory> res) {
 		GoodsCategoryExample example = new GoodsCategoryExample();
 		example.createCriteria().andCodeEqualTo(record.getPcode());
-		record = goodsCategoryMapper.selectByExample(example).get(0);
+		List<GoodsCategory> selectByExample = goodsCategoryMapper.selectByExample(example);
+		record = selectByExample.isEmpty()?record:selectByExample.get(0);
 		res.add(record);
-		if(null == record.getPcode()) {
+		if(null == record.getPcode()||"".equals(record.getPcode())) {
 			return res;
 		}
 		return recursiveQuery(record ,res);
