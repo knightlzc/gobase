@@ -58,6 +58,7 @@ public class CartService {
         }
         cartDTO.setTotalPrice(price);
         cartDTO.setGoodsList(list);
+        cartDTO.setNum(cartList.size());
         return  cartDTO;
     }
 }

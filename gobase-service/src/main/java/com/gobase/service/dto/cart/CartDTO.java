@@ -8,6 +8,8 @@ public class CartDTO {
 
     private double totalPrice;
 
+    private int num;
+
     private List<CartGoodsDTO> goodsList;
 
     public double getTotalPrice() {
@@ -24,5 +26,13 @@ public class CartDTO {
 
     public void setGoodsList(List<CartGoodsDTO> goodsList) {
         this.goodsList = goodsList;
+    }
+
+    public int getNum() {
+        return num;
+    }
+
+    public void setNum(int num) {
+        this.num = num;
     }
 }
