@@ -60,11 +60,19 @@
 </context>-->
 <!-- Order生成部分 x -->
 <context id="context4">
-    <jdbcConnection connectionURL="jdbc:mysql://192.168.0.199:3306/mall" driverClass="com.mysql.jdbc.Driver" password="456qqq...B" userId="gobase" />
+    <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" />
     <javaModelGenerator targetPackage="com.gobase.component.bean.mall.order" targetProject="gobase-component" />
     <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.order" targetProject="gobase-component" />
     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.order" targetProject="gobase-component" type="XMLMAPPER" />
     <table tableName="order" domainObjectName="Order">
     </table>
 </context>
+<!-- <context id="context5"> -->
+<!--     <jdbcConnection connectionURL="jdbc:mysql://10.4.82.150:3306/mall" driverClass="com.mysql.jdbc.Driver" password="123456" userId="root" /> -->
+<!--     <javaModelGenerator targetPackage="com.gobase.component.bean.mall.order" targetProject="gobase-component" /> -->
+<!--     <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.order" targetProject="gobase-component" /> -->
+<!--     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.order" targetProject="gobase-component" type="XMLMAPPER" /> -->
+<!--     <table tableName="order_goods_ref" domainObjectName="OrderGoodsRef"> -->
+<!--     </table> -->
+<!-- </context> -->
 </generatorConfiguration>

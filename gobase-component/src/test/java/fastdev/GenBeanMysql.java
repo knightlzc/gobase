@@ -23,7 +23,7 @@ public class GenBeanMysql {
          
           String packageOutPath = "com.renren.fenqi.admin.component.model.car";
           String authorName = "zicui.liu/刘子萃";
-          String tablename = "user";
+          String tablename = "order";
          
 //          new GenEntityMysql(packageOutPath,authorName,tablename).toJavaBean().showColumnNames();
           new GenBeanMysql(packageOutPath,authorName,tablename,"").toJavaBean();
@@ -119,7 +119,7 @@ public class GenBeanMysql {
           //创建连接
          Connection con = null;
           //查要生成实体类的表
-         String sql = "select * from " + tablename;
+         String sql = "select * from `" + tablename+"`";
          PreparedStatement pStemt = null;
          try {
               try {
