@@ -8,10 +8,12 @@
  */
 package com.gobase.service.service.order;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.gobase.service.param.order.OrderParam;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +58,7 @@ public class OrderService {
 	private GoodsHome goodsHome;
 
 	@Transactional
-	public String placeOrder(int userId,List<Cart> cartList,int addressId,double kuaidiPrice) throws Exception {
+	public String placeOrder(int userId, List<Cart> cartList, OrderParam param) throws Exception {
 		if(CollectionUtils.isEmpty(cartList)) {
 			throw new Exception("购物车为空");
 		}
@@ -80,10 +82,36 @@ public class OrderService {
 			orderGoodsRefMapper.insert(ref);
 			
 		}
-		order.setAddressId(addressId);
-		order.setKuaidiPrice(kuaidiPrice);
+		order.setAddressId(param.getAddressId());
+		order.setKuaidiPrice(param.getKuaidiPrice());
 		orderMapper.insert(order);
+		// TODO 待支付信息
 		return orderId;
+	}
+
+	public String payOrder(String orderId){
+		OrderDO orderDO = orderHome.getOrderDOByOrderId(orderId);
+
+		if(null == orderDO){
+			return "订单不存在";
+		}
+		Map<Integer,List<GoodsDO>> shopGoodsMap = new HashMap<>();
+		if (CollectionUtils.isEmpty(orderDO.getGoodsList())){
+			return "该订单没有商品";
+		}
+		//是否需要拆分订单
+		boolean subOrder = false;
+		for (GoodsDO goodsDO : orderDO.getGoodsList()){
+			if(null != shopGoodsMap.get(goodsDO.getShopId())){
+				List<GoodsDO> list = new ArrayList<>();
+				list.add(goodsDO);
+				shopGoodsMap.put(goodsDO.getShopId(),list);
+			} else {
+				shopGoodsMap.get(goodsDO.getShopId()).add(goodsDO);
+			}
+		}
+
+		return null;
 	}
 	
 	public static void main(String[] args) {

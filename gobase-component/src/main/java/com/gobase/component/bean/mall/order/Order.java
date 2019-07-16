@@ -17,6 +17,11 @@ public class Order {
 	private String orderId="";
 
 	/**
+	 * 父订单号
+	 */
+	private String porderId="";
+
+	/**
 	*用户id
 	*/
 	private int userId;
@@ -214,5 +219,13 @@ public class Order {
 	}
 	public double getTotalPrice(){
 		return totalPrice;
+	}
+
+	public String getPorderId() {
+		return porderId;
+	}
+
+	public void setPorderId(String porderId) {
+		this.porderId = porderId;
 	}
 }

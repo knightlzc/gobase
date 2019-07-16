@@ -1,6 +1,9 @@
 package com.gobase.component.bean.mall.order;
 
+import com.gobase.component.bean.mall.goods.GoodsDO;
+
 import java.util.Date;
+import java.util.List;
 
 public class OrderDO {
 	/**
@@ -12,6 +15,8 @@ public class OrderDO {
 	*订单号
 	*/
 	private String orderId="";
+
+	private String porderId="";
 
 	/**
 	*用户id
@@ -97,6 +102,8 @@ public class OrderDO {
 	*总价格
 	*/
 	private double totalPrice;
+
+	private List<GoodsDO> goodsList;
 
 	public void setId(int id){
 		this.id=id;
@@ -211,5 +218,21 @@ public class OrderDO {
 	}
 	public double getTotalPrice(){
 		return totalPrice;
+	}
+
+	public String getPorderId() {
+		return porderId;
+	}
+
+	public void setPorderId(String porderId) {
+		this.porderId = porderId;
+	}
+
+	public List<GoodsDO> getGoodsList() {
+		return goodsList;
+	}
+
+	public void setGoodsList(List<GoodsDO> goodsList) {
+		this.goodsList = goodsList;
 	}
 }
