@@ -8,12 +8,15 @@
  */
 package com.gobase.service.service.order;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import com.gobase.service.param.order.OrderParam;
+
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,11 +27,13 @@ import com.gobase.component.bean.mall.goods.GoodsDO;
 import com.gobase.component.bean.mall.order.Order;
 import com.gobase.component.bean.mall.order.OrderDO;
 import com.gobase.component.bean.mall.order.OrderGoodsRef;
+import com.gobase.component.bean.mall.order.OrderPayment;
 import com.gobase.component.bean.mall.shop.Shop;
 import com.gobase.component.cache.Cart;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.order.OrderGoodsRefMapper;
 import com.gobase.component.dao.mall.order.OrderMapper;
+import com.gobase.component.dao.mall.order.OrderPaymentMapper;
 import com.gobase.component.home.goods.GoodsHome;
 import com.gobase.component.home.order.OrderHome;
 import com.gobase.tools.common.IDCreater;
@@ -56,6 +61,9 @@ public class OrderService {
 	
 	@Autowired
 	private GoodsHome goodsHome;
+	
+	@Autowired
+	private OrderPaymentMapper orderPaymentMapper;
 
 	@Transactional
 	public String placeOrder(int userId, List<Cart> cartList, OrderParam param) throws Exception {
@@ -70,7 +78,7 @@ public class OrderService {
 		for (Cart cart : cartList) {
 			OrderGoodsRef ref = new OrderGoodsRef();
 			ref.setOrderId(orderId);
-			
+			ref.setPorderId(orderId);
 			GoodsDO goods = goodsHome.getByGoodsId(cart.getGoodsId());
 			ref.setSkuId(goods.getGoodsId());
 			ref.setSkuNum(cart.getNum());
@@ -85,13 +93,20 @@ public class OrderService {
 		order.setAddressId(param.getAddressId());
 		order.setKuaidiPrice(param.getKuaidiPrice());
 		orderMapper.insert(order);
+		
 		// TODO 待支付信息
+		OrderPayment orderPayment = new OrderPayment();
+		orderPayment.setAmount(order.getTotalPrice());
+		orderPayment.setStatus(OrderPayment.STATUS_NO_PAY);
+		orderPayment.setOrderId(orderId);
+		orderPaymentMapper.insert(orderPayment);
 		return orderId;
 	}
 
-	public String payOrder(String orderId){
+	@Transactional
+	public String payOrder(String orderId) throws Exception{
 		OrderDO orderDO = orderHome.getOrderDOByOrderId(orderId);
-
+		Order order = orderHome.getOrderByOrderId(orderId);
 		if(null == orderDO){
 			return "订单不存在";
 		}
@@ -99,8 +114,6 @@ public class OrderService {
 		if (CollectionUtils.isEmpty(orderDO.getGoodsList())){
 			return "该订单没有商品";
 		}
-		//是否需要拆分订单
-		boolean subOrder = false;
 		for (GoodsDO goodsDO : orderDO.getGoodsList()){
 			if(null != shopGoodsMap.get(goodsDO.getShopId())){
 				List<GoodsDO> list = new ArrayList<>();
@@ -110,10 +123,45 @@ public class OrderService {
 				shopGoodsMap.get(goodsDO.getShopId()).add(goodsDO);
 			}
 		}
-
+		//是否需要拆分订单
+		if(shopGoodsMap.size()>1) {
+			subOrders(order, shopGoodsMap);
+		} else {
+			order.setStatus(Order.STATUS_PAYED);
+			orderHome.updateOrder(order);
+		}
 		return null;
 	}
 	
+	/**
+	 * <br/>Description:拆分订单
+	 * <p>Author:zcliu/刘子萃</p>
+	 * @param order
+	 * @param shopGoodsMap
+	 * @return
+	 * @throws InvocationTargetException 
+	 * @throws IllegalAccessException 
+	 */
+	private String subOrders(Order order,Map<Integer,List<GoodsDO>> shopGoodsMap) throws Exception {
+		for (int shopId : shopGoodsMap.keySet()) {
+			String orderId = IDCreater.generate("GOS");
+			Order subOrder = new Order();
+			BeanUtils.copyProperties(order, subOrder);
+			subOrder.setOrderId(orderId);
+			subOrder.setUserId(order.getUserId());
+			subOrder.setPorderId(order.getOrderId());
+			subOrder.setStatus(Order.STATUS_PAYED);
+			orderHome.saveOrder(subOrder);
+			List<GoodsDO> goodsList = shopGoodsMap.get(shopId);
+			for (GoodsDO goodsDO : goodsList) {
+				orderHome.resetOrderGoodsOrderId(goodsDO.getGoodsId(), orderId, order.getOrderId());
+			}
+		}
+		order.setStatus(Order.STATUS_DELETE);
+		orderHome.updateOrder(order);
+		//TODO pay ment update
+		return null;
+	}
 	public static void main(String[] args) {
 		System.out.println(IDCreater.generate("123"));
 	}

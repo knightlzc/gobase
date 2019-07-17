@@ -1,4 +1,4 @@
-package com.gobase.component.bean.mall.order;
+package com.gobase.component.bean.mall.order.test;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

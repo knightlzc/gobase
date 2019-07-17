@@ -5,6 +5,30 @@ import java.math.BigDecimal;
 
 public class Order {
 	
+	/**
+	 * 待支付
+	 */
+	public static int STATUS_NO_PAY = 0;
+	
+	/**
+	 * 已支付（待收货）
+	 */
+	public static int STATUS_PAYED = 1;
+	
+	/**
+	 * 订单完成（已收货）
+	 */
+	public static int STATUS_FINISH = 10;
+	
+	/**
+	 * 取消
+	 */
+	public static int STATUS_CANCEL = 200;
+	
+	/**
+	 * 删除
+	 */
+	public static int STATUS_DELETE = -1;
 	
 	/**
 	*自增id

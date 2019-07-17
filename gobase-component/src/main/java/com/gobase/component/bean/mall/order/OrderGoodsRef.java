@@ -10,6 +10,11 @@ public class OrderGoodsRef {
 	*
 	*/
 	private int id;
+	
+	/**
+	 *订单号
+	 */
+	private String porderId="";
 
 	/**
 	*订单号
@@ -82,5 +87,11 @@ public class OrderGoodsRef {
 	}
 	public int getManjianId(){
 		return manjianId;
+	}
+	public String getPorderId() {
+		return porderId;
+	}
+	public void setPorderId(String porderId) {
+		this.porderId = porderId;
 	}
 }

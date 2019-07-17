@@ -64,7 +64,7 @@
     <javaModelGenerator targetPackage="com.gobase.component.bean.mall.order" targetProject="gobase-component" />
     <sqlMapGenerator targetPackage="com.gobase.component.dao.mall.order" targetProject="gobase-component" />
     <javaClientGenerator targetPackage="com.gobase.component.dao.mall.order" targetProject="gobase-component" type="XMLMAPPER" />
-    <table tableName="order" domainObjectName="Order">
+    <table tableName="order_payment" domainObjectName="OrderPayment">
     </table>
 </context>
 <!-- <context id="context5"> -->

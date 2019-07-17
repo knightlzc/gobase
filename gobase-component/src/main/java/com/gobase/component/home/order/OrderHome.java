@@ -76,5 +76,13 @@ public class OrderHome {
 		orderDO.setGoodsList(goodsList);
 		return orderDO;
 	}
+	
+	public int resetOrderGoodsOrderId(String goodsId,String orderId,String porderId) {
+		return orderGoodsRefMapper.updateOrderIdByPorderIdAndSkuId(goodsId, orderId, porderId);
+	}
+	
+	public int updateOrder(Order order) {
+		return orderMapper.updateByPrimaryKey(order);
+	}
 
 }
