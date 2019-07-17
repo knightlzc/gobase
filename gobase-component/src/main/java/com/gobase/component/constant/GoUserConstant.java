@@ -9,4 +9,9 @@ public class GoUserConstant {
     public static final String Go_USER_REQUEST_ATTR = "request_attr_user";
 
     public static final String TICKET_HEADER_KEY_PREFIX = "go_ticket_header_prefix_";
+
+    /**
+     * 重新登录
+     */
+    public static final int RE_LOGIN = 9999;
 }
