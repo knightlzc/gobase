@@ -14,8 +14,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.gobase.service.dto.order.OrderDTO;
 import com.gobase.service.param.order.OrderParam;
 
+import com.gobase.tools.response.PageContent;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,6 +66,10 @@ public class OrderService {
 	
 	@Autowired
 	private OrderPaymentMapper orderPaymentMapper;
+
+	public PageContent<OrderDTO> pageOrders(int userId,int status,int pageNum,int pageSize){
+		return null;
+	}
 
 	@Transactional
 	public String placeOrder(int userId, List<Cart> cartList, OrderParam param) throws Exception {

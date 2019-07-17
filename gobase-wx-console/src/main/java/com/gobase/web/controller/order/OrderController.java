@@ -8,8 +8,15 @@
  */
 package com.gobase.web.controller.order;
 
+import com.gobase.service.dto.order.OrderDTO;
+import com.gobase.service.service.order.OrderService;
+import com.gobase.tools.response.PageContent;
+import com.gobase.tools.response.ResultResponse;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -19,5 +26,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("order")
 @RestController
 public class OrderController {
+
+    @Autowired
+    private OrderService orderService;
+
+    @RequestMapping("lst")
+    public ResultResponse<PageContent<OrderDTO>> listUserOrders(Integer status){
+        return null;
+    }
 
 }
