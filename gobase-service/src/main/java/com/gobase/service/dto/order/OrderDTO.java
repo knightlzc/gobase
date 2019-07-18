@@ -7,30 +7,17 @@ import java.util.List;
 public class OrderDTO {
 
     private String shopName;
-    private String goodsNum;
-    private String totalPrice;
+    private int goodsNum;
+    private double totalPrice;
     private String kuaidiNo;
     private String kuaidi;
     private List<GoodsDTO> goodsList;
+    
     public void setShopName(String shopName) {
         this.shopName = shopName;
     }
     public String getShopName() {
         return shopName;
-    }
-
-    public void setGoodsNum(String goodsNum) {
-        this.goodsNum = goodsNum;
-    }
-    public String getGoodsNum() {
-        return goodsNum;
-    }
-
-    public void setTotalPrice(String totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-    public String getTotalPrice() {
-        return totalPrice;
     }
 
     public void setKuaidiNo(String kuaidiNo) {
@@ -46,6 +33,24 @@ public class OrderDTO {
     public String getKuaidi() {
         return kuaidi;
     }
+	public List<GoodsDTO> getGoodsList() {
+		return goodsList;
+	}
+	public void setGoodsList(List<GoodsDTO> goodsList) {
+		this.goodsList = goodsList;
+	}
+	public int getGoodsNum() {
+		return goodsNum;
+	}
+	public void setGoodsNum(int goodsNum) {
+		this.goodsNum = goodsNum;
+	}
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 
 
 }

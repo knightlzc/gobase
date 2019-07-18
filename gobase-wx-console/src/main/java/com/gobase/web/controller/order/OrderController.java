@@ -12,11 +12,12 @@ import com.gobase.service.dto.order.OrderDTO;
 import com.gobase.service.service.order.OrderService;
 import com.gobase.tools.response.PageContent;
 import com.gobase.tools.response.ResultResponse;
+import com.gobase.web.interceptor.host.HostHolder;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -26,13 +27,23 @@ import java.util.List;
 @RequestMapping("order")
 @RestController
 public class OrderController {
+	
+	@Autowired
+	private HostHolder hostHolder;
 
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("lst")
-    public ResultResponse<PageContent<OrderDTO>> listUserOrders(Integer status){
-        return null;
+    @RequestMapping("list")
+    public ResultResponse<PageContent<OrderDTO>> listUserOrders(Integer status,int pageNum,int pageSize){
+    	try {
+    		PageContent<OrderDTO> page = orderService.pageOrders(hostHolder.getUserId(), status, pageNum, pageSize);
+    		return ResultResponse.success(page, "");
+		} catch (Exception e) {
+			e.getMessage();
+			return ResultResponse.fail("查询列表失败", "");
+		}
+    	
     }
 
 }

@@ -22,6 +22,10 @@ public class OrderDO {
 	*用户id
 	*/
 	private int userId;
+	
+	private int shopId;
+	
+	private String shopName;
 
 	/**
 	*
@@ -234,5 +238,17 @@ public class OrderDO {
 
 	public void setGoodsList(List<GoodsDO> goodsList) {
 		this.goodsList = goodsList;
+	}
+	public int getShopId() {
+		return shopId;
+	}
+	public void setShopId(int shopId) {
+		this.shopId = shopId;
+	}
+	public String getShopName() {
+		return shopName;
+	}
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
 	}
 }

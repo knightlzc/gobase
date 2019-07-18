@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.gobase.service.dto.goods.GoodsDTO;
 import com.gobase.service.dto.order.OrderDTO;
 import com.gobase.service.param.order.OrderParam;
 
@@ -38,8 +39,10 @@ import com.gobase.component.dao.mall.order.OrderMapper;
 import com.gobase.component.dao.mall.order.OrderPaymentMapper;
 import com.gobase.component.home.goods.GoodsHome;
 import com.gobase.component.home.order.OrderHome;
+import com.gobase.component.param.order.QueryOrderParam;
 import com.gobase.tools.common.IDCreater;
 import com.gobase.tools.compute.PreciseCompute;
+import com.gobase.tools.page.PageUtil;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -67,10 +70,54 @@ public class OrderService {
 	@Autowired
 	private OrderPaymentMapper orderPaymentMapper;
 
-	public PageContent<OrderDTO> pageOrders(int userId,int status,int pageNum,int pageSize){
-		return null;
+	/**
+	 * 
+	 * <br/>Description:查询订单列表
+	 * <p>Author:zcliu/刘子萃</p>
+	 * @param userId
+	 * @param status
+	 * @param pageNum
+	 * @param pageSize
+	 * @return
+	 * @throws Exception
+	 */
+	public PageContent<OrderDTO> pageOrders(Integer userId,Integer status,int pageNum,int pageSize) throws Exception{
+		QueryOrderParam param = new QueryOrderParam();
+		param.setUserId(userId);
+		param.setStatus(userId);
+		int count = orderMapper.countOrders(param);
+		if(count <= 0) {
+			return new PageContent<>(pageNum, pageSize, 0, new ArrayList<>());
+		}
+		List<OrderDO> orderList = orderMapper.pageOrders(param,PageUtil.getStart(pageNum, pageSize),PageUtil.getLimit(pageNum, pageSize));
+		List<OrderDTO> content = new ArrayList<>();
+		for (OrderDO orderDO : orderList) {
+			content.add(toOrderDTO(orderDO));
+		}
+		return new PageContent<OrderDTO>(pageNum, pageSize,count,content);
 	}
-
+	
+	private OrderDTO toOrderDTO(OrderDO orderDO) throws Exception {
+		OrderDTO orderDTO = new OrderDTO();
+		BeanUtils.copyProperties(orderDO, orderDTO);
+		List<GoodsDO> goodsDOList = orderHome.getGoodsList(orderDO.getOrderId());
+		if(CollectionUtils.isNotEmpty(goodsDOList)) {
+			List<GoodsDTO> goodsDTOList = new ArrayList<>();
+			orderDTO.setGoodsList(goodsDTOList);
+			for (GoodsDO goodsDO : goodsDOList) {
+				goodsDTOList.add(toGoodsDTO(goodsDO));
+			}
+			orderDTO.setGoodsNum(goodsDTOList.size());
+		}
+		return orderDTO;
+		
+	}
+	
+	public GoodsDTO toGoodsDTO(GoodsDO goodsDO) throws Exception {
+		GoodsDTO dto = new GoodsDTO();
+		BeanUtils.copyProperties(goodsDO, dto);
+		return dto;
+	}
 	@Transactional
 	public String placeOrder(int userId, List<Cart> cartList, OrderParam param) throws Exception {
 		if(CollectionUtils.isEmpty(cartList)) {

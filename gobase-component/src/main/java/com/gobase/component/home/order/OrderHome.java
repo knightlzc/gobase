@@ -4,6 +4,8 @@ import com.gobase.component.bean.mall.goods.GoodsDO;
 import com.gobase.component.bean.mall.order.*;
 import com.gobase.component.dao.mall.order.OrderGoodsRefMapper;
 import com.gobase.component.home.goods.GoodsHome;
+import com.gobase.tools.response.PageContent;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,25 +59,26 @@ public class OrderHome {
 		}
 		Order order = orders.get(0);
 		BeanUtils.copyProperties(order,orderDO);
-
+		List<GoodsDO> goodsList = getGoodsList(orderId);
+		orderDO.setGoodsList(goodsList);
+		return orderDO;
+	}
+	
+	public List<GoodsDO> getGoodsList(String orderId){
+		List<GoodsDO> goodsList = new ArrayList<>();
 		OrderGoodsRefExample orderGoodsRefExample = new OrderGoodsRefExample();
 		orderGoodsRefExample.createCriteria().andOrderIdEqualTo(orderId);
-
 		List<OrderGoodsRef> orderGoodsRefs = orderGoodsRefMapper.selectByExample(orderGoodsRefExample);
-
 		if (CollectionUtils.isEmpty(orderGoodsRefs)){
-			return orderDO;
+			return goodsList;
 		}
-
-		List<GoodsDO> goodsList = new ArrayList<>();
 		for (OrderGoodsRef ref : orderGoodsRefs){
 			GoodsDO goodsDO = goodsHome.getByGoodsId(ref.getSkuId());
 			goodsList.add(goodsDO);
 		}
-
-		orderDO.setGoodsList(goodsList);
-		return orderDO;
-	}
+		
+		return goodsList;
+	} 
 	
 	public int resetOrderGoodsOrderId(String goodsId,String orderId,String porderId) {
 		return orderGoodsRefMapper.updateOrderIdByPorderIdAndSkuId(goodsId, orderId, porderId);
@@ -85,4 +88,5 @@ public class OrderHome {
 		return orderMapper.updateByPrimaryKey(order);
 	}
 
+	
 }
