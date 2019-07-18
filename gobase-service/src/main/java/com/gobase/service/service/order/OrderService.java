@@ -142,6 +142,7 @@ public class OrderService {
 		}
 		order.setAddressId(param.getAddressId());
 		order.setKuaidiPrice(param.getKuaidiPrice());
+		order.setTotalPrice(orderAmount);
 		orderMapper.insert(order);
 		
 		// TODO 待支付信息
