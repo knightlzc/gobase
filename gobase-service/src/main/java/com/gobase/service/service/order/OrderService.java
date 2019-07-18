@@ -14,35 +14,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.gobase.service.dto.goods.GoodsDTO;
-import com.gobase.service.dto.order.OrderDTO;
-import com.gobase.service.param.order.OrderParam;
-
-import com.gobase.tools.response.PageContent;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.gobase.component.bean.mall.goods.Goods;
 import com.gobase.component.bean.mall.goods.GoodsDO;
-import com.gobase.component.bean.mall.order.Order;
 import com.gobase.component.bean.mall.order.OrderDO;
 import com.gobase.component.bean.mall.order.OrderGoodsRef;
+import com.gobase.component.bean.mall.order.OrderInfo;
 import com.gobase.component.bean.mall.order.OrderPayment;
-import com.gobase.component.bean.mall.shop.Shop;
 import com.gobase.component.cache.Cart;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.order.OrderGoodsRefMapper;
-import com.gobase.component.dao.mall.order.OrderMapper;
+import com.gobase.component.dao.mall.order.OrderInfoMapper;
 import com.gobase.component.dao.mall.order.OrderPaymentMapper;
 import com.gobase.component.home.goods.GoodsHome;
 import com.gobase.component.home.order.OrderHome;
 import com.gobase.component.param.order.QueryOrderParam;
+import com.gobase.service.dto.goods.GoodsDTO;
+import com.gobase.service.dto.order.OrderDTO;
+import com.gobase.service.param.order.OrderParam;
 import com.gobase.tools.common.IDCreater;
 import com.gobase.tools.compute.PreciseCompute;
 import com.gobase.tools.page.PageUtil;
+import com.gobase.tools.response.PageContent;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -53,7 +50,7 @@ import com.gobase.tools.page.PageUtil;
 public class OrderService {
 	
 	@Autowired
-	private OrderMapper orderMapper;
+	private OrderInfoMapper orderMapper;
 	
 	@Autowired
 	private OrderGoodsRefMapper orderGoodsRefMapper;
@@ -124,7 +121,7 @@ public class OrderService {
 			throw new Exception("购物车为空");
 		}
 		String orderId = IDCreater.generate("GO");
-		Order order = new Order();
+		OrderInfo order = new OrderInfo();
 		order.setOrderId(orderId);
 		order.setUserId(userId);
 		double orderAmount = 0.0;
@@ -159,7 +156,7 @@ public class OrderService {
 	@Transactional
 	public String payOrder(String orderId) throws Exception{
 		OrderDO orderDO = orderHome.getOrderDOByOrderId(orderId);
-		Order order = orderHome.getOrderByOrderId(orderId);
+		OrderInfo order = orderHome.getOrderByOrderId(orderId);
 		if(null == orderDO){
 			return "订单不存在";
 		}
@@ -180,7 +177,7 @@ public class OrderService {
 		if(shopGoodsMap.size()>1) {
 			subOrders(order, shopGoodsMap);
 		} else {
-			order.setStatus(Order.STATUS_PAYED);
+			order.setStatus(OrderInfo.STATUS_PAYED);
 			orderHome.updateOrder(order);
 		}
 		return null;
@@ -195,22 +192,22 @@ public class OrderService {
 	 * @throws InvocationTargetException 
 	 * @throws IllegalAccessException 
 	 */
-	private String subOrders(Order order,Map<Integer,List<GoodsDO>> shopGoodsMap) throws Exception {
+	private String subOrders(OrderInfo order,Map<Integer,List<GoodsDO>> shopGoodsMap) throws Exception {
 		for (int shopId : shopGoodsMap.keySet()) {
 			String orderId = IDCreater.generate("GOS");
-			Order subOrder = new Order();
+			OrderInfo subOrder = new OrderInfo();
 			BeanUtils.copyProperties(order, subOrder);
 			subOrder.setOrderId(orderId);
 			subOrder.setUserId(order.getUserId());
 			subOrder.setPorderId(order.getOrderId());
-			subOrder.setStatus(Order.STATUS_PAYED);
+			subOrder.setStatus(OrderInfo.STATUS_PAYED);
 			orderHome.saveOrder(subOrder);
 			List<GoodsDO> goodsList = shopGoodsMap.get(shopId);
 			for (GoodsDO goodsDO : goodsList) {
 				orderHome.resetOrderGoodsOrderId(goodsDO.getGoodsId(), orderId, order.getOrderId());
 			}
 		}
-		order.setStatus(Order.STATUS_DELETE);
+		order.setStatus(OrderInfo.STATUS_DELETE);
 		orderHome.updateOrder(order);
 		//TODO pay ment update
 		return null;

@@ -39,7 +39,7 @@ public class CartService {
 
     public CartDTO getCart(int userId){
         CartDTO cartDTO = new CartDTO();
-        ArrayList<Cart> cartList = (ArrayList<Cart>) JedisUtils.getObject(CartCacheConstant.CART_KEY_PREFIX);
+        ArrayList<Cart> cartList = (ArrayList<Cart>) JedisUtils.getObject(CartCacheConstant.CART_KEY_PREFIX+userId);
         if(CollectionUtils.isEmpty(cartList)){
             return cartDTO;
         }
@@ -48,13 +48,14 @@ public class CartService {
         for (Cart cart : cartList){
             CartGoodsDTO cartGoodsDTO = new CartGoodsDTO();
 
-            GoodsDO goodsDO = goodsHome.getByGoodsId(cartGoodsDTO.getGoodsId());
-            price = PreciseCompute.add(price,goodsDO.getRealPrice());
+            GoodsDO goodsDO = goodsHome.getByGoodsId(cart.getGoodsId());
             BeanUtils.copyProperties(goodsDO,cartGoodsDTO);
             if( !CollectionUtils.isEmpty(goodsDO.getImgs()) ) {
                 cartGoodsDTO.setGoodsImg(goodsDO.getImgs().get(0).getImgUrl());
             }
+            cartGoodsDTO.setNum(cart.getNum());
             list.add(cartGoodsDTO);
+            price = PreciseCompute.add(price, PreciseCompute.mul(goodsDO.getRealPrice(), cart.getNum()));
         }
         cartDTO.setTotalPrice(price);
         cartDTO.setGoodsList(list);

@@ -5,13 +5,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.gobase.component.bean.mall.order.Order;
+import com.gobase.component.bean.mall.order.OrderInfo;
+import com.gobase.component.bean.mall.order.OrderInfoExample;
 import com.gobase.component.bean.mall.order.OrderDO;
-import com.gobase.component.bean.mall.order.OrderExample;
 import com.gobase.component.dao.IBaseMapper;
 import com.gobase.component.param.order.QueryOrderParam;
 
-public interface OrderMapper extends IBaseMapper<OrderExample, Order>{
+public interface OrderInfoMapper extends IBaseMapper<OrderInfoExample, OrderInfo>{
 	
 	public static final String TABLE = " `order` ";
 	public static final String JOIN_COLS = " o.`id`,o.`order_id`,o.`user_id`,o.`region_id`,o.`status`,o.`goods_id`,o.`remark`,o.`address_id`,"

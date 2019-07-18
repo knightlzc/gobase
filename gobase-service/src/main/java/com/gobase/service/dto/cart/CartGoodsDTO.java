@@ -1,6 +1,8 @@
 package com.gobase.service.dto.cart;
 
 public class CartGoodsDTO {
+	
+	private int num;
     /**
      *商品id
      */
@@ -75,4 +77,12 @@ public class CartGoodsDTO {
     public void setGoodsImg(String goodsImg) {
         this.goodsImg = goodsImg;
     }
+
+	public int getNum() {
+		return num;
+	}
+
+	public void setNum(int num) {
+		this.num = num;
+	}
 }

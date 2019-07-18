@@ -1,20 +1,22 @@
 package com.gobase.component.home.order;
 
-import com.gobase.component.bean.mall.goods.GoodsDO;
-import com.gobase.component.bean.mall.order.*;
-import com.gobase.component.dao.mall.order.OrderGoodsRefMapper;
-import com.gobase.component.home.goods.GoodsHome;
-import com.gobase.tools.response.PageContent;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.gobase.component.dao.mall.order.OrderMapper;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.gobase.component.bean.mall.goods.GoodsDO;
+import com.gobase.component.bean.mall.order.OrderDO;
+import com.gobase.component.bean.mall.order.OrderGoodsRef;
+import com.gobase.component.bean.mall.order.OrderGoodsRefExample;
+import com.gobase.component.bean.mall.order.OrderInfo;
+import com.gobase.component.bean.mall.order.OrderInfoExample;
+import com.gobase.component.dao.mall.order.OrderGoodsRefMapper;
+import com.gobase.component.dao.mall.order.OrderInfoMapper;
+import com.gobase.component.home.goods.GoodsHome;
 
 /**
  * <p>Copyright: All Rights Reserved</p>  
@@ -25,7 +27,7 @@ import java.util.List;
 public class OrderHome {
 
 	@Autowired
-	private OrderMapper orderMapper;
+	private OrderInfoMapper orderMapper;
 
 	@Autowired
 	private OrderGoodsRefMapper orderGoodsRefMapper;
@@ -33,15 +35,15 @@ public class OrderHome {
 	@Autowired
 	private GoodsHome goodsHome;
 	
-	public int saveOrder(Order order) {
+	public int saveOrder(OrderInfo order) {
 		return orderMapper.insert(order);
 	}
 
-	public Order getOrderByOrderId(String orderId) {
-		OrderExample example = new OrderExample();
+	public OrderInfo getOrderByOrderId(String orderId) {
+		OrderInfoExample example = new OrderInfoExample();
 		example.createCriteria().andOrderIdEqualTo(orderId);
 
-		List<Order> orders = orderMapper.selectByExample(example);
+		List<OrderInfo> orders = orderMapper.selectByExample(example);
 		if(CollectionUtils.isEmpty(orders)){
 			return null;
 		}
@@ -50,14 +52,14 @@ public class OrderHome {
 
 	public OrderDO getOrderDOByOrderId(String orderId){
 		OrderDO orderDO = new OrderDO();
-		OrderExample example = new OrderExample();
+		OrderInfoExample example = new OrderInfoExample();
 		example.createCriteria().andOrderIdEqualTo(orderId);
 
-		List<Order> orders = orderMapper.selectByExample(example);
+		List<OrderInfo> orders = orderMapper.selectByExample(example);
 		if(CollectionUtils.isEmpty(orders)){
 			return orderDO;
 		}
-		Order order = orders.get(0);
+		OrderInfo order = orders.get(0);
 		BeanUtils.copyProperties(order,orderDO);
 		List<GoodsDO> goodsList = getGoodsList(orderId);
 		orderDO.setGoodsList(goodsList);
@@ -84,7 +86,7 @@ public class OrderHome {
 		return orderGoodsRefMapper.updateOrderIdByPorderIdAndSkuId(goodsId, orderId, porderId);
 	}
 	
-	public int updateOrder(Order order) {
+	public int updateOrder(OrderInfo order) {
 		return orderMapper.updateByPrimaryKey(order);
 	}
 
