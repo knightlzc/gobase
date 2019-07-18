@@ -9,6 +9,8 @@ import com.gobase.service.param.order.OrderParam;
 import com.gobase.service.service.cart.CartService;
 import com.gobase.service.service.order.OrderService;
 import com.gobase.tools.response.ResultResponse;
+import com.gobase.web.interceptor.host.HostHolder;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +22,8 @@ import java.util.List;
 @RestController
 public class CartController {
 
-
+	@Autowired
+    private HostHolder hostHolder;
 
     @Autowired
     private CartService cartService;
@@ -30,7 +33,7 @@ public class CartController {
     @RequestMapping("add")
     public ResultResponse<String> addCart(String goodsId,int num){
         try {
-            cartService.addCart(0,goodsId,num);
+            cartService.addCart(hostHolder.getUserId(),goodsId,num);
             return ResultResponse.success("","");
         } catch (Exception e){
             e.printStackTrace();
@@ -41,7 +44,7 @@ public class CartController {
     @RequestMapping("clearAll")
     public ResultResponse<String> clearCart(){
         try {
-            cartService.clearCart(0);
+            cartService.clearCart(hostHolder.getUserId());
             return ResultResponse.success("","");
         } catch (Exception e){
             e.printStackTrace();
@@ -52,7 +55,7 @@ public class CartController {
     @RequestMapping("list")
     public ResultResponse<CartDTO> list(){
         try {
-            CartDTO cart = cartService.getCart(0);
+            CartDTO cart = cartService.getCart(hostHolder.getUserId());
             return ResultResponse.success(cart,"");
         } catch (Exception e){
             e.printStackTrace();
@@ -70,7 +73,7 @@ public class CartController {
             OrderParam orderParam = new OrderParam();
             orderParam.setAddressId(addressId);
             orderParam.setKuaidiPrice(kuaidiPrice);
-            String orderId = orderService.placeOrder(0,carts,orderParam);
+            String orderId = orderService.placeOrder(hostHolder.getUserId(),carts,orderParam);
             return ResultResponse.success(orderId,"");
         } catch (Exception e){
             e.printStackTrace();
