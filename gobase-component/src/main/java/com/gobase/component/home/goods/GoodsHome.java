@@ -112,8 +112,16 @@ public class GoodsHome {
 	 */
 	public GoodsDO selectGoodsByPrimaryKey(int id) {
 		GoodsDO goodsDO = new GoodsDO();
+		GoodsExample example = new GoodsExample();
 		Goods goods = goodsMapper.selectByPrimaryKey(id);
 		BeanUtils.copyProperties(goods, goodsDO);
+		List<Img> imgs = imgHome.listImg(goods.getGoodsId(),Img.TYPE_GOODS );
+		goodsDO.setImgs(imgs);
+
+		GoodsParamExample goodsParamExample = new GoodsParamExample();
+		example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
+		List<GoodsParam> paramList = goodsParamMapper.selectByExample(goodsParamExample);
+		goodsDO.setParamList(paramList);
 		return goodsDO;
 	}
 
