@@ -1,30 +1,28 @@
 package com.gobase.web.interceptor;
 
 
-import com.alibaba.fastjson.JSONObject;
-import com.gobase.component.annotation.IgnoreToken;
-import com.gobase.component.bean.mall.user.GoUserInfo;
-import com.gobase.component.bean.mall.user.User;
-import com.gobase.component.constant.GoUserConstant;
-import com.gobase.component.dao.mall.user.UserMapper;
-import com.gobase.service.dto.user.HostUser;
-import com.gobase.tools.redis.JedisUtils;
-import com.gobase.tools.response.ResultResponse;
-import com.gobase.web.interceptor.host.HostHolder;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.lang.reflect.Method;
+
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.AnnotatedElementUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.lang.reflect.Method;
+import com.alibaba.fastjson.JSONObject;
+import com.gobase.component.annotation.IgnoreToken;
+import com.gobase.component.constant.GoUserConstant;
+import com.gobase.service.dto.user.HostUser;
+import com.gobase.tools.redis.JedisUtils;
+import com.gobase.tools.response.ResultResponse;
+import com.gobase.web.interceptor.host.HostHolder;
 
 /**
  * @author mm.sun
