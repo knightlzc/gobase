@@ -3,7 +3,9 @@ package com.gobase.web.interceptor;
 
 import com.alibaba.fastjson.JSONObject;
 import com.gobase.component.annotation.IgnoreToken;
+import com.gobase.component.bean.mall.user.User;
 import com.gobase.component.constant.GoUserConstant;
+import com.gobase.component.dao.mall.user.UserMapper;
 import com.gobase.service.dto.user.HostUser;
 import com.gobase.tools.redis.JedisUtils;
 import com.gobase.tools.response.ResultResponse;
@@ -32,6 +34,8 @@ public class TicketValidateInterceptor extends HandlerInterceptorAdapter {
 
     @Autowired
     private HostHolder hostHolder;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -51,12 +55,21 @@ public class TicketValidateInterceptor extends HandlerInterceptorAdapter {
                 returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
                 return false;
             }
-            HostUser user = (HostUser) JedisUtils.getObject(GoUserConstant.TICKET_HEADER_KEY_PREFIX + ticket);
-            if (user == null) {
+            String openID = JedisUtils.get(GoUserConstant.TICKET_HEADER_KEY_PREFIX + ticket);
+            if (StringUtils.isBlank(openID)) {
                 returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
                 return false;
             } else {
-                hostHolder.setUser(user);
+                User user = userMapper.selectByOpenId(openID);
+                if (StringUtils.isBlank(user.getPhone())) {
+                    returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
+                    return false;
+                }
+                HostUser hostUser = new HostUser();
+                hostUser.setPhone(user.getPhone());
+                hostUser.setStatus(user.getStatus());
+                hostUser.setUserId(user.getId());
+                hostHolder.setUser(hostUser);
                 return true;
             }
         }
