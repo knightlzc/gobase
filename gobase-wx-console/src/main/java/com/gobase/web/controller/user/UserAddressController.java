@@ -118,7 +118,7 @@ public class UserAddressController {
      * 收件地址列表
      *
      * @param
-     * @return com.gobase.tools.response.ResultResponse<java.util.List       <       com.gobase.component.vo.UserAddressVo>>
+     * @return com.gobase.tools.response.ResultResponse<java.util.List                               <                               com.gobase.component.vo.UserAddressVo>>
      * @date 2019/7/18 22:22
      */
     @RequestMapping(value = "list", method = RequestMethod.GET)
@@ -137,5 +137,23 @@ public class UserAddressController {
             vos.add(uvo);
         }
         return ResultResponse.success(vos, "");
+    }
+
+    /**
+     * 设置默认收件地址
+     *
+     * @param id
+     * @return com.gobase.tools.response.ResultResponse
+     * @date 2019/7/19 11:58
+     */
+    @RequestMapping(value = "default", method = RequestMethod.POST)
+    public ResultResponse defaultUserAddress(int id) {
+        try {
+            userAddressMapper.updateForDefault(id);
+            return ResultResponse.success(null, "设置成功");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResultResponse.fail("设置失败", ResultResponse.FAIL + "");
+        }
     }
 }

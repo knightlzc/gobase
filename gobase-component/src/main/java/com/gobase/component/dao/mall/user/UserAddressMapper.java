@@ -15,4 +15,10 @@ public interface UserAddressMapper extends IBaseMapper<UserAddressExample, UserA
      * @return
      */
     List<UserAddress> selectAll();
+
+    /**
+     * 设置默认收件地址
+     * @return
+     */
+    int updateForDefault(int id);
 }

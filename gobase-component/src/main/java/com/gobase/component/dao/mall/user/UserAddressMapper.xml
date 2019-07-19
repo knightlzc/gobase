@@ -389,4 +389,10 @@
         from user_address
     </select>
 
+    <update id="updateForDefault" parameterType="java.lang.Integer">
+        update user_address
+        set
+        is_default = 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
 </mapper>
