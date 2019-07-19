@@ -29,7 +29,7 @@ public class CartHome {
                     break;
                 }
             }
-
+            cartList.add(new Cart(userId,goodsId,num));
         }while (false);
         JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);
         return null;
@@ -57,6 +57,7 @@ public class CartHome {
                     break;
                 }
             }
+            cartList.add(new Cart(userId,goodsId,num));
         }while (false);
         JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);
         return null;
