@@ -106,7 +106,7 @@ public class UserAddressController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     public ResultResponse deleteUserAddress(int id) {
         try {
-            userAddressMapper.deleteByPrimaryKey(id);
+            userAddressMapper.updateForSoft(id);
             return ResultResponse.success(null, "删除成功");
         } catch (Exception e) {
             e.printStackTrace();

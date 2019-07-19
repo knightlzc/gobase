@@ -19,4 +19,10 @@ public interface UserAddressMapper extends IBaseMapper<UserAddressExample, UserA
      * @return
      */
     int updateForDefault(int id);
+
+    /**
+     * 软删除
+     * @return
+     */
+    int updateForSoft(int id);
 }
