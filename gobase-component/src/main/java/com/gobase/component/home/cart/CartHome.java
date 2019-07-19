@@ -34,9 +34,38 @@ public class CartHome {
         JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);
         return null;
     }
+    
+    /**
+     * <br/>Description:修改购物车
+     * <p>Author:zcliu/刘子萃</p>
+     * @param userId
+     * @param goodsId
+     * @param num
+     * @return
+     */
+    public String updateCart(int userId, String goodsId, int num) {
+    	ArrayList<Cart> cartList = (ArrayList<Cart>) JedisUtils.getObject(CartCacheConstant.CART_KEY_PREFIX+userId);
+    	do {
+        	if(CollectionUtils.isEmpty(cartList)){
+                cartList =new ArrayList<>();
+                cartList.add(new Cart(userId,goodsId,num));
+                break;
+            }
+            for (Cart cart : cartList){
+                if (cart.getGoodsId().equals(goodsId)){
+                    cart.setNum(num);
+                    break;
+                }
+            }
+        }while (false);
+        JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);
+        return null;
+	}
 
     public String clearCart(int userId){
         JedisUtils.del(CartCacheConstant.CART_KEY_PREFIX+userId);
         return null;
     }
+
+	
 }

@@ -18,6 +18,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+/**
+ * 
+ * <p>Copyright: All Rights Reserved</p>  
+ * <p>Description:  购物车控制器</p> 
+ * <p>Author:zcliu/刘子萃</p>
+ */
 @RequestMapping("cart")
 @RestController
 public class CartController {
@@ -30,6 +36,14 @@ public class CartController {
     @Autowired
     private OrderService orderService;
 
+    /**
+     * 
+     * <br/>Description:添加
+     * <p>Author:zcliu/刘子萃</p>
+     * @param goodsId
+     * @param num
+     * @return
+     */
     @RequestMapping("add")
     public ResultResponse<String> addCart(String goodsId,int num){
         try {
@@ -40,7 +54,31 @@ public class CartController {
             return ResultResponse.fail(e.getMessage(),"添加购物车异常");
         }
     }
+    
+    /**
+     * <br/>Description:update
+     * <p>Author:zcliu/刘子萃</p>
+     * @param goodsId
+     * @param num
+     * @return
+     */
+    @RequestMapping("update")
+    public ResultResponse<String> updateCart(String goodsId,int num){
+    	try {
+    		cartService.updateCart(hostHolder.getUserId(),goodsId,num);
+    		return ResultResponse.success("","");
+    	} catch (Exception e){
+    		e.printStackTrace();
+    		return ResultResponse.fail(e.getMessage(),"更新购物车异常");
+    	}
+    }
 
+    /**
+     * 
+     * <br/>Description:清空购物车
+     * <p>Author:zcliu/刘子萃</p>
+     * @return
+     */
     @RequestMapping("clearAll")
     public ResultResponse<String> clearCart(){
         try {
@@ -52,6 +90,11 @@ public class CartController {
         }
     }
 
+    /**
+     * <br/>Description:购物车列表
+     * <p>Author:zcliu/刘子萃</p>
+     * @return
+     */
     @RequestMapping("list")
     public ResultResponse<CartDTO> list(){
         try {

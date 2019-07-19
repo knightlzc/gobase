@@ -32,6 +32,9 @@ public class CartService {
     public String addCart(int userId,String goodsId,int num){
         return cartHome.addCart(userId, goodsId, num);
     }
+    public String updateCart(int userId,String goodsId,int num){
+    	return cartHome.updateCart(userId, goodsId, num);
+    }
 
     public String clearCart(int userId){
         return cartHome.clearCart(userId);
