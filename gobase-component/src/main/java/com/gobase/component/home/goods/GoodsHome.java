@@ -104,27 +104,6 @@ public class GoodsHome {
 		return goodsList;
 	}
 	
-	/**
-	 * <br/>Description:商品详情查询（后期添加评论列表后，扩展sql,目前查商品相关，不查类别）
-	 * <p>Author:DXH</p>
-	 * @param id
-	 * @return
-	 */
-	public GoodsDO selectGoodsByPrimaryKey(int id) {
-		GoodsDO goodsDO = new GoodsDO();
-		GoodsExample example = new GoodsExample();
-		Goods goods = goodsMapper.selectByPrimaryKey(id);
-		BeanUtils.copyProperties(goods, goodsDO);
-		List<Img> imgs = imgHome.listImg(goods.getGoodsId(),Img.TYPE_GOODS );
-		goodsDO.setImgs(imgs);
-
-		GoodsParamExample goodsParamExample = new GoodsParamExample();
-		example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
-		List<GoodsParam> paramList = goodsParamMapper.selectByExample(goodsParamExample);
-		goodsDO.setParamList(paramList);
-		return goodsDO;
-	}
-
 	public GoodsDO getByGoodsId(String goodsId) {
 		GoodsDO goodsDO = new GoodsDO();
 		GoodsExample example = new GoodsExample();

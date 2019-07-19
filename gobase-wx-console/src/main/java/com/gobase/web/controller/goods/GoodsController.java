@@ -49,49 +49,22 @@ public class GoodsController {
 		return ResultResponse.success(listByPcodeAndGroupCode, "查询生活空间创意空间所有分类列表成功");
 	}
 	/**
-	 * 备用写死查2级分类 备用（查询生活空间和创意空间所有分类列表）
-	 */
-	/*
-	 * @RequestMapping("/list/recursive_category") public
-	 * ResultResponse<List<GoodsCategoryDO>> recursiveSpaceCategoryList(String
-	 * pcode,String groupCode){ List<GoodsCategory> list =
-	 * goodsCategoryHome.listByPcodeAndGroupCode(pcode, groupCode);
-	 * List<GoodsCategoryDO> reslist = new ArrayList<GoodsCategoryDO>(); if
-	 * (!list.isEmpty()) { list.forEach(item ->{ GoodsCategoryDO innerdo = new
-	 * GoodsCategoryDO(); BeanUtils.copyProperties(item, innerdo);
-	 * innerdo.setSublist(goodsCategoryHome.listByPcodeAndGroupCode(item.getCode(),
-	 * groupCode)); reslist.add(innerdo); }); } return
-	 * ResultResponse.success(reslist, "查询生活空间创意空间,两极分类列表成功"); }
-	 */
-	
-	/**
-	 *@description 查询生活空间和创意空间所有分类列表
+	 *@description 查询生活空间和创意空间所有分类店铺列表
 	 *@param  search 商品名称（null 所有商品）
 	 *@param  category1  一级分类  （ 生活空间shkj，创意空间cykj）
 	 *@param  category2  二级分类  （ 生活空间shkj:rcyp:ys，创意空间cykj:jiaju:cl）
 	 *@param  category3  三级分类  （ 生活空间rcyp:ys，创意空间jiaju:cl）
+	 *@param  shopId 店铺Id
 	 *@url1 /goods/list/space_goods?category1=shkj&category2=rcyp&category3=ys&pageNum=0&pageSize=10
 	 *@url2 /goods/list/space_goods?category1=cykj&category2=jiaju&category3=cl&pageNum=0&pageSize=10
+	 *@url3 /goods/list/shop_goods?shopId=1
 	 */
 	@RequestMapping("/list/space_goods")
-	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,Integer pageNum,Integer pageSize){
+	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,Integer cityId,Integer shopId,Integer pageNum,Integer pageSize){
 		pageNum = null==pageNum?0:pageNum;
 		pageSize = null==pageSize?10:pageSize;
-		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3, null, null, pageNum, pageSize);
-		return ResultResponse.success(pageGoods, "查询生活空间具体某分类列表和商品成功");
-	}
-	/**
-	 *@description 根据shopid查商品列表
-	 *@param  shopId 店铺Id
-	 *@url /goods/list/shop_goods?shopId=1
-	 */
-	@RequestMapping("/list/shop_goods")
-	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,Integer shopId,Integer pageNum,Integer pageSize){
-		shopId = null==shopId?1:shopId;
-		pageNum = null==pageNum?0:pageNum;
-		pageSize = null==pageSize?10:pageSize;
-		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3,null, shopId, pageNum, pageSize);
-		return ResultResponse.success(pageGoods, "查询店铺分类列表商品成功");
+		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3, cityId, shopId, pageNum, pageSize);
+		return ResultResponse.success(pageGoods, "查询生活空间具体某分类列表/店铺分类列表和商品成功");
 	}
 	/**
 	 *@description 暂时不查询(模块暂时不做)
@@ -105,13 +78,12 @@ public class GoodsController {
 		return ResultResponse.success(pageGoods, "查询推荐商品列表成功");
 	}
 	/**
-	 *@param  id (商品id,（后期添加评论列表后，扩展sql,目前查商品相关，不查类别）)
-	 *@url  /goods/detail?id=1
+	 *@param  goodsId (商品goodsId,（后期添加评论列表后,目前查商品相关，不查类别)
+	 *@url  /goods/detail?goodsId=GS1409201401009712
 	 */
 	@RequestMapping("/detail")
-	public ResultResponse<GoodsDO> selectGoodsByPrimaryKey(int id){
-		GoodsDO goodsDO = goodsHome.selectGoodsByPrimaryKey(id);
-		return ResultResponse.success(goodsDO, "查询商品详情成功");
+	public ResultResponse<GoodsDO> selectGoodsByGoodsId(String goodsId){
+		return ResultResponse.success(goodsHome.getByGoodsId(goodsId), "查询商品详情成功");
 	}
 	
 }
