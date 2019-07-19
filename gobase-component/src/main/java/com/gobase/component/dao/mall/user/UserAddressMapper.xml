@@ -136,6 +136,7 @@
     delete from user_address
     where id = #{id,jdbcType=INTEGER}
   </delete>
+
   <delete id="deleteByExample" parameterType="com.gobase.component.bean.mall.user.UserAddressExample">
     <!--
       WARNING - @mbg.generated
@@ -400,12 +401,20 @@
         select
         <include refid="Base_Column_List"/>
         from user_address
+        where status=1
     </select>
 
     <update id="updateForDefault" parameterType="java.lang.Integer">
         update user_address
         set
         is_default = 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+    <update id="updateForSoft" parameterType="java.lang.Integer">
+        update user_address
+        set
+        status = 0
         where id = #{id,jdbcType=INTEGER}
     </update>
 

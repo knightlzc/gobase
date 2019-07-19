@@ -29,6 +29,17 @@ public class UserController {
     @Autowired
     private UserMapper userMapper;
 
+    /**
+     * 微信授权接口
+     *
+     * @param code
+     * @param rawData
+     * @param signature
+     * @param encrypteData
+     * @param iv
+     * @return com.gobase.tools.response.ResultResponse<java.lang.String>
+     * @date 2019/7/19 19:52
+     */
     @IgnoreToken
     @PostMapping("auth")
     public ResultResponse<String> wxAuth(String code, String rawData, String signature, String encrypteData, String iv) {
