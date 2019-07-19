@@ -17,18 +17,18 @@ public class CartHome {
 
     public String addCart(int userId,String goodsId,int num){
         ArrayList<Cart> cartList = (ArrayList<Cart>) JedisUtils.getObject(CartCacheConstant.CART_KEY_PREFIX+userId);
-        if(CollectionUtils.isEmpty(cartList)){
-            cartList =new ArrayList<>();
-        }
         do {
+        	if(CollectionUtils.isEmpty(cartList)){
+                cartList =new ArrayList<>();
+                cartList.add(new Cart(userId,goodsId,num));
+                break;
+            }
             for (Cart cart : cartList){
                 if (cart.getGoodsId().equals(goodsId)){
-                    cart.setNum(num);
+                    cart.setNum(cart.getNum()+num);
                     break;
                 }
             }
-
-            cartList.add(new Cart(userId,goodsId,num));
 
         }while (false);
         JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);

@@ -1,11 +1,20 @@
 package com.gobase.component.cache;
 
+import java.io.Serializable;
+
 /**
  * 购物车缓存类
  */
-public class Cart {
+public class Cart implements Serializable{
 
-    public Cart() {
+    /**
+	 * <p>Description: </p>
+	 * <p>Author:zcliu/刘子萃</p>
+	 * @Fields serialVersionUID 
+	 */
+	private static final long serialVersionUID = 6702590346246863101L;
+
+	public Cart() {
     }
 
     public Cart(int userId, String goodsId, int num) {

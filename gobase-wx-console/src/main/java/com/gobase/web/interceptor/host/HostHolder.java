@@ -10,8 +10,10 @@ import com.gobase.service.dto.user.HostUser;
 import com.gobase.web.constant.GobaseWXConstant;
 
 /**
- * @author YanFei
- * @version 创建时间：2018年7月11日 下午12:09:10 用户信息载体
+ * 
+ * <p>Copyright: All Rights Reserved</p>  
+ * <p>Description:  </p> 
+ * <p>Author:zcliu/刘子萃</p>
  */
 @Component
 @Scope("prototype")
@@ -26,7 +28,7 @@ public class HostHolder {
 	}
 	public int getUserId() {
 		HostUser user = (HostUser) request.getAttribute(GobaseWXConstant.WX_USER_REQUEST_ATTR);
-		return null==user?0:user.getUserId();
+		return null==user?1:user.getUserId();
 	}
 
 	public void setUser(HostUser user) {

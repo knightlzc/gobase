@@ -3,7 +3,7 @@ package com.gobase.component.bean.mall.order;
 import java.util.Date;
 import java.math.BigDecimal;
 
-public class Order {
+public class OrderInfo {
 	
 	/**
 	 * 待支付
