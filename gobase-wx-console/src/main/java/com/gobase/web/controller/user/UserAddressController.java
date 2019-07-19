@@ -36,9 +36,9 @@ public class UserAddressController {
     /**
      * 新增收件地址
      *
-     * @param provinceId
-     * @param cityId
-     * @param countyId
+     * @param provinceCode
+     * @param cityCode
+     * @param countyCode
      * @param address
      * @param phone
      * @param consignee
@@ -46,15 +46,15 @@ public class UserAddressController {
      * @date 2019/7/18 21:24
      */
     @RequestMapping(value = "save", method = RequestMethod.POST)
-    public ResultResponse saveUserAddress(int provinceId, int cityId, int countyId, String address, String phone, String consignee) {
+    public ResultResponse saveUserAddress(int provinceCode, int cityCode, int countyCode, String address, String phone, String consignee) {
         HostUser user = hostHolder.getUser();
         try {
             UserAddress userAddress = new UserAddress();
             userAddress.setAddress(address);
-            userAddress.setCityId(cityId);
+            userAddress.setCityCode(cityCode);
             userAddress.setConsignee(consignee);
-            userAddress.setCountyId(countyId);
-            userAddress.setProvinceId(provinceId);
+            userAddress.setCountyCode(countyCode);
+            userAddress.setProvinceCode(provinceCode);
             userAddress.setPhone(phone);
             userAddress.setUserId(user.getUserId());
             userAddressMapper.insertSelective(userAddress);
@@ -69,9 +69,9 @@ public class UserAddressController {
      * 编辑收件地址
      *
      * @param id
-     * @param provinceId
-     * @param cityId
-     * @param countyId
+     * @param provinceCode
+     * @param cityCode
+     * @param countyCode
      * @param address
      * @param phone
      * @param consignee
@@ -79,14 +79,14 @@ public class UserAddressController {
      * @date 2019/7/18 21:25
      */
     @RequestMapping(value = "update", method = RequestMethod.POST)
-    public ResultResponse updateUserAddress(int id, int provinceId, int cityId, int countyId, String address, String phone, String consignee) {
+    public ResultResponse updateUserAddress(int id, int provinceCode, int cityCode, int countyCode, String address, String phone, String consignee) {
         try {
             UserAddress userAddress = userAddressMapper.selectByPrimaryKey(id);
             userAddress.setAddress(address);
-            userAddress.setCityId(cityId);
+            userAddress.setCityCode(cityCode);
             userAddress.setConsignee(consignee);
-            userAddress.setCountyId(countyId);
-            userAddress.setProvinceId(provinceId);
+            userAddress.setCountyCode(countyCode);
+            userAddress.setProvinceCode(provinceCode);
             userAddress.setPhone(phone);
             userAddressMapper.updateByPrimaryKeySelective(userAddress);
             return ResultResponse.success(null, "编辑成功");
@@ -128,11 +128,11 @@ public class UserAddressController {
         for (UserAddress address : lists) {
             UserAddressVo uvo = new UserAddressVo();
             BeanUtils.copyProperties(address, uvo);
-            Region province = regionMapper.selectByPrimaryKey(address.getProvinceId());
+            Region province = regionMapper.selectByGbCode(address.getProvinceCode());
             uvo.setProvince(province.getName());
-            Region city = regionMapper.selectByPrimaryKey(address.getCityId());
+            Region city = regionMapper.selectByGbCode(address.getCityCode());
             uvo.setProvince(city.getName());
-            Region county = regionMapper.selectByPrimaryKey(address.getCountyId());
+            Region county = regionMapper.selectByGbCode(address.getCountyCode());
             uvo.setProvince(county.getName());
             vos.add(uvo);
         }
