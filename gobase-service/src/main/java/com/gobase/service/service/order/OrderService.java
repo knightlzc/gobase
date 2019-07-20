@@ -81,7 +81,9 @@ public class OrderService {
 	public PageContent<OrderDTO> pageOrders(Integer userId,Integer status,int pageNum,int pageSize) throws Exception{
 		QueryOrderParam param = new QueryOrderParam();
 		param.setUserId(userId);
-		param.setStatus(userId);
+		if(status != -999) {
+			param.setStatus(status);
+		}
 		int count = orderMapper.countOrders(param);
 		if(count <= 0) {
 			return new PageContent<>(pageNum, pageSize, 0, new ArrayList<>());

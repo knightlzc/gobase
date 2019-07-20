@@ -26,7 +26,7 @@ public class IDCreater {
 	private static final FieldPosition HELPER_POSITION = new FieldPosition(0);
 
 	/** This Format for format the data to special format. */
-	private final static Format dateFormat = new SimpleDateFormat("yyMMddHHmm");
+	private final static Format dateFormat = new SimpleDateFormat("yyMMddHHmmss");
 
 	/** This Format for format the number to special format. */
 	private final static NumberFormat numberFormat = new DecimalFormat("0000");
