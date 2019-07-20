@@ -136,7 +136,9 @@ public class UserAddressController {
                 UserAddressVo uvo = new UserAddressVo();
                 BeanUtils.copyProperties(address, uvo);
                 Region province = regionMapper.selectByGbCode(address.getProvinceCode());
-                uvo.setProvince(province.getName());
+                if (province != null) {
+                    uvo.setProvince(province.getName());
+                }
                 Region city = regionMapper.selectByGbCode(address.getCityCode());
                 if (city != null) {
                     uvo.setCity(city.getName());

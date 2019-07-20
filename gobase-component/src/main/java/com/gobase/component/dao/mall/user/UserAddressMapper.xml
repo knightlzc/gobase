@@ -405,7 +405,7 @@
         select
         <include refid="Base_Column_List"/>
         from user_address
-        where status=1
+        where status=0
     </select>
 
     <update id="updateForDefault" parameterType="java.lang.Integer">
@@ -424,7 +424,7 @@
     <update id="updateForSoft" parameterType="java.lang.Integer">
         update user_address
         set
-        status = 0
+        status = -1
         where id = #{id,jdbcType=INTEGER}
     </update>
 
