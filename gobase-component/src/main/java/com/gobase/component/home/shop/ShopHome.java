@@ -72,6 +72,7 @@ public class ShopHome{
 			boolean addFlag = false;
 			if(!CollectionUtils.isEmpty(goodsLi)) {
 				shopDO.setGoodsList(goodsLi);
+				//只要有店铺发布的商品有水果类型，则店铺可以出现在水果模块 后续修改次逻辑
 				for(Goods goods:goodsLi) {
 //					ordercri.andGoodsIdEqualTo(goods.getGoodsId());
 //					long ordcount = orderMapper.countByExample(orderExample);
