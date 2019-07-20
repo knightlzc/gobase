@@ -49,7 +49,9 @@ public class ShopHome{
 	 */
 	public PageContent<ShopDO> pageShops(Map<String, Object> params){
 		ArrayList<ShopDO> shopsList = new ArrayList<ShopDO>();
-		long count = shopMapper.countByExample(new ShopExample());
+		ShopExample shopExample = new ShopExample();
+		shopExample.createCriteria().andIdNotEqualTo(2);
+		long count = shopMapper.countByExample(shopExample);
 		if (count <=0) {
 			return new PageContent<ShopDO>(1,10,(int)count,shopsList);
 		}
