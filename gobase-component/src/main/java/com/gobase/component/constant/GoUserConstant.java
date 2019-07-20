@@ -6,7 +6,7 @@ package com.gobase.component.constant;
  */
 public class GoUserConstant {
 
-    public static final String Go_USER_REQUEST_ATTR = "request_attr_user";
+    public static final String Go_USER_REQUEST_ATTR = "request-attr-user";
 
     public static final String TICKET_HEADER_KEY_PREFIX = "go_ticket_header_prefix_";
 

@@ -24,7 +24,7 @@ public class UserAddressVo {
      *
      * @mbg.generated Thu Jul 18 11:07:07 CST 2019
      */
-    private Integer provinceId;
+    private Integer provinceCode;
     private String province;
 
     /**
@@ -34,7 +34,7 @@ public class UserAddressVo {
      *
      * @mbg.generated Thu Jul 18 11:07:07 CST 2019
      */
-    private Integer cityId;
+    private Integer cityCode;
     private String city;
 
     /**
@@ -44,7 +44,7 @@ public class UserAddressVo {
      *
      * @mbg.generated Thu Jul 18 11:07:07 CST 2019
      */
-    private Integer countyId;
+    private Integer countyCode;
     private String county;
 
     /**
@@ -91,14 +91,6 @@ public class UserAddressVo {
         this.id = id;
     }
 
-    public Integer getProvinceId() {
-        return provinceId;
-    }
-
-    public void setProvinceId(Integer provinceId) {
-        this.provinceId = provinceId;
-    }
-
     public String getProvince() {
         return province;
     }
@@ -107,28 +99,12 @@ public class UserAddressVo {
         this.province = province;
     }
 
-    public Integer getCityId() {
-        return cityId;
-    }
-
-    public void setCityId(Integer cityId) {
-        this.cityId = cityId;
-    }
-
     public String getCity() {
         return city;
     }
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public Integer getCountyId() {
-        return countyId;
-    }
-
-    public void setCountyId(Integer countyId) {
-        this.countyId = countyId;
     }
 
     public String getCounty() {
@@ -169,5 +145,29 @@ public class UserAddressVo {
 
     public void setConsignee(String consignee) {
         this.consignee = consignee;
+    }
+
+    public Integer getProvinceCode() {
+        return provinceCode;
+    }
+
+    public void setProvinceCode(Integer provinceCode) {
+        this.provinceCode = provinceCode;
+    }
+
+    public Integer getCityCode() {
+        return cityCode;
+    }
+
+    public void setCityCode(Integer cityCode) {
+        this.cityCode = cityCode;
+    }
+
+    public Integer getCountyCode() {
+        return countyCode;
+    }
+
+    public void setCountyCode(Integer countyCode) {
+        this.countyCode = countyCode;
     }
 }

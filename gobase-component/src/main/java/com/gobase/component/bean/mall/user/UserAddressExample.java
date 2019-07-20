@@ -575,52 +575,52 @@ public class UserAddressExample {
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultEqualTo(Byte value) {
+        public Criteria andIsDefaultEqualTo(Integer value) {
             addCriterion("is_default =", value, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultNotEqualTo(Byte value) {
+        public Criteria andIsDefaultNotEqualTo(Integer value) {
             addCriterion("is_default <>", value, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultGreaterThan(Byte value) {
+        public Criteria andIsDefaultGreaterThan(Integer value) {
             addCriterion("is_default >", value, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultGreaterThanOrEqualTo(Byte value) {
+        public Criteria andIsDefaultGreaterThanOrEqualTo(Integer value) {
             addCriterion("is_default >=", value, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultLessThan(Byte value) {
+        public Criteria andIsDefaultLessThan(Integer value) {
             addCriterion("is_default <", value, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultLessThanOrEqualTo(Byte value) {
+        public Criteria andIsDefaultLessThanOrEqualTo(Integer value) {
             addCriterion("is_default <=", value, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultIn(List<Byte> values) {
+        public Criteria andIsDefaultIn(List<Integer> values) {
             addCriterion("is_default in", values, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultNotIn(List<Byte> values) {
+        public Criteria andIsDefaultNotIn(List<Integer> values) {
             addCriterion("is_default not in", values, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultBetween(Byte value1, Byte value2) {
+        public Criteria andIsDefaultBetween(Integer value1, Integer value2) {
             addCriterion("is_default between", value1, value2, "isDefault");
             return (Criteria) this;
         }
 
-        public Criteria andIsDefaultNotBetween(Byte value1, Byte value2) {
+        public Criteria andIsDefaultNotBetween(Integer value1, Integer value2) {
             addCriterion("is_default not between", value1, value2, "isDefault");
             return (Criteria) this;
         }
@@ -895,52 +895,52 @@ public class UserAddressExample {
             return (Criteria) this;
         }
 
-        public Criteria andStatusEqualTo(Byte value) {
+        public Criteria andStatusEqualTo(Integer value) {
             addCriterion("status =", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotEqualTo(Byte value) {
+        public Criteria andStatusNotEqualTo(Integer value) {
             addCriterion("status <>", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThan(Byte value) {
+        public Criteria andStatusGreaterThan(Integer value) {
             addCriterion("status >", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
+        public Criteria andStatusGreaterThanOrEqualTo(Integer value) {
             addCriterion("status >=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThan(Byte value) {
+        public Criteria andStatusLessThan(Integer value) {
             addCriterion("status <", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusLessThanOrEqualTo(Byte value) {
+        public Criteria andStatusLessThanOrEqualTo(Integer value) {
             addCriterion("status <=", value, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusIn(List<Byte> values) {
+        public Criteria andStatusIn(List<Integer> values) {
             addCriterion("status in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotIn(List<Byte> values) {
+        public Criteria andStatusNotIn(List<Integer> values) {
             addCriterion("status not in", values, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusBetween(Byte value1, Byte value2) {
+        public Criteria andStatusBetween(Integer value1, Integer value2) {
             addCriterion("status between", value1, value2, "status");
             return (Criteria) this;
         }
 
-        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
+        public Criteria andStatusNotBetween(Integer value1, Integer value2) {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }

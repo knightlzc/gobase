@@ -51,12 +51,13 @@ public class TicketValidateInterceptor extends HandlerInterceptorAdapter {
 //            if (ignoreToken != null) {
 //                return true;
 //            }
-            String ticket = getTicket(request);
+//            String ticket = getTicket(request);
 //            if (StringUtils.isBlank(ticket)) {
 //                returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录，ticket为空", GoUserConstant.RE_LOGIN + "")));
 //                return false;
 //            }
 //            String openID = JedisUtils.get(GoUserConstant.TICKET_HEADER_KEY_PREFIX + ticket);
+//            System.out.println("openID:--------------------:" + openID);
 //            if (StringUtils.isBlank(openID)) {
 //                returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录，缓存无数据", GoUserConstant.RE_LOGIN + "")));
 //                return false;
@@ -93,12 +94,12 @@ public class TicketValidateInterceptor extends HandlerInterceptorAdapter {
     }
 
     private String getTicket(HttpServletRequest request) {
-        Enumeration<String> headerNames=request.getHeaderNames();
-        while (headerNames.hasMoreElements()){
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
             System.out.println(headerNames.nextElement());
         }
         String ticket = request.getHeader(GoUserConstant.Go_USER_REQUEST_ATTR);
-        System.out.println("ticket:--------------------:"+ticket);
+        System.out.println("ticket:--------------------:" + ticket);
         if (StringUtils.isBlank(ticket)) {
             if (request.getCookies() != null && request.getCookies().length > 0) {
                 for (Cookie cookie : request.getCookies()) {

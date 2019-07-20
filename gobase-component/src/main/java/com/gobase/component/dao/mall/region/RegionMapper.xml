@@ -133,6 +133,7 @@
         <include refid="Base_Column_List" />
         from region
         where gb_code = #{gbCode,jdbcType=INTEGER}
+        limit 1
     </select>
 
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
