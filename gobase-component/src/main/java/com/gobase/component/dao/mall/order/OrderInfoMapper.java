@@ -13,14 +13,14 @@ import com.gobase.component.param.order.QueryOrderParam;
 
 public interface OrderInfoMapper extends IBaseMapper<OrderInfoExample, OrderInfo>{
 	
-	public static final String TABLE = " `order` ";
+	public static final String TABLE = " `order_info` ";
 	public static final String JOIN_COLS = " o.`id`,o.`order_id`,o.`user_id`,o.`region_id`,o.`status`,o.`goods_id`,o.`remark`,o.`address_id`,"
 			+ "o.`create_time`,o.`kuaidi_name`,o.`kuaidi_order`,o.`kuaidi_price`,o.`manjian_price`,o.`user_coupons_id`,o.`coupons_price`,o.`coupons_type`,"
-			+ "o.`reduce_intr_rate`,o.`deliver_time`,o.`totalPrice`,o.`porder_id` ";
-	public static final String SELECT_COLS = " `id`,`order_id`,`user_id`,`region_id`,`status`,`goods_id`,`remark`,`address_id`,`create_time`,`kuaidi_name`,`kuaidi_order`,`kuaidi_price`,`manjian_price`,`user_coupons_id`,`coupons_price`,`coupons_type`,`reduce_intr_rate`,`deliver_time`,`totalPrice`,`porder_id` ";
+			+ "o.`reduce_intr_rate`,o.`deliver_time`,o.`total_price`,o.`porder_id` ";
+	public static final String SELECT_COLS = " `id`,`order_id`,`user_id`,`region_id`,`status`,`goods_id`,`remark`,`address_id`,`create_time`,`kuaidi_name`,`kuaidi_order`,`kuaidi_price`,`manjian_price`,`user_coupons_id`,`coupons_price`,`coupons_type`,`reduce_intr_rate`,`deliver_time`,`total_price`,`porder_id` ";
  
 	@Select("<script>"+
-			" select IFNULL(count(*),0) from order o "+
+			" select IFNULL(count(*),0) from order_info o "+
 			" left join goods g on g.goods_id = o.goods_id " +
 			" left join shop s on s.id = g.shop_id " +
 			" where 1=1 "+
@@ -37,7 +37,7 @@ public interface OrderInfoMapper extends IBaseMapper<OrderInfoExample, OrderInfo
 	int countOrders(@Param("param")QueryOrderParam param );
 	
 	@Select("<script>"+
-			" select "+JOIN_COLS+",s.shop_name,g.shop_id  from order o "+
+			" select "+JOIN_COLS+",s.shop_name,g.shop_id  from order_info o "+
 			" left join goods g on g.goods_id = o.goods_id " +
 			" left join shop s on s.id = g.shop_id " +
 			" where 1=1 "+

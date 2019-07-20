@@ -40,7 +40,7 @@ public class OrderController {
     		PageContent<OrderDTO> page = orderService.pageOrders(hostHolder.getUserId(), status, pageNum, pageSize);
     		return ResultResponse.success(page, "");
 		} catch (Exception e) {
-			e.getMessage();
+			e.printStackTrace();
 			return ResultResponse.fail("查询列表失败", "");
 		}
     	
