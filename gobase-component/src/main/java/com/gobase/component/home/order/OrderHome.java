@@ -76,9 +76,10 @@ public class OrderHome {
 		}
 		for (OrderGoodsRef ref : orderGoodsRefs){
 			GoodsDO goodsDO = goodsHome.getByGoodsId(ref.getSkuId());
+			goodsDO.setRealPrice(ref.getPerPrice());
+			goodsDO.setBuyNum(ref.getSkuNum());
 			goodsList.add(goodsDO);
 		}
-		
 		return goodsList;
 	} 
 	

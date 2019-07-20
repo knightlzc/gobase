@@ -6,6 +6,7 @@ import java.util.List;
 
 public class OrderDTO {
 
+	private String orderId;
     private String shopName;
     private int goodsNum;
     private double totalPrice;
@@ -50,6 +51,12 @@ public class OrderDTO {
 	}
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 
 

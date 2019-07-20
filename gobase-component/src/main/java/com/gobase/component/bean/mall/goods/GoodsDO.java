@@ -116,6 +116,11 @@ public class GoodsDO {
 	*/
 	private int totalNum;
 	
+	/**
+	 *购买数量
+	 */
+	private int buyNum;
+	
 	
 	/**
 	 *商品图片
@@ -270,5 +275,11 @@ public class GoodsDO {
 	}
 	public void setParamList(List<GoodsParam> paramList) {
 		this.paramList = paramList;
+	}
+	public int getBuyNum() {
+		return buyNum;
+	}
+	public void setBuyNum(int buyNum) {
+		this.buyNum = buyNum;
 	}
 }
