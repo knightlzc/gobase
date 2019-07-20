@@ -59,25 +59,32 @@ public class ShopHome{
 		if(CollectionUtils.isEmpty(list)) {
 			return new PageContent<ShopDO>(1,10,(int)count,shopsList);
 		}
-		GoodsExample goodsExample = new GoodsExample();
-		Criteria goodscri = goodsExample.createCriteria();
 //		OrderExample orderExample = new OrderExample();
 //		com.gobase.component.bean.mall.order.OrderExample.Criteria ordercri = orderExample.createCriteria();
 		for(Shop shop:list){
+			GoodsExample goodsExample = new GoodsExample();
+			Criteria goodscri = goodsExample.createCriteria();
 			ShopDO shopDO = new ShopDO();
 			BeanUtils.copyProperties(shop, shopDO);
 			goodscri.andShopIdEqualTo(shop.getId());
 			goodsExample.setOrderByClause("update_time ASC LIMIT 0,4");
 			List<Goods> goodsLi = goodsMapper.selectByExample(goodsExample);
+			boolean addFlag = false;
 			if(!CollectionUtils.isEmpty(goodsLi)) {
 				shopDO.setGoodsList(goodsLi);
-//				for(Goods goods:goodsLi) {
+				for(Goods goods:goodsLi) {
 //					ordercri.andGoodsIdEqualTo(goods.getGoodsId());
 //					long ordcount = orderMapper.countByExample(orderExample);
 //					shopDO.setSaleCount(ordcount);
-//				}
+					if(GoodsCategory.CATEGORY_JPSG.equals(goods.getCategory1())){
+						addFlag = true;
+						break;
+					}
+				}
 			}
-			shopsList.add(shopDO);
+			if(addFlag) {
+				shopsList.add(shopDO);
+			}
 		}
 		
 		return new PageContent<ShopDO>((int)params.get("offset"),(int)params.get("limit"),(int)count,shopsList);

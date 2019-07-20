@@ -1,6 +1,8 @@
 package com.gobase.component.bean.mall.goods;
 
 public class GoodsCategory {
+	
+	public static String CATEGORY_JPSG = "jpsg";
 	/**
 	*类别id
 	*/
