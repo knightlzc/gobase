@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.reflect.Method;
+import java.util.Enumeration;
 
 /**
  * @author mm.sun
@@ -39,40 +40,40 @@ public class TicketValidateInterceptor extends HandlerInterceptorAdapter {
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        if (handler instanceof HandlerMethod) {
-            Method method = ((HandlerMethod) handler).getMethod();
-            // 获取方法上的注解
-            IgnoreToken ignoreToken = method.getAnnotation(IgnoreToken.class);
-            // 如果方法上的注解为空 则获取类的注解
-            if (ignoreToken == null) {
-                ignoreToken = method.getDeclaringClass().getAnnotation(IgnoreToken.class);
-            }
-            if (ignoreToken != null) {
-                return true;
-            }
+//        if (handler instanceof HandlerMethod) {
+//            Method method = ((HandlerMethod) handler).getMethod();
+//            // 获取方法上的注解
+//            IgnoreToken ignoreToken = method.getAnnotation(IgnoreToken.class);
+//            // 如果方法上的注解为空 则获取类的注解
+//            if (ignoreToken == null) {
+//                ignoreToken = method.getDeclaringClass().getAnnotation(IgnoreToken.class);
+//            }
+//            if (ignoreToken != null) {
+//                return true;
+//            }
             String ticket = getTicket(request);
-            if (StringUtils.isBlank(ticket)) {
-                returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
-                return false;
-            }
-            String openID = JedisUtils.get(GoUserConstant.TICKET_HEADER_KEY_PREFIX + ticket);
-            if (StringUtils.isBlank(openID)) {
-                returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
-                return false;
-            } else {
-                User user = userMapper.selectByOpenId(openID);
-                if (StringUtils.isBlank(user.getPhone())) {
-                    returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
-                    return false;
-                }
-                HostUser hostUser = new HostUser();
-                hostUser.setPhone(user.getPhone());
-                hostUser.setStatus(user.getStatus());
-                hostUser.setUserId(user.getId());
-                hostHolder.setUser(hostUser);
-                return true;
-            }
-        }
+//            if (StringUtils.isBlank(ticket)) {
+//                returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录，ticket为空", GoUserConstant.RE_LOGIN + "")));
+//                return false;
+//            }
+//            String openID = JedisUtils.get(GoUserConstant.TICKET_HEADER_KEY_PREFIX + ticket);
+//            if (StringUtils.isBlank(openID)) {
+//                returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录，缓存无数据", GoUserConstant.RE_LOGIN + "")));
+//                return false;
+//            } else {
+//                User user = userMapper.selectByOpenId(openID);
+////                if (StringUtils.isBlank(user.getPhone())) {
+////                    returnJson(response, JSONObject.toJSONString(ResultResponse.fail("重新登录", GoUserConstant.RE_LOGIN + "")));
+////                    return false;
+////                }
+//                HostUser hostUser = new HostUser();
+//                hostUser.setPhone(user.getPhone());
+//                hostUser.setStatus(user.getStatus());
+//                hostUser.setUserId(user.getId());
+//                hostHolder.setUser(hostUser);
+//                return true;
+//            }
+//        }
         return true;
     }
 
@@ -92,7 +93,12 @@ public class TicketValidateInterceptor extends HandlerInterceptorAdapter {
     }
 
     private String getTicket(HttpServletRequest request) {
+        Enumeration<String> headerNames=request.getHeaderNames();
+        while (headerNames.hasMoreElements()){
+            System.out.println(headerNames.nextElement());
+        }
         String ticket = request.getHeader(GoUserConstant.Go_USER_REQUEST_ATTR);
+        System.out.println("ticket:--------------------:"+ticket);
         if (StringUtils.isBlank(ticket)) {
             if (request.getCookies() != null && request.getCookies().length > 0) {
                 for (Cookie cookie : request.getCookies()) {
