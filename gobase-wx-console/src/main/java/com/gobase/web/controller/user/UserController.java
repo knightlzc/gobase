@@ -96,10 +96,10 @@ public class UserController {
             //JSONObject userInfo = WechatUtil.getUserInfo(encrypteData, sessionKey, iv);
             //6. 把新的skey返回给小程序
             JedisUtils.add(GoUserConstant.TICKET_HEADER_KEY_PREFIX + skey, openId);
-            return ResultResponse.success(skey, "签名成功");
+            return ResultResponse.success(skey, "授权成功");
         } catch (Exception e) {
             e.printStackTrace();
-            return ResultResponse.fail("签名失败", ResultResponse.FAIL + "");
+            return ResultResponse.fail("授权失败", ResultResponse.FAIL + "");
         }
     }
 }
