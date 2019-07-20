@@ -80,7 +80,7 @@ public class IDCreater {
 			seq++;
 		}
 
-		logger.debug("THE SQUENCE IS :{}", prefix + ipPart + sb.toString());
+//		logger.debug("THE SQUENCE IS :{}", prefix + ipPart + sb.toString());
 
 		return prefix + ipPart + sb.toString();
 	}

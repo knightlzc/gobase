@@ -23,13 +23,22 @@ public class CartHome {
                 cartList.add(new Cart(userId,goodsId,num));
                 break;
             }
+        	boolean flag = true;
             for (Cart cart : cartList){
                 if (cart.getGoodsId().equals(goodsId)){
-                    cart.setNum(cart.getNum()+num);
+                	int cartNum = cart.getNum()+num;
+                	if(cartNum <= 0) {
+                		cartList.remove(cart);
+                	}else {
+                		cart.setNum(cartNum);
+                	}
+                    flag = false;
                     break;
                 }
             }
-            cartList.add(new Cart(userId,goodsId,num));
+            if(flag) {
+            	cartList.add(new Cart(userId,goodsId,num));
+            }
         }while (false);
         JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);
         return null;
@@ -51,13 +60,17 @@ public class CartHome {
                 cartList.add(new Cart(userId,goodsId,num));
                 break;
             }
+        	
             for (Cart cart : cartList){
                 if (cart.getGoodsId().equals(goodsId)){
-                    cart.setNum(num);
+                	if(num <= 0) {
+                		cartList.remove(cart);
+                	}else {
+                		cart.setNum(num);
+                	}
                     break;
                 }
             }
-            cartList.add(new Cart(userId,goodsId,num));
         }while (false);
         JedisUtils.addObject(CartCacheConstant.CART_KEY_PREFIX+userId,cartList);
         return null;

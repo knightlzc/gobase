@@ -119,7 +119,7 @@ public class GoodsHome {
 		goodsDO.setImgs(imgs);
 
 		GoodsParamExample goodsParamExample = new GoodsParamExample();
-		example.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
+		goodsParamExample.createCriteria().andGoodsIdEqualTo(goods.getGoodsId());
 		List<GoodsParam> paramList = goodsParamMapper.selectByExample(goodsParamExample);
 		goodsDO.setParamList(paramList);
 		return goodsDO;
