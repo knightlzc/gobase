@@ -10,10 +10,29 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2019-06-12 20:48:06
+Date: 2019-07-19 17:57:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `activity_manjian`
+-- ----------------------------
+DROP TABLE IF EXISTS `activity_manjian`;
+CREATE TABLE `activity_manjian` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `max_price` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '已满金额',
+  `minus_price` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '优惠金额',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '装填 0 有效 -1 无效',
+  `region_type` tinyint(4) NOT NULL DEFAULT '0' COMMENT '作用类型 0 全商城 1 城市 2 店铺',
+  `region_id` int(11) NOT NULL DEFAULT '0' COMMENT '作用范围id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of activity_manjian
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `activity_miaosha`
@@ -83,11 +102,24 @@ CREATE TABLE `goods` (
   `total_num` int(11) NOT NULL DEFAULT '0' COMMENT '库存总量',
   PRIMARY KEY (`id`),
   UNIQUE KEY `goodsId` (`goods_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1198 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1211 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
+INSERT INTO `goods` VALUES ('1198', '111111', ' mac pro', '苹果 mac pro', '', '2019-07-03 12:48:45', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '100', '0', '2019-07-18 22:25:33', '0');
+INSERT INTO `goods` VALUES ('1199', '22222', 'iphoneX', '苹果 iphone X', '', '2019-07-03 12:58:48', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '200', '0', '2019-07-18 22:25:36', '0');
+INSERT INTO `goods` VALUES ('1200', '3', '苹果', '红富士', '', '2019-07-19 17:23:26', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:42', '0');
+INSERT INTO `goods` VALUES ('1201', '4', '水果4', '大水果4', '', '2019-07-19 17:23:32', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:42', '0');
+INSERT INTO `goods` VALUES ('1202', '5', '水果5', '大水果5', '', '2019-07-19 17:23:35', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:43', '0');
+INSERT INTO `goods` VALUES ('1203', '6', '水果6', '大水果6', '', '2019-07-19 17:23:38', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:43', '0');
+INSERT INTO `goods` VALUES ('1204', '7', '水果7', '大水果7', '', '2019-07-19 17:23:40', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:44', '0');
+INSERT INTO `goods` VALUES ('1205', '8', '水果8', '大水果8', '', '2019-07-19 17:23:43', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:45', '0');
+INSERT INTO `goods` VALUES ('1206', '9', '水果9', '大水果9', '', '2019-07-19 17:23:46', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:45', '0');
+INSERT INTO `goods` VALUES ('1207', '10', '水果10', '大水果10', '', '2019-07-19 17:23:49', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:46', '0');
+INSERT INTO `goods` VALUES ('1208', '11', '水果11', '大水果11', '', '2019-07-19 17:23:55', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:46', '0');
+INSERT INTO `goods` VALUES ('1209', '12', '水果12', '大水果12', '', '2019-07-19 17:23:58', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:47', '0');
+INSERT INTO `goods` VALUES ('1210', '13', '水果13', '大水果13', '', '2019-07-19 17:24:00', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:49', '0');
 
 -- ----------------------------
 -- Table structure for `goods_category`
@@ -101,13 +133,34 @@ CREATE TABLE `goods_category` (
   `group_code` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '分组编码',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审核节点表';
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审核节点表';
 
 -- ----------------------------
 -- Records of goods_category
 -- ----------------------------
 INSERT INTO `goods_category` VALUES ('1', 'shkj', '', '生活空间', 'kj', '0');
 INSERT INTO `goods_category` VALUES ('2', 'cykj', '', '创意空间', 'kj', '0');
+INSERT INTO `goods_category` VALUES ('3', 'jpsg', '', '精品水果', 'sg', '0');
+INSERT INTO `goods_category` VALUES ('4', 'jianguo', 'jpsg', '坚果', '', '0');
+INSERT INTO `goods_category` VALUES ('5', 'sg', 'jpsg', '新鲜水果', '', '0');
+INSERT INTO `goods_category` VALUES ('6', 'shucai', 'jpsg', '蔬菜', '', '0');
+INSERT INTO `goods_category` VALUES ('7', 'shushi', 'jpsg', '熟食', '', '0');
+
+-- ----------------------------
+-- Table structure for `goods_manjian_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `goods_manjian_ref`;
+CREATE TABLE `goods_manjian_ref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `goods_id` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '商品id',
+  `mianjian_id` int(11) NOT NULL DEFAULT '0' COMMENT '满减活动id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `goods_id` (`goods_id`,`mianjian_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of goods_manjian_ref
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for `goods_param`
@@ -126,640 +179,90 @@ CREATE TABLE `goods_param` (
 -- ----------------------------
 -- Records of goods_param
 -- ----------------------------
-INSERT INTO `goods_param` VALUES ('7', 'GS1409201401009712', '7', '19;20;21;', '0');
-INSERT INTO `goods_param` VALUES ('8', 'GS1409201401009712', '8', '22;23;24;', '0');
-INSERT INTO `goods_param` VALUES ('9', 'GS1409201422005715', '9', '19;20;21;28;', '0');
-INSERT INTO `goods_param` VALUES ('10', 'GS1409201422005715', '8', '22;23;24;', '0');
-INSERT INTO `goods_param` VALUES ('11', 'GS1409230722009189', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('12', 'GS1409230722009189', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('13', 'GS1409240145000512', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('14', 'GS1409240145000512', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('15', 'GS1409240150007484', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('16', 'GS1409240150007484', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('17', 'GS1410272009002506', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('18', 'GS1410272009002506', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('19', 'GS1410272013008416', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('20', 'GS1410272013008416', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('21', 'GS1410272014004500', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('22', 'GS1410272014004500', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('23', 'GS1410272029009068', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('24', 'GS1410272029009068', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('25', 'GS1410272030001356', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('26', 'GS1410272030001356', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('27', 'GS1410272031002028', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('28', 'GS1410272031002028', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('29', 'GS1410272035001627', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('30', 'GS1410272035001627', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('31', 'GS1410272039007367', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('32', 'GS1410272039007367', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('33', 'GS1410272043007016', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('34', 'GS1410272043007016', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('35', 'GS1410272048007544', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('36', 'GS1410272048007544', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('37', 'GS1410272059003776', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('38', 'GS1410272059003776', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('39', 'GS1410272100005548', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('40', 'GS1410272100005548', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('41', 'GS1410272102004296', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('42', 'GS1410272102004296', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('43', 'GS1410272105008696', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('44', 'GS1410272105008696', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('45', 'GS1410272106000007', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('46', 'GS1410272106000007', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('47', 'GS1410272108003791', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('48', 'GS1410272108003791', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('49', 'GS1410272110003740', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('50', 'GS1410272110003740', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('51', 'GS1410272113002724', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('52', 'GS1410272113002724', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('53', 'GS1410272115009753', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('54', 'GS1410272115009753', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('55', 'GS1410272117001288', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('56', 'GS1410272117001288', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('57', 'GS1410272118002457', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('58', 'GS1410272118002457', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('59', 'GS1410272119008921', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('60', 'GS1410272119008921', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('61', 'GS1410272128004361', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('62', 'GS1410272128004361', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('63', 'GS1410272137001114', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('64', 'GS1410272137001114', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('65', 'GS1410281012003496', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('66', 'GS1410281012003496', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('67', 'GS1410281013001662', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('68', 'GS1410281013001662', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('69', 'GS1410281013005755', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('70', 'GS1410281013005755', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('71', 'GS1410281013005842', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('72', 'GS1410281013005842', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('73', 'GS1410281013001937', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('74', 'GS1410281013001937', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('75', 'GS1410281013003147', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('76', 'GS1410281013003147', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('77', 'GS1410281014009278', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('78', 'GS1410281014009278', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('79', 'GS1410281014001100', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('80', 'GS1410281014001100', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('81', 'GS1410281014005237', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('82', 'GS1410281014005237', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('83', 'GS1410281014004657', '10', '29;30;31;', '0');
-INSERT INTO `goods_param` VALUES ('84', 'GS1410281014004657', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('85', 'GS1411071030005554', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('86', 'GS1411071030005554', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('87', 'GS1411071030006518', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('88', 'GS1411071030006518', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('89', 'GS1411071030007955', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('90', 'GS1411071030007955', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('91', 'GS1411071030001432', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('92', 'GS1411071030001432', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('93', 'GS1411071030003285', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('94', 'GS1411071030003285', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('95', 'GS1411071030000486', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('96', 'GS1411071030000486', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('97', 'GS1411071030000789', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('98', 'GS1411071030000789', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('99', 'GS1411071030006009', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('100', 'GS1411071030006009', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('101', 'GS1411071030009174', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('102', 'GS1411071030009174', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('103', 'GS1411071030004159', '10', '36;37;38;', '0');
-INSERT INTO `goods_param` VALUES ('104', 'GS1411071030004159', '11', '32;33;34;35;', '0');
-INSERT INTO `goods_param` VALUES ('107', 'GS1411071031002270', '12', '39;40;41;', '0');
-INSERT INTO `goods_param` VALUES ('108', 'GS1411071031002270', '13', '42;43;44;45;', '0');
-INSERT INTO `goods_param` VALUES ('109', 'GS1411071044006685', '12', '39;40;41;', '0');
-INSERT INTO `goods_param` VALUES ('110', 'GS1411071044006685', '13', '42;43;44;45;', '0');
-INSERT INTO `goods_param` VALUES ('121', 'GS1411051023000220', '7', '173;', '0');
-INSERT INTO `goods_param` VALUES ('123', 'GS1411051023000220', '13', '43;', '0');
-INSERT INTO `goods_param` VALUES ('129', 'GS1411061131000258', '7', '185;187;189;191;', '0');
-INSERT INTO `goods_param` VALUES ('131', 'GS1411061131000258', '13', '193;43;157;', '0');
-INSERT INTO `goods_param` VALUES ('134', 'GS1412111533003118', '12', '46;52;', '0');
-INSERT INTO `goods_param` VALUES ('135', 'GS1412111533003118', '14', '48;49;', '0');
-INSERT INTO `goods_param` VALUES ('136', 'GS1412241502008113', '12', '54;55;', '0');
-INSERT INTO `goods_param` VALUES ('137', 'GS1412241502008113', '15', '56;57;', '0');
-INSERT INTO `goods_param` VALUES ('142', 'GS1412251609002559', '12', '54;55;', '0');
-INSERT INTO `goods_param` VALUES ('143', 'GS1412251609002559', '16', '59;49;', '0');
-INSERT INTO `goods_param` VALUES ('144', 'GS1412251643007592', '12', '51;', '0');
-INSERT INTO `goods_param` VALUES ('145', 'GS1412251643007592', '17', '43;', '0');
-INSERT INTO `goods_param` VALUES ('149', 'GS1411062024000305', '7', '237;239;', '0');
-INSERT INTO `goods_param` VALUES ('150', 'GS1412261419006280', '12', '55;60;', '0');
-INSERT INTO `goods_param` VALUES ('151', 'GS1412261419006280', '15', '56;57;', '0');
-INSERT INTO `goods_param` VALUES ('153', 'GS1411071008000312', '7', '243;', '0');
-INSERT INTO `goods_param` VALUES ('155', 'GS1411071008000312', '17', '245;', '0');
-INSERT INTO `goods_param` VALUES ('157', 'GS1411071106000314', '7', '247;', '0');
-INSERT INTO `goods_param` VALUES ('159', 'GS1411071106000314', '17', '249;', '0');
-INSERT INTO `goods_param` VALUES ('161', 'GS1411071126000316', '7', '251;', '0');
-INSERT INTO `goods_param` VALUES ('163', 'GS1411071126000316', '17', '253;', '0');
-INSERT INTO `goods_param` VALUES ('165', 'GS1411071327000318', '7', '255;', '0');
-INSERT INTO `goods_param` VALUES ('167', 'GS1411071327000318', '17', '257;', '0');
-INSERT INTO `goods_param` VALUES ('177', 'GS1411071717000324', '7', '263;', '0');
-INSERT INTO `goods_param` VALUES ('179', 'GS1411071717000324', '17', '265;', '0');
-INSERT INTO `goods_param` VALUES ('181', 'GS1411071735000326', '7', '267;', '0');
-INSERT INTO `goods_param` VALUES ('183', 'GS1411071735000326', '17', '265;', '0');
-INSERT INTO `goods_param` VALUES ('189', 'GS1411071818000330', '7', '271;273;275;', '0');
-INSERT INTO `goods_param` VALUES ('193', 'GS1412301556008240', '18', '74;75;77;78;79;', '0');
-INSERT INTO `goods_param` VALUES ('194', 'GS1412301556008240', '19', '73;82;', '0');
-INSERT INTO `goods_param` VALUES ('195', 'GS1411071940000335', '13', '277;279;281;', '0');
-INSERT INTO `goods_param` VALUES ('197', 'GS1412311005004730', '12', '60;', '0');
-INSERT INTO `goods_param` VALUES ('198', 'GS1412311005004730', '16', '49;87;', '0');
-INSERT INTO `goods_param` VALUES ('200', 'GS1412261656003184', '12', '88;89;90;91;92;64;', '0');
-INSERT INTO `goods_param` VALUES ('201', 'GS1412261656003184', '16', '93;94;', '0');
-INSERT INTO `goods_param` VALUES ('203', 'GS1411072118000353', '7', '307;309;311;', '0');
-INSERT INTO `goods_param` VALUES ('205', 'GS1411072118000353', '13', '313;315;', '0');
-INSERT INTO `goods_param` VALUES ('207', 'GS1411072143000361', '7', '317;', '0');
-INSERT INTO `goods_param` VALUES ('209', 'GS1411072142000360', '7', '319;321;323;325;327;', '0');
-INSERT INTO `goods_param` VALUES ('211', 'GS1411072200000368', '7', '329;331;333;', '0');
-INSERT INTO `goods_param` VALUES ('213', 'GS1411072228000372', '7', '335;337;339;', '0');
-INSERT INTO `goods_param` VALUES ('215', 'GS1411072228000372', '13', '341;343;345;', '0');
-INSERT INTO `goods_param` VALUES ('217', 'GS1411072233000387', '7', '347;', '0');
-INSERT INTO `goods_param` VALUES ('219', 'GS1411081209000403', '7', '349;351;', '0');
-INSERT INTO `goods_param` VALUES ('221', 'GS1411081209000403', '13', '353;355;', '0');
-INSERT INTO `goods_param` VALUES ('225', 'GS1411081421000410', '15', '359;', '0');
-INSERT INTO `goods_param` VALUES ('226', 'GS1411071031005829', '12', '46;52;62;', '0');
-INSERT INTO `goods_param` VALUES ('227', 'GS1411071031005829', '14', '48;49;', '0');
-INSERT INTO `goods_param` VALUES ('229', 'GS1411081456000416', '15', '363;', '0');
-INSERT INTO `goods_param` VALUES ('231', 'GS1411081514000418', '15', '365;', '0');
-INSERT INTO `goods_param` VALUES ('233', 'GS1411081556000420', '15', '367;', '0');
-INSERT INTO `goods_param` VALUES ('235', 'GS1411081753000422', '13', '369;371;', '0');
-INSERT INTO `goods_param` VALUES ('237', 'GS1411081818000425', '7', '317;', '0');
-INSERT INTO `goods_param` VALUES ('239', 'GS1411081834000427', '7', '373;375;', '0');
-INSERT INTO `goods_param` VALUES ('241', 'GS1411081834000427', '13', '377;379;27;381;', '0');
-INSERT INTO `goods_param` VALUES ('245', 'GS1501071830004244', '25', '100;101;', '0');
-INSERT INTO `goods_param` VALUES ('247', 'GS1411082102000447', '7', '107;109;111;', '0');
-INSERT INTO `goods_param` VALUES ('249', 'GS1411082102000447', '9', '73;77;79;', '0');
-INSERT INTO `goods_param` VALUES ('251', 'GS1411082155000457', '7', '391;393;', '0');
-INSERT INTO `goods_param` VALUES ('261', 'GS1411082313000505', '7', '425;427;', '0');
-INSERT INTO `goods_param` VALUES ('263', 'GS1501081452005126', '12', '105;106;107;46;108;', '0');
-INSERT INTO `goods_param` VALUES ('266', 'GS1501071759002500', '26', '102;103;104;', '0');
-INSERT INTO `goods_param` VALUES ('267', 'GS1501071759002500', '12', '54;60;55;', '0');
-INSERT INTO `goods_param` VALUES ('268', 'GS1501081636001057', '12', '109;110;111;', '0');
-INSERT INTO `goods_param` VALUES ('269', 'GS1501081636001057', '15', '112;113;', '0');
-INSERT INTO `goods_param` VALUES ('273', 'GS1411071600000322', '15', '241;', '0');
-INSERT INTO `goods_param` VALUES ('275', 'GS1411071915000334', '19', '451;', '0');
-INSERT INTO `goods_param` VALUES ('277', 'GS1411081857000436', '19', '451;', '0');
-INSERT INTO `goods_param` VALUES ('279', 'GS1412301814002714', '20', '83;84;', '0');
-INSERT INTO `goods_param` VALUES ('280', 'GS1412301814002714', '22', '85;86;', '0');
-INSERT INTO `goods_param` VALUES ('281', 'GS1411082325000510', '15', '453;', '0');
-INSERT INTO `goods_param` VALUES ('283', 'GS1411090338000537', '21', '451;', '0');
-INSERT INTO `goods_param` VALUES ('285', 'GS1411090358000539', '13', '455;457;', '0');
-INSERT INTO `goods_param` VALUES ('291', 'GS1411081406000408', '25', '461;', '0');
-INSERT INTO `goods_param` VALUES ('293', 'GS1411061610000299', '13', '463;465;467;', '0');
-INSERT INTO `goods_param` VALUES ('295', 'GS1411090620000550', '13', '469;', '0');
-INSERT INTO `goods_param` VALUES ('297', 'GS1411090729000552', '7', '471;473;475;477;', '0');
-INSERT INTO `goods_param` VALUES ('301', 'GS1411092118000557', '13', '481;', '0');
-INSERT INTO `goods_param` VALUES ('303', 'GS1411092301000561', '13', '483;485;', '0');
-INSERT INTO `goods_param` VALUES ('305', 'GS1412161837000232', '12', '47;52;76;61;62;115;', '0');
-INSERT INTO `goods_param` VALUES ('306', 'GS1412161837000232', '28', '', '0');
-INSERT INTO `goods_param` VALUES ('307', 'GS1501071532009167', '24', '56;57;', '0');
-INSERT INTO `goods_param` VALUES ('308', 'GS1501071532009167', '15', '', '0');
-INSERT INTO `goods_param` VALUES ('309', 'GS1411100125000569', '7', '487;317;', '0');
-INSERT INTO `goods_param` VALUES ('310', 'GS1501071758009333', '12', '98;99;', '0');
-INSERT INTO `goods_param` VALUES ('311', 'GS1410071853000101', '13', '489;', '0');
-INSERT INTO `goods_param` VALUES ('313', 'GS1411071742000328', '13', '491;', '0');
-INSERT INTO `goods_param` VALUES ('317', 'GS1411101705000576', '13', '497;', '0');
-INSERT INTO `goods_param` VALUES ('319', 'GS1411061350000271', '7', '499;501;', '0');
-INSERT INTO `goods_param` VALUES ('321', 'GS1411061350000271', '13', '503;505;507;', '0');
-INSERT INTO `goods_param` VALUES ('325', 'GS1410071832000093', '13', '511;', '0');
-INSERT INTO `goods_param` VALUES ('337', 'GS1411102130000586', '7', '107;109;111;', '0');
-INSERT INTO `goods_param` VALUES ('339', 'GS1411102130000586', '13', '73;77;79;', '0');
-INSERT INTO `goods_param` VALUES ('345', 'GS1411111151000602', '13', '465;', '0');
-INSERT INTO `goods_param` VALUES ('347', 'GS1411111405000604', '13', '519;', '0');
-INSERT INTO `goods_param` VALUES ('357', 'GS1411112210000622', '7', '541;543;545;', '0');
-INSERT INTO `goods_param` VALUES ('359', 'GS1411112258000626', '7', '547;95;', '0');
-INSERT INTO `goods_param` VALUES ('363', 'GS1411090445000542', '13', '549;551;', '0');
-INSERT INTO `goods_param` VALUES ('367', 'GS1411121211000637', '7', '559;561;563;565;567;569;', '0');
-INSERT INTO `goods_param` VALUES ('373', 'GS1410071738000060', '7', '55;57;', '0');
-INSERT INTO `goods_param` VALUES ('375', 'GS1411121426000658', '7', '571;573;575;577;579;', '0');
-INSERT INTO `goods_param` VALUES ('385', 'GS1411121426000659', '7', '591;593;595;', '0');
-INSERT INTO `goods_param` VALUES ('387', 'GS1411121135000633', '7', '597;599;601;', '0');
-INSERT INTO `goods_param` VALUES ('389', 'GS1410071752000071', '7', '603;63;', '0');
-INSERT INTO `goods_param` VALUES ('391', 'GS1410071752000071', '13', '605;607;', '0');
-INSERT INTO `goods_param` VALUES ('393', 'GS1411111417000605', '7', '609;611;613;', '0');
-INSERT INTO `goods_param` VALUES ('395', 'GS1411111417000605', '13', '527;529;531;', '0');
-INSERT INTO `goods_param` VALUES ('397', 'GS1411111615000616', '7', '615;617;', '0');
-INSERT INTO `goods_param` VALUES ('399', 'GS1411111718000619', '7', '619;621;', '0');
-INSERT INTO `goods_param` VALUES ('401', 'GS1411121612000700', '7', '623;', '0');
-INSERT INTO `goods_param` VALUES ('405', 'GS1411082347000513', '13', '625;', '0');
-INSERT INTO `goods_param` VALUES ('407', 'GS1411121613000702', '7', '627;629;631;633;635;', '0');
-INSERT INTO `goods_param` VALUES ('409', 'GS1410071858000103', '13', '99;', '0');
-INSERT INTO `goods_param` VALUES ('413', 'GS1410071903000105', '13', '101;', '0');
-INSERT INTO `goods_param` VALUES ('415', 'GS1410071908000107', '13', '103;', '0');
-INSERT INTO `goods_param` VALUES ('417', 'GS1410071912000109', '13', '105;', '0');
-INSERT INTO `goods_param` VALUES ('421', 'GS1409230722009189', '7', '637;513;', '0');
-INSERT INTO `goods_param` VALUES ('425', 'GS1410071849000099', '7', '649;651;653;655;657;659;', '0');
-INSERT INTO `goods_param` VALUES ('427', 'GS1409201422005715', '7', '661;663;665;', '0');
-INSERT INTO `goods_param` VALUES ('429', 'GS1411131108000732', '7', '667;669;671;673;675;', '0');
-INSERT INTO `goods_param` VALUES ('431', 'GS1411131211000738', '7', '677;679;681;683;', '0');
-INSERT INTO `goods_param` VALUES ('433', 'GS1411131457000743', '7', '685;687;', '0');
-INSERT INTO `goods_param` VALUES ('435', 'GS1411131459000746', '7', '689;691;693;', '0');
-INSERT INTO `goods_param` VALUES ('437', 'GS1411131721000750', '7', '695;697;', '0');
-INSERT INTO `goods_param` VALUES ('441', 'GS1411131742000753', '7', '699;701;703;705;707;', '0');
-INSERT INTO `goods_param` VALUES ('443', 'GS1411131742000753', '13', '709;711;713;', '0');
-INSERT INTO `goods_param` VALUES ('449', 'GS1411131849000774', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('451', 'GS1411131849000774', '13', '709;', '0');
-INSERT INTO `goods_param` VALUES ('453', 'GS1411131952000776', '13', '511;', '0');
-INSERT INTO `goods_param` VALUES ('455', 'GS1411132124000778', '13', '715;', '0');
-INSERT INTO `goods_param` VALUES ('457', 'GS1411141419000780', '7', '637;', '0');
-INSERT INTO `goods_param` VALUES ('459', 'GS1411141419000780', '13', '717;719;', '0');
-INSERT INTO `goods_param` VALUES ('461', 'GS1411141439000783', '7', '721;', '0');
-INSERT INTO `goods_param` VALUES ('463', 'GS1411141439000783', '13', '723;', '0');
-INSERT INTO `goods_param` VALUES ('465', 'GS1411141713000785', '7', '721;', '0');
-INSERT INTO `goods_param` VALUES ('467', 'GS1411141713000785', '13', '725;', '0');
-INSERT INTO `goods_param` VALUES ('469', 'GS1411141935000787', '7', '727;729;731;733;', '0');
-INSERT INTO `goods_param` VALUES ('483', 'GS1411142010000804', '7', '753;755;', '0');
-INSERT INTO `goods_param` VALUES ('485', 'GS1411142010000804', '31', '749;739;741;743;', '0');
-INSERT INTO `goods_param` VALUES ('487', 'GS1411141937000788', '7', '757;', '0');
-INSERT INTO `goods_param` VALUES ('489', 'GS1411141937000788', '31', '747;749;739;741;743;745;', '0');
-INSERT INTO `goods_param` VALUES ('491', 'GS1411142032000827', '7', '317;', '0');
-INSERT INTO `goods_param` VALUES ('493', 'GS1411152009000829', '13', '511;', '0');
-INSERT INTO `goods_param` VALUES ('495', 'GS1411152035000831', '13', '465;', '0');
-INSERT INTO `goods_param` VALUES ('497', 'GS1411152105000833', '7', '759;761;763;', '0');
-INSERT INTO `goods_param` VALUES ('501', 'GS1411152308000839', '31', '767;', '0');
-INSERT INTO `goods_param` VALUES ('507', 'GS1411171331000845', '7', '769;771;', '0');
-INSERT INTO `goods_param` VALUES ('509', 'GS1411171331000845', '33', '773;', '0');
-INSERT INTO `goods_param` VALUES ('517', 'GS1411171508000857', '7', '785;787;789;791;', '0');
-INSERT INTO `goods_param` VALUES ('519', 'GS1411171552000862', '7', '793;', '0');
-INSERT INTO `goods_param` VALUES ('521', 'GS1411171552000862', '31', '795;797;779;', '0');
-INSERT INTO `goods_param` VALUES ('523', 'GS1411171607000866', '13', '799;', '0');
-INSERT INTO `goods_param` VALUES ('525', 'GS1411171627000868', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('529', 'GS1411171629000870', '7', '801;803;', '0');
-INSERT INTO `goods_param` VALUES ('531', 'GS1411171629000870', '31', '779;781;805;807;147;', '0');
-INSERT INTO `goods_param` VALUES ('533', 'GS1411171707000883', '7', '809;811;', '0');
-INSERT INTO `goods_param` VALUES ('535', 'GS1411171727000886', '7', '813;815;', '0');
-INSERT INTO `goods_param` VALUES ('537', 'GS1411171727000886', '31', '817;819;795;797;779;', '0');
-INSERT INTO `goods_param` VALUES ('551', 'GS1411181726000897', '7', '827;829;', '0');
-INSERT INTO `goods_param` VALUES ('553', 'GS1411181726000897', '13', '825;', '0');
-INSERT INTO `goods_param` VALUES ('555', 'GS1411182158000906', '7', '831;', '0');
-INSERT INTO `goods_param` VALUES ('557', 'GS1411182158000906', '9', '833;241;835;', '0');
-INSERT INTO `goods_param` VALUES ('561', 'GS1411191551000910', '7', '841;843;', '0');
-INSERT INTO `goods_param` VALUES ('563', 'GS1411191648000915', '7', '845;', '0');
-INSERT INTO `goods_param` VALUES ('565', 'GS1411191648000915', '13', '77;75;847;', '0');
-INSERT INTO `goods_param` VALUES ('569', 'GS1411201718000921', '13', '851;853;', '0');
-INSERT INTO `goods_param` VALUES ('571', 'GS1411201815000924', '7', '855;857;', '0');
-INSERT INTO `goods_param` VALUES ('573', 'GS1411201815000924', '13', '73;75;', '0');
-INSERT INTO `goods_param` VALUES ('575', 'GS1411201846000929', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('577', 'GS1411201846000929', '31', '341;345;859;861;', '0');
-INSERT INTO `goods_param` VALUES ('583', 'GS1410071825000090', '13', '77;', '0');
-INSERT INTO `goods_param` VALUES ('585', 'GS1411211501000941', '13', '871;873;875;', '0');
-INSERT INTO `goods_param` VALUES ('587', 'GS1411211846000945', '13', '877;879;881;', '0');
-INSERT INTO `goods_param` VALUES ('589', 'GS1411222315000949', '7', '883;885;', '0');
-INSERT INTO `goods_param` VALUES ('591', 'GS1411222315000949', '31', '343;341;345;859;', '0');
-INSERT INTO `goods_param` VALUES ('597', 'GS1411231753000958', '7', '887;889;891;', '0');
-INSERT INTO `goods_param` VALUES ('599', 'GS1411231753000958', '13', '905;907;909;911;913;915;', '0');
-INSERT INTO `goods_param` VALUES ('601', 'GS1411241140000995', '7', '917;919;', '0');
-INSERT INTO `goods_param` VALUES ('603', 'GS1411241140000995', '13', '921;923;925;927;', '0');
-INSERT INTO `goods_param` VALUES ('605', 'GS1411041615000213', '7', '169;171;', '0');
-INSERT INTO `goods_param` VALUES ('607', 'GS1411041615000213', '13', '41;165;45;', '0');
-INSERT INTO `goods_param` VALUES ('609', 'GS1411241724001011', '7', '929;931;', '0');
-INSERT INTO `goods_param` VALUES ('613', 'GS1410071816000085', '13', '935;937;', '0');
-INSERT INTO `goods_param` VALUES ('619', 'GS1411262016001020', '7', '945;947;949;951;953;955;', '0');
-INSERT INTO `goods_param` VALUES ('625', 'GS1411272207001035', '7', '963;965;', '0');
-INSERT INTO `goods_param` VALUES ('627', 'GS1411272207001035', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('629', 'GS1411061046000249', '7', '967;969;', '0');
-INSERT INTO `goods_param` VALUES ('631', 'GS1411061046000249', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('635', 'GS1411192134000919', '13', '869;867;863;', '0');
-INSERT INTO `goods_param` VALUES ('643', 'GS1412012031001052', '7', '977;', '0');
-INSERT INTO `goods_param` VALUES ('645', 'GS1411051522000226', '13', '979;443;', '0');
-INSERT INTO `goods_param` VALUES ('647', 'GS1412021607001056', '13', '981;', '0');
-INSERT INTO `goods_param` VALUES ('649', 'GS1412021629001058', '13', '983;', '0');
-INSERT INTO `goods_param` VALUES ('655', 'GS1412032257001064', '7', '987;', '0');
-INSERT INTO `goods_param` VALUES ('657', 'GS1412041219001067', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('659', 'GS1412041219001067', '31', '341;343;', '0');
-INSERT INTO `goods_param` VALUES ('661', 'GS1412041343001070', '7', '107;109;989;', '0');
-INSERT INTO `goods_param` VALUES ('663', 'GS1412041343001070', '9', '73;77;79;', '0');
-INSERT INTO `goods_param` VALUES ('665', 'GS1412041414001080', '7', '991;', '0');
-INSERT INTO `goods_param` VALUES ('667', 'GS1412041414001080', '31', '343;', '0');
-INSERT INTO `goods_param` VALUES ('669', 'GS1412041505001082', '7', '993;', '0');
-INSERT INTO `goods_param` VALUES ('671', 'GS1412041522001084', '7', '995;', '0');
-INSERT INTO `goods_param` VALUES ('673', 'GS1412041522001084', '31', '747;343;', '0');
-INSERT INTO `goods_param` VALUES ('675', 'GS1412031743001060', '7', '997;999;1001;', '0');
-INSERT INTO `goods_param` VALUES ('677', 'GS1412031743001060', '31', '747;343;341;', '0');
-INSERT INTO `goods_param` VALUES ('683', 'GS1411072007000344', '13', '293;295;297;', '0');
-INSERT INTO `goods_param` VALUES ('685', 'GS1412041813001100', '7', '107;109;989;', '0');
-INSERT INTO `goods_param` VALUES ('687', 'GS1412041813001100', '13', '73;77;79;', '0');
-INSERT INTO `goods_param` VALUES ('689', 'GS1412051350001111', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('693', 'GS1412051500001114', '7', '1005;1007;', '0');
-INSERT INTO `goods_param` VALUES ('695', 'GS1412051632001118', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('697', 'GS1412051632001118', '13', '1009;', '0');
-INSERT INTO `goods_param` VALUES ('699', 'GS1412051725001120', '7', '1011;1013;', '0');
-INSERT INTO `goods_param` VALUES ('701', 'GS1412051725001120', '13', '1015;', '0');
-INSERT INTO `goods_param` VALUES ('707', 'GS1412051820001123', '13', '277;1027;1029;', '0');
-INSERT INTO `goods_param` VALUES ('711', 'GS1412091600001136', '7', '1031;1033;1043;1037;1039;1041;', '0');
-INSERT INTO `goods_param` VALUES ('721', 'GS1411082205000460', '13', '395;397;399;401;403;405;', '0');
-INSERT INTO `goods_param` VALUES ('723', 'GS1411082205000460', '9', '407;409;411;', '0');
-INSERT INTO `goods_param` VALUES ('725', 'GS1412102250001203', '7', '1045;1047;1049;1051;1053;', '0');
-INSERT INTO `goods_param` VALUES ('727', 'GS1412102250001203', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('739', 'GS1412111947001213', '7', '1059;1061;', '0');
-INSERT INTO `goods_param` VALUES ('741', 'GS1412112043001222', '7', '1063;', '0');
-INSERT INTO `goods_param` VALUES ('751', 'GS1412112048001224', '7', '1065;', '0');
-INSERT INTO `goods_param` VALUES ('755', 'GS1412112125001230', '7', '1067;', '0');
-INSERT INTO `goods_param` VALUES ('757', 'GS1412112148001233', '7', '1069;', '0');
-INSERT INTO `goods_param` VALUES ('759', 'GS1412112250001235', '7', '1071;', '0');
-INSERT INTO `goods_param` VALUES ('761', 'GS1412112327001237', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('775', 'GS1412121541001251', '7', '1085;', '0');
-INSERT INTO `goods_param` VALUES ('777', 'GS1412121636001256', '7', '1087;1089;', '0');
-INSERT INTO `goods_param` VALUES ('779', 'GS1412121741001259', '7', '1091;', '0');
-INSERT INTO `goods_param` VALUES ('781', 'GS1412121802001261', '7', '1093;', '0');
-INSERT INTO `goods_param` VALUES ('783', 'GS1411241738001014', '7', '1095;1097;', '0');
-INSERT INTO `goods_param` VALUES ('795', 'GS1412121840001265', '7', '1099;1101;', '0');
-INSERT INTO `goods_param` VALUES ('799', 'GS1412132320001280', '31', '1107;', '0');
-INSERT INTO `goods_param` VALUES ('801', 'GS1412140014001282', '31', '1107;1109;', '0');
-INSERT INTO `goods_param` VALUES ('805', 'GS1412151620001286', '7', '1111;1113;1115;', '0');
-INSERT INTO `goods_param` VALUES ('807', 'GS1412151716001293', '7', '1117;1119;', '0');
-INSERT INTO `goods_param` VALUES ('809', 'GS1412151822001296', '7', '1121;1123;1125;1127;1129;1131;', '0');
-INSERT INTO `goods_param` VALUES ('811', 'GS1412161100001303', '7', '1133;1135;1137;1139;', '0');
-INSERT INTO `goods_param` VALUES ('815', 'GS1412161153001308', '7', '1145;1141;1143;1151;1153;', '0');
-INSERT INTO `goods_param` VALUES ('817', 'GS1412161524001322', '7', '419;317;541;487;589;', '0');
-INSERT INTO `goods_param` VALUES ('819', 'GS1412161629001328', '7', '1155;1157;1159;1161;1163;1165;', '0');
-INSERT INTO `goods_param` VALUES ('821', 'GS1412161723001335', '7', '1167;1169;1171;1173;1175;1177;', '0');
-INSERT INTO `goods_param` VALUES ('823', 'GS1412161816001342', '7', '1179;1181;1183;1185;1187;1189;', '0');
-INSERT INTO `goods_param` VALUES ('825', 'GS1412171106001349', '7', '1191;1193;', '0');
-INSERT INTO `goods_param` VALUES ('827', 'GS1412171106001349', '31', '1195;1197;773;1199;1201;1107;', '0');
-INSERT INTO `goods_param` VALUES ('829', 'GS1412171354001362', '35', '1203;1205;', '0');
-INSERT INTO `goods_param` VALUES ('831', 'GS1412171405001365', '7', '1207;1209;1211;', '0');
-INSERT INTO `goods_param` VALUES ('833', 'GS1412171405001365', '31', '1195;1197;773;1201;1107;1109;', '0');
-INSERT INTO `goods_param` VALUES ('835', 'GS1412171446001384', '35', '1213;1215;1217;', '0');
-INSERT INTO `goods_param` VALUES ('837', 'GS1412171505001388', '7', '1219;1221;1223;', '0');
-INSERT INTO `goods_param` VALUES ('839', 'GS1412171505001388', '31', '1195;1197;773;1201;1107;1109;', '0');
-INSERT INTO `goods_param` VALUES ('841', 'GS1412171547001407', '35', '1225;1227;1229;', '0');
-INSERT INTO `goods_param` VALUES ('847', 'GS1412171609001411', '7', '1239;1241;1243;', '0');
-INSERT INTO `goods_param` VALUES ('849', 'GS1412171609001411', '31', '1201;1237;1107;1109;', '0');
-INSERT INTO `goods_param` VALUES ('851', 'GS1412171648001436', '35', '1245;1247;1249;1251;1253;1255;', '0');
-INSERT INTO `goods_param` VALUES ('857', 'GS1412171714001443', '7', '1267;1269;1271;', '0');
-INSERT INTO `goods_param` VALUES ('859', 'GS1412171714001443', '31', '1195;1263;1197;1265;773;', '0');
-INSERT INTO `goods_param` VALUES ('861', 'GS1412171827001474', '7', '1273;1275;', '0');
-INSERT INTO `goods_param` VALUES ('863', 'GS1412171827001474', '31', '1195;1197;773;1277;1201;1107;', '0');
-INSERT INTO `goods_param` VALUES ('865', 'GS1412171928001487', '35', '1279;1281;1283;', '0');
-INSERT INTO `goods_param` VALUES ('867', 'GS1412172035001491', '35', '1285;1287;', '0');
-INSERT INTO `goods_param` VALUES ('873', 'GS1412181132001494', '7', '1289;1291;', '0');
-INSERT INTO `goods_param` VALUES ('875', 'GS1412181132001494', '31', '1195;1263;1197;1265;773;', '0');
-INSERT INTO `goods_param` VALUES ('877', 'GS1412181438001505', '7', '1293;1295;', '0');
-INSERT INTO `goods_param` VALUES ('879', 'GS1412181438001505', '31', '1201;1237;1107;1109;', '0');
-INSERT INTO `goods_param` VALUES ('881', 'GS1412181511001514', '7', '1297;1299;', '0');
-INSERT INTO `goods_param` VALUES ('883', 'GS1412181511001514', '31', '1195;1197;773;1277;1201;1107;', '0');
-INSERT INTO `goods_param` VALUES ('885', 'GS1412181553001527', '7', '1301;1303;', '0');
-INSERT INTO `goods_param` VALUES ('887', 'GS1412181553001527', '31', '1201;1107;1109;1305;', '0');
-INSERT INTO `goods_param` VALUES ('889', 'GS1412181624001536', '7', '1307;1309;', '0');
-INSERT INTO `goods_param` VALUES ('891', 'GS1412181624001536', '31', '1195;1197;773;1277;1201;1107;', '0');
-INSERT INTO `goods_param` VALUES ('905', 'GS1411061442000294', '7', '1323;1325;', '0');
-INSERT INTO `goods_param` VALUES ('907', 'GS1411061442000294', '13', '527;529;', '0');
-INSERT INTO `goods_param` VALUES ('909', 'GS1411152222000837', '13', '765;1327;', '0');
-INSERT INTO `goods_param` VALUES ('911', 'GS1411152326000841', '13', '715;1329;', '0');
-INSERT INTO `goods_param` VALUES ('913', 'GS1411152338000843', '13', '465;467;1331;', '0');
-INSERT INTO `goods_param` VALUES ('917', 'GS1412011734001049', '13', '1333;1335;', '0');
-INSERT INTO `goods_param` VALUES ('919', 'GS1410071724000042', '7', '33;35;39;', '0');
-INSERT INTO `goods_param` VALUES ('921', 'GS1410071724000042', '13', '41;43;45;', '0');
-INSERT INTO `goods_param` VALUES ('923', 'GS1412192329001602', '35', '1337;1339;', '0');
-INSERT INTO `goods_param` VALUES ('925', 'GS1412221134001605', '7', '1341;1343;1345;1347;1349;', '0');
-INSERT INTO `goods_param` VALUES ('927', 'GS1412221158001611', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('931', 'GS1412221425001616', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('935', 'GS1412221500001620', '13', '1357;', '0');
-INSERT INTO `goods_param` VALUES ('937', 'GS1412221515001622', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('941', 'GS1412221524001624', '13', '1361;', '0');
-INSERT INTO `goods_param` VALUES ('947', 'GS1412221601001627', '13', '1365;', '0');
-INSERT INTO `goods_param` VALUES ('949', 'GS1412221607001629', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('951', 'GS1412221630001634', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('953', 'GS1412221643001636', '7', '419;', '0');
-INSERT INTO `goods_param` VALUES ('955', 'GS1412221648001638', '7', '1367;1369;', '0');
-INSERT INTO `goods_param` VALUES ('957', 'GS1412221718001641', '13', '1371;', '0');
-INSERT INTO `goods_param` VALUES ('959', 'GS1412221744001643', '13', '1373;', '0');
-INSERT INTO `goods_param` VALUES ('961', 'GS1412221754001645', '7', '1375;1377;', '0');
-INSERT INTO `goods_param` VALUES ('963', 'GS1412231323001648', '7', '1379;', '0');
-INSERT INTO `goods_param` VALUES ('967', 'GS1412231440001650', '7', '1383;', '0');
-INSERT INTO `goods_param` VALUES ('971', 'GS1412231509001653', '7', '1385;1387;', '0');
-INSERT INTO `goods_param` VALUES ('973', 'GS1412231545001658', '7', '1389;', '0');
-INSERT INTO `goods_param` VALUES ('979', 'GS1412231637001660', '7', '1391;1393;', '0');
-INSERT INTO `goods_param` VALUES ('981', 'GS1412231718001667', '35', '1395;1397;1399;', '0');
-INSERT INTO `goods_param` VALUES ('983', 'GS1412231752001671', '7', '1401;', '0');
-INSERT INTO `goods_param` VALUES ('985', 'GS1412231922001673', '35', '1403;', '0');
-INSERT INTO `goods_param` VALUES ('987', 'GS1412232035001675', '35', '1405;', '0');
-INSERT INTO `goods_param` VALUES ('989', 'GS1412232107001677', '35', '1407;1409;', '0');
-INSERT INTO `goods_param` VALUES ('991', 'GS1412241043001680', '7', '1411;', '0');
-INSERT INTO `goods_param` VALUES ('993', 'GS1412241141001682', '7', '1413;', '0');
-INSERT INTO `goods_param` VALUES ('995', 'GS1412241454001684', '7', '1415;1417;1419;1421;1423;1425;', '0');
-INSERT INTO `goods_param` VALUES ('997', 'GS1412241624001691', '7', '1427;1429;1431;1433;1435;1437;', '0');
-INSERT INTO `goods_param` VALUES ('999', 'GS1412241915001698', '13', '1439;', '0');
-INSERT INTO `goods_param` VALUES ('1001', 'GS1412242142001700', '7', '1441;1443;', '0');
-INSERT INTO `goods_param` VALUES ('1003', 'GS1412251445001703', '7', '1445;1447;', '0');
-INSERT INTO `goods_param` VALUES ('1005', 'GS1412251547001706', '13', '1449;', '0');
-INSERT INTO `goods_param` VALUES ('1007', 'GS1412251616001708', '13', '1451;', '0');
-INSERT INTO `goods_param` VALUES ('1009', 'GS1412251626001710', '13', '1453;', '0');
-INSERT INTO `goods_param` VALUES ('1011', 'GS1412261111001712', '7', '1455;1457;1459;1461;1463;1465;', '0');
-INSERT INTO `goods_param` VALUES ('1013', 'GS1412261201001719', '7', '1467;1469;1471;1473;', '0');
-INSERT INTO `goods_param` VALUES ('1015', 'GS1412261447001724', '7', '1475;1477;', '0');
-INSERT INTO `goods_param` VALUES ('1017', 'GS1412261545001727', '13', '1479;', '0');
-INSERT INTO `goods_param` VALUES ('1019', 'GS1412261615001729', '35', '1481;1483;1485;1487;1489;', '0');
-INSERT INTO `goods_param` VALUES ('1021', 'GS1412261630001735', '7', '1491;1493;1495;1497;1499;', '0');
-INSERT INTO `goods_param` VALUES ('1023', 'GS1412261758001741', '35', '1501;1503;1505;', '0');
-INSERT INTO `goods_param` VALUES ('1031', 'GS1412182036001568', '7', '1507;1509;1511;1513;1515;1517;', '0');
-INSERT INTO `goods_param` VALUES ('1033', 'GS1412182036001568', '13', '73;77;79;', '0');
-INSERT INTO `goods_param` VALUES ('1035', 'GS1410231203000185', '7', '1519;1521;1523;', '0');
-INSERT INTO `goods_param` VALUES ('1037', 'GS1410231203000185', '13', '73;77;79;', '0');
-INSERT INTO `goods_param` VALUES ('1039', 'GS1412301130001796', '15', '1525;', '0');
-INSERT INTO `goods_param` VALUES ('1041', 'GS1412301152001798', '15', '1527;', '0');
-INSERT INTO `goods_param` VALUES ('1043', 'GS1412301338001800', '15', '1529;', '0');
-INSERT INTO `goods_param` VALUES ('1045', 'GS1412301401001802', '19', '1531;1533;', '0');
-INSERT INTO `goods_param` VALUES ('1047', 'GS1412301432001805', '15', '1535;', '0');
-INSERT INTO `goods_param` VALUES ('1049', 'GS1412301444001807', '15', '1537;', '0');
-INSERT INTO `goods_param` VALUES ('1051', 'GS1412301456001809', '15', '1539;', '0');
-INSERT INTO `goods_param` VALUES ('1053', 'GS1412301528001812', '19', '1541;', '0');
-INSERT INTO `goods_param` VALUES ('1055', 'GS1412301524001811', '15', '1543;', '0');
-INSERT INTO `goods_param` VALUES ('1059', 'GS1412301719001815', '19', '1547;', '0');
-INSERT INTO `goods_param` VALUES ('1061', 'GS1412301758001818', '15', '1549;', '0');
-INSERT INTO `goods_param` VALUES ('1063', 'GS1412301836001820', '15', '1551;', '0');
-INSERT INTO `goods_param` VALUES ('1069', 'GS1412311326001826', '19', '1557;', '0');
-INSERT INTO `goods_param` VALUES ('1071', 'GS1412311351001828', '19', '1559;', '0');
-INSERT INTO `goods_param` VALUES ('1073', 'GS1412311414001830', '19', '1561;', '0');
-INSERT INTO `goods_param` VALUES ('1075', 'GS1412311451001832', '19', '1563;1565;', '0');
-INSERT INTO `goods_param` VALUES ('1077', 'GS1412311514001835', '19', '1567;', '0');
-INSERT INTO `goods_param` VALUES ('1079', 'GS1412311536001837', '15', '1569;', '0');
-INSERT INTO `goods_param` VALUES ('1081', 'GS1412311556001839', '19', '1571;', '0');
-INSERT INTO `goods_param` VALUES ('1083', 'GS1412311608001841', '15', '1573;', '0');
-INSERT INTO `goods_param` VALUES ('1085', 'GS1412311706001843', '19', '1575;', '0');
-INSERT INTO `goods_param` VALUES ('1087', 'GS1412311707001844', '15', '1577;', '0');
-INSERT INTO `goods_param` VALUES ('1089', 'GS1501041210001847', '35', '1579;', '0');
-INSERT INTO `goods_param` VALUES ('1117', 'GS1501041512001849', '7', '1581;1583;', '0');
-INSERT INTO `goods_param` VALUES ('1161', 'GS1501041553001854', '7', '1585;1587;1589;1591;', '0');
-INSERT INTO `goods_param` VALUES ('1163', 'GS1501041553001854', '13', '1593;', '0');
-INSERT INTO `goods_param` VALUES ('1165', 'GS1501041627001863', '7', '1595;1597;1599;', '0');
-INSERT INTO `goods_param` VALUES ('1175', 'GS1501041702001870', '7', '1605;1607;', '0');
-INSERT INTO `goods_param` VALUES ('1177', 'GS1501041702001870', '13', '193;', '0');
-INSERT INTO `goods_param` VALUES ('1179', 'GS1501041640001867', '7', '1601;1603;', '0');
-INSERT INTO `goods_param` VALUES ('1181', 'GS1501041640001867', '13', '193;', '0');
-INSERT INTO `goods_param` VALUES ('1183', 'GS1501041716001877', '13', '1609;', '0');
-INSERT INTO `goods_param` VALUES ('1185', 'GS1501051419001879', '13', '1611;', '0');
-INSERT INTO `goods_param` VALUES ('1187', 'GS1412121430001240', '7', '943;', '0');
-INSERT INTO `goods_param` VALUES ('1189', 'GS1412121430001240', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('1191', 'GS1411241845001016', '13', '1613;1615;', '0');
-INSERT INTO `goods_param` VALUES ('1193', 'GS1412121429001239', '13', '1617;1619;', '0');
-INSERT INTO `goods_param` VALUES ('1195', 'GS1501051703001886', '19', '1621;', '0');
-INSERT INTO `goods_param` VALUES ('1197', 'GS1501051717001888', '7', '1623;1625;1627;', '0');
-INSERT INTO `goods_param` VALUES ('1199', 'GS1501051736001892', '19', '1629;', '0');
-INSERT INTO `goods_param` VALUES ('1201', 'GS1501051850001894', '7', '107;109;989;', '0');
-INSERT INTO `goods_param` VALUES ('1205', 'GS1501061624001898', '35', '1633;1635;', '0');
-INSERT INTO `goods_param` VALUES ('1209', 'GS1410152224000127', '7', '107;109;989;', '0');
-INSERT INTO `goods_param` VALUES ('1213', 'GS1501071412001911', '35', '1645;1647;1649;1651;', '0');
-INSERT INTO `goods_param` VALUES ('1225', 'GS1501071540001917', '35', '1665;1667;1669;', '0');
-INSERT INTO `goods_param` VALUES ('1227', 'GS1501071702001951', '35', '1671;1673;', '0');
-INSERT INTO `goods_param` VALUES ('1229', 'GS1501071816001954', '35', '1675;', '0');
-INSERT INTO `goods_param` VALUES ('1231', 'GS1501061835001902', '35', '1677;', '0');
-INSERT INTO `goods_param` VALUES ('1233', 'GS1501071353001908', '35', '1679;', '0');
-INSERT INTO `goods_param` VALUES ('1235', 'GS1501071539001916', '35', '1653;1655;1657;1661;1663;', '0');
-INSERT INTO `goods_param` VALUES ('1241', 'GS1501121125001963', '7', '1683;1685;', '0');
-INSERT INTO `goods_param` VALUES ('1243', 'GS1501121432001968', '7', '1687;', '0');
-INSERT INTO `goods_param` VALUES ('1245', 'GS1501121438001970', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('1249', 'GS1501121510001972', '13', '1689;1691;', '0');
-INSERT INTO `goods_param` VALUES ('1251', 'GS1501121533001977', '13', '1693;', '0');
-INSERT INTO `goods_param` VALUES ('1253', 'GS1501121559001979', '35', '1695;', '0');
-INSERT INTO `goods_param` VALUES ('1255', 'GS1501121621001981', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('1257', 'GS1501121628001983', '35', '1697;', '0');
-INSERT INTO `goods_param` VALUES ('1259', 'GS1501121658001985', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('1263', 'GS1501121800001989', '13', '1701;', '0');
-INSERT INTO `goods_param` VALUES ('1265', 'GS1501121819001991', '13', '1703;', '0');
-INSERT INTO `goods_param` VALUES ('1267', 'GS1501121840001993', '13', '1705;', '0');
-INSERT INTO `goods_param` VALUES ('1271', 'GS1412221431001618', '35', '1711;1709;', '0');
-INSERT INTO `goods_param` VALUES ('1273', 'GS1501131056001999', '35', '1713;', '0');
-INSERT INTO `goods_param` VALUES ('1275', 'GS1501171451000847', '7', '46;53;', '0');
-INSERT INTO `goods_param` VALUES ('1276', 'GS1501171451000847', '24', '1714;1715;', '0');
-INSERT INTO `goods_param` VALUES ('1277', 'GS1501201640005150', '54', '1199;1716;1717;', '0');
-INSERT INTO `goods_param` VALUES ('1278', 'GS1501201640005150', '55', '56;57;61;', '0');
-INSERT INTO `goods_param` VALUES ('1286', 'GS1501201940002508', '15', '96;97;', '0');
-INSERT INTO `goods_param` VALUES ('1292', 'GS1501221253002348', '15', '1724;1725;', '0');
-INSERT INTO `goods_param` VALUES ('1295', 'GS1501201807002727', '56', '56;57;', '0');
-INSERT INTO `goods_param` VALUES ('1296', 'GS1501201807002727', '59', '61;62;', '0');
-INSERT INTO `goods_param` VALUES ('1297', 'GS1501121700001987', '13', '1699;', '0');
-INSERT INTO `goods_param` VALUES ('1298', 'GS1412051203001110', '13', '1003;1727;1728;', '0');
-INSERT INTO `goods_param` VALUES ('1300', 'GS1412221401001613', '7', '1351;1353;', '0');
-INSERT INTO `goods_param` VALUES ('1301', 'GS1411271753001033', '13', '957;', '0');
-INSERT INTO `goods_param` VALUES ('1305', 'GS1501231445003264', '60', '1729;1730;', '0');
-INSERT INTO `goods_param` VALUES ('1308', 'GS1501231505009165', '7', '52;47;', '0');
-INSERT INTO `goods_param` VALUES ('1309', 'GS1501231505009165', '16', '49;87;', '0');
-INSERT INTO `goods_param` VALUES ('1312', 'GS1501201708001381', '56', '1718;1719;1743;', '0');
-INSERT INTO `goods_param` VALUES ('1313', 'GS1501201708001381', '57', '1720;1721;', '0');
-INSERT INTO `goods_param` VALUES ('1314', 'GS1501241154008926', '63', '1744;1745;1746;', '0');
-INSERT INTO `goods_param` VALUES ('1317', 'GS1501241359009064', '64', '1747;1748;', '0');
-INSERT INTO `goods_param` VALUES ('1318', 'GS1501241359009064', '7', '1749;1750;', '0');
-INSERT INTO `goods_param` VALUES ('1321', 'GS1411171418000848', '7', '775;777;', '0');
-INSERT INTO `goods_param` VALUES ('1322', 'GS1411171418000848', '31', '779;781;783;', '0');
-INSERT INTO `goods_param` VALUES ('1324', 'GS1501241414001794', '56', '1753;1754;', '0');
-INSERT INTO `goods_param` VALUES ('1325', 'GS1501231617001270', '61', '1731;1732;1733;1734;1735;1736;', '0');
-INSERT INTO `goods_param` VALUES ('1326', 'GS1501231617001270', '62', '1737;1738;1739;1740;1741;1742;', '0');
-INSERT INTO `goods_param` VALUES ('1327', 'GS1501191628004052', '65', '1755;', '0');
-INSERT INTO `goods_param` VALUES ('1328', 'GS1501261832003192', '7', '1756;1757;1758;1759;', '0');
-INSERT INTO `goods_param` VALUES ('1329', 'GS1501261832003192', '16', '1760;1761;1762;1763;', '0');
-INSERT INTO `goods_param` VALUES ('1330', 'GS1501271443005874', '7', '55;', '0');
-INSERT INTO `goods_param` VALUES ('1331', 'GS1501281059000887', '7', '47;', '0');
-INSERT INTO `goods_param` VALUES ('1332', 'GS1501261921008010', '7', '55;1764;', '0');
-INSERT INTO `goods_param` VALUES ('1333', 'GS1501281453005220', '66', '1765;', '0');
-INSERT INTO `goods_param` VALUES ('1334', 'GS1501281636009003', '67', '1766;1767;1768;1769;', '0');
-INSERT INTO `goods_param` VALUES ('1335', 'GS1501291442002935', '7', '55;', '0');
-INSERT INTO `goods_param` VALUES ('1336', 'GS1501291745006850', '14', '1770;', '0');
-INSERT INTO `goods_param` VALUES ('1339', 'GS1410071648000001', '7', '639;641;643;645;647;', '0');
-INSERT INTO `goods_param` VALUES ('1342', 'GS1503041409008942', '69', '56;', '0');
-INSERT INTO `goods_param` VALUES ('1343', 'GS1503052127008010', '70', '71;', '0');
-INSERT INTO `goods_param` VALUES ('1344', 'GS1503101027004549', '71', '1775;', '0');
-INSERT INTO `goods_param` VALUES ('1349', 'GS1503232026000466', '73', '56;', '0');
-INSERT INTO `goods_param` VALUES ('1350', 'GS1503251304000869', '74', '1776;1777;1778;', '0');
-INSERT INTO `goods_param` VALUES ('1351', 'GS1503251304000869', '75', '1779;1780;1781;', '0');
-INSERT INTO `goods_param` VALUES ('1358', 'GS1503251523005574', '76', '1782;1783;', '0');
-INSERT INTO `goods_param` VALUES ('1393', 'GS1503251819002549', '73', '56;57;61;62;63;64;', '0');
-INSERT INTO `goods_param` VALUES ('1394', 'GS1503251819002549', '82', '1803;116;', '0');
-INSERT INTO `goods_param` VALUES ('1395', 'GS1503271809008100', '73', '1804;1805;', '0');
-INSERT INTO `goods_param` VALUES ('1406', 'GS1503271126004592', '77', '1790;1791;1828;1829;1830;1831;1832;1833;1834;1835;', '0');
-INSERT INTO `goods_param` VALUES ('1407', 'GS1503271126004592', '83', '1836;1837;1838;1839;1840;1841;1842;1843;1843;1844;1845;', '0');
-INSERT INTO `goods_param` VALUES ('1410', 'GS1504141751001939', '7', '1816;1817;1818;1819;1820;1821;1822;1823;1856;1857;', '0');
-INSERT INTO `goods_param` VALUES ('1411', 'GS1504141751001939', '31', '1846;1847;1848;1849;1850;1851;1852;1853;1853;1853;1854;', '0');
-INSERT INTO `goods_param` VALUES ('1420', 'GS1504151011007710', '7', '54;1858;1811;1812;1764;1859;', '0');
-INSERT INTO `goods_param` VALUES ('1421', 'GS1504151011007710', '26', '805;807;1861;1862;1863;783;', '0');
-INSERT INTO `goods_param` VALUES ('1434', 'GS1412182008001549', '7', '1311;1313;1315;1895;1896;1890;1891;1892;1893;1897;', '0');
-INSERT INTO `goods_param` VALUES ('1435', 'GS1412182008001549', '13', '73;77;79;56;57;61;62;1887;1887;1887;1887;', '0');
-INSERT INTO `goods_param` VALUES ('1442', 'GS1504151110003056', '7', '1907;1908;1909;1910;1911;1912;1913;1916;1917;1918;', '0');
-INSERT INTO `goods_param` VALUES ('1443', 'GS1504151110003056', '26', '1877;1878;1879;1880;1881;1882;1883;1884;1884;1884;', '0');
-INSERT INTO `goods_param` VALUES ('1446', 'GS1504151242004094', '73', '1934;1755;1935;1936;1937;1938;1939;1940;1941;1942;', '0');
-INSERT INTO `goods_param` VALUES ('1447', 'GS1504151242004094', '23', '1943;1944;1945;1946;1947;1948;1949;1950;1951;1952;', '0');
-INSERT INTO `goods_param` VALUES ('1448', 'GS1504151400006170', '65', '1953;1954;1955;1956;1957;1958;1959;1960;1961;1962;', '0');
-INSERT INTO `goods_param` VALUES ('1449', 'GS1504151400006170', '86', '1963;1964;1965;1966;1967;1968;1969;1970;1971;1972;', '0');
-INSERT INTO `goods_param` VALUES ('1456', 'GS1504151426002616', '87', '1973;1974;1975;1986;', '0');
-INSERT INTO `goods_param` VALUES ('1457', 'GS1504151426002616', '88', '1976;1977;1978;1979;1980;1981;1982;1983;1984;1985;', '0');
-INSERT INTO `goods_param` VALUES ('1460', 'GS1501311352008349', '14', '1771;57;61;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1461', 'GS1501311352008349', '23', '56;57;61;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1462', 'GS1503271701009159', '78', '1792;1793;61;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1463', 'GS1503271701009159', '81', '56;57;61;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1464', 'GS1502091725007186', '68', '1772;1773;1774;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1465', 'GS1502091725007186', '23', '56;57;61;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1466', 'GS1503251631003840', '7', '1785;1786;1787;1788;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1467', 'GS1503251631003840', '23', '56;57;61;62;63;64;114;115;116;1815;', '0');
-INSERT INTO `goods_param` VALUES ('1470', 'GS1503271736001434', '79', '1802;1798;1801;1806;1807;1808;1809;1810;1987;1988;', '0');
-INSERT INTO `goods_param` VALUES ('1471', 'GS1503271736001434', '80', '1794;1799;1800;1989;1990;1991;1992;1993;1994;345;', '0');
-INSERT INTO `goods_param` VALUES ('1472', 'GS1501221302004606', '26', '1724;1726;1995;1996;1997;1998;1999;2000;2001;2002;', '0');
-INSERT INTO `goods_param` VALUES ('1473', 'GS1501221302004606', '89', '2003;2004;2005;2006;2007;2008;2009;2010;2011;2012;', '0');
-INSERT INTO `goods_param` VALUES ('1474', 'GS1502091724003385', '90', '56;57;61;62;63;64;114;115;116;2013;', '0');
-INSERT INTO `goods_param` VALUES ('1475', 'GS1502091724003385', '91', '1725;2014;1862;1109;2015;2016;2017;2018;2019;2020;', '0');
-INSERT INTO `goods_param` VALUES ('1476', 'GS1502021123002449', '7', '52;1725;2014;1862;1109;2015;2016;2017;2018;2019;', '0');
-INSERT INTO `goods_param` VALUES ('1477', 'GS1502021123002449', '92', '56;57;61;62;63;64;114;115;116;2013;', '0');
-INSERT INTO `goods_param` VALUES ('1478', 'GS1504151235000567', '84', '1890;1891;1892;1893;1894;1919;1920;1921;1922;1923;', '0');
-INSERT INTO `goods_param` VALUES ('1479', 'GS1504151235000567', '85', '1924;1925;1926;1927;1928;1929;1930;1931;1932;1933;', '0');
-INSERT INTO `goods_param` VALUES ('1480', 'GS1504151714006104', '93', '2021;2022;2023;2024;2025;2026;2027;2028;2029;2030;', '0');
-INSERT INTO `goods_param` VALUES ('1481', 'GS1504151714006104', '94', '2031;2032;2033;2034;2035;2036;2037;2038;2039;2040;', '0');
-INSERT INTO `goods_param` VALUES ('1484', 'GS1504151730008159', '95', '2041;2042;2043;2044;2045;2046;2047;2048;', '0');
-INSERT INTO `goods_param` VALUES ('1485', 'GS1504151730008159', '96', '2049;2050;2051;2052;2053;2054;2055;2056;2057;2058;', '0');
-INSERT INTO `goods_param` VALUES ('1488', 'GS1504161239006458', '97', '2079;2060;2061;2062;2063;2064;2065;2066;2067;2068;', '0');
-INSERT INTO `goods_param` VALUES ('1489', 'GS1504161239006458', '98', '2080;2081;2071;2072;2073;2074;2075;2076;2077;2078;', '0');
-INSERT INTO `goods_param` VALUES ('1490', 'GS1506241746003622', '99', '56;', '0');
-INSERT INTO `goods_param` VALUES ('1492', 'GS1412301839001822', '99', '2082;', '0');
-INSERT INTO `goods_param` VALUES ('1493', 'GS1412311153001824', '99', '2083;', '0');
-INSERT INTO `goods_param` VALUES ('1495', '2015091415270050', '101', '2085;', '0');
-INSERT INTO `goods_param` VALUES ('1497', '2015091415270050', '103', '2087;', '0');
-INSERT INTO `goods_param` VALUES ('1499', 'GS1509221135002921', '7', '515;51;50;2089;', '0');
-INSERT INTO `goods_param` VALUES ('1501', 'GS1509221135002921', '14', '1762;1763;', '0');
-INSERT INTO `goods_param` VALUES ('1503', 'GS1509221138006722', '7', '51;515;50;2089;', '0');
-INSERT INTO `goods_param` VALUES ('1505', 'GS1509221138006722', '14', '1762;1763;', '0');
-INSERT INTO `goods_param` VALUES ('1507', 'GS1509231627005354', '73', '56;', '0');
-INSERT INTO `goods_param` VALUES ('1509', 'GS1509231853000675', '73', '56;', '0');
-INSERT INTO `goods_param` VALUES ('1511', 'GS1509251514005243', '7', '2091;2093;2095;2097;', '0');
-INSERT INTO `goods_param` VALUES ('1513', 'GS1509251514005243', '14', '2099;1762;1763;', '0');
-INSERT INTO `goods_param` VALUES ('1515', 'GS1510101537009208', '7', '515;50;51;2089;', '0');
-INSERT INTO `goods_param` VALUES ('1517', 'GS1510101537009208', '14', '2099;1762;1763;', '0');
 
 -- ----------------------------
--- Table structure for `order`
+-- Table structure for `img`
 -- ----------------------------
-DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
-  `order_id` varchar(30) COLLATE utf8_bin NOT NULL COMMENT '订单号',
+DROP TABLE IF EXISTS `img`;
+CREATE TABLE `img` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `biz_id` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '业务id',
+  `biz_type` int(11) NOT NULL DEFAULT '0' COMMENT '业务类型 1 商品',
+  `img_url` varchar(200) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0 有效 -1 删除',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  KEY `biz_id` (`biz_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of img
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `order_goods_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `order_goods_ref`;
+CREATE TABLE `order_goods_ref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `order_id` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '订单号',
+  `sku_id` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '商品id',
+  `sku_num` int(11) NOT NULL DEFAULT '0' COMMENT '商品数量',
+  `total_price` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '总价格',
+  `per_price` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '单价',
+  `manjian_id` int(11) NOT NULL DEFAULT '0' COMMENT '满减活动id',
+  `porder_id` varchar(64) COLLATE utf8mb4_bin DEFAULT '' COMMENT '父订单id',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `order_sku` (`order_id`,`sku_id`) USING BTREE,
+  UNIQUE KEY `porder_sku` (`sku_id`,`porder_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of order_goods_ref
+-- ----------------------------
+INSERT INTO `order_goods_ref` VALUES ('6', 'GO01700011907190039', '111111', '1', '100.00', '100.00', '0', 'GO01700011907190039');
+INSERT INTO `order_goods_ref` VALUES ('7', 'GO01700021907190046', '111111', '1', '100.00', '100.00', '0', 'GO01700021907190046');
+INSERT INTO `order_goods_ref` VALUES ('8', 'GO01700001907190049', '111111', '3', '300.00', '100.00', '0', 'GO01700001907190049');
+
+-- ----------------------------
+-- Table structure for `order_info`
+-- ----------------------------
+DROP TABLE IF EXISTS `order_info`;
+CREATE TABLE `order_info` (
+  `id` int(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `order_id` varchar(64) COLLATE utf8_bin NOT NULL COMMENT '订单号',
   `user_id` int(11) NOT NULL COMMENT '用户id',
-  `sku_num` int(11) NOT NULL DEFAULT '0' COMMENT '购买数量',
-  `sku_price` double NOT NULL DEFAULT '0' COMMENT '商品价格，订单时',
-  `sku_name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '商品名称，下单时',
-  `sku_logo` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '商品图片',
   `region_id` int(11) NOT NULL DEFAULT '0',
-  `attr_info` varchar(200) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '属性名称',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订单状态',
   `goods_id` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '商品id',
-  `sku_id` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'sku id',
   `remark` varchar(500) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '用户备注信息',
-  `address` varchar(500) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '收货地址信息',
-  `pay_credit_img` varchar(2000) COLLATE utf8_bin NOT NULL DEFAULT '',
+  `address_id` int(11) NOT NULL DEFAULT '0' COMMENT '收货地址id',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '订单创建时间',
-  `kuaidi_name` varchar(64) COLLATE utf8_bin DEFAULT '' COMMENT '快递名称',
-  `kuaidi_order` varchar(64) COLLATE utf8_bin DEFAULT '' COMMENT '快递单号',
-  `kuaidi_price` double DEFAULT '0' COMMENT '快递费',
-  `manjian_price` double DEFAULT '0' COMMENT '满减金额',
-  `user_coupons_id` int(11) DEFAULT '0' COMMENT '用户使用的优惠券的Id',
-  `coupons_price` double DEFAULT '0' COMMENT '使用优惠券的价格',
-  `coupons_type` int(11) DEFAULT '0' COMMENT '优惠券类型',
+  `kuaidi_name` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '快递名称',
+  `kuaidi_order` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '快递单号',
+  `kuaidi_price` double NOT NULL DEFAULT '0' COMMENT '快递费',
+  `manjian_price` double NOT NULL DEFAULT '0' COMMENT '满减金额',
+  `user_coupons_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户使用的优惠券的Id',
+  `coupons_price` double NOT NULL DEFAULT '0' COMMENT '使用优惠券的价格',
+  `coupons_type` int(11) NOT NULL DEFAULT '0' COMMENT '优惠券类型',
   `reduce_intr_rate` double NOT NULL DEFAULT '0' COMMENT '降息比例',
   `deliver_time` datetime DEFAULT '1970-01-01 00:00:00' COMMENT '发货时间',
+  `total_price` decimal(12,2) NOT NULL DEFAULT '0.00' COMMENT '总价格',
+  `porder_id` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '父订单id',
   PRIMARY KEY (`id`),
   UNIQUE KEY `order_id` (`order_id`),
   KEY `index_order_user_status` (`order_id`,`user_id`,`status`),
   KEY `index_user_status` (`user_id`,`status`),
   KEY `index_status` (`status`)
-) ENGINE=InnoDB AUTO_INCREMENT=8015391 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单表,各种类型的订单';
+) ENGINE=InnoDB AUTO_INCREMENT=8015394 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='订单表,各种类型的订单';
 
 -- ----------------------------
--- Records of order
+-- Records of order_info
 -- ----------------------------
+INSERT INTO `order_info` VALUES ('8015391', 'GO01700011907190039', '1', '0', '0', '', '', '1', '2019-07-19 00:39:32', '', '', '0', '0', '0', '0', '0', '0', null, '0.00', '');
+INSERT INTO `order_info` VALUES ('8015392', 'GO01700021907190046', '1', '0', '0', '', '', '1', '2019-07-19 00:47:31', '', '', '0', '0', '0', '0', '0', '0', null, '0.00', '');
+INSERT INTO `order_info` VALUES ('8015393', 'GO01700001907190049', '1', '0', '0', '', '', '1', '2019-07-19 00:49:45', '', '', '0', '0', '0', '0', '0', '0', null, '300.00', '');
 
 -- ----------------------------
 -- Table structure for `order_payment`
@@ -775,11 +278,14 @@ CREATE TABLE `order_payment` (
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态 0 待支付 1 支付中 10 支付完成 20 取消支付 21 支付失败 ',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of order_payment
 -- ----------------------------
+INSERT INTO `order_payment` VALUES ('1', 'GO01700011907190039', '', '', '0.00', '2019-07-19 00:39:32', '0', '2019-07-19 00:39:32');
+INSERT INTO `order_payment` VALUES ('2', 'GO01700021907190046', '', '', '0.00', '2019-07-19 00:47:31', '0', '2019-07-19 00:47:31');
+INSERT INTO `order_payment` VALUES ('3', 'GO01700001907190049', '', '', '300.00', '2019-07-19 00:49:45', '0', '2019-07-19 00:49:45');
 
 -- ----------------------------
 -- Table structure for `pf_user`
@@ -4283,11 +3789,22 @@ CREATE TABLE `shop` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `logo_url` varchar(200) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '店铺logo',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of shop
 -- ----------------------------
+INSERT INTO `shop` VALUES ('1', '商城', '1231241', '0', '0', '1', '0', '2019-07-03 12:52:31', '2019-07-18 21:42:16', '');
+INSERT INTO `shop` VALUES ('2', '测试2店', 'sdfsdf', '0', '36', '2', '0', '2019-07-18 21:42:14', '2019-07-19 17:16:53', '');
+INSERT INTO `shop` VALUES ('3', '测试3店', 't3', '0', '36', '3', '0', '2019-07-19 17:17:13', '2019-07-19 17:18:59', '');
+INSERT INTO `shop` VALUES ('4', '测试4店', 't4', '0', '36', '4', '0', '2019-07-19 17:17:29', '2019-07-19 17:19:00', '');
+INSERT INTO `shop` VALUES ('5', '测试5店', 't5', '0', '36', '5', '0', '2019-07-19 17:17:44', '2019-07-19 17:19:00', '');
+INSERT INTO `shop` VALUES ('6', '测试6店', 't6', '0', '36', '6', '0', '2019-07-19 17:17:53', '2019-07-19 17:19:02', '');
+INSERT INTO `shop` VALUES ('7', '测试7店', 't7', '0', '36', '7', '0', '2019-07-19 17:18:06', '2019-07-19 17:19:02', '');
+INSERT INTO `shop` VALUES ('8', '测试8店', 't8', '0', '36', '8', '0', '2019-07-19 17:18:13', '2019-07-19 17:19:03', '');
+INSERT INTO `shop` VALUES ('9', '测试9店', 't9', '0', '36', '9', '0', '2019-07-19 17:18:24', '2019-07-19 17:19:04', '');
+INSERT INTO `shop` VALUES ('10', '测试10店', 't10', '0', '36', '10', '0', '2019-07-19 17:18:34', '2019-07-19 17:19:06', '');
+INSERT INTO `shop` VALUES ('11', '测试11店', 't11', '0', '36', '0', '0', '2019-07-19 17:19:23', '2019-07-19 17:19:23', '');
 
 -- ----------------------------
 -- Table structure for `shop_account`
@@ -4335,19 +3852,30 @@ CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `phone` varchar(11) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '电话，登录账号',
   `name` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '用户名',
-  `wxid` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '微信id',
   `pwd` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '密码 密文',
-  `head_url` varchar(200) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '头像url',
+  `avatar_url` varchar(200) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '头像url',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态 0 有效 -1 删除',
+  `region_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市id',
+  `open_id` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `skey` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `last_visit_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `session_key` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `city` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `province` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `country` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
+  `gender` tinyint(4) DEFAULT NULL COMMENT '性别',
+  `nick_name` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '网名',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `phone` (`phone`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+  UNIQUE KEY `phone` (`phone`),
+  UNIQUE KEY `open_id_index` (`open_id`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
+INSERT INTO `user` VALUES ('1', '13681295349', '测试刘', '', '', '2019-07-18 21:44:50', '2019-07-18 21:44:50', '0', '0', '', '', '2019-07-19 15:45:08', '', '', '', '', null, '');
 
 -- ----------------------------
 -- Table structure for `user_address`
@@ -4356,15 +3884,16 @@ DROP TABLE IF EXISTS `user_address`;
 CREATE TABLE `user_address` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL DEFAULT '0' COMMENT '用户ID',
-  `province_id` int(11) NOT NULL DEFAULT '0' COMMENT '省份id',
-  `city_id` int(11) NOT NULL DEFAULT '0' COMMENT '城市id',
-  `county_id` int(11) NOT NULL DEFAULT '0' COMMENT '县或地级市id',
+  `province_code` int(11) NOT NULL DEFAULT '0' COMMENT '省份id',
+  `city_code` int(11) NOT NULL DEFAULT '0' COMMENT '城市id',
+  `county_code` int(11) NOT NULL DEFAULT '0' COMMENT '县或地级市id',
   `address` varchar(100) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '收获地址',
-  `default` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否默认 0 否 1 是',
+  `is_default` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否默认 0 否 1 是',
   `phone` varchar(11) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '手机号',
   `consignee` varchar(20) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '收件人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除，0有效，-1 删除',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -4389,21 +3918,6 @@ CREATE TABLE `user_payment_record` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-
 -- ----------------------------
 -- Records of user_payment_record
 -- ----------------------------
-
-DROP TABLE IF EXISTS `img`;
-
-CREATE TABLE `img` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `biz_id` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '业务id',
-  `biz_type` int(11) NOT NULL DEFAULT '0' COMMENT '业务类型 1 商品',
-  `img_url` varchar(200) COLLATE utf8mb4_bin NOT NULL DEFAULT '',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0 有效 -1 删除',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`),
-  KEY `biz_id` (`biz_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
