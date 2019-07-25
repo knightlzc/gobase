@@ -31,12 +31,10 @@ public class MenuHome {
 	/**
 	 * <br/>Description:获取系统所有菜单
 	 * <p>Author:zcliu/刘子萃</p>
-	 * @param sysCode
 	 * @return
 	 */
-	public List<Menu> listBySysCode(String sysCode){
+	public List<Menu> listAll(){
 		MenuExample example = new MenuExample();
-		example.createCriteria().andSysCodeEqualTo(sysCode);
 		return menuMapper.selectByExample(example);
 	}
 	
