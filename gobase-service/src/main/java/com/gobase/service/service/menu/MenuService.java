@@ -36,7 +36,7 @@ public class MenuService {
 	@Autowired
 	private MenuMapper menuMapper;
 	
-	private List<MenuDTO> listPfUserMenus(String uid) {
+	public List<MenuDTO> listPfUserMenus(String uid) {
 		List<Menu> menuList = menuMapper.listUserMenus(uid);
 		if(CollectionUtils.isEmpty(menuList)) {
 			return new ArrayList<MenuDTO>();
@@ -70,12 +70,12 @@ public class MenuService {
 		
 	}
 
-	public void buildChild(MenuDTO menuDTO,Map<String,List<Menu>> menuMap){
-		if(null == menuMap.get(menuDTO.getpMenuCode())){
+	private void buildChild(MenuDTO menuDTO,Map<String,List<Menu>> menuMap){
+		if(null == menuMap.get(menuDTO.getMenuCode())){
 			return;
 		}
 		List<MenuDTO> subList = new ArrayList<>();
-		for (Menu menu : menuMap.get(menuDTO.getpMenuCode())){
+		for (Menu menu : menuMap.get(menuDTO.getMenuCode())){
 			MenuDTO dto = new MenuDTO();
 			BeanUtils.copyProperties(menu,dto);
 			subList.add(dto);

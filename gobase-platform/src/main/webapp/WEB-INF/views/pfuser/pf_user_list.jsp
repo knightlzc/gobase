@@ -1,0 +1,80 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@include file="/static/tag_header.inc" %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>用户管理</title>
+	<%@include file="/static/head.inc" %>
+</head>
+<body> 
+ 
+<div class="userTable">
+  搜索ID：
+  <div class="layui-inline">
+    <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+  </div>
+  <button class="layui-btn" data-type="reload">搜索</button>
+</div>
+ 
+<table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
+               
+          
+<script src="${ctx }/static/ui/layui/layui.js" charset="utf-8"></script>
+<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  //方法级渲染
+  table.render({
+    elem: '#LAY_table_user'
+    ,url: '/pfuser/list'
+    ,cols: [[
+      {checkbox: false, fixed: false}
+      ,{field:'id', title: 'ID', sort: true, fixed: true}
+      ,{field:'name', title: '账户', }
+      ,{field:'nickName', title: '姓名',  sort: true}
+      ,{field:'registerTime', title: '注册时间',  sort: true}
+    ]]
+    ,id: 'testReload'
+    ,page: true
+    ,response: {
+        statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
+     }
+     ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+        return {
+          "code": res.result, //解析接口状态
+          "msg": res.msg, //解析提示文本
+          "count": res.data.totalNum, //解析数据长度
+          "data": res.data.content //解析数据列表
+        };
+    ,height: 310
+  });
+  
+  var $ = layui.$, active = {
+    reload: function(){
+      var demoReload = $('#demoReload');
+      
+      //执行重载
+      table.reload('testReload', {
+        page: {
+          curr: 1 //重新从第 1 页开始
+        }
+        ,where: {
+          key: {
+            id: demoReload.val()
+          }
+        }
+      }, 'data');
+    }
+  };
+  
+  $('.userTable .layui-btn').on('click', function(){
+    var type = $(this).data('type');
+    active[type] ? active[type].call(this) : '';
+  });
+});
+</script>
+
+</body>
+</html>

@@ -19,12 +19,7 @@ public class PfUserRoleRef {
 	private String roleCode="";
 
 	/**
-	*系统编码
-	*/
-	private String sysCode="";
-
-	/**
-	*状态
+	*状�??
 	*/
 	private int status;
 
@@ -55,12 +50,6 @@ public class PfUserRoleRef {
 	}
 	public String getRoleCode(){
 		return roleCode;
-	}
-	public void setSysCode(String sysCode){
-		this.sysCode=sysCode;
-	}
-	public String getSysCode(){
-		return sysCode;
 	}
 	public void setStatus(int status){
 		this.status=status;
