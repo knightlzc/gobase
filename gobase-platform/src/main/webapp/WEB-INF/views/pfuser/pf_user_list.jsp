@@ -9,9 +9,9 @@
 <body> 
  
 <div class="userTable">
-  搜索ID：
+  搜索：
   <div class="layui-inline">
-    <input class="layui-input" name="id" id="demoReload" autocomplete="off">
+    <input class="layui-input" name="search" id="demoReload" autocomplete="off">
   </div>
   <button class="layui-btn" data-type="reload">搜索</button>
 </div>
@@ -41,13 +41,14 @@ layui.use('table', function(){
     ,response: {
         statusCode: 200 //重新规定成功的状态码为 200，table 组件默认为 0
      }
-     ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
-        return {
-          "code": res.result, //解析接口状态
-          "msg": res.msg, //解析提示文本
-          "count": res.data.totalNum, //解析数据长度
-          "data": res.data.content //解析数据列表
-        };
+    ,parseData: function(res){ //将原始数据解析成 table 组件所规定的数据
+         return {
+             "code": res.result, //解析接口状态
+             "msg": res.msg, //解析提示文本
+             "count": res.data.totalNum, //解析数据长度
+             "data": res.data.content //解析数据列表
+           };
+     }
     ,height: 310
   });
   
@@ -61,9 +62,7 @@ layui.use('table', function(){
           curr: 1 //重新从第 1 页开始
         }
         ,where: {
-          key: {
-            id: demoReload.val()
-          }
+          search:demoReload.val()
         }
       }, 'data');
     }

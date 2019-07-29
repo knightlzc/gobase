@@ -39,9 +39,9 @@ public class PfUserHome {
 	
 	public PageContent<PfUser> page(String search,int pageNum,int pageSize) {
 		PfUserExample example = new PfUserExample();
-		PfUserExample.Criteria criteria = example.or();
 		if(StringUtils.isNotBlank(search)) {
-			criteria.andNameLike(search).andNickNameLike(search);
+			example.createCriteria().andNameLike("%"+search+"%");
+			example.or(example.createCriteria().andNickNameLike("%"+search+"%"));
 		}
 		int count = (int) pfUserMapper.countByExample(example);
 		if(count <= 0) {

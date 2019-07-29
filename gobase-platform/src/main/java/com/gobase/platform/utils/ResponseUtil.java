@@ -10,7 +10,12 @@ package com.gobase.platform.utils;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.BeanUtils;
+
+import com.gobase.component.bean.mall.pfuser.PfUser;
+import com.gobase.platform.controller.user.response.PfUserResponse;
 import com.gobase.platform.response.TableResponse;
+import com.gobase.tools.date.DateUtils;
 import com.gobase.tools.response.PageContent;
 
 /** 
@@ -26,5 +31,15 @@ public class ResponseUtil {
 			return TableResponse.suc(0, new ArrayList<>());
 		}
 		return TableResponse.suc(page.getTotalNum(), page.getContent());
+	}
+	
+	public static PfUserResponse toPfUserResponse(PfUser pfUser) {
+		PfUserResponse response = new PfUserResponse();
+		if(null == pfUser) {
+			return response;
+		}
+		BeanUtils.copyProperties(pfUser, response);
+		response.setRegisterTime(DateUtils.getDateToString(pfUser.getRegisterTime(), "yyyy-MM-dd HH:mm:ss"));
+		return response;
 	}
 }

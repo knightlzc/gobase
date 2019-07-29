@@ -8,8 +8,10 @@
  */
 package com.gobase.platform.controller.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gobase.component.bean.mall.pfuser.PfUser;
 import com.gobase.component.dao.mall.pfuser.PfUserMapper;
 import com.gobase.component.home.pfuser.PfUserHome;
+import com.gobase.platform.controller.user.response.PfUserResponse;
 import com.gobase.platform.response.TableResponse;
 import com.gobase.platform.utils.ResponseUtil;
 import com.gobase.tools.response.PageContent;
@@ -42,15 +45,34 @@ public class PfUserController {
 		return "pfuser/pf_user_list";
 	}
 	
+//	@ResponseBody
+//	@RequestMapping("list")
+//	public TableResponse<PfUser> list(String search,Integer page,Integer limit){
+//		try {
+//			PageContent<PfUser> content = pfUserHome.page(search, page, limit);
+//			return ResponseUtil.toTableResponse(content);
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//			return TableResponse.fail(500,"查询用户列表异常 "+e.getMessage());
+//			
+//		}
+//	}
 	@ResponseBody
 	@RequestMapping("list")
-	public TableResponse<PfUser> list(String search,Integer page,Integer limit){
+	public ResultResponse<PageContent<PfUserResponse>> list(String search,Integer page,Integer limit){
 		try {
-			PageContent<PfUser> content = pfUserHome.page(search, page, limit);
-			return ResponseUtil.toTableResponse(content);
+			PageContent<PfUser> pageResult = pfUserHome.page(search, page, limit);
+			if(CollectionUtils.isEmpty(pageResult.getContent())) {
+				return ResultResponse.success(new PageContent<>(page, limit, 0, new ArrayList<>()), "查询成功");
+			}
+			List<PfUserResponse> responses = new ArrayList<>();
+			for (PfUser pfUser : pageResult.getContent()) {
+				responses.add(ResponseUtil.toPfUserResponse(pfUser));
+			}
+			return ResultResponse.success(new PageContent<>(pageResult.getPageNum(), pageResult.getPageSize(), 0, responses), "查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return TableResponse.fail(500,"查询用户列表异常 "+e.getMessage());
+			return ResultResponse.fail("500","查询用户列表异常 "+e.getMessage());
 			
 		}
 	}
