@@ -23,6 +23,7 @@ import com.gobase.component.home.pfuser.PfUserHome;
 import com.gobase.platform.controller.user.response.PfUserResponse;
 import com.gobase.platform.response.TableResponse;
 import com.gobase.platform.utils.ResponseUtil;
+import com.gobase.service.service.pfuser.PfuserService;
 import com.gobase.tools.response.PageContent;
 import com.gobase.tools.response.ResultResponse;
 
@@ -38,11 +39,19 @@ public class PfUserController {
 	@Autowired
 	private PfUserHome pfUserHome;
 	
+	@Autowired
+	private PfuserService pfUserService;
+	
 
 	@RequestMapping("listPage")
 	public String listPage(){
 		
 		return "pfuser/pf_user_list";
+	}
+	@RequestMapping("addPage")
+	public String addPage(){
+		
+		return "pfuser/pf_user_add";
 	}
 	
 //	@ResponseBody
@@ -73,6 +82,19 @@ public class PfUserController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResultResponse.fail("500","查询用户列表异常 "+e.getMessage());
+			
+		}
+	}
+	
+	@ResponseBody
+	@RequestMapping("add")
+	public ResultResponse<String> add(String name,String nickName,Integer shopId){
+		try {
+			int userId = pfUserService.savePfUser(name, nickName, shopId, null);
+			return ResultResponse.success(userId+"", "添加成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultResponse.fail("500","添加用户列表异常 "+e.getMessage());
 			
 		}
 	}

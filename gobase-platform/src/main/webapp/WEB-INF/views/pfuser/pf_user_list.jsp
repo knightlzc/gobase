@@ -7,13 +7,16 @@
 	<%@include file="/static/head.inc" %>
 </head>
 <body> 
- 
+	<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+	  <legend>用户列表</legend>
+	</fieldset>
 <div class="userTable">
   搜索：
   <div class="layui-inline">
     <input class="layui-input" name="search" id="demoReload" autocomplete="off">
   </div>
   <button class="layui-btn" data-type="reload">搜索</button>
+  <a  class="layui-btn" href="/pfuser/addPage">添加</a>
 </div>
  
 <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
