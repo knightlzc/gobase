@@ -51,7 +51,7 @@ public class TestController {
 	}
 	@RequestMapping("/goods/list")
 	public ResultResponse<List<Goods>> testVideo(String search) {
-		List<Goods> list =  goodsMapper.searchGoods(search, null, null, null, null, null, 0, 10);
+		List<Goods> list =  goodsMapper.searchGoods(search,null, null, null, null, null, null, 0, 10);
 		return ResultResponse.success(list, "查询列表成功");
 	}
 	

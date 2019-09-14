@@ -60,7 +60,7 @@ public class GoodsHome {
 	 * @param shopId
 	 * @return
 	 */
-	public PageContent<GoodsDO> pageGoods(String search,String category1,String category2,String category3,Integer cityId,Integer shopId,int pageNum,int pageSize){
+	public PageContent<GoodsDO> pageGoods(String search,String goodsId,String category1,String category2,String category3,Integer cityId,Integer shopId,int pageNum,int pageSize){
 		List<GoodsDO> goodsList = new ArrayList<>();
 		if(pageNum <= 0) {
 			pageNum = 1;
@@ -68,11 +68,17 @@ public class GoodsHome {
 		if(pageSize <= 0) {
 			pageSize = 10;
 		}
-		int count = goodsMapper.countSearchGoods(search, category1, category2, category3, cityId, shopId);
+		if(StringUtils.isBlank(search)) {
+			search = null;
+		}
+		if(StringUtils.isBlank(goodsId)) {
+			goodsId = null;
+		}
+		int count = goodsMapper.countSearchGoods(search,goodsId, category1, category2, category3, cityId, shopId);
 		if(count <= 0) {
 			return new PageContent<GoodsDO>(pageNum,pageSize,count,goodsList);
 		}
-		List<Goods> list = goodsMapper.searchGoods(search, category1, category2, category3, cityId, shopId,PageUtil.getStart(pageNum, pageSize), PageUtil.getLimit(pageNum, pageSize));
+		List<Goods> list = goodsMapper.searchGoods(search,goodsId, category1, category2, category3, cityId, shopId,PageUtil.getStart(pageNum, pageSize), PageUtil.getLimit(pageNum, pageSize));
 		if(CollectionUtils.isEmpty(list)) {
 			return new PageContent<GoodsDO>(pageNum,pageSize,count,goodsList);
 		}
@@ -91,9 +97,10 @@ public class GoodsHome {
 		}
 		return new PageContent<GoodsDO>(pageNum,pageSize,count,goodsList);
 	}  
-	public List<GoodsDO> listGoods(String search,String category1,String category2,String category3,Integer cityId,Integer shopId){
+	
+	public List<GoodsDO> listGoods(String search,String goodsId,String category1,String category2,String category3,Integer cityId,Integer shopId){
 		List<GoodsDO> goodsList = new ArrayList<>();
-		List<Goods> list = goodsMapper.searchGoods(search, category1, category2, category3, cityId, shopId, 0, 10);
+		List<Goods> list = goodsMapper.searchGoods(search,goodsId, category1, category2, category3, cityId, shopId, 0, 10);
 		if(CollectionUtils.isEmpty(list)) {
 			return goodsList;
 		}

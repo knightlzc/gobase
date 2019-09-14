@@ -8,6 +8,7 @@
  */
 package com.gobase.platform.controller.goods;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -21,11 +22,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.alibaba.fastjson.JSONObject;
 import com.gobase.component.bean.mall.goods.GoodsCategory;
 import com.gobase.component.bean.mall.goods.GoodsDO;
+import com.gobase.component.bean.mall.pfuser.PfUser;
 import com.gobase.component.home.goods.GoodsCategoryHome;
 import com.gobase.component.home.goods.GoodsHome;
+import com.gobase.platform.controller.user.response.PfUserResponse;
 import com.gobase.platform.utils.ResponseUtil;
+import com.gobase.service.dto.goods.GoodsDTO;
 import com.gobase.service.param.goods.GoodsEditParam;
 import com.gobase.service.service.goods.GoodsService;
+import com.gobase.tools.response.PageContent;
 import com.gobase.tools.response.ResultResponse;
 
 /** 
@@ -46,6 +51,24 @@ public class GoodsController {
 	@Autowired
 	private GoodsService goodsService;
 	
+	@RequestMapping("listPage")
+	public String listPage(){
+		
+		return "goods/goods_list";
+	}
+	
+	@ResponseBody
+	@RequestMapping("list")
+	public ResultResponse<PageContent<GoodsDO>> list(String goodsId,String search,Integer shopId,Integer page,Integer limit){
+		try {
+			PageContent<GoodsDO> pageResult = goodsHome.pageGoods(search,goodsId, null, null, null, null, shopId, page, limit);
+			return ResultResponse.success(new PageContent<>(pageResult.getPageNum(), pageResult.getPageSize(), 0, pageResult.getContent()), "查询成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultResponse.fail("500","查询商品列表异常 "+e.getMessage());
+			
+		}
+	}
 	@RequestMapping("editPage")
 	public String addPage(Model model,String goodsId){
 		List<GoodsCategory> categoryList1 = goodsCategoryHome.listByPcodeAndGroupCode("", null);

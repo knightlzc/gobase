@@ -37,13 +37,16 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" and s.city_id = #{cityId} "+
     		" </if>"+
     		" <if test='shopId != null'> "+
-    		" and s.id = #{shopId} "+
+    		" and s.shop_id = #{shopId} "+
+    		" </if>"+
+    		" <if test='goodsId != null'> "+
+    		" and g.goods_id = #{goodsId} "+
     		" </if>"+
     		" <if test='start != null and limit != null '> "+
     		" limit #{start},#{limit} "+
     		" </if>"+
     		"</script>")
-    List<Goods> searchGoods(@Param("search")String search,@Param("category1")String category1,
+    List<Goods> searchGoods(@Param("search")String search,@Param("goodsId")String goodsId,@Param("category1")String category1,
     		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId,
     		@Param("start")Integer start,@Param("limit")Integer limit);
     
@@ -66,9 +69,12 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" and s.city_id = #{cityId} "+
     		" </if>"+
     		" <if test='shopId != null'> "+
-    		" and s.id = #{shopId} "+
+    		" and s.shop_id = #{shopId} "+
+    		" </if>"+
+    		" <if test='goodsId != null'> "+
+    		" and g.goods_id = #{goodsId} "+
     		" </if>"+
     		"</script>")
-    int countSearchGoods(@Param("search")String search,@Param("category1")String category1,
+    int countSearchGoods(@Param("search")String search,@Param("goodsId")String goodsId,@Param("category1")String category1,
     		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId);
 }

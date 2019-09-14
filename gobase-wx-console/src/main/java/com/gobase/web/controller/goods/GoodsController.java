@@ -63,7 +63,7 @@ public class GoodsController {
 	public ResultResponse<PageContent<GoodsDO>> getSpaceGoodsList(String search,String category1,String category2,String category3,Integer cityId,Integer shopId,Integer pageNum,Integer pageSize){
 		pageNum = null==pageNum?0:pageNum;
 		pageSize = null==pageSize?10:pageSize;
-		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search, category1, category2, category3, cityId, shopId, pageNum, pageSize);
+		PageContent<GoodsDO> pageGoods = goodsHome.pageGoods(search,null, category1, category2, category3, cityId, shopId, pageNum, pageSize);
 		return ResultResponse.success(pageGoods, "查询生活空间具体某分类列表/店铺分类列表和商品成功");
 	}
 	/**
