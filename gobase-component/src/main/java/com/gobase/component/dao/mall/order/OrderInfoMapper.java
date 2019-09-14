@@ -28,8 +28,11 @@ public interface OrderInfoMapper extends IBaseMapper<OrderInfoExample, OrderInfo
 			" <if test='param.shopId != null '> "+
 			" and o.userId = #{param.userId} "+
 			" </if>"+
+			" <if test='param.orderId != null '> "+
+			" and o.order_id = #{param.orderId} "+
+			" </if>"+
 			" <if test='param.shopId != null '> "+
-			" and o.user_id = #{param.userId} "+
+			" and o.shop_id = #{param.shopId} "+
 			" </if>"+
 			" <if test='param.status != null '> "+
 			" and o.status = #{param.status} "+
@@ -45,8 +48,11 @@ public interface OrderInfoMapper extends IBaseMapper<OrderInfoExample, OrderInfo
 			" <if test='param.shopId != null '> "+
 			" and o.userId = #{param.userId} "+
 			" </if>"+
+			" <if test='param.orderId != null '> "+
+			" and o.order_id = #{param.orderId} "+
+			" </if>"+
 			" <if test='param.shopId != null '> "+
-			" and o.user_id = #{param.userId} "+
+			" and o.shop_id = #{param.shopId} "+
 			" </if>"+
 			" <if test='param.status != null '> "+
 			" and o.status = #{param.status} "+

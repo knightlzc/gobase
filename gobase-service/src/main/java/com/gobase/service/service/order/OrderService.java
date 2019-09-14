@@ -96,6 +96,29 @@ public class OrderService {
 		return new PageContent<OrderDTO>(pageNum, pageSize,count,content);
 	}
 	
+	public PageContent<OrderDTO> pageMgrOrders(String search,Integer shopId,Integer userId,Integer status,int pageNum,int pageSize) throws Exception{
+		QueryOrderParam param = new QueryOrderParam();
+		if(null != shopId) {
+			param.setShopId(shopId);
+		}
+		if(null != userId) {
+			param.setUserId(userId);
+		}
+		if(status != -999) {
+			param.setStatus(status);
+		}
+		int count = orderMapper.countOrders(param);
+		if(count <= 0) {
+			return new PageContent<>(pageNum, pageSize, 0, new ArrayList<>());
+		}
+		List<OrderDO> orderList = orderMapper.pageOrders(param,PageUtil.getStart(pageNum, pageSize),PageUtil.getLimit(pageNum, pageSize));
+		List<OrderDTO> content = new ArrayList<>();
+		for (OrderDO orderDO : orderList) {
+			content.add(toOrderDTO(orderDO));
+		}
+		return new PageContent<OrderDTO>(pageNum, pageSize,count,content);
+	}
+	
 	private OrderDTO toOrderDTO(OrderDO orderDO) throws Exception {
 		OrderDTO orderDTO = new OrderDTO();
 		BeanUtils.copyProperties(orderDO, orderDTO);

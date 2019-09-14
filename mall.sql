@@ -3921,3 +3921,40 @@ CREATE TABLE `user_payment_record` (
 -- ----------------------------
 -- Records of user_payment_record
 -- ----------------------------
+
+-- ----------------------------
+-- 后台sql
+-- ----------------------------
+CREATE TABLE `pf_user_shop_ref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '用户id',
+  `shop_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+CREATE TABLE `pf_user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id，主键，唯一标识一个用户',
+  `name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '存储用户英文名',
+  `password` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '运营人员密码',
+  `nick_name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '存储用户中文名',
+  `register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `pwd_update_time` datetime NOT NULL DEFAULT '2014-01-01 00:00:00',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
+  `uid` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '用户标识',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_name` (`name`),
+  KEY `index_user` (`name`,`password`),
+  KEY `idx_uid_name_new` (`uid`(20),`name`(20))
+) ENGINE=InnoDB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+
+CREATE TABLE `pf_user_role_ref` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'uid',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
+  `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_1` (`role_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13373 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户角色映射关系表';

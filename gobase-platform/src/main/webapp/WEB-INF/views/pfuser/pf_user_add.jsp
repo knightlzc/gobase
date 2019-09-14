@@ -36,7 +36,7 @@
 		    <div class="layui-input-block">
 <!-- 		      <button class="layui-btn layui-btn-normal" id="LAY-component-form-setval" type="button">赋值</button> -->
 <!-- 		      <button class="layui-btn layui-btn-normal" id="LAY-component-form-getval" type="button">取值</button> -->
-		      <button class="layui-btn" type="submit" lay-filter="userForm" lay-submit="">提交</button>
+		      <button class="layui-btn" lay-filter="userForm" lay-submit="">提交</button>
 		    </div>
 		</div>
 			  	
@@ -46,11 +46,13 @@
 <script src="${ctx }/static/ui/layui/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>
-layui.use(['form', 'layedit', 'laydate'], function(){
+
+layui.use(['form', 'layedit', 'laydate','jquery'], function(){
 	  var form = layui.form
 	  ,layer = layui.layer
 	  ,layedit = layui.layedit
-	  ,laydate = layui.laydate;
+	  ,laydate = layui.laydate
+	  ,$ = layui.$;
 	  
 	  
 	  //创建一个编辑器
@@ -59,13 +61,13 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 	  //自定义验证规则
 	  form.verify({
 	    name: function(value){
-	      if(value.length < 5){
-	        return '标题至少得5个字符啊';
+	      if(value.length < 1){
+	        return '名字不可为空';
 	      }
 	    }
 	    ,account: [
-	      /^[\S]{6,12}$/
-	      ,'密码必须6到12位，且不能出现空格'
+	      /^[\S]{1,12}$/
+	      ,'用户名必须1到12位，且不能出现空格'
 	    ]
 	    ,content: function(value){
 	      layedit.sync(editIndex);
@@ -75,14 +77,21 @@ layui.use(['form', 'layedit', 'laydate'], function(){
 	  
 	  //监听提交
 	  form.on('submit(userForm)', function(data){
+// 		  alert(JSON.stringify(data.field));
 		  $.ajax({
 			  url: "/pfuser/add", 
-			  data: JSON.stringify(data.field), 
+			  type:"post",
+// 			  contentType: "application/json; charset=utf-8",
+			  dataType:"json",
+// 			  data: JSON.stringify(), 
+			  data: data.field, 
 			  success: function(response){
-				  layer.alert(JSON.stringify(response), {
-				      title: '提交结果'
-				  })
-		      }});
+						  layer.alert(JSON.stringify(response), {
+						      title: '提交结果'
+						  })
+		  				}
+		  });
+		  return false;
 	  });
 	  
 	});
