@@ -20,6 +20,7 @@ public class BackstageGoodsCategoryHome {
 	
 	@Autowired
 	private GoodsCategoryMapper<GoodsCategory, GoodsCategoryExample> goodsCategoryMapper;
+	
 	/**
 	 * @description 添加分類 類別名不能重複 重複不會再添加 
 	 * 

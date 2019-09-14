@@ -58,4 +58,5 @@ public class GoodsCategoryHome {
 		List<GoodsCategory> list = goodsCategoryMapper.selectByExample(example);
 		return list;
 	}
+	
 }
