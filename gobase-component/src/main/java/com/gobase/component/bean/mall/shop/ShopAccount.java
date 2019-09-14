@@ -38,7 +38,7 @@ public class ShopAccount {
      *
      * @mbg.generated Fri Jul 05 19:11:08 CST 2019
      */
-    private Byte status;
+    private Integer status;
 
     /**
      *
@@ -138,7 +138,7 @@ public class ShopAccount {
      *
      * @mbg.generated Fri Jul 05 19:11:08 CST 2019
      */
-    public Byte getStatus() {
+    public Integer getStatus() {
         return status;
     }
 
@@ -150,7 +150,7 @@ public class ShopAccount {
      *
      * @mbg.generated Fri Jul 05 19:11:08 CST 2019
      */
-    public void setStatus(Byte status) {
+    public void setStatus(Integer status) {
         this.status = status;
     }
 
