@@ -88,6 +88,9 @@ public class Goods {
 	*/
 	private int shopId;
 
+	public static int AUDIT_STATUS_AUDITING = 0;
+	public static int AUDIT_STATUS_PASS = 1;
+	public static int AUDIT_STATUS_REJECT = -1;
 	/**
 	*审核状态
 	*/

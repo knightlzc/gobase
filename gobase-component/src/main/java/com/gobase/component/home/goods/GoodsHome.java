@@ -12,15 +12,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.gobase.component.bean.mall.goods.*;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import com.gobase.component.bean.mall.img.Img;
+import com.gobase.component.bean.mall.img.ImgExample;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.goods.GoodsParamMapper;
+import com.gobase.component.dao.mall.img.ImgMapper;
 import com.gobase.component.home.img.ImgHome;
+import com.gobase.tools.common.IDCreater;
 import com.gobase.tools.page.PageUtil;
 import com.gobase.tools.response.PageContent;
 
@@ -36,6 +42,9 @@ public class GoodsHome {
 	private GoodsMapper goodsMapper;
 	@Autowired
 	private GoodsParamMapper<GoodsParamExample, GoodsParam> goodsParamMapper;
+	
+	@Autowired
+	private ImgMapper imgMapper;
 	
 	@Autowired
 	private ImgHome imgHome;
@@ -123,6 +132,36 @@ public class GoodsHome {
 		List<GoodsParam> paramList = goodsParamMapper.selectByExample(goodsParamExample);
 		goodsDO.setParamList(paramList);
 		return goodsDO;
+	}
+	
+	@Transactional
+	public String save(GoodsDO goodsDO) {
+		Goods goods = null;
+		if(StringUtils.isBlank(goodsDO.getGoodsId())) {
+			goods = new Goods();
+			BeanUtils.copyProperties(goodsDO, goods);
+			goods.setGoodsId(IDCreater.generate("GBSG"));
+			goods.setAuditStatus(Goods.AUDIT_STATUS_AUDITING);
+			goodsMapper.insertSelective(goods);
+		} else {
+			GoodsExample example = new GoodsExample();
+			example.createCriteria().andGoodsIdEqualTo(goodsDO.getGoodsId());
+			goods = goodsMapper.selectByExample(example).get(0);
+			BeanUtils.copyProperties(goodsDO, goods);
+			goodsMapper.updateByExampleSelective(goods, example);
+		}
+		
+		ImgExample imgExample = new ImgExample();
+		imgExample.createCriteria().andBizIdEqualTo(goods.getGoodsId()).andBizTypeEqualTo(Img.TYPE_GOODS);
+		imgMapper.deleteByExample(imgExample);
+		if(!CollectionUtils.isEmpty(goodsDO.getImgs())) {
+			for (Img img : goodsDO.getImgs()) {
+				img.setBizType(Img.TYPE_GOODS);
+				img.setBizId(goods.getGoodsId());
+				imgMapper.insert(img);
+			}
+		}
+		return goods.getGoodsId();
 	}
 	
 }
