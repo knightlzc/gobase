@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2019-07-19 17:57:33
+Date: 2019-09-17 20:05:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -79,7 +79,7 @@ CREATE TABLE `banner` (
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goods_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '商品id',
+  `goods_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '商品id',
   `tiny_name` varchar(30) NOT NULL DEFAULT '' COMMENT '商品短名称',
   `full_name` varchar(100) NOT NULL DEFAULT '' COMMENT '商品长名称',
   `description` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
@@ -102,24 +102,25 @@ CREATE TABLE `goods` (
   `total_num` int(11) NOT NULL DEFAULT '0' COMMENT '库存总量',
   PRIMARY KEY (`id`),
   UNIQUE KEY `goodsId` (`goods_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1211 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1212 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1198', '111111', ' mac pro', '苹果 mac pro', '', '2019-07-03 12:48:45', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '100', '0', '2019-07-18 22:25:33', '0');
-INSERT INTO `goods` VALUES ('1199', '22222', 'iphoneX', '苹果 iphone X', '', '2019-07-03 12:58:48', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '200', '0', '2019-07-18 22:25:36', '0');
-INSERT INTO `goods` VALUES ('1200', '3', '苹果', '红富士', '', '2019-07-19 17:23:26', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:42', '0');
-INSERT INTO `goods` VALUES ('1201', '4', '水果4', '大水果4', '', '2019-07-19 17:23:32', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:42', '0');
-INSERT INTO `goods` VALUES ('1202', '5', '水果5', '大水果5', '', '2019-07-19 17:23:35', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:43', '0');
-INSERT INTO `goods` VALUES ('1203', '6', '水果6', '大水果6', '', '2019-07-19 17:23:38', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:43', '0');
-INSERT INTO `goods` VALUES ('1204', '7', '水果7', '大水果7', '', '2019-07-19 17:23:40', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:44', '0');
-INSERT INTO `goods` VALUES ('1205', '8', '水果8', '大水果8', '', '2019-07-19 17:23:43', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:45', '0');
-INSERT INTO `goods` VALUES ('1206', '9', '水果9', '大水果9', '', '2019-07-19 17:23:46', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:45', '0');
-INSERT INTO `goods` VALUES ('1207', '10', '水果10', '大水果10', '', '2019-07-19 17:23:49', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:46', '0');
-INSERT INTO `goods` VALUES ('1208', '11', '水果11', '大水果11', '', '2019-07-19 17:23:55', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:46', '0');
-INSERT INTO `goods` VALUES ('1209', '12', '水果12', '大水果12', '', '2019-07-19 17:23:58', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:47', '0');
-INSERT INTO `goods` VALUES ('1210', '13', '水果13', '大水果13', '', '2019-07-19 17:24:00', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:49', '0');
+INSERT INTO `goods` VALUES ('1198', '111111', ' mac pro', '苹果 mac pro', '', '2019-07-03 12:48:45', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'shkj', '', '', '0', '', '2', '0', '100', '0', '2019-07-19 20:40:36', '0');
+INSERT INTO `goods` VALUES ('1199', '22222', 'iphoneX', '苹果 iphone X', '', '2019-07-03 12:58:48', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'shkj', '', '', '0', '', '2', '0', '200', '0', '2019-07-19 20:40:38', '0');
+INSERT INTO `goods` VALUES ('1200', '3', '苹果', '红富士', '', '2019-07-19 17:23:26', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:14', '0');
+INSERT INTO `goods` VALUES ('1201', '4', '水果4', '大水果4', '', '2019-07-19 17:23:32', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:15', '0');
+INSERT INTO `goods` VALUES ('1202', '5', '水果5', '大水果5', '', '2019-07-19 17:23:35', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:15', '0');
+INSERT INTO `goods` VALUES ('1203', '6', '水果6', '大水果6', '', '2019-07-19 17:23:38', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:16', '0');
+INSERT INTO `goods` VALUES ('1204', '7', '水果7', '大水果7', '', '2019-07-19 17:23:40', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:16', '0');
+INSERT INTO `goods` VALUES ('1205', '8', '水果8', '大水果8', '', '2019-07-19 17:23:43', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:17', '0');
+INSERT INTO `goods` VALUES ('1206', '9', '水果9', '大水果9', '', '2019-07-19 17:23:46', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:17', '0');
+INSERT INTO `goods` VALUES ('1207', '10', '水果10', '大水果10', '', '2019-07-19 17:23:49', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:18', '0');
+INSERT INTO `goods` VALUES ('1208', '11', '水果11', '大水果11', '', '2019-07-19 17:23:55', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:18', '0');
+INSERT INTO `goods` VALUES ('1209', '12', '水果12', '大水果12', '', '2019-07-19 17:23:58', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:18', '0');
+INSERT INTO `goods` VALUES ('1210', '13', '水果13', '大水果13', '', '2019-07-19 17:24:00', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:20', '0');
+INSERT INTO `goods` VALUES ('1211', 'GBSG0170003190914185644', '', '', '', '2019-09-14 18:56:39', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '0', '0', '0', '0', '2019-09-14 18:56:39', '0');
 
 -- ----------------------------
 -- Table structure for `goods_category`
@@ -133,7 +134,7 @@ CREATE TABLE `goods_category` (
   `group_code` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '分组编码',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审核节点表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审核节点表';
 
 -- ----------------------------
 -- Records of goods_category
@@ -145,6 +146,10 @@ INSERT INTO `goods_category` VALUES ('4', 'jianguo', 'jpsg', '坚果', '', '0');
 INSERT INTO `goods_category` VALUES ('5', 'sg', 'jpsg', '新鲜水果', '', '0');
 INSERT INTO `goods_category` VALUES ('6', 'shucai', 'jpsg', '蔬菜', '', '0');
 INSERT INTO `goods_category` VALUES ('7', 'shushi', 'jpsg', '熟食', '', '0');
+INSERT INTO `goods_category` VALUES ('8', 'pg', 'sg', '苹果', '', '0');
+INSERT INTO `goods_category` VALUES ('9', 'xj', 'sg', '香蕉', '', '0');
+INSERT INTO `goods_category` VALUES ('10', 'ht', 'jianguo', '核桃', '', '0');
+INSERT INTO `goods_category` VALUES ('11', 'hs', 'jianguo', '花生', '', '0');
 
 -- ----------------------------
 -- Table structure for `goods_manjian_ref`
@@ -174,7 +179,7 @@ CREATE TABLE `goods_param` (
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`),
   UNIQUE KEY `goods_id` (`goods_id`,`param_key`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1518 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods_param
@@ -194,11 +199,49 @@ CREATE TABLE `img` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `biz_id` (`biz_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of img
 -- ----------------------------
+INSERT INTO `img` VALUES ('1', 'GBSG0170003190914185644', '1', 'https://wx.apricot32.cn/img/2019/09/14/img0170000190914185613.jpg', '0', '2019-09-14 18:56:39', '2019-09-14 18:56:39');
+INSERT INTO `img` VALUES ('2', 'GBSG0170003190914185644', '1', 'https://wx.apricot32.cn/img/2019/09/14/img0170001190914185615.jpg', '0', '2019-09-14 18:56:39', '2019-09-14 18:56:39');
+
+-- ----------------------------
+-- Table structure for `menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `menu_name` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '菜单名称',
+  `menu_code` varchar(250) COLLATE utf8_bin DEFAULT '',
+  `p_menu_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '父菜单编码',
+  `sys_code` varchar(50) COLLATE utf8_bin DEFAULT '',
+  `menu_url` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '菜单url，菜单跳转的url',
+  `menu_logo` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '菜单logo',
+  `level` tinyint(4) NOT NULL DEFAULT '0' COMMENT '菜单层级',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `load_type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '加载类型 0请选择 1 load, 2 iframe ',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_menu` (`menu_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2230 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='菜单表';
+
+-- ----------------------------
+-- Records of menu
+-- ----------------------------
+INSERT INTO `menu` VALUES ('2219', '主页', 'm_home', '', 'pf', '/', '', '0', '0', '2019-07-26 12:21:43', '2019-07-26 12:21:43', '0');
+INSERT INTO `menu` VALUES ('2220', '权限管理', 'm_auth_mgr', '', 'pf', '', '', '0', '4', '2019-07-26 12:22:38', '2019-09-14 13:37:51', '0');
+INSERT INTO `menu` VALUES ('2221', '商户管理', 'm_shop_mgr', '', 'pf', '', '', '0', '1', '2019-07-26 12:25:41', '2019-07-26 16:01:14', '0');
+INSERT INTO `menu` VALUES ('2222', '商户列表', 'm_shop_list', 'm_shop_mgr', 'pf', '', '', '0', '0', '2019-07-26 12:26:26', '2019-07-26 12:26:39', '0');
+INSERT INTO `menu` VALUES ('2223', '订单管理', 'm_order_mgr', '', 'pf', '', '', '0', '3', '2019-07-26 12:27:33', '2019-09-14 13:37:47', '0');
+INSERT INTO `menu` VALUES ('2224', '订单列表', 'm_order_list', 'm_order_mgr', 'pf', '/order/listPage', '', '0', '0', '2019-07-26 12:27:50', '2019-09-17 14:32:23', '0');
+INSERT INTO `menu` VALUES ('2225', '账号列表', 'm_pfuser_list', 'm_auth_mgr', 'pf', '/pfuser/listPage', '', '0', '0', '2019-07-26 12:42:37', '2019-07-26 19:38:34', '0');
+INSERT INTO `menu` VALUES ('2226', '商品管理', 'm_goods_mgr', '', 'pf', '', '', '0', '2', '2019-09-14 13:37:45', '2019-09-14 13:37:45', '0');
+INSERT INTO `menu` VALUES ('2227', '全部商品', 'm_goods_list', 'm_goods_mgr', 'pf', '/goods/listPage', '', '0', '1', '2019-09-14 13:38:18', '2019-09-14 18:49:13', '0');
+INSERT INTO `menu` VALUES ('2228', '发布商品', 'm_goods_add', 'm_goods_mgr', 'pf', '/goods/editPage', '', '0', '2', '2019-09-14 13:38:49', '2019-09-14 15:08:25', '0');
+INSERT INTO `menu` VALUES ('2229', '角色管理', 'm_role_list', 'm_auth_mgr', 'pf', '/role/listPage', '', '0', '2', '2019-09-17 17:03:02', '2019-09-17 17:03:24', '0');
 
 -- ----------------------------
 -- Table structure for `order_goods_ref`
@@ -234,7 +277,7 @@ CREATE TABLE `order_info` (
   `order_id` varchar(64) COLLATE utf8_bin NOT NULL COMMENT '订单号',
   `user_id` int(11) NOT NULL COMMENT '用户id',
   `region_id` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订单状态',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '订单状态',
   `goods_id` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '商品id',
   `remark` varchar(500) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '用户备注信息',
   `address_id` int(11) NOT NULL DEFAULT '0' COMMENT '收货地址id',
@@ -260,7 +303,7 @@ CREATE TABLE `order_info` (
 -- ----------------------------
 -- Records of order_info
 -- ----------------------------
-INSERT INTO `order_info` VALUES ('8015391', 'GO01700011907190039', '1', '0', '0', '', '', '1', '2019-07-19 00:39:32', '', '', '0', '0', '0', '0', '0', '0', null, '0.00', '');
+INSERT INTO `order_info` VALUES ('8015391', 'GO01700011907190039', '1', '0', '201', '', '', '1', '2019-07-19 00:39:32', '', '', '0', '0', '0', '0', '0', '0', null, '500.00', '');
 INSERT INTO `order_info` VALUES ('8015392', 'GO01700021907190046', '1', '0', '0', '', '', '1', '2019-07-19 00:47:31', '', '', '0', '0', '0', '0', '0', '0', null, '0.00', '');
 INSERT INTO `order_info` VALUES ('8015393', 'GO01700001907190049', '1', '0', '0', '', '', '1', '2019-07-19 00:49:45', '', '', '0', '0', '0', '0', '0', '0', null, '300.00', '');
 
@@ -304,11 +347,52 @@ CREATE TABLE `pf_user` (
   UNIQUE KEY `unq_name` (`name`),
   KEY `index_user` (`name`,`password`),
   KEY `idx_uid_name_new` (`uid`(20),`name`(20))
-) ENGINE=InnoDB AUTO_INCREMENT=1000104135 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1000104138 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of pf_user
 -- ----------------------------
+INSERT INTO `pf_user` VALUES ('1000104135', 'admin', '123', '超管', '2019-07-26 12:43:37', '2014-01-01 00:00:00', '0', '1');
+INSERT INTO `pf_user` VALUES ('1000104136', '5', 'de88e3e4ab202d87754078cbb2df6063', '5', '2019-09-11 17:40:28', '2019-09-11 17:40:31', '0', '5ecf5a2f-da39-445d-880f-a244be322812');
+INSERT INTO `pf_user` VALUES ('1000104137', 'sunmm', 'de88e3e4ab202d87754078cbb2df6063', '孙明明', '2019-09-14 13:26:50', '2019-09-14 13:26:56', '0', '0c5cb326-27a3-452d-83bb-7dadcd123f05');
+
+-- ----------------------------
+-- Table structure for `pf_user_role_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `pf_user_role_ref`;
+CREATE TABLE `pf_user_role_ref` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'uid',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
+  `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_1` (`role_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13373 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='ç”¨æˆ·è§’è‰²å…³è”è¡¨';
+
+-- ----------------------------
+-- Records of pf_user_role_ref
+-- ----------------------------
+INSERT INTO `pf_user_role_ref` VALUES ('13372', '1', 'admin', '0', '2019-07-26 12:59:43', '2019-07-26 12:59:43');
+
+-- ----------------------------
+-- Table structure for `pf_user_shop_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `pf_user_shop_ref`;
+CREATE TABLE `pf_user_shop_ref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '用户id',
+  `shop_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of pf_user_shop_ref
+-- ----------------------------
+INSERT INTO `pf_user_shop_ref` VALUES ('1', '5ecf5a2f-da39-445d-880f-a244be322812', '5', '2019-09-11 17:40:28');
+INSERT INTO `pf_user_shop_ref` VALUES ('2', '0c5cb326-27a3-452d-83bb-7dadcd123f05', '2', '2019-09-14 13:26:50');
 
 -- ----------------------------
 -- Table structure for `recommend`
@@ -320,8 +404,8 @@ CREATE TABLE `recommend` (
   `biz_id` varchar(255) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '推荐id 商品：商品id 店铺：店铺id',
   `group_code` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '分组查询',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0 有效 -1 无效',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -3774,6 +3858,57 @@ INSERT INTO `region` VALUES ('3449', '义乌', '372', '3', '10', '0', '1', '义�
 INSERT INTO `region` VALUES ('3451', '新吴区', '243', '3', '10', '0', '320283', '新吴区');
 
 -- ----------------------------
+-- Table structure for `role`
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `role_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '角色名称',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '角色编码',
+  `sys_code` varchar(50) COLLATE utf8_bin NOT NULL COMMENT 'ç³»ç»Ÿç¼–ç ',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态 0 启用 -1 删除',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unqi_role` (`role_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=383 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='è§’è‰²è¡¨';
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES ('16', '管理员', 'admin', 'saas', '2017-09-13 17:34:34', '2017-09-13 17:34:34', '0');
+
+-- ----------------------------
+-- Table structure for `role_menu_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `role_menu_ref`;
+CREATE TABLE `role_menu_ref` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
+  `menu_code` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '菜单编码',
+  `sys_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '系统编码',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_role_menu` (`role_code`,`menu_code`,`sys_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=58504 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='角色和菜单关联表';
+
+-- ----------------------------
+-- Records of role_menu_ref
+-- ----------------------------
+INSERT INTO `role_menu_ref` VALUES ('58493', 'admin', 'm_home', 'pf', '2019-07-26 13:01:55', '2019-07-26 13:02:49');
+INSERT INTO `role_menu_ref` VALUES ('58494', 'admin', 'm_auth_mgr', 'pf', '2019-07-26 13:02:00', '2019-07-26 13:02:49');
+INSERT INTO `role_menu_ref` VALUES ('58495', 'admin', 'm_shop_mgr', 'pf', '2019-07-26 13:02:15', '2019-07-26 13:02:50');
+INSERT INTO `role_menu_ref` VALUES ('58496', 'admin', 'm_shop_list', 'pf', '2019-07-26 13:02:18', '2019-07-26 13:02:50');
+INSERT INTO `role_menu_ref` VALUES ('58497', 'admin', 'm_order_mgr', 'pf', '2019-07-26 13:02:28', '2019-07-26 13:02:51');
+INSERT INTO `role_menu_ref` VALUES ('58498', 'admin', 'm_order_list', 'pf', '2019-07-26 13:02:33', '2019-07-26 13:02:51');
+INSERT INTO `role_menu_ref` VALUES ('58499', 'admin', 'm_pfuser_list', 'pf', '2019-07-26 13:02:35', '2019-07-26 13:02:53');
+INSERT INTO `role_menu_ref` VALUES ('58500', 'admin', 'm_goods_mgr', 'pf', '2019-09-14 13:41:44', '2019-09-14 13:41:44');
+INSERT INTO `role_menu_ref` VALUES ('58501', 'admin', 'm_goods_list', 'pf', '2019-09-14 13:41:57', '2019-09-14 13:41:57');
+INSERT INTO `role_menu_ref` VALUES ('58502', 'admin', 'm_goods_add', 'pf', '2019-09-14 13:42:04', '2019-09-14 13:42:09');
+INSERT INTO `role_menu_ref` VALUES ('58503', 'admin', 'm_role_list', 'pf', '2019-09-17 17:30:08', '2019-09-17 17:30:08');
+
+-- ----------------------------
 -- Table structure for `shop`
 -- ----------------------------
 DROP TABLE IF EXISTS `shop`;
@@ -3845,6 +3980,59 @@ CREATE TABLE `shop_trade_record` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `system`
+-- ----------------------------
+DROP TABLE IF EXISTS `system`;
+CREATE TABLE `system` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统编码',
+  `sys_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统名称',
+  `sys_desc` varchar(50) DEFAULT NULL COMMENT '系统描述',
+  `sys_domain` varchar(255) DEFAULT NULL,
+  `pf_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '平台',
+  `status` tinyint(4) NOT NULL COMMENT '状态 0可用 1已删除',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index` (`sys_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of system
+-- ----------------------------
+INSERT INTO `system` VALUES ('1', 'cheyigou', '开心汽车', '开心汽车', 'http://www.kaixin.com', 'cheyigou', '1', '2017-09-12 09:09:28', '2018-03-05 10:58:54');
+INSERT INTO `system` VALUES ('2', 'oc_saas_center', '二手车销售运营中心', '二手车销售运营中心', 'http://platform.d.renrenauto.com', 'oc_saas_center', '0', '2017-10-12 11:47:34', '2018-03-12 16:57:30');
+INSERT INTO `system` VALUES ('3', 'oc_market_center', '汽车售后服务运营中心', '汽车售后服务运营中心', 'http://service.d.renrenauto.com', 'oc_market_center', '0', '2017-12-07 17:54:00', '2018-05-16 17:25:14');
+INSERT INTO `system` VALUES ('4', 'oc_cpc_center', 'JV车商', 'JV车商', 'http://jvapp.renrenauto.com', 'oc_cpc_center', '0', '2017-11-07 15:27:13', '2018-05-16 17:22:07');
+INSERT INTO `system` VALUES ('5', 'approval_center', '风控作业中心', '风控作业中心', 'http://approval.51fenqi.com', 'approval_center', '0', '2017-09-22 18:17:54', '2018-05-16 18:17:57');
+INSERT INTO `system` VALUES ('6', 'renren_market', '售后服务平台', '售后服务平台', 'http://service.renren.auto.com', 'renren_market', '1', '2017-11-29 19:43:17', '2018-03-09 18:33:31');
+INSERT INTO `system` VALUES ('8', 'oc_kaixin_car', '开心汽车运营中心', '开心汽车运营中心', 'http://platform.d.che360.com', 'oc_saas_center', '0', '2018-01-11 11:46:34', '2018-03-09 18:31:25');
+INSERT INTO `system` VALUES ('9', 'oc_custom_service', '客服系统', '客服系统', 'http://kf.renrenauto.com', 'oc_kaixin_car', '0', '2018-01-31 11:20:29', '2018-05-16 17:59:59');
+INSERT INTO `system` VALUES ('14', 'core_asm_center', '核心交易平台', '核心交易平台', 'http://ams.51fenqi.com', 'core_manager', '0', '2018-03-09 11:31:38', '2018-05-16 18:52:58');
+INSERT INTO `system` VALUES ('15', 'core_abs_center', 'ABS资产证券化系统', 'ABS资产证券化系统', 'http://abs.51fenqi.com', 'core_manager', '0', '2018-03-09 11:32:18', '2018-05-16 18:52:58');
+INSERT INTO `system` VALUES ('16', 'bda', '大数据分析平台', '大数据分析平台', 'http://bda.renrenauto.com', 'core_manager', '0', '2017-11-08 16:23:53', '2018-05-16 18:16:14');
+INSERT INTO `system` VALUES ('17', 'oc_manager', '权限管理系统', '权限管理系统', 'http://auth.d.51fenqi.com', 'oc_manager', '0', '2018-02-09 13:36:30', '2018-07-12 15:06:26');
+INSERT INTO `system` VALUES ('19', 'fenqi_center', '51分期运营平台', '51分期运营平台', 'http://platform.51fenqi.com', 'core_manager', '0', '2018-03-09 18:07:30', '2018-05-16 19:02:59');
+INSERT INTO `system` VALUES ('20', 'bda_3t', '三体系统', '三体系统', 'http://3t.51fenqi.com/?realm=app', 'core_manager', '0', '2017-11-08 16:23:53', '2018-05-16 17:23:22');
+INSERT INTO `system` VALUES ('21', 'risk_center', '风控接口流程平台', '分控接口流程平台', 'http://rc.d.51fenqi.com', 'approval_center', '0', '2018-03-08 16:33:30', '2018-05-16 15:40:12');
+INSERT INTO `system` VALUES ('27', 'core_licai_center', '理财运营平台', '理财运营平台', 'http://licai.51fenqi.com', 'oc_other', '0', '2018-03-09 11:32:49', '2018-05-16 17:33:37');
+INSERT INTO `system` VALUES ('29', 'oc_car_type', '车型车系库管理后台', '车型车系库管理后台', 'http://autonation.fenqi.d.xiaonei.com/chameleon/login?next=/chameleon/', 'core_manager', '0', '2018-03-09 18:14:29', '2018-05-16 17:23:49');
+INSERT INTO `system` VALUES ('33', 'oc_center', 'JV库融系统', 'JV库融系统', 'http://oc.51fenqi.com', 'approval_center', '0', '2017-09-22 18:17:54', '2018-05-16 15:06:33');
+INSERT INTO `system` VALUES ('98', 'oc_old_manager', '权限管理系统(旧版)', '权限管理系统(旧版)', 'http://auth.d.51fenqi.com/index', 'oc_other', '0', '2018-02-09 13:36:30', '2018-05-16 17:13:05');
+INSERT INTO `system` VALUES ('100', 'report_config', '微服务配置系统', '配置所有的微服务', 'http://10.2.52.175:9999', 'core_manager', '1', '2018-05-31 18:31:32', '2018-11-30 17:24:02');
+INSERT INTO `system` VALUES ('101', 'cms', '配置内容管理系统', '配置内容管理系统', '', 'core_manager', '0', '2018-07-06 14:26:28', '2018-07-06 14:26:28');
+INSERT INTO `system` VALUES ('102', 'oc_bz_auto_center', '开心汽车极速版', '开心汽车极速版', 'http://bz.renrenauto.com', 'approval_center', '0', '2018-08-10 14:16:15', '2018-08-10 14:16:15');
+INSERT INTO `system` VALUES ('103', 'oc_bz_auto_sales_center', '开心汽车销售版', '开心汽车销售版', '', 'approval_center', '0', '2018-08-10 15:56:15', '2018-08-15 12:06:32');
+INSERT INTO `system` VALUES ('104', 'renren_auto_video_mgr', '短视频运营后台', '短视频运营后台', '', 'approval_center', '0', '2018-08-15 11:55:26', '2018-08-15 12:06:33');
+INSERT INTO `system` VALUES ('105', 'saas_mgr_app', '二手车销售运营app', '二手车销售运营app', '', 'oc_saas_center', '0', '2018-08-15 19:44:12', '2018-08-15 19:44:12');
+INSERT INTO `system` VALUES ('106', 'oc_test', '测试', '111', '2222', 'oc_saas_center', '0', '2018-08-21 11:14:37', '2018-08-21 11:18:24');
+INSERT INTO `system` VALUES ('107', 'special_system', '特殊系统', '特殊系统', '', 'oc_other', '0', '2018-08-21 14:42:43', '2019-03-29 15:06:52');
+INSERT INTO `system` VALUES ('108', 'oc_anji', '上汽安吉', '上汽安吉审批系统', 'http://anji.kaixin.com', 'oc_other', '0', '2018-10-29 16:06:11', '2018-11-02 19:31:34');
+INSERT INTO `system` VALUES ('109', 'business_config', '业务配置系统', '业务配置内部综合系统', '', 'core_manager', '0', '2018-11-30 11:33:42', '2018-11-30 11:33:42');
+INSERT INTO `system` VALUES ('110', 'raqsoft_report', '润乾报表系统', '润乾报表系统', 'http://platform.d.renrenauto.com', 'oc_center', '0', '2018-12-19 11:03:20', '2018-12-19 11:03:20');
+INSERT INTO `system` VALUES ('111', 'testclient', '开发测试系统', null, null, null, '0', '2019-07-02 15:20:07', '2019-07-02 15:20:07');
+
+-- ----------------------------
 -- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -3893,7 +4081,7 @@ CREATE TABLE `user_address` (
   `consignee` varchar(20) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '收件人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除，0有效，-1 删除',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否删除，0：是，1否',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -3923,38 +4111,23 @@ CREATE TABLE `user_payment_record` (
 -- ----------------------------
 
 -- ----------------------------
--- 后台sql
+-- Table structure for `user_ticket`
 -- ----------------------------
-CREATE TABLE `pf_user_shop_ref` (
+DROP TABLE IF EXISTS `user_ticket`;
+CREATE TABLE `user_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '用户id',
-  `shop_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE `pf_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id，主键，唯一标识一个用户',
-  `name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '存储用户英文名',
-  `password` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '运营人员密码',
-  `nick_name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '存储用户中文名',
-  `register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `pwd_update_time` datetime NOT NULL DEFAULT '2014-01-01 00:00:00',
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
-  `uid` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '用户标识',
+  `uid` varchar(32) NOT NULL COMMENT '用户uid',
+  `ticket` varchar(100) NOT NULL COMMENT '票据',
+  `type` tinyint(4) DEFAULT NULL COMMENT '票据类型',
+  `status` tinyint(4) DEFAULT NULL COMMENT '票据状态',
+  `ip` varchar(100) NOT NULL COMMENT '用户IP',
+  `client` varchar(100) DEFAULT NULL COMMENT '判断为那一端T票',
+  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
+  `expire_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '过期时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unq_name` (`name`),
-  KEY `index_user` (`name`,`password`),
-  KEY `idx_uid_name_new` (`uid`(20),`name`(20))
-) ENGINE=InnoDB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  UNIQUE KEY `uq_user_ticket` (`ticket`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2308 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `pf_user_role_ref` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'uid',
-  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
-  `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  KEY `index_1` (`role_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13373 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户角色映射关系表';
+-- ----------------------------
+-- Records of user_ticket
+-- ----------------------------
