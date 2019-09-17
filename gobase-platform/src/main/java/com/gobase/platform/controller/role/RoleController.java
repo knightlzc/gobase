@@ -8,6 +8,8 @@
  */
 package com.gobase.platform.controller.role;
 
+import com.gobase.platform.controller.role.response.RoleResponse;
+import com.gobase.platform.utils.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,8 @@ import com.gobase.component.bean.mall.role.Role;
 import com.gobase.component.home.role.RoleHome;
 import com.gobase.tools.response.PageContent;
 import com.gobase.tools.response.ResultResponse;
+
+import java.util.List;
 
 /** 
  * <p>Copyright: All Rights Reserved</p>  
@@ -49,5 +53,18 @@ public class RoleController {
 			return ResultResponse.fail("查询列表失败", "");
 		}
     }
+
+	@ResponseBody
+	@RequestMapping("configRoleList")
+	public ResultResponse<List<RoleResponse>> list(String search,String uid){
+		try {
+			List<String> userRoleCodes = roleHome.getUserRoleCodes(uid);
+			List<Role> roles = roleHome.list(search);
+			return ResultResponse.success(ResponseUtil.toRoleResponse(roles,userRoleCodes), "");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultResponse.fail("查询列表失败", "");
+		}
+	}
 	
 }

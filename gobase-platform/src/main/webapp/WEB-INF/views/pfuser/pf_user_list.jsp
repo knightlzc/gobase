@@ -22,7 +22,7 @@
 <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
 
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" href="/pfuser/configRolePage">分配角色</a>
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" href="/pfuser/configRolePage?userId={{d.id}}">分配角色</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>               

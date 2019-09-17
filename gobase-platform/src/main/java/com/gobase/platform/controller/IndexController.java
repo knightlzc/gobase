@@ -25,7 +25,7 @@ public class IndexController {
     @GetMapping("")
     public String index(Model model){
     	List<MenuDTO> menus = menuService.listPfUserMenus("1");
-//    	System.out.println(JSONObject.toJSONString(menus));
+    	System.out.println(JSONObject.toJSONString(menus));
     	model.addAttribute("menus", menus);
         return "index";
     }

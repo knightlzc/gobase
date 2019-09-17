@@ -11,6 +11,10 @@ package com.gobase.component.home.role;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gobase.component.bean.mall.role.PfUserRoleRef;
+import com.gobase.component.bean.mall.role.PfUserRoleRefExample;
+import com.gobase.component.dao.mall.role.PfUserRoleRefMapper;
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -28,9 +32,12 @@ import com.gobase.tools.response.PageContent;
  */
 @Service
 public class RoleHome {
-	
+
 	@Autowired
 	private RoleMapper roleMapper;
+
+	@Autowired
+	private PfUserRoleRefMapper pfUserRoleRefMapper;
 
 	public PageContent<Role> page(String search,int pageNum,int pageSize){
 		RoleExample example = new RoleExample();
@@ -46,7 +53,7 @@ public class RoleHome {
 		List<Role> content = roleMapper.selectByExample(example);
 		return new PageContent<>(pageNum, pageSize, count,content);
 	}
-	
+
 	public List<Role> list(String search){
 		RoleExample example = new RoleExample();
 		if(StringUtils.isNotBlank(search)) {
@@ -56,5 +63,18 @@ public class RoleHome {
 		example.setOrderByClause(" create_time desc ");
 		List<Role> content = roleMapper.selectByExample(example);
 		return content;
+	}
+
+	public List<String> getUserRoleCodes(String uid){
+		PfUserRoleRefExample example = new PfUserRoleRefExample();
+		example.createCriteria().andUidEqualTo(uid);
+		List<PfUserRoleRef> refs = pfUserRoleRefMapper.selectByExample(example);
+		List<String> roleCodes = new ArrayList<>();
+		if(CollectionUtils.isNotEmpty(refs)){
+			refs.stream().forEach(ref -> {
+				roleCodes.add(ref.getRoleCode());
+			});
+		}
+		return roleCodes;
 	}
 }

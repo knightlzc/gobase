@@ -14,6 +14,7 @@ import java.util.List;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -104,7 +105,10 @@ public class PfUserController {
 	}
 	
 	@RequestMapping("configRolePage")
-	public String configRolePage(){
+	public String configRolePage(Model model,int userId){
+		PfUser user = pfUserHome.getById(userId);
+		model.addAttribute("user",user);
+
 		return "pfuser/config_role_page";
 	}
 }

@@ -11,6 +11,8 @@ package com.gobase.platform.utils;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gobase.component.bean.mall.role.Role;
+import com.gobase.platform.controller.role.response.RoleResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.BeanUtils;
 
@@ -58,6 +60,24 @@ public class ResponseUtil {
 //			if(response.getCode().equals(selectCode)) {
 //				response.setSelected(1);
 //			}
+			responses.add(response);
+		}
+		return responses;
+	}
+
+	public static List<RoleResponse> toRoleResponse(List<Role> roles,List<String> userRoleCodes) {
+		List<RoleResponse> responses = new ArrayList<>();
+		if(CollectionUtils.isEmpty(roles)) {
+			return responses;
+		}
+
+		for (Role role : roles) {
+			RoleResponse response = new RoleResponse();
+			BeanUtils.copyProperties(role, response);
+			if(CollectionUtils.isNotEmpty(userRoleCodes) && userRoleCodes.contains(role.getRoleCode())){
+				response.setChecked(true);
+//				userRoleCodes.remove(role.getRoleCode());
+			}
 			responses.add(response);
 		}
 		return responses;
