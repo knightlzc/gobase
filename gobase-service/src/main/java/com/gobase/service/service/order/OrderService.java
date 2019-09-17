@@ -25,19 +25,24 @@ import com.gobase.component.bean.mall.order.OrderDO;
 import com.gobase.component.bean.mall.order.OrderGoodsRef;
 import com.gobase.component.bean.mall.order.OrderInfo;
 import com.gobase.component.bean.mall.order.OrderPayment;
+import com.gobase.component.bean.mall.user.User;
 import com.gobase.component.cache.Cart;
 import com.gobase.component.dao.mall.goods.GoodsMapper;
 import com.gobase.component.dao.mall.order.OrderGoodsRefMapper;
 import com.gobase.component.dao.mall.order.OrderInfoMapper;
 import com.gobase.component.dao.mall.order.OrderPaymentMapper;
+import com.gobase.component.dao.mall.user.UserMapper;
+import com.gobase.component.enums.OrderStatusEnum;
 import com.gobase.component.home.goods.GoodsHome;
 import com.gobase.component.home.order.OrderHome;
+import com.gobase.component.home.user.UserHome;
 import com.gobase.component.param.order.QueryOrderParam;
 import com.gobase.service.dto.goods.GoodsDTO;
 import com.gobase.service.dto.order.OrderDTO;
 import com.gobase.service.param.order.OrderParam;
 import com.gobase.tools.common.IDCreater;
 import com.gobase.tools.compute.PreciseCompute;
+import com.gobase.tools.date.DateUtils;
 import com.gobase.tools.page.PageUtil;
 import com.gobase.tools.response.PageContent;
 
@@ -56,9 +61,6 @@ public class OrderService {
 	private OrderGoodsRefMapper orderGoodsRefMapper;
 	
 	@Autowired
-	private GoodsMapper goodsMapper;
-	
-	@Autowired
 	private OrderHome orderHome;
 	
 	@Autowired
@@ -66,6 +68,9 @@ public class OrderService {
 	
 	@Autowired
 	private OrderPaymentMapper orderPaymentMapper;
+	
+	@Autowired
+	private UserHome userHome;
 
 	/**
 	 * 
@@ -104,7 +109,7 @@ public class OrderService {
 		if(null != userId) {
 			param.setUserId(userId);
 		}
-		if(status != -999) {
+		if(null != status && status != -999) {
 			param.setStatus(status);
 		}
 		int count = orderMapper.countOrders(param);
@@ -122,6 +127,13 @@ public class OrderService {
 	private OrderDTO toOrderDTO(OrderDO orderDO) throws Exception {
 		OrderDTO orderDTO = new OrderDTO();
 		BeanUtils.copyProperties(orderDO, orderDTO);
+		
+		User user = userHome.getUserById(orderDO.getUserId());
+		if(null != user) {
+			orderDTO.setUserName(user.getName());
+		}
+		orderDTO.setStatusDesc(OrderStatusEnum.getDescByValue(orderDO.getStatus()));
+		orderDTO.setCreateTime(DateUtils.getDateToString(orderDO.getCreateTime(), "yyyy-MM-dd HH:mm:ss"));
 		List<GoodsDO> goodsDOList = orderHome.getGoodsList(orderDO.getOrderId());
 		if(CollectionUtils.isNotEmpty(goodsDOList)) {
 			List<GoodsDTO> goodsDTOList = new ArrayList<>();

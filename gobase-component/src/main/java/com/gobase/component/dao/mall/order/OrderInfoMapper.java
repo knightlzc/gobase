@@ -15,9 +15,9 @@ public interface OrderInfoMapper extends IBaseMapper<OrderInfoExample, OrderInfo
 	
 	public static final String TABLE = " `order_info` ";
 	public static final String JOIN_COLS = " o.`id`,o.`order_id` orderId ,o.`user_id` userId ,o.`region_id` regionId,o.`status` status ,"
-			+ "o.`goods_id` goodsId,o.`remark` remark,o.`address_id`,"
-			+ "o.`create_time`,o.`kuaidi_name` kuaidiName,o.`kuaidi_order` kuaidiOrder,o.`kuaidi_price` kuaidiPrice,o.`manjian_price`,o.`user_coupons_id`,o.`coupons_price`,o.`coupons_type`,"
-			+ "o.`reduce_intr_rate`,o.`deliver_time`,o.`total_price` totalPrice,o.`porder_id` porderId ";
+			+ "o.`goods_id` goodsId,o.`remark` remark,o.`address_id` addressId,"
+			+ "o.`create_time` createTime,o.`kuaidi_name` kuaidiName,o.`kuaidi_order` kuaidiOrder,o.`kuaidi_price` kuaidiPrice,o.`manjian_price`,o.`user_coupons_id`,o.`coupons_price`,o.`coupons_type`,"
+			+ "o.`reduce_intr_rate`,o.`deliver_time` deliverTime,o.`total_price` totalPrice,o.`porder_id` porderId ";
 	public static final String SELECT_COLS = " `id`,`order_id`,`user_id`,`region_id`,`status`,`goods_id`,`remark`,`address_id`,`create_time`,`kuaidi_name`,`kuaidi_order`,`kuaidi_price`,`manjian_price`,`user_coupons_id`,`coupons_price`,`coupons_type`,`reduce_intr_rate`,`deliver_time`,`total_price`,`porder_id` ";
  
 	@Select("<script>"+

@@ -19,6 +19,7 @@ public class QueryOrderParam {
 	private Integer userId;
 	private Integer status;
 	private Integer shopId;
+	private String orderId;
 	public Integer getUserId() {
 		return userId;
 	}
@@ -36,5 +37,11 @@ public class QueryOrderParam {
 	}
 	public void setShopId(Integer shopId) {
 		this.shopId = shopId;
+	}
+	public String getOrderId() {
+		return orderId;
+	}
+	public void setOrderId(String orderId) {
+		this.orderId = orderId;
 	}
 }

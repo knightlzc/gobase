@@ -11,6 +11,7 @@ package com.gobase.platform.controller.order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.gobase.service.dto.order.OrderDTO;
 import com.gobase.service.service.order.OrderService;
@@ -35,11 +36,12 @@ public class OrderController {
 		return "order/order_list";
 	}
 	
+	@ResponseBody
 	@RequestMapping("list")
-    public ResultResponse<PageContent<OrderDTO>> listMgrOrders(String search,Integer shopId,Integer userId,Integer status,int pageNum,int pageSize){
+    public ResultResponse<PageContent<OrderDTO>> listMgrOrders(String search,Integer shopId,Integer userId,Integer status,int page,int limit){
     	try {
-    		PageContent<OrderDTO> page = orderService.pageMgrOrders(search, shopId, userId, status, pageNum, pageSize);
-    		return ResultResponse.success(page, "");
+    		PageContent<OrderDTO> pageContent = orderService.pageMgrOrders(search, shopId, userId, status, page, limit);
+    		return ResultResponse.success(pageContent, "");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResultResponse.fail("查询列表失败", "");
