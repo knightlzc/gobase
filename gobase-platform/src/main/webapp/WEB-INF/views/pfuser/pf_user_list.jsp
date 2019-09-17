@@ -22,7 +22,7 @@
 <table class="layui-hide" id="LAY_table_user" lay-filter="user"></table> 
 
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">分配角色</a>
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" href="/pfuser/configRolePage">分配角色</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
   <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
 </script>               
@@ -38,10 +38,10 @@ layui.use('table', function(){
     elem: '#LAY_table_user'
     ,url: '/pfuser/list'
     ,cols: [[
-      {checkbox: false, fixed: false}
-      ,{field:'id', title: 'ID', sort: true, fixed: true}
+//       {checkbox: false, fixed: false}
+      {field:'id', title: 'ID', sort: true, fixed: true}
       ,{field:'name', title: '账户' }
-      ,{field:'nickName', title: '姓名', edit: 'text', sort: true}
+      ,{field:'nickName', title: '姓名',  sort: true}
       ,{field:'registerTime', title: '注册时间',  sort: true}
       ,{fixed: false,title: '操作', toolbar: '#barDemo'}
     ]]
@@ -58,7 +58,6 @@ layui.use('table', function(){
              "data": res.data.content //解析数据列表
            };
      }
-    ,height: 310
   });
   
   var $ = layui.$, active = {
@@ -83,12 +82,12 @@ layui.use('table', function(){
   });
   
 //监听单元格编辑
-  table.on('edit(user)', function(obj){
-    var value = obj.value //得到修改后的值
-    ,data = obj.data //得到所在行所有键值
-    ,field = obj.field; //得到字段
-    layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
-  });
+//   table.on('edit(user)', function(obj){
+//     var value = obj.value //得到修改后的值
+//     ,data = obj.data //得到所在行所有键值
+//     ,field = obj.field; //得到字段
+//     layer.msg('[ID: '+ data.id +'] ' + field + ' 字段更改为：'+ value);
+//   });
 });
 </script>
 

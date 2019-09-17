@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.gobase.component.bean.mall.pfuser.PfUser;
 import com.gobase.component.dao.mall.pfuser.PfUserMapper;
 import com.gobase.component.home.pfuser.PfUserHome;
+import com.gobase.component.home.role.RoleHome;
 import com.gobase.platform.controller.user.response.PfUserResponse;
 import com.gobase.platform.response.TableResponse;
 import com.gobase.platform.utils.ResponseUtil;
@@ -41,6 +42,9 @@ public class PfUserController {
 	
 	@Autowired
 	private PfuserService pfUserService;
+	
+	@Autowired
+	private RoleHome roleHome;
 	
 
 	@RequestMapping("listPage")
@@ -78,7 +82,7 @@ public class PfUserController {
 			for (PfUser pfUser : pageResult.getContent()) {
 				responses.add(ResponseUtil.toPfUserResponse(pfUser));
 			}
-			return ResultResponse.success(new PageContent<>(pageResult.getPageNum(), pageResult.getPageSize(), 0, responses), "查询成功");
+			return ResultResponse.success(new PageContent<>(pageResult.getPageNum(), pageResult.getPageSize(), pageResult.getTotalNum(), responses), "查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResultResponse.fail("500","查询用户列表异常 "+e.getMessage());
@@ -97,5 +101,10 @@ public class PfUserController {
 			return ResultResponse.fail("500","添加用户列表异常 "+e.getMessage());
 			
 		}
+	}
+	
+	@RequestMapping("configRolePage")
+	public String configRolePage(){
+		return "pfuser/config_role_page";
 	}
 }
