@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50630
 File Encoding         : 65001
 
-Date: 2019-07-19 17:57:33
+Date: 2019-09-17 20:05:42
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -79,7 +79,7 @@ CREATE TABLE `banner` (
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `goods_id` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '商品id',
+  `goods_id` varchar(64) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '商品id',
   `tiny_name` varchar(30) NOT NULL DEFAULT '' COMMENT '商品短名称',
   `full_name` varchar(100) NOT NULL DEFAULT '' COMMENT '商品长名称',
   `description` varchar(2000) CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL DEFAULT '',
@@ -102,24 +102,25 @@ CREATE TABLE `goods` (
   `total_num` int(11) NOT NULL DEFAULT '0' COMMENT '库存总量',
   PRIMARY KEY (`id`),
   UNIQUE KEY `goodsId` (`goods_id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1211 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=1212 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
-INSERT INTO `goods` VALUES ('1198', '111111', ' mac pro', '苹果 mac pro', '', '2019-07-03 12:48:45', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '100', '0', '2019-07-18 22:25:33', '0');
-INSERT INTO `goods` VALUES ('1199', '22222', 'iphoneX', '苹果 iphone X', '', '2019-07-03 12:58:48', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '200', '0', '2019-07-18 22:25:36', '0');
-INSERT INTO `goods` VALUES ('1200', '3', '苹果', '红富士', '', '2019-07-19 17:23:26', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:42', '0');
-INSERT INTO `goods` VALUES ('1201', '4', '水果4', '大水果4', '', '2019-07-19 17:23:32', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:42', '0');
-INSERT INTO `goods` VALUES ('1202', '5', '水果5', '大水果5', '', '2019-07-19 17:23:35', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:43', '0');
-INSERT INTO `goods` VALUES ('1203', '6', '水果6', '大水果6', '', '2019-07-19 17:23:38', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:43', '0');
-INSERT INTO `goods` VALUES ('1204', '7', '水果7', '大水果7', '', '2019-07-19 17:23:40', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:44', '0');
-INSERT INTO `goods` VALUES ('1205', '8', '水果8', '大水果8', '', '2019-07-19 17:23:43', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:45', '0');
-INSERT INTO `goods` VALUES ('1206', '9', '水果9', '大水果9', '', '2019-07-19 17:23:46', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:45', '0');
-INSERT INTO `goods` VALUES ('1207', '10', '水果10', '大水果10', '', '2019-07-19 17:23:49', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:46', '0');
-INSERT INTO `goods` VALUES ('1208', '11', '水果11', '大水果11', '', '2019-07-19 17:23:55', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:46', '0');
-INSERT INTO `goods` VALUES ('1209', '12', '水果12', '大水果12', '', '2019-07-19 17:23:58', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:47', '0');
-INSERT INTO `goods` VALUES ('1210', '13', '水果13', '大水果13', '', '2019-07-19 17:24:00', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '2', '0', '0', '0', '2019-07-19 17:44:49', '0');
+INSERT INTO `goods` VALUES ('1198', '111111', ' mac pro', '苹果 mac pro', '', '2019-07-03 12:48:45', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'shkj', '', '', '0', '', '2', '0', '100', '0', '2019-07-19 20:40:36', '0');
+INSERT INTO `goods` VALUES ('1199', '22222', 'iphoneX', '苹果 iphone X', '', '2019-07-03 12:58:48', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'shkj', '', '', '0', '', '2', '0', '200', '0', '2019-07-19 20:40:38', '0');
+INSERT INTO `goods` VALUES ('1200', '3', '苹果', '红富士', '', '2019-07-19 17:23:26', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:14', '0');
+INSERT INTO `goods` VALUES ('1201', '4', '水果4', '大水果4', '', '2019-07-19 17:23:32', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:15', '0');
+INSERT INTO `goods` VALUES ('1202', '5', '水果5', '大水果5', '', '2019-07-19 17:23:35', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:15', '0');
+INSERT INTO `goods` VALUES ('1203', '6', '水果6', '大水果6', '', '2019-07-19 17:23:38', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:16', '0');
+INSERT INTO `goods` VALUES ('1204', '7', '水果7', '大水果7', '', '2019-07-19 17:23:40', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:16', '0');
+INSERT INTO `goods` VALUES ('1205', '8', '水果8', '大水果8', '', '2019-07-19 17:23:43', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:17', '0');
+INSERT INTO `goods` VALUES ('1206', '9', '水果9', '大水果9', '', '2019-07-19 17:23:46', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:17', '0');
+INSERT INTO `goods` VALUES ('1207', '10', '水果10', '大水果10', '', '2019-07-19 17:23:49', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:18', '0');
+INSERT INTO `goods` VALUES ('1208', '11', '水果11', '大水果11', '', '2019-07-19 17:23:55', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:18', '0');
+INSERT INTO `goods` VALUES ('1209', '12', '水果12', '大水果12', '', '2019-07-19 17:23:58', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:18', '0');
+INSERT INTO `goods` VALUES ('1210', '13', '水果13', '大水果13', '', '2019-07-19 17:24:00', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', 'gpsc', 'shuiguo', '', '0', '', '2', '0', '0', '0', '2019-07-19 20:38:20', '0');
+INSERT INTO `goods` VALUES ('1211', 'GBSG0170003190914185644', '', '', '', '2019-09-14 18:56:39', '', '2099-01-01 00:00:00', '1970-01-01 00:00:00', '', '', '', '', '', '0', '', '0', '0', '0', '0', '2019-09-14 18:56:39', '0');
 
 -- ----------------------------
 -- Table structure for `goods_category`
@@ -133,7 +134,7 @@ CREATE TABLE `goods_category` (
   `group_code` varchar(64) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '分组编码',
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审核节点表';
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='审核节点表';
 
 -- ----------------------------
 -- Records of goods_category
@@ -145,6 +146,10 @@ INSERT INTO `goods_category` VALUES ('4', 'jianguo', 'jpsg', '坚果', '', '0');
 INSERT INTO `goods_category` VALUES ('5', 'sg', 'jpsg', '新鲜水果', '', '0');
 INSERT INTO `goods_category` VALUES ('6', 'shucai', 'jpsg', '蔬菜', '', '0');
 INSERT INTO `goods_category` VALUES ('7', 'shushi', 'jpsg', '熟食', '', '0');
+INSERT INTO `goods_category` VALUES ('8', 'pg', 'sg', '苹果', '', '0');
+INSERT INTO `goods_category` VALUES ('9', 'xj', 'sg', '香蕉', '', '0');
+INSERT INTO `goods_category` VALUES ('10', 'ht', 'jianguo', '核桃', '', '0');
+INSERT INTO `goods_category` VALUES ('11', 'hs', 'jianguo', '花生', '', '0');
 
 -- ----------------------------
 -- Table structure for `goods_manjian_ref`
@@ -174,7 +179,7 @@ CREATE TABLE `goods_param` (
   `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
   PRIMARY KEY (`id`),
   UNIQUE KEY `goods_id` (`goods_id`,`param_key`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=1518 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods_param
@@ -194,11 +199,49 @@ CREATE TABLE `img` (
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `biz_id` (`biz_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 -- ----------------------------
 -- Records of img
 -- ----------------------------
+INSERT INTO `img` VALUES ('1', 'GBSG0170003190914185644', '1', 'https://wx.apricot32.cn/img/2019/09/14/img0170000190914185613.jpg', '0', '2019-09-14 18:56:39', '2019-09-14 18:56:39');
+INSERT INTO `img` VALUES ('2', 'GBSG0170003190914185644', '1', 'https://wx.apricot32.cn/img/2019/09/14/img0170001190914185615.jpg', '0', '2019-09-14 18:56:39', '2019-09-14 18:56:39');
+
+-- ----------------------------
+-- Table structure for `menu`
+-- ----------------------------
+DROP TABLE IF EXISTS `menu`;
+CREATE TABLE `menu` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `menu_name` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '菜单名称',
+  `menu_code` varchar(250) COLLATE utf8_bin DEFAULT '',
+  `p_menu_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '父菜单编码',
+  `sys_code` varchar(50) COLLATE utf8_bin DEFAULT '',
+  `menu_url` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '菜单url，菜单跳转的url',
+  `menu_logo` varchar(255) COLLATE utf8_bin DEFAULT '' COMMENT '菜单logo',
+  `level` tinyint(4) NOT NULL DEFAULT '0' COMMENT '菜单层级',
+  `sort` int(11) NOT NULL DEFAULT '0' COMMENT '排序',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `load_type` tinyint(3) NOT NULL DEFAULT '0' COMMENT '加载类型 0请选择 1 load, 2 iframe ',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `uniq_menu` (`menu_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2230 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='菜单表';
+
+-- ----------------------------
+-- Records of menu
+-- ----------------------------
+INSERT INTO `menu` VALUES ('2219', '主页', 'm_home', '', 'pf', '/', '', '0', '0', '2019-07-26 12:21:43', '2019-07-26 12:21:43', '0');
+INSERT INTO `menu` VALUES ('2220', '权限管理', 'm_auth_mgr', '', 'pf', '', '', '0', '4', '2019-07-26 12:22:38', '2019-09-14 13:37:51', '0');
+INSERT INTO `menu` VALUES ('2221', '商户管理', 'm_shop_mgr', '', 'pf', '', '', '0', '1', '2019-07-26 12:25:41', '2019-07-26 16:01:14', '0');
+INSERT INTO `menu` VALUES ('2222', '商户列表', 'm_shop_list', 'm_shop_mgr', 'pf', '', '', '0', '0', '2019-07-26 12:26:26', '2019-07-26 12:26:39', '0');
+INSERT INTO `menu` VALUES ('2223', '订单管理', 'm_order_mgr', '', 'pf', '', '', '0', '3', '2019-07-26 12:27:33', '2019-09-14 13:37:47', '0');
+INSERT INTO `menu` VALUES ('2224', '订单列表', 'm_order_list', 'm_order_mgr', 'pf', '/order/listPage', '', '0', '0', '2019-07-26 12:27:50', '2019-09-17 14:32:23', '0');
+INSERT INTO `menu` VALUES ('2225', '账号列表', 'm_pfuser_list', 'm_auth_mgr', 'pf', '/pfuser/listPage', '', '0', '0', '2019-07-26 12:42:37', '2019-07-26 19:38:34', '0');
+INSERT INTO `menu` VALUES ('2226', '商品管理', 'm_goods_mgr', '', 'pf', '', '', '0', '2', '2019-09-14 13:37:45', '2019-09-14 13:37:45', '0');
+INSERT INTO `menu` VALUES ('2227', '全部商品', 'm_goods_list', 'm_goods_mgr', 'pf', '/goods/listPage', '', '0', '1', '2019-09-14 13:38:18', '2019-09-14 18:49:13', '0');
+INSERT INTO `menu` VALUES ('2228', '发布商品', 'm_goods_add', 'm_goods_mgr', 'pf', '/goods/editPage', '', '0', '2', '2019-09-14 13:38:49', '2019-09-14 15:08:25', '0');
+INSERT INTO `menu` VALUES ('2229', '角色管理', 'm_role_list', 'm_auth_mgr', 'pf', '/role/listPage', '', '0', '2', '2019-09-17 17:03:02', '2019-09-17 17:03:24', '0');
 
 -- ----------------------------
 -- Table structure for `order_goods_ref`
@@ -234,7 +277,7 @@ CREATE TABLE `order_info` (
   `order_id` varchar(64) COLLATE utf8_bin NOT NULL COMMENT '订单号',
   `user_id` int(11) NOT NULL COMMENT '用户id',
   `region_id` int(11) NOT NULL DEFAULT '0',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '订单状态',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '订单状态',
   `goods_id` varchar(20) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '商品id',
   `remark` varchar(500) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '用户备注信息',
   `address_id` int(11) NOT NULL DEFAULT '0' COMMENT '收货地址id',
@@ -260,7 +303,7 @@ CREATE TABLE `order_info` (
 -- ----------------------------
 -- Records of order_info
 -- ----------------------------
-INSERT INTO `order_info` VALUES ('8015391', 'GO01700011907190039', '1', '0', '0', '', '', '1', '2019-07-19 00:39:32', '', '', '0', '0', '0', '0', '0', '0', null, '0.00', '');
+INSERT INTO `order_info` VALUES ('8015391', 'GO01700011907190039', '1', '0', '201', '', '', '1', '2019-07-19 00:39:32', '', '', '0', '0', '0', '0', '0', '0', null, '500.00', '');
 INSERT INTO `order_info` VALUES ('8015392', 'GO01700021907190046', '1', '0', '0', '', '', '1', '2019-07-19 00:47:31', '', '', '0', '0', '0', '0', '0', '0', null, '0.00', '');
 INSERT INTO `order_info` VALUES ('8015393', 'GO01700001907190049', '1', '0', '0', '', '', '1', '2019-07-19 00:49:45', '', '', '0', '0', '0', '0', '0', '0', null, '300.00', '');
 
@@ -304,11 +347,52 @@ CREATE TABLE `pf_user` (
   UNIQUE KEY `unq_name` (`name`),
   KEY `index_user` (`name`,`password`),
   KEY `idx_uid_name_new` (`uid`(20),`name`(20))
-) ENGINE=InnoDB AUTO_INCREMENT=1000104135 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) ENGINE=InnoDB AUTO_INCREMENT=1000104138 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
 
 -- ----------------------------
 -- Records of pf_user
 -- ----------------------------
+INSERT INTO `pf_user` VALUES ('1000104135', 'admin', '123', '超管', '2019-07-26 12:43:37', '2014-01-01 00:00:00', '0', '1');
+INSERT INTO `pf_user` VALUES ('1000104136', '5', 'de88e3e4ab202d87754078cbb2df6063', '5', '2019-09-11 17:40:28', '2019-09-11 17:40:31', '0', '5ecf5a2f-da39-445d-880f-a244be322812');
+INSERT INTO `pf_user` VALUES ('1000104137', 'sunmm', 'de88e3e4ab202d87754078cbb2df6063', '孙明明', '2019-09-14 13:26:50', '2019-09-14 13:26:56', '0', '0c5cb326-27a3-452d-83bb-7dadcd123f05');
+
+-- ----------------------------
+-- Table structure for `pf_user_role_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `pf_user_role_ref`;
+CREATE TABLE `pf_user_role_ref` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'uid',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
+  `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  KEY `index_1` (`role_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=13373 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='ç”¨æˆ·è§’è‰²å…³è”è¡¨';
+
+-- ----------------------------
+-- Records of pf_user_role_ref
+-- ----------------------------
+INSERT INTO `pf_user_role_ref` VALUES ('13372', '1', 'admin', '0', '2019-07-26 12:59:43', '2019-07-26 12:59:43');
+
+-- ----------------------------
+-- Table structure for `pf_user_shop_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `pf_user_shop_ref`;
+CREATE TABLE `pf_user_shop_ref` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `uid` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '用户id',
+  `shop_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
+-- ----------------------------
+-- Records of pf_user_shop_ref
+-- ----------------------------
+INSERT INTO `pf_user_shop_ref` VALUES ('1', '5ecf5a2f-da39-445d-880f-a244be322812', '5', '2019-09-11 17:40:28');
+INSERT INTO `pf_user_shop_ref` VALUES ('2', '0c5cb326-27a3-452d-83bb-7dadcd123f05', '2', '2019-09-14 13:26:50');
 
 -- ----------------------------
 -- Table structure for `recommend`
@@ -320,8 +404,8 @@ CREATE TABLE `recommend` (
   `biz_id` varchar(255) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '推荐id 商品：商品id 店铺：店铺id',
   `group_code` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '分组查询',
   `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '状态 0 有效 -1 无效',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `update_time` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP,
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -3774,6 +3858,57 @@ INSERT INTO `region` VALUES ('3449', '义乌', '372', '3', '10', '0', '1', '义�
 INSERT INTO `region` VALUES ('3451', '新吴区', '243', '3', '10', '0', '320283', '新吴区');
 
 -- ----------------------------
+-- Table structure for `role`
+-- ----------------------------
+DROP TABLE IF EXISTS `role`;
+CREATE TABLE `role` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `role_name` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '角色名称',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL COMMENT '角色编码',
+  `sys_code` varchar(50) COLLATE utf8_bin NOT NULL COMMENT 'ç³»ç»Ÿç¼–ç ',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+  `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态 0 启用 -1 删除',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unqi_role` (`role_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=383 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='è§’è‰²è¡¨';
+
+-- ----------------------------
+-- Records of role
+-- ----------------------------
+INSERT INTO `role` VALUES ('16', '管理员', 'admin', 'saas', '2017-09-13 17:34:34', '2017-09-13 17:34:34', '0');
+
+-- ----------------------------
+-- Table structure for `role_menu_ref`
+-- ----------------------------
+DROP TABLE IF EXISTS `role_menu_ref`;
+CREATE TABLE `role_menu_ref` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
+  `menu_code` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '菜单编码',
+  `sys_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '系统编码',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unq_role_menu` (`role_code`,`menu_code`,`sys_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=58504 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='角色和菜单关联表';
+
+-- ----------------------------
+-- Records of role_menu_ref
+-- ----------------------------
+INSERT INTO `role_menu_ref` VALUES ('58493', 'admin', 'm_home', 'pf', '2019-07-26 13:01:55', '2019-07-26 13:02:49');
+INSERT INTO `role_menu_ref` VALUES ('58494', 'admin', 'm_auth_mgr', 'pf', '2019-07-26 13:02:00', '2019-07-26 13:02:49');
+INSERT INTO `role_menu_ref` VALUES ('58495', 'admin', 'm_shop_mgr', 'pf', '2019-07-26 13:02:15', '2019-07-26 13:02:50');
+INSERT INTO `role_menu_ref` VALUES ('58496', 'admin', 'm_shop_list', 'pf', '2019-07-26 13:02:18', '2019-07-26 13:02:50');
+INSERT INTO `role_menu_ref` VALUES ('58497', 'admin', 'm_order_mgr', 'pf', '2019-07-26 13:02:28', '2019-07-26 13:02:51');
+INSERT INTO `role_menu_ref` VALUES ('58498', 'admin', 'm_order_list', 'pf', '2019-07-26 13:02:33', '2019-07-26 13:02:51');
+INSERT INTO `role_menu_ref` VALUES ('58499', 'admin', 'm_pfuser_list', 'pf', '2019-07-26 13:02:35', '2019-07-26 13:02:53');
+INSERT INTO `role_menu_ref` VALUES ('58500', 'admin', 'm_goods_mgr', 'pf', '2019-09-14 13:41:44', '2019-09-14 13:41:44');
+INSERT INTO `role_menu_ref` VALUES ('58501', 'admin', 'm_goods_list', 'pf', '2019-09-14 13:41:57', '2019-09-14 13:41:57');
+INSERT INTO `role_menu_ref` VALUES ('58502', 'admin', 'm_goods_add', 'pf', '2019-09-14 13:42:04', '2019-09-14 13:42:09');
+INSERT INTO `role_menu_ref` VALUES ('58503', 'admin', 'm_role_list', 'pf', '2019-09-17 17:30:08', '2019-09-17 17:30:08');
+
+-- ----------------------------
 -- Table structure for `shop`
 -- ----------------------------
 DROP TABLE IF EXISTS `shop`;
@@ -3845,6 +3980,59 @@ CREATE TABLE `shop_trade_record` (
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `system`
+-- ----------------------------
+DROP TABLE IF EXISTS `system`;
+CREATE TABLE `system` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sys_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统编码',
+  `sys_name` varchar(100) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '系统名称',
+  `sys_desc` varchar(50) DEFAULT NULL COMMENT '系统描述',
+  `sys_domain` varchar(255) DEFAULT NULL,
+  `pf_code` varchar(50) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL COMMENT '平台',
+  `status` tinyint(4) NOT NULL COMMENT '状态 0可用 1已删除',
+  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `index` (`sys_code`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=112 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of system
+-- ----------------------------
+INSERT INTO `system` VALUES ('1', 'cheyigou', '开心汽车', '开心汽车', 'http://www.kaixin.com', 'cheyigou', '1', '2017-09-12 09:09:28', '2018-03-05 10:58:54');
+INSERT INTO `system` VALUES ('2', 'oc_saas_center', '二手车销售运营中心', '二手车销售运营中心', 'http://platform.d.renrenauto.com', 'oc_saas_center', '0', '2017-10-12 11:47:34', '2018-03-12 16:57:30');
+INSERT INTO `system` VALUES ('3', 'oc_market_center', '汽车售后服务运营中心', '汽车售后服务运营中心', 'http://service.d.renrenauto.com', 'oc_market_center', '0', '2017-12-07 17:54:00', '2018-05-16 17:25:14');
+INSERT INTO `system` VALUES ('4', 'oc_cpc_center', 'JV车商', 'JV车商', 'http://jvapp.renrenauto.com', 'oc_cpc_center', '0', '2017-11-07 15:27:13', '2018-05-16 17:22:07');
+INSERT INTO `system` VALUES ('5', 'approval_center', '风控作业中心', '风控作业中心', 'http://approval.51fenqi.com', 'approval_center', '0', '2017-09-22 18:17:54', '2018-05-16 18:17:57');
+INSERT INTO `system` VALUES ('6', 'renren_market', '售后服务平台', '售后服务平台', 'http://service.renren.auto.com', 'renren_market', '1', '2017-11-29 19:43:17', '2018-03-09 18:33:31');
+INSERT INTO `system` VALUES ('8', 'oc_kaixin_car', '开心汽车运营中心', '开心汽车运营中心', 'http://platform.d.che360.com', 'oc_saas_center', '0', '2018-01-11 11:46:34', '2018-03-09 18:31:25');
+INSERT INTO `system` VALUES ('9', 'oc_custom_service', '客服系统', '客服系统', 'http://kf.renrenauto.com', 'oc_kaixin_car', '0', '2018-01-31 11:20:29', '2018-05-16 17:59:59');
+INSERT INTO `system` VALUES ('14', 'core_asm_center', '核心交易平台', '核心交易平台', 'http://ams.51fenqi.com', 'core_manager', '0', '2018-03-09 11:31:38', '2018-05-16 18:52:58');
+INSERT INTO `system` VALUES ('15', 'core_abs_center', 'ABS资产证券化系统', 'ABS资产证券化系统', 'http://abs.51fenqi.com', 'core_manager', '0', '2018-03-09 11:32:18', '2018-05-16 18:52:58');
+INSERT INTO `system` VALUES ('16', 'bda', '大数据分析平台', '大数据分析平台', 'http://bda.renrenauto.com', 'core_manager', '0', '2017-11-08 16:23:53', '2018-05-16 18:16:14');
+INSERT INTO `system` VALUES ('17', 'oc_manager', '权限管理系统', '权限管理系统', 'http://auth.d.51fenqi.com', 'oc_manager', '0', '2018-02-09 13:36:30', '2018-07-12 15:06:26');
+INSERT INTO `system` VALUES ('19', 'fenqi_center', '51分期运营平台', '51分期运营平台', 'http://platform.51fenqi.com', 'core_manager', '0', '2018-03-09 18:07:30', '2018-05-16 19:02:59');
+INSERT INTO `system` VALUES ('20', 'bda_3t', '三体系统', '三体系统', 'http://3t.51fenqi.com/?realm=app', 'core_manager', '0', '2017-11-08 16:23:53', '2018-05-16 17:23:22');
+INSERT INTO `system` VALUES ('21', 'risk_center', '风控接口流程平台', '分控接口流程平台', 'http://rc.d.51fenqi.com', 'approval_center', '0', '2018-03-08 16:33:30', '2018-05-16 15:40:12');
+INSERT INTO `system` VALUES ('27', 'core_licai_center', '理财运营平台', '理财运营平台', 'http://licai.51fenqi.com', 'oc_other', '0', '2018-03-09 11:32:49', '2018-05-16 17:33:37');
+INSERT INTO `system` VALUES ('29', 'oc_car_type', '车型车系库管理后台', '车型车系库管理后台', 'http://autonation.fenqi.d.xiaonei.com/chameleon/login?next=/chameleon/', 'core_manager', '0', '2018-03-09 18:14:29', '2018-05-16 17:23:49');
+INSERT INTO `system` VALUES ('33', 'oc_center', 'JV库融系统', 'JV库融系统', 'http://oc.51fenqi.com', 'approval_center', '0', '2017-09-22 18:17:54', '2018-05-16 15:06:33');
+INSERT INTO `system` VALUES ('98', 'oc_old_manager', '权限管理系统(旧版)', '权限管理系统(旧版)', 'http://auth.d.51fenqi.com/index', 'oc_other', '0', '2018-02-09 13:36:30', '2018-05-16 17:13:05');
+INSERT INTO `system` VALUES ('100', 'report_config', '微服务配置系统', '配置所有的微服务', 'http://10.2.52.175:9999', 'core_manager', '1', '2018-05-31 18:31:32', '2018-11-30 17:24:02');
+INSERT INTO `system` VALUES ('101', 'cms', '配置内容管理系统', '配置内容管理系统', '', 'core_manager', '0', '2018-07-06 14:26:28', '2018-07-06 14:26:28');
+INSERT INTO `system` VALUES ('102', 'oc_bz_auto_center', '开心汽车极速版', '开心汽车极速版', 'http://bz.renrenauto.com', 'approval_center', '0', '2018-08-10 14:16:15', '2018-08-10 14:16:15');
+INSERT INTO `system` VALUES ('103', 'oc_bz_auto_sales_center', '开心汽车销售版', '开心汽车销售版', '', 'approval_center', '0', '2018-08-10 15:56:15', '2018-08-15 12:06:32');
+INSERT INTO `system` VALUES ('104', 'renren_auto_video_mgr', '短视频运营后台', '短视频运营后台', '', 'approval_center', '0', '2018-08-15 11:55:26', '2018-08-15 12:06:33');
+INSERT INTO `system` VALUES ('105', 'saas_mgr_app', '二手车销售运营app', '二手车销售运营app', '', 'oc_saas_center', '0', '2018-08-15 19:44:12', '2018-08-15 19:44:12');
+INSERT INTO `system` VALUES ('106', 'oc_test', '测试', '111', '2222', 'oc_saas_center', '0', '2018-08-21 11:14:37', '2018-08-21 11:18:24');
+INSERT INTO `system` VALUES ('107', 'special_system', '特殊系统', '特殊系统', '', 'oc_other', '0', '2018-08-21 14:42:43', '2019-03-29 15:06:52');
+INSERT INTO `system` VALUES ('108', 'oc_anji', '上汽安吉', '上汽安吉审批系统', 'http://anji.kaixin.com', 'oc_other', '0', '2018-10-29 16:06:11', '2018-11-02 19:31:34');
+INSERT INTO `system` VALUES ('109', 'business_config', '业务配置系统', '业务配置内部综合系统', '', 'core_manager', '0', '2018-11-30 11:33:42', '2018-11-30 11:33:42');
+INSERT INTO `system` VALUES ('110', 'raqsoft_report', '润乾报表系统', '润乾报表系统', 'http://platform.d.renrenauto.com', 'oc_center', '0', '2018-12-19 11:03:20', '2018-12-19 11:03:20');
+INSERT INTO `system` VALUES ('111', 'testclient', '开发测试系统', null, null, null, '0', '2019-07-02 15:20:07', '2019-07-02 15:20:07');
+
+-- ----------------------------
 -- Table structure for `user`
 -- ----------------------------
 DROP TABLE IF EXISTS `user`;
@@ -3893,7 +4081,7 @@ CREATE TABLE `user_address` (
   `consignee` varchar(20) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '收件人',
   `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
   `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
-  `status` tinyint(4) NOT NULL DEFAULT '0' COMMENT '是否删除，0有效，-1 删除',
+  `status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '是否删除，0：是，1否',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
@@ -3923,38 +4111,619 @@ CREATE TABLE `user_payment_record` (
 -- ----------------------------
 
 -- ----------------------------
--- 后台sql
+-- Table structure for `user_ticket`
 -- ----------------------------
-CREATE TABLE `pf_user_shop_ref` (
+DROP TABLE IF EXISTS `user_ticket`;
+CREATE TABLE `user_ticket` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(64) COLLATE utf8mb4_bin NOT NULL DEFAULT '' COMMENT '用户id',
-  `shop_id` int(11) NOT NULL DEFAULT '0' COMMENT '店铺id',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
-CREATE TABLE `pf_user` (
-  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id，主键，唯一标识一个用户',
-  `name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '存储用户英文名',
-  `password` varchar(100) COLLATE utf8_bin NOT NULL COMMENT '运营人员密码',
-  `nick_name` varchar(100) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '存储用户中文名',
-  `register_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `pwd_update_time` datetime NOT NULL DEFAULT '2014-01-01 00:00:00',
-  `status` int(11) NOT NULL DEFAULT '0' COMMENT '状态',
-  `uid` varchar(255) COLLATE utf8_bin DEFAULT NULL COMMENT '用户标识',
+  `uid` varchar(32) NOT NULL COMMENT '用户uid',
+  `ticket` varchar(100) NOT NULL COMMENT '票据',
+  `type` tinyint(4) DEFAULT NULL COMMENT '票据类型',
+  `status` tinyint(4) DEFAULT NULL COMMENT '票据状态',
+  `ip` varchar(100) NOT NULL COMMENT '用户IP',
+  `client` varchar(100) DEFAULT NULL COMMENT '判断为那一端T票',
+  `login_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '登录时间',
+  `expire_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '过期时间',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `unq_name` (`name`),
-  KEY `index_user` (`name`,`password`),
-  KEY `idx_uid_name_new` (`uid`(20),`name`(20))
-) ENGINE=InnoDB AUTO_INCREMENT=1000000 DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+  UNIQUE KEY `uq_user_ticket` (`ticket`) USING BTREE
+) ENGINE=InnoDB AUTO_INCREMENT=2308 DEFAULT CHARSET=utf8;
 
-CREATE TABLE `pf_user_role_ref` (
-  `id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `uid` varchar(32) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT 'uid',
-  `role_code` varchar(50) COLLATE utf8_bin NOT NULL DEFAULT '' COMMENT '角色编码',
-  `status` tinyint(3) NOT NULL DEFAULT '0' COMMENT '状态',
-  `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-  `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
-  PRIMARY KEY (`id`),
-  KEY `index_1` (`role_code`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=13373 DEFAULT CHARSET=utf8 COLLATE=utf8_bin COMMENT='用户角色映射关系表';
+-- ----------------------------
+-- Records of user_ticket
+-- ----------------------------
+INSERT INTO `user_ticket` VALUES ('3', '31b2e60e2d5b42fb88e3fd67c13a1f20', 'f6651d028ba4533d36f4757b0e7b7250', null, null, '10.4.82.45', 'cheyigou', '2017-08-15 18:43:05', '2017-09-14 18:43:05');
+INSERT INTO `user_ticket` VALUES ('5', 'cb7ca0e3c44b45b8ada15f37e25cc2b5', '466b1e3d87b6894462ff8366f198ab51', null, null, '10.4.82.45', 'cheyigou', '2017-08-15 20:10:55', '2017-09-14 20:10:55');
+INSERT INTO `user_ticket` VALUES ('10', 'f0a11cf82771404cb93470de70010ba8', '3638830b06024503f763865eab155dc0', null, null, '10.4.82.45', 'cheyigou', '2017-08-16 10:34:24', '2017-09-15 10:34:24');
+INSERT INTO `user_ticket` VALUES ('12', 'd5fd39921be04e7294118fdd87ec369f', '4d5e45254691b3bb40e9cd2475a3c37f', null, null, '10.4.82.45', 'cheyigou', '2017-08-16 18:57:21', '2017-09-15 18:57:21');
+INSERT INTO `user_ticket` VALUES ('13', '1ff088418a124f09b1f88c6fc3964840', 'd2c1f27342c37e0563e596ea758a75ab', null, null, '10.4.82.45', 'cheyigou', '2017-08-16 19:59:20', '2017-09-15 19:59:20');
+INSERT INTO `user_ticket` VALUES ('15', '72d79bbd7e1248798af15c4ada3c206e', '499cdc80f7bbc7836413e3dabf4c1e6b', null, null, '10.4.82.45', 'cheyigou', '2017-08-17 14:24:11', '2017-09-16 14:24:11');
+INSERT INTO `user_ticket` VALUES ('38', '28f75a8b0710482d8f890e294b9ec171', '4cf7ab717448fbc0df080f6f95d1f1a1', null, null, '10.4.82.45', 'cheyigou', '2017-08-17 15:45:09', '2017-09-16 15:45:09');
+INSERT INTO `user_ticket` VALUES ('51', '8f2cfc8c63e0496fadbd927e5ce6d6a2', '7e2d41f690ba5837d40317b5b5125dbe', null, null, '10.4.82.45', 'cheyigou', '2017-08-17 16:20:12', '2017-09-16 16:20:12');
+INSERT INTO `user_ticket` VALUES ('92', '44a5fff6ab5d4dc5b1c396367e74377b', '53f0d564b7cd4d84dc9c2a6c9bb2cc0e', null, null, '10.4.82.45', 'cheyigou', '2017-08-18 17:28:36', '2017-09-17 17:28:36');
+INSERT INTO `user_ticket` VALUES ('93', 'e6d1f7307e294cb588cc8abcd5098763', '92e9f84d6218d4e066a74facb5aa5a23', null, null, '10.4.82.45', 'cheyigou', '2017-08-18 17:36:55', '2017-09-17 17:36:55');
+INSERT INTO `user_ticket` VALUES ('97', '36f0f36c83dd4164a053931277f46964', '9da79fb7331e3b265088e0e234f49d75', null, null, '10.4.82.45', 'cheyigou', '2017-08-18 19:02:35', '2017-09-17 19:02:35');
+INSERT INTO `user_ticket` VALUES ('130', 'd80ef7cc6a0849588f10e3a5bad568f7', '6f1cf6c6e1001f8c15bc57f6c20c5b79', null, null, '10.4.82.45', 'cheyigou', '2017-08-21 10:20:36', '2017-09-20 10:20:36');
+INSERT INTO `user_ticket` VALUES ('132', '05b32022f27540d6a3525f689a9a4f5b', 'd204ebeb78771ce1610a70baba5dc618', null, null, '10.4.82.45', 'cheyigou', '2017-08-21 11:26:14', '2017-09-20 11:26:14');
+INSERT INTO `user_ticket` VALUES ('155', 'c9dd4a649aef42b98b4f98f9c1f3f3d0', '9e135ee0548c288daebba182c504f367', null, null, '10.4.82.45', 'cheyigou', '2017-08-21 16:05:27', '2017-09-20 16:05:27');
+INSERT INTO `user_ticket` VALUES ('157', '5c5de54ee8144ea5ab5e2e8e740fcb71', '1fea8bac13cfa14657ede25c745c2dde', null, null, '10.4.82.45', 'cheyigou', '2017-08-21 16:28:30', '2017-09-20 16:28:30');
+INSERT INTO `user_ticket` VALUES ('177', '36afbe9aa09f4d7b81a67553a786a591', 'd8d15d0da24350de98b5f08a84d3c4c8', null, null, '10.4.82.45', 'cheyigou', '2017-08-21 19:37:26', '2017-09-20 19:37:26');
+INSERT INTO `user_ticket` VALUES ('257', 'a1f98bde08054321aee7f9547c7d5587', '9b727829b852f2abd98df7ff7d7e287f', null, null, '10.4.82.45', 'cheyigou', '2017-08-22 19:37:38', '2017-09-21 19:37:38');
+INSERT INTO `user_ticket` VALUES ('263', '16adfd6bd65842afbc7ae4eb1ab03357', '7caedb07f0c77c4f12f09fce9c413385', null, null, '10.4.82.45', 'cheyigou', '2017-08-23 10:37:19', '2017-09-22 10:37:19');
+INSERT INTO `user_ticket` VALUES ('264', 'e204e2ab86354db9a4b7cb5b3200b658', 'dc2884e7ecbc6c2f259a2952801a385d', null, null, '10.4.82.45', 'cheyigou', '2017-08-23 10:50:22', '2017-09-22 10:50:22');
+INSERT INTO `user_ticket` VALUES ('401', 'f961b9f3548147b1b86c1e8461c4ab5c', '7eb7dc790db723f190c9552069cab81e', null, null, '10.4.82.45', 'cheyigou', '2017-08-24 17:31:48', '2017-09-23 17:31:48');
+INSERT INTO `user_ticket` VALUES ('437', '1eee510cc4644657ba2bb9965cf8c660', '7dabe8af6f847353a74842563bf855ed', null, null, '10.4.82.45', 'cheyigou', '2017-08-24 20:26:43', '2017-09-23 20:26:43');
+INSERT INTO `user_ticket` VALUES ('493', 'a207c9e8257b483c9fa6eaa82002342e', '1eb97da263136bafe8a01e34ce1fb4e4', null, null, '10.4.82.45', 'cheyigou', '2017-08-25 17:50:44', '2017-09-24 17:50:44');
+INSERT INTO `user_ticket` VALUES ('517', '96c10c2d617d4080a4733817e75a9d63', '24da5a4137aeb4e4938cd300f5499181', null, null, '10.4.82.45', 'cheyigou', '2017-08-25 19:52:46', '2017-09-24 19:52:46');
+INSERT INTO `user_ticket` VALUES ('533', '4fa52b3a510a4081a06990bb69f44573', 'eaab83091282ea4444b1aef0d921e9e9', null, null, '10.4.82.45', 'cheyigou', '2017-08-25 21:42:26', '2017-09-24 21:42:26');
+INSERT INTO `user_ticket` VALUES ('562', 'eb26d124cf6a4fe399ef623021bf6dcc', '2805d331dec2dbb968f158bade18ecca', null, null, '127.0.0.1', 'cheyigou', '2017-08-26 15:27:39', '2017-09-25 15:27:39');
+INSERT INTO `user_ticket` VALUES ('576', 'c2f5bb9d265d423883338fc4d33f4000', '58e424fa8e79bd27527155a2e9308773', null, null, '10.4.82.45', 'cheyigou', '2017-08-26 17:02:13', '2017-09-25 17:02:13');
+INSERT INTO `user_ticket` VALUES ('585', 'dea5ecc00d294b689143586c9d93f9b8', 'f4b9549b0ee9b28ffc90caee8e7cbaf2', null, null, '10.4.82.45', 'cheyigou', '2017-08-26 17:58:00', '2017-09-25 17:58:00');
+INSERT INTO `user_ticket` VALUES ('604', '920ad6931e6d4d3e8fb0e3f408b4b216', '5c201f06dd22478b1f122a4878b5635c', null, null, '10.4.82.45', 'cheyigou', '2017-08-26 19:15:17', '2017-09-25 19:15:17');
+INSERT INTO `user_ticket` VALUES ('605', 'b95200752dfa4061804265c5b5d40019', '2e37e52788a15a8df91e9c679279a382', null, null, '10.4.82.45', 'cheyigou', '2017-08-26 19:17:11', '2017-09-25 19:17:11');
+INSERT INTO `user_ticket` VALUES ('606', '7f01f2338a844b16ad0cc3fe75a7eb75', 'fd2d8ddd4a91d34cc54f7b5eae61a636', null, null, '10.4.82.45', 'cheyigou', '2017-08-26 19:17:43', '2017-09-25 19:17:43');
+INSERT INTO `user_ticket` VALUES ('613', '95359d350572419386c183a6dad6d004', 'a8ef1a78df54f3af3e143e57b434cef4', null, null, '10.4.82.45', 'cheyigou', '2017-08-28 10:22:57', '2017-09-27 10:22:57');
+INSERT INTO `user_ticket` VALUES ('636', '0fcf26565c5c483d8e1ef1a8d85eda4e', '445e3fbf7886f8638d4e9c814d193f41', null, null, '10.4.82.45', 'cheyigou', '2017-08-28 15:06:55', '2017-09-27 15:06:55');
+INSERT INTO `user_ticket` VALUES ('765', '3097253152984ec1836041e61e7a1981', '34ba34186ac8af6336adad2aee640ee5', null, null, '10.4.82.45', 'cheyigou', '2017-08-28 18:51:48', '2017-09-27 18:51:48');
+INSERT INTO `user_ticket` VALUES ('815', 'f2ef768835654f18a2a1d6e80e5f6112', '6f3198d928eaf3a6d9067f5c6009c8e3', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 11:16:17', '2017-09-28 11:16:17');
+INSERT INTO `user_ticket` VALUES ('821', 'b48cea6b32604cbe9dfa2d47a7404768', '814717827f4554fc4ae1e1b2ae258a66', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 11:24:36', '2017-09-28 11:24:36');
+INSERT INTO `user_ticket` VALUES ('826', '6e4649bcd0de4e3b8351540974886b57', '86cd8172fda6d94647ee7de45222d9a2', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 11:47:15', '2017-09-28 11:47:15');
+INSERT INTO `user_ticket` VALUES ('837', '6ef836e8028e42cc8ffd3e681ac31a17', '9bfd5d079c9bc2f1d272f530621c9445', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 14:11:46', '2017-09-28 14:11:46');
+INSERT INTO `user_ticket` VALUES ('843', '2610fbc93a4844f0849cac5468cc1dee', '1be8c9f6e8da3f43622db3b5df52088b', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 14:45:35', '2017-09-28 14:45:35');
+INSERT INTO `user_ticket` VALUES ('846', 'ae029a0104c1412b9d039d8ea83f2391', '2c7bf6bf03ebec336a74d197e78f015e', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 14:52:07', '2017-09-28 14:52:07');
+INSERT INTO `user_ticket` VALUES ('848', '7e72591f521941379f00b26d669a70c5', 'add601ddbb690704bb6fce1e076d6e81', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 15:05:40', '2017-09-28 15:05:40');
+INSERT INTO `user_ticket` VALUES ('857', 'ba7e032efd1b4c2fb32563782f3bc98b', '97fcff3f7e2e35f81def3f7a82416fd4', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 16:39:52', '2017-09-28 16:39:52');
+INSERT INTO `user_ticket` VALUES ('862', '17ff8ebea4db4fe281104a87ef736b03', 'fccf2705a772b8c99ccac923f9e5decc', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 17:31:23', '2017-09-28 17:31:23');
+INSERT INTO `user_ticket` VALUES ('866', 'cfb3f385691948efba146e2dd3307dd0', '21370165a826ccc5ca0d786522775ef5', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 17:40:27', '2017-09-28 17:40:27');
+INSERT INTO `user_ticket` VALUES ('867', '138400c410fa46c4b37629d55bebc3ce', '74d1b1414d840de4380e23db8229e476', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 17:54:39', '2017-09-28 17:54:39');
+INSERT INTO `user_ticket` VALUES ('868', 'dc16b2236b654b929599de44714323d5', 'f26a90bc4cc27b1fbcd83e0081fb004a', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 19:12:55', '2017-09-28 19:12:55');
+INSERT INTO `user_ticket` VALUES ('869', '9265c7e747984cb1874dfed0a16af6cd', 'f3a2e2dc6cf7a51ce4d4e3ff6c1335cc', null, null, '10.4.82.45', 'cheyigou', '2017-08-29 19:29:16', '2017-09-28 19:29:16');
+INSERT INTO `user_ticket` VALUES ('871', '1934df7745814303a1f32cf4c6f436ef', 'e51180d915e6e9207fc476207e6b4f91', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 10:47:42', '2017-09-29 10:47:42');
+INSERT INTO `user_ticket` VALUES ('872', '62273ce651184b4988171f99bf3f41af', '675562538b02769472421be862310697', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 11:00:25', '2017-09-29 11:00:25');
+INSERT INTO `user_ticket` VALUES ('873', '988649d65a7d44838cc8f93c931ecf00', '2193cb5e6963023f1ebb2f1273c65f28', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 11:03:51', '2017-09-29 11:03:51');
+INSERT INTO `user_ticket` VALUES ('875', '276cd5373ea0463ea73b36713e986bf1', '221590aa0f02c652b129904ecdbf8b3c', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 11:31:13', '2017-09-29 11:31:13');
+INSERT INTO `user_ticket` VALUES ('876', 'b23f83e640d14ea1b295fe7b7f0bf368', '6c7d292a03c061eda4d75d6de8f4a8fc', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 12:08:45', '2017-09-29 12:08:45');
+INSERT INTO `user_ticket` VALUES ('877', '43bb8b1c1ffa449186e396f90c6b619a', '28f97f3df7d6478e4a4870120eebe5e9', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 14:36:34', '2017-09-29 14:36:34');
+INSERT INTO `user_ticket` VALUES ('878', '6b2cb3b0474243338bcab0a57bb74932', '03be9912a68d696e43cc6bbba2cfc135', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 14:46:26', '2017-09-29 14:46:26');
+INSERT INTO `user_ticket` VALUES ('879', 'f038c4344dd04b81a9964ad64f51bcfa', '4725fbb5e5167df9247b0e2d6eda91fe', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 15:51:11', '2017-09-29 15:51:11');
+INSERT INTO `user_ticket` VALUES ('880', '72ee6a2684ec46f9a84b0381bebe6c76', '28c922b555837686b75de39fef8e3d94', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 16:05:45', '2017-09-29 16:05:45');
+INSERT INTO `user_ticket` VALUES ('881', 'e14a99a79819407e9314b561b08b3b57', '2cc3b10da770041c3f38dfbe62087c90', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 16:16:32', '2017-09-29 16:16:32');
+INSERT INTO `user_ticket` VALUES ('882', 'e352718d5e8c4644b0a9f9fe73ef0e5b', '9d34be4fe3b8315547b0aef8a7d8cbae', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 16:16:59', '2017-09-29 16:16:59');
+INSERT INTO `user_ticket` VALUES ('884', '9869de8aaa794e8eb372d62c7dcd6d03', '736d395a3ff66b93c5d163df8723db48', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 16:29:50', '2017-09-29 16:29:50');
+INSERT INTO `user_ticket` VALUES ('885', 'abc426c0f65746119decce8aac6b7539', 'ec08e4d08be38eb24545adf42fc33ac9', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 16:30:14', '2017-09-29 16:30:14');
+INSERT INTO `user_ticket` VALUES ('886', '6ffafcad72294ad7b18f8d4151a5710e', '7893ee50deb497fe629291c3f9de2699', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 17:09:40', '2017-09-29 17:09:40');
+INSERT INTO `user_ticket` VALUES ('887', '9130b516c1844f72940b1fefafe6e4ff', '68ec6b60644246bfc29440e9ef78f94e', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 17:18:07', '2017-09-29 17:18:07');
+INSERT INTO `user_ticket` VALUES ('888', '1ce7a4cdac29451fbc9309dc1f661252', '7c184d2da09db931a7432e3fc3ee0168', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 17:20:00', '2017-09-29 17:20:00');
+INSERT INTO `user_ticket` VALUES ('889', 'd3b55b794c1b48f089bb985b659b223c', 'bbb2695215c571bc84abba2fd487d9e5', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 17:20:20', '2017-09-29 17:20:20');
+INSERT INTO `user_ticket` VALUES ('890', '409a11c4a8294ce797ba75b0572ca649', '765fdf64afffaf99d64f628990081fb6', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 17:25:29', '2017-09-29 17:25:29');
+INSERT INTO `user_ticket` VALUES ('891', 'd6b2e207654945748b39c6d9524c28c0', 'e6a203ed7080fa3bfff2945b4062be5b', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 17:46:03', '2017-09-29 17:46:03');
+INSERT INTO `user_ticket` VALUES ('892', 'f8c22fcc370749f3abf4f609efc06e92', 'd43167a938607d728872ad26fb9d7137', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:00:24', '2017-09-29 18:00:24');
+INSERT INTO `user_ticket` VALUES ('893', 'af3226d00ea64cb081ee320f9cbf0680', '89a72128931289ab7d3a358557c95210', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:04:42', '2017-09-29 18:04:42');
+INSERT INTO `user_ticket` VALUES ('894', '2cd4976f2c174b789b48a50afc7a4eec', '005fb29da961e4db041a04e0d667ee88', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:04:55', '2017-09-29 18:04:55');
+INSERT INTO `user_ticket` VALUES ('895', 'd8bec9ccd3cc42b395048e4f6e489b50', '5c6b775778e729f7e6285d600f90f351', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:06:56', '2017-09-29 18:06:56');
+INSERT INTO `user_ticket` VALUES ('896', '93a9da014541406ebcbb9c54507a1f25', '66a3bef423ba76e46d6c669d0030b85c', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:17:25', '2017-09-29 18:17:25');
+INSERT INTO `user_ticket` VALUES ('897', '82cc587f09b7422d885bb6c244eb0547', 'ec6676d1e4110fc121f2f384d9e98001', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:53:19', '2017-09-29 18:53:19');
+INSERT INTO `user_ticket` VALUES ('898', '62d06617bb61473b8a6704835091e928', '94124331459ab15a2c3b1869b4eee1ba', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:55:27', '2017-09-29 18:55:27');
+INSERT INTO `user_ticket` VALUES ('899', '579d892d93494599a638cf797950d955', '46e0e7d7e86f1c1753728831bc039afd', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 18:58:28', '2017-09-29 18:58:28');
+INSERT INTO `user_ticket` VALUES ('900', 'ffca3a3e9df2456d80f8b41d162b0c51', '7edaacbfb40ccf6909797606b119dcbc', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 19:02:58', '2017-09-29 19:02:58');
+INSERT INTO `user_ticket` VALUES ('901', 'c8cbfd88e3df4cadb6e4ad64782ebff6', '60c6f929ca6db4edc93a858049eb798f', null, null, '10.4.82.45', 'cheyigou', '2017-08-30 19:03:43', '2017-09-29 19:03:43');
+INSERT INTO `user_ticket` VALUES ('902', '754d5e1e05854c538f5ca5997c968f40', 'dc04f9c1202bdfb22d9623a30999f758', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 10:23:04', '2017-09-30 10:23:04');
+INSERT INTO `user_ticket` VALUES ('903', '284e0f6b161743dbb4fbf23a65a9aab1', 'd8b87500e8395fc26c96b9c352c0093f', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 10:23:26', '2017-09-30 10:23:26');
+INSERT INTO `user_ticket` VALUES ('904', 'b028b415e0b74b8a919f5469889b8051', 'ac57e680376cf1194668b7f96a153c5e', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 10:38:50', '2017-09-30 10:38:50');
+INSERT INTO `user_ticket` VALUES ('905', 'f2e46902ac3d48f4a5267c829f530f55', 'cbd0f6643b496b51a2c000eb2b62c298', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 11:14:32', '2017-09-30 11:14:32');
+INSERT INTO `user_ticket` VALUES ('906', 'ca203c5044b7431680fe4e17bf571f9f', 'b086f081eed0102c1284d02bb88942f2', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 12:38:35', '2017-09-30 12:38:35');
+INSERT INTO `user_ticket` VALUES ('907', '8453a07a762e4d68834d485e6d55b500', 'a0d427af09c0df5955e8b13b3f57ec37', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 14:39:16', '2017-09-30 14:39:16');
+INSERT INTO `user_ticket` VALUES ('908', '54b4cde6eeb5493c9842623bfd78f457', 'aa1581db821d460afe7dd7f05bc0db66', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 14:41:12', '2017-09-30 14:41:12');
+INSERT INTO `user_ticket` VALUES ('909', 'c1a4838455164073816fbb78ac270e72', '60578e0c75cfd2a15752005db59365d5', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 16:23:39', '2017-09-30 16:23:39');
+INSERT INTO `user_ticket` VALUES ('910', 'dc24f7e489814132b71a51b4eaf97e5c', '63162de38ef913827a5a94d986a41624', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 17:15:56', '2017-09-30 17:15:56');
+INSERT INTO `user_ticket` VALUES ('911', '3e816a0c66f24de99fc03132414ccbb1', 'f7fd7f53e34d89c2fb6836f20b1bc08e', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 17:53:50', '2017-09-30 17:53:50');
+INSERT INTO `user_ticket` VALUES ('912', '45749c19ff694900ad2777c126eee6cd', '400bb21c2f0ac1b9f83846fbf140bb1d', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 18:42:31', '2017-09-30 18:42:31');
+INSERT INTO `user_ticket` VALUES ('913', '9b05db8ed11d489eba23e5380019fca0', '626e0dc39df3442192b346b8fbaced49', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 18:54:45', '2017-09-30 18:54:45');
+INSERT INTO `user_ticket` VALUES ('914', 'b376d8ced7ad4e63a1c54f47b22c1a37', 'e0ecb81ed635d05259110bca4e60e7f8', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 20:04:54', '2017-09-30 20:04:54');
+INSERT INTO `user_ticket` VALUES ('915', '014e371dcf084ccf818ab5081599de39', 'fe5503f3c2315800074c2f68c23fa14c', null, null, '10.4.82.45', 'cheyigou', '2017-08-31 21:13:12', '2017-09-30 21:13:12');
+INSERT INTO `user_ticket` VALUES ('917', 'c92486bd532e404387058afafd6daa21', 'd26133ef0276ca867b768ee4ff2a66c3', null, null, '10.4.82.45', 'cheyigou', '2017-09-01 11:12:09', '2017-10-01 11:12:09');
+INSERT INTO `user_ticket` VALUES ('918', '7507b49b8e364c63935a18b7bbd43cc6', '24aac3e26e5c0ba32f5ead4c0037a3b8', null, null, '10.4.82.45', 'cheyigou', '2017-09-01 11:39:26', '2017-10-01 11:39:26');
+INSERT INTO `user_ticket` VALUES ('919', '51e827f61a23418d90602b1c4628ac14', 'fbb241c35053d41e6c3adb51c9fed197', null, null, '10.4.82.45', 'cheyigou', '2017-09-01 15:31:23', '2017-10-01 15:31:23');
+INSERT INTO `user_ticket` VALUES ('920', 'c422471cc43f4e58870fd5a4a3ef98f6', '445b47ec6eb510ae61204ec0fb3d743b', null, null, '10.4.82.45', 'cheyigou', '2017-09-01 15:32:08', '2017-10-01 15:32:08');
+INSERT INTO `user_ticket` VALUES ('921', '6d93ab550ff14d82afb086078cd75009', 'd70cf30b8d84d314e08fb249bd58162a', null, null, '10.4.82.45', 'cheyigou', '2017-09-05 16:01:17', '2017-10-05 16:01:17');
+INSERT INTO `user_ticket` VALUES ('922', '8f932fdf2c4648d3a743fdeced3ac82b', 'd683d8f5c913eb38ff1fed7e99942bc4', null, null, '10.4.82.45', 'cheyigou', '2017-09-05 18:08:54', '2017-10-05 18:08:54');
+INSERT INTO `user_ticket` VALUES ('923', '873ba87d61ec411ca45178c4e6084dc9', '7676ab5f63e9c16c25bd6757277b9bb7', null, null, '10.4.82.45', 'cheyigou', '2017-09-05 18:22:19', '2017-10-05 18:22:19');
+INSERT INTO `user_ticket` VALUES ('924', 'c3b625ff15bc4f7da1c741728056cc1b', '808659bf9841b044515c3fbe39d84338', null, null, '10.4.82.45', 'cheyigou', '2017-09-05 18:22:52', '2017-10-05 18:22:52');
+INSERT INTO `user_ticket` VALUES ('925', '924e7e8342324bd7b3474834bf302dc1', 'a1b592f31dfe2a7a6197cf30d1595c14', null, null, '10.4.82.45', 'cheyigou', '2017-09-05 18:47:59', '2017-10-05 18:47:59');
+INSERT INTO `user_ticket` VALUES ('926', '68b60c9d4cd0461ba42d3af5c73bcaff', 'dd92d394abf1ac8e234a2a54b6c4e92a', null, null, '10.4.82.45', 'cheyigou', '2017-09-06 16:59:44', '2017-10-06 16:59:44');
+INSERT INTO `user_ticket` VALUES ('927', 'b5868f61915c4c0596bf72088bbd1271', 'e7da5e02a223a17ce9be5d0d04c1795c', null, null, '10.4.82.45', 'cheyigou', '2017-09-06 18:17:34', '2017-10-06 18:17:34');
+INSERT INTO `user_ticket` VALUES ('928', 'fc15fbd35e7e459fb75d84631d18df67', '09e6f7a71ac4f089bc5e88bde89fa07e', null, null, '10.4.82.45', 'cheyigou', '2017-09-06 18:21:01', '2017-10-06 18:21:01');
+INSERT INTO `user_ticket` VALUES ('929', 'aadc1fede0e6494b91d95bf06821db7d', 'a38b26f43d07980a9317c6e10345b87b', null, null, '10.4.82.45', 'cheyigou', '2017-09-06 18:21:18', '2017-10-06 18:21:18');
+INSERT INTO `user_ticket` VALUES ('930', '42f406e5b6574e7da303b91c5b4b8627', '2b30e1bae5f51a9e0e86218b8042f26d', null, null, '10.4.82.45', 'cheyigou', '2017-09-06 18:25:34', '2017-10-06 18:25:34');
+INSERT INTO `user_ticket` VALUES ('931', '1cdaeb45216d4fcda18f9dde6920183d', 'dc7a00a0773c404c56e6bbfd43e3901f', null, null, '10.4.82.45', 'cheyigou', '2017-09-06 19:48:54', '2017-10-06 19:48:54');
+INSERT INTO `user_ticket` VALUES ('932', 'd1986a338a5648c58b2f0bf6452b6e83', '8001b7cb2bac2b9ae49641bd615d6e6e', null, null, '10.4.82.45', 'cheyigou', '2017-09-07 10:38:51', '2017-10-07 10:38:51');
+INSERT INTO `user_ticket` VALUES ('933', '0ce4c840ad8c4ed8a5e146771619b21c', '938738872bcce7cea86fe537202added', null, null, '10.4.82.45', 'cheyigou', '2017-09-07 10:49:03', '2017-10-07 10:49:03');
+INSERT INTO `user_ticket` VALUES ('934', 'f444d7f3a89e43b894b9982a2e6ed33d', '45be5eb56b7db069bd7aaa6ab73048af', null, null, '10.4.82.45', 'cheyigou', '2017-09-07 11:07:20', '2017-10-07 11:07:20');
+INSERT INTO `user_ticket` VALUES ('935', 'b5631d73b4ed4395bdcda8260e6edf94', '6b0fd60965bb706721dca5b535353eb4', null, null, '10.4.82.45', 'cheyigou', '2017-09-07 11:08:00', '2017-10-07 11:08:00');
+INSERT INTO `user_ticket` VALUES ('936', '43925b7760b841fdaae47b359340cd22', '7faea0ca73d5d0d1b00c3f81729b1c0d', null, null, '10.4.82.45', 'cheyigou', '2017-09-07 11:41:26', '2017-10-07 11:41:26');
+INSERT INTO `user_ticket` VALUES ('937', '96bc5f2df59944c5a0004a5e03bf0912', '84fbe62a6e1dc44538b936717937f57d', null, null, '10.4.82.45', 'cheyigou', '2017-09-08 12:08:47', '2017-10-08 12:08:47');
+INSERT INTO `user_ticket` VALUES ('938', '58f8e5cafdac476db3245709ad5e3265', '053cb56f24a8a66fe3548c81d9ac4489', null, null, '10.4.82.45', 'cheyigou', '2017-09-08 12:38:30', '2017-10-08 12:38:30');
+INSERT INTO `user_ticket` VALUES ('939', '398a82de086246ecbed1d6240d71d12b', 'c577ad71245a052609af844a0c231d54', null, null, '10.4.82.45', 'cheyigou', '2017-09-08 12:39:40', '2017-10-08 12:39:40');
+INSERT INTO `user_ticket` VALUES ('940', 'c30d66784dbd44db86060c7f68c21207', '37133cd09cdb35e1198a2dc290c69e0b', null, null, '10.4.82.45', 'cheyigou', '2017-09-08 16:47:17', '2017-10-08 16:47:17');
+INSERT INTO `user_ticket` VALUES ('941', '49ff688695fb4b67aa237d32fab65ada', '697a0918dfd1b124d1d87b05b401cf5d', null, null, '10.4.82.45', 'cheyigou', '2017-09-11 10:45:02', '2017-10-11 10:45:02');
+INSERT INTO `user_ticket` VALUES ('942', '91cfdb70411a42999913d15316411981', 'd3ecb645a28414bab400eae5febfdd91', null, null, '10.4.82.45', 'cheyigou', '2017-09-11 11:02:50', '2017-10-11 11:02:50');
+INSERT INTO `user_ticket` VALUES ('944', '0346912df0924bf88f1b13785a7d40cb', '9b407f5bac9f38dfa21491721ef35b51', null, null, '10.4.82.45', 'cheyigou', '2017-09-15 15:01:04', '2017-10-15 15:01:04');
+INSERT INTO `user_ticket` VALUES ('945', '3e65bf106b63490cb8a52a3251eba077', 'fb28bce2cbde970ab930fefd58448138', null, null, '10.4.82.45', 'cheyigou', '2017-09-15 15:01:24', '2017-10-15 15:01:24');
+INSERT INTO `user_ticket` VALUES ('946', '0f75cba8c37c472e94604df8580f96bd', 'c70214cd1e7d2afb54bf273da1b27dca', null, null, '10.4.82.45', 'cheyigou', '2017-09-15 15:03:33', '2017-10-15 15:03:33');
+INSERT INTO `user_ticket` VALUES ('948', 'b758c6189c7e4791a64de8b94f18cd66', '047130cf585a13172e696501ae594c97', null, null, '10.4.82.45', 'cheyigou', '2017-09-15 15:50:41', '2017-10-15 15:50:41');
+INSERT INTO `user_ticket` VALUES ('950', '4e1c69b8a00a40659ffc825ca8b07f45', 'e7edd5b2d932b062eb44671f0842682a', null, null, '10.4.82.45', 'cheyigou', '2017-09-15 17:16:08', '2017-10-15 17:16:08');
+INSERT INTO `user_ticket` VALUES ('951', '5d80877a5ed0407cab907efd7242337b', '75a4568b42c7442ac861361417754861', null, null, '10.4.82.45', 'cheyigou', '2017-09-15 17:19:20', '2017-10-15 17:19:20');
+INSERT INTO `user_ticket` VALUES ('952', 'c00e708057194a148f1b15b8b0f68ba5', 'a6eb813bd39c5b72b1cd581fd5841331', null, null, '10.4.82.45', 'cheyigou', '2017-09-18 09:45:10', '2017-10-18 09:45:10');
+INSERT INTO `user_ticket` VALUES ('953', '05c62a692a624a318bf2ca8be40e2d94', 'eed1e27e557c66dc3090ad6cae3c2ba0', null, null, '10.4.81.20', 'cheyigou', '2017-09-18 15:37:08', '2017-10-18 15:37:08');
+INSERT INTO `user_ticket` VALUES ('954', 'd6be353c7247483ca018c8634bacfe81', '12622f177f11c67f3a0be218c85903a3', null, null, '10.4.82.45', 'cheyigou', '2017-09-18 15:41:44', '2017-10-18 15:41:44');
+INSERT INTO `user_ticket` VALUES ('955', 'ccd25756bad44c24b54f62a84ea218c4', '687bd0aab0bd30c09aa7657711dae906', null, null, '10.4.81.20', 'cheyigou', '2017-09-18 17:56:18', '2017-10-18 17:56:18');
+INSERT INTO `user_ticket` VALUES ('956', '03408d13398d4884a305a29c90299f8b', '1dd80094033e60eea455fce51b402cec', null, null, '10.4.82.45', 'cheyigou', '2017-09-18 17:56:59', '2017-10-18 17:56:59');
+INSERT INTO `user_ticket` VALUES ('957', 'e6b1ef1316a34b96b1638324e9aa54a3', 'c8c360deabdae192733e8a4a120ffcf1', null, null, '10.4.82.45', 'cheyigou', '2017-09-19 16:14:11', '2017-10-19 16:14:11');
+INSERT INTO `user_ticket` VALUES ('958', '0c7590f5c6134d6e89343c15dfe4f5e7', '37500a24d558281087c206c2fd67c9a6', null, null, '10.4.82.45', 'cheyigou', '2017-09-19 16:40:09', '2017-10-19 16:40:09');
+INSERT INTO `user_ticket` VALUES ('959', 'cad1e0809c8942dcb320824cc12a6022', '9893e6d7a5ae1211b0689d0f9313cfb9', null, null, '10.4.82.45', 'cheyigou', '2017-09-19 18:15:59', '2017-10-19 18:15:59');
+INSERT INTO `user_ticket` VALUES ('960', 'deffe0583e23490db75c120937f9d067', 'c9ae6072668418bb8403d3ee394eec0e', null, null, '10.4.82.45', 'cheyigou', '2017-09-19 18:21:19', '2017-10-19 18:21:19');
+INSERT INTO `user_ticket` VALUES ('961', '6b021318e0fa436dab9abb44ef7ac6e7', '6c5d460e232435958adbe8b46a47e523', null, null, '10.4.82.45', 'cheyigou', '2017-09-19 18:25:43', '2017-10-19 18:25:43');
+INSERT INTO `user_ticket` VALUES ('962', '7dcfaafe42d34db1b98b7566957cb33e', '1a50224d309dc3b48c3ddbb46c174e5e', null, null, '10.4.82.45', 'cheyigou', '2017-09-19 19:12:22', '2017-10-19 19:12:22');
+INSERT INTO `user_ticket` VALUES ('963', '9bba7361e35b445ba65cabf4d7dccd4b', 'eacc9be41c7d065edb3b7def8a8a07a3', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 15:47:15', '2017-10-20 15:47:15');
+INSERT INTO `user_ticket` VALUES ('964', 'ef7e4b2ed42c49fbba9e8cee9dfdd15b', '1fb827113e7af95ba2ce1012632336e0', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 16:48:47', '2017-10-20 16:48:47');
+INSERT INTO `user_ticket` VALUES ('965', 'cbeda9bedfa84a8a963706e137c6c624', 'd84b376f7f539bb7f08cbb8f6aee69ff', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:12:13', '2017-10-20 17:12:13');
+INSERT INTO `user_ticket` VALUES ('966', '681b67f9309b428bae6b87523f45579a', '7084ecd7ca07334ba0851b7d719a0974', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:24:27', '2017-10-20 17:24:27');
+INSERT INTO `user_ticket` VALUES ('967', 'e010f07d260a4aa39a62cb09f447e1ed', '06a1d70de36057c8d6360fa00850cd91', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:32:35', '2017-10-20 17:32:35');
+INSERT INTO `user_ticket` VALUES ('968', '3709f061969b4c92902dc6d18bf7de4b', '4584388b42346199ffb2511a293a1d9a', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:40:55', '2017-10-20 17:40:55');
+INSERT INTO `user_ticket` VALUES ('969', '7cf22c45c4b942878a63e39ef57ea4eb', '5de2181efb7157c98a65c73188aa4ef6', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:42:53', '2017-10-20 17:42:53');
+INSERT INTO `user_ticket` VALUES ('970', '247845c86a1447cfb05183620a9281c6', 'fad2dea137c1ecd84193498b4bb57cef', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:48:25', '2017-10-20 17:48:25');
+INSERT INTO `user_ticket` VALUES ('971', '0d7747b2932e4738824818cfcdadeec5', '31bbaf1ba5c8e8a360abfdf0d8c8472a', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:51:53', '2017-10-20 17:51:53');
+INSERT INTO `user_ticket` VALUES ('972', '98a2e13b65c74f3c98088d5caa7eabc9', 'aab8f1102cb29c0f7c0afb24ffa31011', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 17:55:10', '2017-10-20 17:55:10');
+INSERT INTO `user_ticket` VALUES ('973', 'ccdea8c278d84b47ab13ce75c6734d51', '133bbc8b4a1af24ea53d2c7b23725a83', null, null, '10.4.82.45', 'cheyigou', '2017-09-20 18:17:29', '2017-10-20 18:17:29');
+INSERT INTO `user_ticket` VALUES ('974', '665de8c7b45749dfae696ede8fd5d057', 'c74256d7be114cc3f8168095eab48694', null, null, '10.4.82.45', 'cheyigou', '2017-09-23 14:49:25', '2017-10-23 14:49:25');
+INSERT INTO `user_ticket` VALUES ('975', 'f86360cd62c4451c8e306bf8e1f433fb', '99c38616ba75fe370cd09fbb90b7529a', null, null, '10.4.82.55', 'cheyigou', '2017-10-17 17:47:28', '2017-11-16 17:47:28');
+INSERT INTO `user_ticket` VALUES ('976', 'c1a63e23a1e3470c84f1db7481648579', '55e0007a79b30a62c586e03bc032e98f', null, null, '10.4.82.55', 'cheyigou', '2017-10-17 17:49:26', '2017-11-16 17:49:26');
+INSERT INTO `user_ticket` VALUES ('977', 'c8e55303e0cd40f6934a8335ecf5e690', '0937e03c78b853e931380beb66ecb033', null, null, '10.4.82.55', 'cheyigou', '2017-10-18 10:55:05', '2017-11-17 10:55:05');
+INSERT INTO `user_ticket` VALUES ('980', 'e23f288df04e4246b78e0a89f101a6a7', 'cbe92fdb12fc2342f79de1884ff28959', null, null, '10.4.82.55, 172.16.100.1', 'cheyigou', '2017-10-24 17:02:41', '2017-11-23 17:02:41');
+INSERT INTO `user_ticket` VALUES ('986', 'c4ea7439fff044a9acbb7cee5123ea01', '2dddc3ac1f1c3b557c077f3d821e8f22', null, null, '10.4.82.45', 'cheyigou', '2017-10-25 15:29:23', '2017-11-24 15:29:23');
+INSERT INTO `user_ticket` VALUES ('989', '329ea956e932447ab6bb762789223134', '22bf1c587f0b8e11814f7bdf1f9ded32', null, null, '10.4.82.45', 'cheyigou', '2017-10-25 15:50:49', '2017-11-24 15:50:49');
+INSERT INTO `user_ticket` VALUES ('993', '6c28e77032dd40edbf1b27e1e6383b70', 'c213bc5154ba37916fb100f52801133d', null, null, '10.4.82.45', 'cheyigou', '2017-10-26 16:01:10', '2017-11-25 16:01:10');
+INSERT INTO `user_ticket` VALUES ('995', 'aed055667bf14847a99964cc7adb2c8a', 'a25de32e6b0a42d5fb32546e70749afd', null, null, '10.4.82.55, 172.16.100.1', 'cheyigou', '2017-10-30 14:53:04', '2017-11-29 14:53:04');
+INSERT INTO `user_ticket` VALUES ('997', '8f26a060fee04749a0f069b8d99da3f0', 'da1ca1ca661f521cc624cc6d3e3f09a6', null, null, '10.4.82.45', 'cheyigou', '2017-10-31 20:07:31', '2017-11-30 20:07:31');
+INSERT INTO `user_ticket` VALUES ('998', '13e487accfa84766be5c3d9293fafc4a', 'ede6245fb34c9917f8b388a51a63aaa7', null, null, '10.4.82.45', 'cheyigou', '2017-11-09 10:56:44', '2017-12-09 10:56:44');
+INSERT INTO `user_ticket` VALUES ('1021', 'd92789f2d51d4fa29a92d2b78590a717', 'efab4f97b0c44e2105f549c0a25bc58b', null, null, '10.4.82.42', 'jv_saas', '2017-11-15 17:26:48', '2017-12-15 17:26:48');
+INSERT INTO `user_ticket` VALUES ('1023', '364baa2760254d68bb2eb09145312474', '611ba9b16876246fb328c7cc09de2d7f', null, null, '10.4.82.42', 'jv_saas', '2017-11-15 17:41:38', '2017-12-15 17:41:38');
+INSERT INTO `user_ticket` VALUES ('1024', '0c54f439597242798f531715af3333c2', 'a62b36abe0736e2109dce878cfe18454', null, null, '10.4.82.42', 'jv_saas', '2017-11-15 17:46:41', '2017-12-15 17:46:41');
+INSERT INTO `user_ticket` VALUES ('1027', '918cb25d050b460397325e6a48999d4e', '289bf5c9c6633661ee83d4664564b647', null, null, '10.4.82.42', 'jv_saas', '2017-11-15 17:49:24', '2018-12-15 17:49:24');
+INSERT INTO `user_ticket` VALUES ('1030', '693e1c2a0b9e474aaef99f0783600648', 'aec15e674834a39b2acf832bd7a4ba79', null, null, '10.4.82.42', 'jv_saas', '2017-11-16 11:41:59', '2017-12-16 11:41:59');
+INSERT INTO `user_ticket` VALUES ('1034', 'd7f51205385a49439fab52e17d18aa1b', '664bbf07d05c2e2a4f2db1932a59e5cc', null, null, '10.4.82.42', 'jv_saas', '2017-11-16 18:27:44', '2018-12-04 20:19:00');
+INSERT INTO `user_ticket` VALUES ('1046', '66ed93276fd9465a982da14a7736ed2d', 'cf7dbe43eede5647504721a9474d29fd', null, null, '10.4.82.22, 172.16.100.1', 'jv_saas', '2017-11-17 18:00:20', '2017-12-17 18:00:20');
+INSERT INTO `user_ticket` VALUES ('1050', '8c90f5b6de5142daa7788583525c869f', 'afaa108567b92e58d196b06d6f2720bc', null, null, '10.4.82.22, 172.16.100.1', 'jv_saas', '2017-11-19 10:21:12', '2017-12-19 10:21:12');
+INSERT INTO `user_ticket` VALUES ('1052', '70bcd6d82f3348bcba216f5921339ff3', 'eaff00c9e6ffba4cf3d8e2cda7c4d7fb', null, null, '10.4.82.22, 172.16.100.1', 'jv_saas', '2017-11-19 14:22:19', '2017-12-19 14:22:19');
+INSERT INTO `user_ticket` VALUES ('1053', 'e6e06485c4e04c18adba6f478e56d5f1', 'a97eea35eae80aa13c85afbbb311e7c7', null, null, '10.4.82.22, 172.16.100.1', 'jv_saas', '2017-11-19 14:50:32', '2017-12-19 14:50:32');
+INSERT INTO `user_ticket` VALUES ('1059', 'b677b7c7820941ecb092e96d0eb1fe7f', 'b2752ddaaa79a8d38f2f6695a9e93fec', null, null, '10.4.82.42', 'jv_saas', '2017-11-19 16:21:59', '2019-12-19 16:21:59');
+INSERT INTO `user_ticket` VALUES ('1060', 'f549e0a33c1042fba0bdf0cc6a54a493', '2398eb9c0bee4b4d3c401528e5f42758', null, null, '10.4.82.42', 'jv_saas', '2017-11-19 16:24:00', '2017-12-19 16:24:00');
+INSERT INTO `user_ticket` VALUES ('1064', 'b90bf9cd5a65401ca7a1c48e0cbcb360', '96ef91bb909330f748eb7a4eb2501411', null, null, '10.4.82.42', 'jv_saas', '2017-11-23 14:23:28', '2017-12-23 14:23:28');
+INSERT INTO `user_ticket` VALUES ('1065', '7f3e7446a1fa4f80a43679348224abbf', 'd6dec7f1cedbdd0a85804381d761e0cd', null, null, '10.4.82.42', 'jv_saas', '2017-11-23 14:23:42', '2017-12-23 14:23:42');
+INSERT INTO `user_ticket` VALUES ('1066', '3fcca59ff24f4d328e226bbfcb6afdd1', 'ec4f798999e8f60fd3a0a6c915035d7d', null, null, '10.4.82.42', 'jv_saas', '2017-11-23 19:34:00', '2017-12-23 19:34:00');
+INSERT INTO `user_ticket` VALUES ('1067', '2e5678a991644d42be85aa4842d5d81d', '9041e620e2cb808e86bb3fe8e55dc4a7', null, null, '10.4.82.42', 'jv_saas', '2017-11-23 19:35:39', '2017-12-23 19:35:39');
+INSERT INTO `user_ticket` VALUES ('1068', '03e74e92d7d6468c97adb0b51ad8a386', '56334c92d4a8ea98def7808c50451696', null, null, '10.4.82.22, 172.16.100.1', 'jv_saas', '2017-11-27 17:23:47', '2017-12-27 17:23:47');
+INSERT INTO `user_ticket` VALUES ('1070', '310be168ef4340e6af1f6e5525d52fa2', '860b2adcbf301963cacbbe1f79d43ea3', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2017-11-29 14:55:57', '2017-12-01 14:50:03');
+INSERT INTO `user_ticket` VALUES ('1072', '5fe208a4561b4959ace3b68ab0df534c', '944aa0d0a9235b3995fa50e5cb544859', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2017-11-30 19:40:34', '2017-12-12 19:40:34');
+INSERT INTO `user_ticket` VALUES ('1079', 'bde6c23270ff4d69877846c5ff20e116', '42979e99f379ff729978b63628c5f53c', null, null, '10.2.52.73', 'renren_market', '2017-12-06 10:22:19', '2018-07-05 10:22:19');
+INSERT INTO `user_ticket` VALUES ('1082', 'f4e2f0b7ac27485fa2b27f92001ec72b', '33e4e5c39e90fb5164b94931c29eef75', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-07 14:05:57', '2018-01-06 14:05:57');
+INSERT INTO `user_ticket` VALUES ('1084', 'c72e6fab701349e196c9d39749d6bbe3', 'bc58e75ef5a8ded20a80c906e473d228', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-11 14:58:08', '2018-01-10 14:58:08');
+INSERT INTO `user_ticket` VALUES ('1085', 'd20ad669ac72449d8d28b11385bb89cd', '427879c5b86dd379880caa633fbf3573', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-11 15:53:05', '2018-01-10 15:53:05');
+INSERT INTO `user_ticket` VALUES ('1087', '4ff374a3d0df4bc0b2db3f7e98f580c0', 'e80c6e5dc95a617b60f399d540ef83a1', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-11 18:29:15', '2018-01-10 18:29:15');
+INSERT INTO `user_ticket` VALUES ('1089', '4d96eca8d89e4bbbb4ae24ac5fe46ff3', '1c165afa1b93ad902d15585d5b43217c', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-12 15:11:45', '2018-01-11 15:11:45');
+INSERT INTO `user_ticket` VALUES ('1091', '1e2eed8d1f4645cb9862ecd8c3832280', '300472d91393a3bc50c8d691e832638d', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-12 15:59:04', '2018-01-11 15:59:04');
+INSERT INTO `user_ticket` VALUES ('1097', 'a0153211914f46d0bfc62ffe8b1a4be9', '76643071c1e34a3f343ab43ea99c560c', null, null, '10.4.82.42', 'oc_cpc_center', '2017-12-18 10:39:44', '2018-01-17 10:39:44');
+INSERT INTO `user_ticket` VALUES ('1099', '121f3a035daa4d90b77dbf0d5cfff2b8', 'd127d0b68fa07096ba8907705b8ce753', null, null, '10.4.82.42', 'oc_cpc_center', '2017-12-18 16:17:42', '2018-01-17 16:17:42');
+INSERT INTO `user_ticket` VALUES ('1100', '8fed00b07ebe4e979c8b5f5abf6c7cde', 'b6fd36c12dd12d0819a2c82073ea38af', null, null, '10.4.82.42', 'oc_cpc_center', '2017-12-18 16:20:05', '2018-01-17 16:20:05');
+INSERT INTO `user_ticket` VALUES ('1103', '0ab4f7332de44220b840c8a23ae341e0', 'a846512cce2f1832ffd301ac873a5ae8', null, null, '10.4.82.42', 'oc_cpc_center', '2017-12-19 17:05:18', '2018-01-18 17:05:18');
+INSERT INTO `user_ticket` VALUES ('1104', 'c1829902b9a34873888f334541902ea9', 'b8cffdf05fa40a073760faf3a771f88b', null, null, '10.2.52.73', 'renren_market', '2017-12-20 15:16:28', '2018-01-19 15:16:28');
+INSERT INTO `user_ticket` VALUES ('1106', '29b670dbc3bc4403a9ba02d414d1b64a', 'f5a685e0232b1496730a920c593409b4', null, null, '10.2.52.73', 'renren_market', '2017-12-20 16:14:16', '2018-01-19 16:14:16');
+INSERT INTO `user_ticket` VALUES ('1107', '7afe9df038ba4c52ac71c0df86b4bb18', '47e1e28940f98af3ff0cca25ca5bedc9', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-20 17:40:06', '2018-01-19 17:40:06');
+INSERT INTO `user_ticket` VALUES ('1108', '1d797011fc954f9b9e7e0f123b5811a0', '3c2eb7144fb5f9cbae8d1694aac08685', null, null, '10.4.82.42', 'oc_cpc_center', '2017-12-21 15:04:31', '2018-01-20 15:04:31');
+INSERT INTO `user_ticket` VALUES ('1110', 'ad67ae026ec3473c8a699b7e46a02d36', 'd438a35bf3170efa16fbc1491fd47979', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-27 18:06:27', '2018-01-26 18:06:27');
+INSERT INTO `user_ticket` VALUES ('1111', '8dd7a2c07cc24f0fbbd66923036facdb', '11c4f1c3a88adecbebfc2e163ab818b1', null, null, '10.2.52.73', 'renren_market', '2017-12-28 11:38:59', '2018-01-27 11:38:59');
+INSERT INTO `user_ticket` VALUES ('1113', '224ffcf86cc24fbcaedd0fe6d3714a04', 'dae7a383df1a024230e7b21ebb976f39', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-28 12:28:05', '2018-01-27 12:28:05');
+INSERT INTO `user_ticket` VALUES ('1114', '34341d45716b411589bf4103db0491ce', 'dd5fdb467292904a23bca0841e3eae70', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-28 13:05:48', '2018-01-27 13:05:48');
+INSERT INTO `user_ticket` VALUES ('1116', 'a29b914784dc4d41a88ad990f37e1d26', 'f422b43a1301242797fc35d04db45d0d', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-28 17:46:05', '2018-01-27 17:46:05');
+INSERT INTO `user_ticket` VALUES ('1123', 'c5d979ecc7a6417b8a2adadf11f17bdf', '00af08391fc056906c7a93ceaa6ee3c1', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-29 20:51:08', '2018-01-28 20:51:08');
+INSERT INTO `user_ticket` VALUES ('1124', 'ed70daed08be4d5fbacf5046a01932ed', '33851351df7af085be71c7d703062d00', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-29 21:16:27', '2018-01-28 21:16:27');
+INSERT INTO `user_ticket` VALUES ('1125', 'f31417928bda4e19991a6c01a4cbff0f', '8496cb2807b5dc3bf7579ca0e5c18db6', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2017-12-29 21:17:17', '2018-01-28 21:17:17');
+INSERT INTO `user_ticket` VALUES ('1126', '2811509deb694a708cf7eeecea97e56f', 'd3f132148d629d6a187236aa14e911a0', null, null, '10.4.82.74', 'oc_cpc_center', '2018-01-02 11:01:43', '2018-02-01 11:01:43');
+INSERT INTO `user_ticket` VALUES ('1129', '81b88ee183014a67b1f7bdbed04c0cd0', 'e8c980ad2a18025ef85e144112526da4', null, null, '10.4.82.74', 'oc_cpc_center', '2018-01-02 11:40:25', '2018-02-01 11:40:25');
+INSERT INTO `user_ticket` VALUES ('1130', 'd83b80d7d37843808f98da490d3eabc6', '896623a827bc554a516074ca819b5e94', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-01-02 18:16:16', '2018-02-01 18:16:16');
+INSERT INTO `user_ticket` VALUES ('1133', '8c801c96318d4edcb1cd9a9ddf2e3bf8', 'ea8c3c7c8716358fb7741961a294a2e6', null, null, '10.2.54.42', 'renren_market', '2018-01-08 16:24:24', '2018-02-07 16:24:24');
+INSERT INTO `user_ticket` VALUES ('1135', '913a68250bda43e4a02aef6909f375dd', '9cc47f3da00d0d0358908b0c0c39adc9', null, null, '10.4.82.23', 'renren_market', '2018-01-11 17:01:33', '2018-02-10 17:01:33');
+INSERT INTO `user_ticket` VALUES ('1136', '41bee6962eb341bea75b8038294bc8c0', '4a55410631d0d5435d5e5cba1b5a92e9', null, null, '10.4.82.23', 'renren_market', '2018-01-12 16:42:40', '2018-02-11 16:42:40');
+INSERT INTO `user_ticket` VALUES ('1137', '5b4ac34cb1814212933ce107ffdc437c', 'dcfaf7dbc751c05dd1891ad55de7fa0a', null, null, '10.4.82.23', 'renren_market', '2018-01-12 16:43:47', '2018-02-11 16:43:47');
+INSERT INTO `user_ticket` VALUES ('1138', 'fd67c1a0481740349a81a4714523c47c', 'e6007d9a6f3272553fe3756a465c0a6e', null, null, '10.4.82.23', 'renren_market', '2018-01-12 16:44:19', '2018-02-28 16:44:19');
+INSERT INTO `user_ticket` VALUES ('1139', 'c582d8d00a8f43cd81dc24eb240f3c02', '6e679d7859267ff5d77649d44269243b', null, null, '10.4.82.23', 'renren_market', '2018-01-12 17:00:43', '2018-02-11 17:00:43');
+INSERT INTO `user_ticket` VALUES ('1140', 'cc299d03316f4999a219cd97019d3e10', 'ca453c334a456b5456c1c464f68889f9', null, null, '10.2.52.73', 'renren_market', '2018-01-12 17:40:39', '2018-02-11 17:40:39');
+INSERT INTO `user_ticket` VALUES ('1141', 'f0c305c185e04cc78fdb5cb0d6adf278', '4a307bc2e44d8fa0d311266ffa70e893', null, null, '10.2.52.73', 'renren_market', '2018-01-12 18:03:57', '2018-02-11 18:03:57');
+INSERT INTO `user_ticket` VALUES ('1142', 'a2fc3a6358324a779a689a51445c602c', '7c6ee993ced5e1bc81a96e2a0102a38b', null, null, '10.2.52.73', 'renren_market', '2018-01-12 18:18:00', '2018-02-11 18:18:00');
+INSERT INTO `user_ticket` VALUES ('1144', 'b544660adcf94b4dbb0a92919067e092', '8fc990e5786d0282c172d27a3abbe807', null, null, '10.4.82.23', 'renren_market', '2018-01-12 18:47:20', '2018-02-11 18:47:20');
+INSERT INTO `user_ticket` VALUES ('1150', 'd146aa06829f40f9984098a7c68c1d12', '3a87cdb7b9360865954ad3ee3a2be5f2', null, null, '10.4.82.23', 'renren_market', '2018-01-17 17:37:41', '2018-02-16 17:37:41');
+INSERT INTO `user_ticket` VALUES ('1151', '09d3a0242c3041c59273d78e07966a10', 'c5e9154a892ae68f2f0d9f4633bc6ad2', null, null, '10.2.52.73', 'renren_market', '2018-01-17 18:05:35', '2018-02-16 18:05:35');
+INSERT INTO `user_ticket` VALUES ('1152', '591f6f7546b842118857d057aa1895db', 'd861127d8bb962ef5ad9b151b734d8a4', null, null, '10.4.82.23', 'renren_market', '2018-01-18 10:37:00', '2018-02-17 10:37:00');
+INSERT INTO `user_ticket` VALUES ('1153', 'dbaa630f206248a09a473b3913564345', 'd24e0d73393666a4d4d27259913076d3', null, null, '10.4.82.23', 'renren_market', '2018-01-18 11:34:10', '2018-02-17 11:34:10');
+INSERT INTO `user_ticket` VALUES ('1155', 'af42f4c60eed4d168daf76ded44acd3e', '358d67568bb69eb928a6ad69df2d5360', null, null, '10.4.82.23', 'renren_market', '2018-01-19 12:04:31', '2018-02-18 12:04:31');
+INSERT INTO `user_ticket` VALUES ('1157', '85c152dc66834f3fb1e58b584513b30a', 'e13641944deb8ab2bc49a1dad9447e35', null, null, '10.4.82.23', 'renren_market', '2018-01-19 16:05:28', '2018-02-18 16:05:28');
+INSERT INTO `user_ticket` VALUES ('1161', '7effb7a518704f5eab5427adaac53634', '87be67e215baa3cad2e1d37cf2a74b18', null, null, '10.4.82.23', 'renren_market', '2018-01-23 10:43:42', '2018-02-22 10:43:42');
+INSERT INTO `user_ticket` VALUES ('1162', '56e382a8e9aa4a68b9c5982c6abcb577', '78cdaf16e0523b968ce1cd367fbc5f5f', null, null, '10.4.82.23', 'renren_market', '2018-01-23 10:52:07', '2018-02-22 10:52:07');
+INSERT INTO `user_ticket` VALUES ('1165', '34e02c01a0f848cf984ae3c46bd16ff0', '9b06a81c6febe1a31173a8d5667fe5d2', null, null, '10.4.82.23', 'renren_market', '2018-01-23 16:44:18', '2018-02-22 16:44:18');
+INSERT INTO `user_ticket` VALUES ('1166', '285bd138c8c0488b8a1c78576c879589', 'a16ae31c9f96168df13ff81666fa62af', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-01-25 17:34:23', '2018-02-24 17:34:23');
+INSERT INTO `user_ticket` VALUES ('1171', 'f85726ca829b4836b8b957c492ec9480', 'd1cff4dedf5705c504e5210fa12acc69', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-01-26 11:07:27', '2018-02-25 11:07:27');
+INSERT INTO `user_ticket` VALUES ('1175', '078098e8470b4682baa0bb338d1faeff', '5863380b924d72ecd6358144b053e442', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-27 11:13:03', '2018-02-26 11:13:03');
+INSERT INTO `user_ticket` VALUES ('1178', '3ecd647900974cc0b44fc469d528d61e', '911cd736a6ee4cc17c8b3cb437d39976', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-27 11:35:21', '2018-02-26 11:35:21');
+INSERT INTO `user_ticket` VALUES ('1180', 'f88b510209c240cc98ff7b265dbf9c7b', '20864a1b41fd12212d0d19c221b91824', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-27 11:45:40', '2018-02-26 11:45:40');
+INSERT INTO `user_ticket` VALUES ('1183', 'e79d117d353447c78e730d0a19247cff', 'a89b0c56bd84692c336ba2776e5df9ab', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-29 10:19:58', '2018-02-28 10:19:58');
+INSERT INTO `user_ticket` VALUES ('1188', '8aac4198f78942eb81e47945a2d39ff7', '1f51b7487e1ef7443950b9e480589d88', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-29 16:02:27', '2018-02-28 16:02:27');
+INSERT INTO `user_ticket` VALUES ('1189', 'e0be9bf75b434511a219213939752d47', 'cdd4e43f3cb3dae35fdf1604e0a8d15f', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-29 16:15:56', '2018-02-28 16:15:56');
+INSERT INTO `user_ticket` VALUES ('1190', 'ad21786981ee4d718923555cf155498c', '9c85fd830289c88e4899ff4793148e22', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-01-29 16:43:18', '2018-02-28 16:43:18');
+INSERT INTO `user_ticket` VALUES ('1191', '8680b8116aa542d2a04a4c9eecf37973', '5c67c8835443dcf62983c63209b58708', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-01-29 19:37:45', '2018-02-28 19:37:45');
+INSERT INTO `user_ticket` VALUES ('1194', '71d5f3d5e0a1400ba6d28a5cd102812d', '6ffbb107dea08ac543845977134b90ee', null, null, '10.4.82.23', 'renren_market', '2018-02-02 10:48:13', '2018-03-04 10:48:13');
+INSERT INTO `user_ticket` VALUES ('1195', '57a68b86aa1b4bd6abb4655719552f73', '1bf144f7e900406ae6f85e691109da67', null, null, '10.4.82.23', 'renren_market', '2018-02-02 15:19:52', '2018-03-04 15:19:52');
+INSERT INTO `user_ticket` VALUES ('1196', '690bfb01850e4ac1bb1cb9c6f9d8a70a', '81403f8f4c79d559da1afa18a057c9d0', null, null, '10.4.82.23', 'renren_market', '2018-02-02 16:13:26', '2018-03-04 16:13:26');
+INSERT INTO `user_ticket` VALUES ('1197', '9f9d33866fd64b23831ff4df8fa2c8a9', '8e19a63952a109e756d36d51bca1e727', null, null, '10.4.82.23', 'renren_market', '2018-02-02 16:17:25', '2018-03-04 16:17:25');
+INSERT INTO `user_ticket` VALUES ('1198', 'e12aec4a123d4f759595d871c4af31f9', '3222cee6a86c1da37aed0a03cbe7781c', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-02-06 19:51:15', '2018-03-08 19:51:15');
+INSERT INTO `user_ticket` VALUES ('1206', '8b39c7f24b6a484eaad310fac6269e73', '70126d75bb426de5b61889f245402cee', null, null, '10.4.82.23', 'renren_market', '2018-02-24 10:14:43', '2018-03-26 10:14:43');
+INSERT INTO `user_ticket` VALUES ('1214', '0cd4085435af40ecbd0e318ef1a7a183', 'd71a8a9a54ac5dec19c209c0b2553dc9', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-03-01 17:53:09', '2018-03-31 17:53:09');
+INSERT INTO `user_ticket` VALUES ('1225', 'a19d24c7448d4756a4749bc211e5c36a', '66fc1ff9b352f61c089ded81aaaab194', null, null, '10.4.82.74', 'oc_cpc_center', '2018-03-08 14:44:31', '2018-04-07 14:44:31');
+INSERT INTO `user_ticket` VALUES ('1238', '9bdb938016414c5ebaa57342c9559192', '0abc07e75fa13bc461656568b685545a', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-03-12 17:07:06', '2018-04-11 17:07:06');
+INSERT INTO `user_ticket` VALUES ('1239', 'c1d4888ea2c046c5acd66afe98f3a0e5', '898f38fa459127e1e33af9b841f12e44', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-03-14 11:29:53', '2018-04-13 11:29:53');
+INSERT INTO `user_ticket` VALUES ('1240', '0b72d1da747f4608868747ae6fedd368', '25ad20d0139f6da40c2cbd607939dec2', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-03-19 16:21:23', '2018-04-18 16:21:23');
+INSERT INTO `user_ticket` VALUES ('1242', 'c274952922c94f6894d1767a2670cb05', 'aa7c400f3747de4fa1b580167a3d87ed', null, null, '10.2.52.152', 'oc_cpc_center', '2018-03-27 15:56:12', '2018-04-26 15:56:12');
+INSERT INTO `user_ticket` VALUES ('1244', 'a5dd3ab54d7e4534940a506fc8ca7b52', '3bde7b4bd232ecdb30e4a0abcf19525f', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-03-28 12:42:15', '2018-04-27 12:42:15');
+INSERT INTO `user_ticket` VALUES ('1249', '3f29cea14f47415e962a4dee495a2ad9', '48b0d79acdb4a2b54480ab3d6a9d360e', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-03-28 17:45:21', '2018-04-27 17:45:21');
+INSERT INTO `user_ticket` VALUES ('1260', '9a48f453a8254287a500e6779edf1713', '4eb881090aaef218509d90095258375a', null, null, '10.4.82.35', 'cheyigou', '2018-03-31 14:40:43', '2018-04-30 14:40:43');
+INSERT INTO `user_ticket` VALUES ('1261', '2af1ce413fed4482af8c3d564c7861c5', '03d8668851a88366b274119afc90c839', null, null, '10.4.82.35', 'cheyigou', '2018-03-31 17:45:27', '2018-04-30 17:45:27');
+INSERT INTO `user_ticket` VALUES ('1262', 'ce98baa01a6d4ddc913d4ece80a0bffe', '61f9fb371d7dcb4cd91cfbe87c0eb574', null, null, '10.4.82.35', 'cheyigou', '2018-03-31 18:47:44', '2018-04-30 18:47:44');
+INSERT INTO `user_ticket` VALUES ('1270', '98a48a7651024bf193f130770d4825df', '0e6eac80c4cacbd4b6e5d823e8e182c1', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-03 13:26:37', '2018-05-03 13:26:37');
+INSERT INTO `user_ticket` VALUES ('1276', '2608789e2b9949d5870fedf81bf67a24', 'e702e4376583d1eceb13bf5fc1809a97', null, null, '10.4.82.35', 'cheyigou', '2018-04-03 19:51:36', '2018-05-03 19:51:36');
+INSERT INTO `user_ticket` VALUES ('1277', '9d0b23cff25d4df994c3ea7bc0e39c1b', 'd77c1d84afba72810beb52bf30b3d93a', null, null, '10.4.82.55', 'cheyigou', '2018-04-04 17:10:58', '2018-05-04 17:10:58');
+INSERT INTO `user_ticket` VALUES ('1278', '68ebdb87952846279e92d00319f0bdc3', '12501da2d76eb9b2d74185493b921cc1', null, null, '10.4.82.22', 'oc_cpc_center', '2018-04-08 16:55:23', '2018-05-08 16:55:23');
+INSERT INTO `user_ticket` VALUES ('1280', '100fd7fe811146a4bf5f6db52c3637e3', 'c3e198c7fd0967fb4a06fd001eb7e7f2', null, null, '10.4.82.23', 'renren_market', '2018-04-09 15:49:43', '2018-05-09 15:49:43');
+INSERT INTO `user_ticket` VALUES ('1282', 'f7f98e204bc24c62bed35b048b007a86', '84ef39c8104eaf8f0d1d7b941bf472c7', null, null, '10.4.82.55', 'cheyigou', '2018-04-10 17:20:53', '2018-05-10 17:20:53');
+INSERT INTO `user_ticket` VALUES ('1284', '32c2c7e9bf334cfb8e5e074a6c67ba51', '471e351afa8d4d510408f1a99249909f', null, null, '10.4.82.55', 'cheyigou', '2018-04-10 17:49:40', '2018-05-10 17:49:40');
+INSERT INTO `user_ticket` VALUES ('1291', 'a880737d46544a169ff0aea8b76370ac', '4455d0fb1d2d7f336c8cefdc9833384d', null, null, '10.4.82.22', 'cheyigou', '2018-04-12 17:41:07', '2018-05-12 17:41:07');
+INSERT INTO `user_ticket` VALUES ('1292', '9c6b0ef4859246cda3c9cfcfaef7b732', '0910e27af9c39edd0af3ff8f855a7e77', null, null, '10.4.82.22', 'cheyigou', '2018-04-12 17:43:48', '2018-05-12 17:43:48');
+INSERT INTO `user_ticket` VALUES ('1293', '2100fb4492d049ca93fa8897b4715f8e', 'fd1e083a5667a9c2c8545c5c19d7cc59', null, null, '10.4.82.55', 'cheyigou', '2018-04-12 17:46:45', '2018-05-12 17:46:45');
+INSERT INTO `user_ticket` VALUES ('1294', '9e485cf37d6a4d3db0b45ce08fc21155', '17b93ca834a9e43f50f905900e934b1b', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 11:17:53', '2018-05-13 11:17:53');
+INSERT INTO `user_ticket` VALUES ('1296', '59f14cd57cc5433b8763497f1c5c9c58', '3720ef454170db8f6a3b995d9085c105', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 11:48:17', '2018-05-13 11:48:17');
+INSERT INTO `user_ticket` VALUES ('1297', '5168652137974b869b723d12c0398848', 'b694ebd25e0082ecfdd7eb77881c9491', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 11:55:53', '2018-05-13 11:55:53');
+INSERT INTO `user_ticket` VALUES ('1298', '93599658a7db49be9498a2658e9e3360', '430f6e70fcc31f114aa7f44d3c9b9f52', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 12:06:54', '2018-05-13 12:06:54');
+INSERT INTO `user_ticket` VALUES ('1299', 'ac721e748e2f4e799cbfe1cde0fc7be5', 'f74dbdb54029033a6b634162e946bfce', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 13:55:15', '2018-05-13 13:55:15');
+INSERT INTO `user_ticket` VALUES ('1300', '65ed105641f44402a3c42a223892cc7c', 'c16f395cb21693a221bb893877fc46ba', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 14:42:01', '2018-05-13 14:42:01');
+INSERT INTO `user_ticket` VALUES ('1301', 'b4f9c8051c2844a797409c88de5a1817', '46ca12a125d1e5c24375b6360b598db5', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 15:51:50', '2018-05-13 15:51:50');
+INSERT INTO `user_ticket` VALUES ('1302', '957b172009f64dd8ba1ce4a77a39bc6b', 'b1167c011bba157b85219af07a3b30b1', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 15:56:00', '2018-05-13 15:56:00');
+INSERT INTO `user_ticket` VALUES ('1304', 'ca9f3cf8371a4a62b691b6bdeddeea6c', '162321dc735f8b7d2d47f163885d48a7', null, null, '10.4.82.55', 'cheyigou', '2018-04-13 21:05:24', '2018-05-13 21:05:24');
+INSERT INTO `user_ticket` VALUES ('1307', '6ddcbaa211cd4f8ebd4625c94dbd2afd', 'aea01e1fe9ca4236c07fff30d713b9b3', null, null, '10.4.82.55', 'cheyigou', '2018-04-17 11:25:40', '2018-05-17 11:25:40');
+INSERT INTO `user_ticket` VALUES ('1310', '8dbbe304231a4fd489e314c1d07c4dab', '872a8c15be6836172017ff997dfa51ac', null, null, '10.4.82.55', 'cheyigou', '2018-04-17 15:00:56', '2018-05-17 15:00:56');
+INSERT INTO `user_ticket` VALUES ('1311', '4eb60b0b43104b92a18b86ddafeaa9a3', '09d1c82828f3429ffab70db1149cbee8', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-17 16:22:42', '2018-05-17 16:22:42');
+INSERT INTO `user_ticket` VALUES ('1313', '02e73ba5475a4aac869ca0d8df433215', '1d0d0bddf353857870938a67c081492d', null, null, '10.4.82.55', 'cheyigou', '2018-04-17 17:28:12', '2018-05-17 17:28:12');
+INSERT INTO `user_ticket` VALUES ('1317', '38951ad8b63344cebf777b1961efd454', '3279e3d891bf0d26110b1d9def4ec3fe', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-18 20:02:18', '2018-05-18 20:02:18');
+INSERT INTO `user_ticket` VALUES ('1319', 'cf092f6ecc9a4930a7ef4f1596cdcb02', '071158748ea1139586292b35198eb06a', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 13:35:33', '2018-05-19 13:35:33');
+INSERT INTO `user_ticket` VALUES ('1320', '971ee014815c494da0ccb30aa252553a', '536c9457a35f89957acb502bee0d8efc', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 13:36:55', '2018-05-19 13:36:55');
+INSERT INTO `user_ticket` VALUES ('1321', 'b6feb7d60d7943aeb968e775d1aa7841', 'a7a420f9f50a5ec70ea97b14d747b33f', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 13:40:02', '2018-05-19 13:40:02');
+INSERT INTO `user_ticket` VALUES ('1322', '71bfaf569c4945b8891e83af6037457c', '1c085e75173665201f607684875896f3', null, null, '10.2.52.152', 'oc_cpc_center', '2018-04-19 14:07:55', '2018-05-19 14:07:55');
+INSERT INTO `user_ticket` VALUES ('1324', '6cb3d37a09434d24afd2c58c73eed8a8', '438ac0c430a498fc094dae9b24db7f4e', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:36:51', '2018-05-19 14:36:51');
+INSERT INTO `user_ticket` VALUES ('1325', '9dc07f4a285e4edabbf13eabaf044f38', '6cadb2d456ffcb46a60f00d59ac84999', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:40:23', '2018-05-19 14:40:23');
+INSERT INTO `user_ticket` VALUES ('1326', 'b23bb28cd66a416d8acc449f0236a4b7', '2ab50381dc57f9f7bc7944d250ba5577', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:41:44', '2018-05-19 14:41:44');
+INSERT INTO `user_ticket` VALUES ('1327', 'f6d643ce1e0948b78250f6cbbebb0eed', 'b46c85db6405a260480bc3c0222fa1dc', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:43:45', '2018-05-19 14:43:45');
+INSERT INTO `user_ticket` VALUES ('1328', 'b5d3223e52064899aad49d6b89c5f4c6', '99f45f597ee6703a0e7cce1abd6b8245', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:45:46', '2018-05-19 14:45:46');
+INSERT INTO `user_ticket` VALUES ('1329', '2bfda214d3d749efbb47dd0ba738f5dd', '51511cf3fc44f6a12c4dfab2a38a5ece', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:47:16', '2018-05-19 14:47:16');
+INSERT INTO `user_ticket` VALUES ('1330', '1a7402a8a3bf4a5cbaebc30226b2bfd9', 'e2c51899d12f210901c8f92878956cad', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 14:48:29', '2018-05-19 14:48:29');
+INSERT INTO `user_ticket` VALUES ('1331', '072b7d4d91b045d5800aebac0631943c', 'cc9cfd494f0ee8f38c5480204048ba40', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 15:10:00', '2018-05-19 15:10:00');
+INSERT INTO `user_ticket` VALUES ('1333', '642a7dbfe1b1454b86fda4d5733b0b80', '686ca8db38e9b4647afcd5e12ad5d3c6', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-19 15:24:18', '2018-05-19 15:24:18');
+INSERT INTO `user_ticket` VALUES ('1334', 'dc432e06469c45dbb2fe112a87f62e1b', '55305b1fa89a7f7a7691d437e87559fc', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 15:22:31', '2018-05-19 15:22:31');
+INSERT INTO `user_ticket` VALUES ('1335', '7a520de263be4dc481c21b7a52016a0a', 'f6b646426f6432ebc9ac9881db54df85', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 15:29:22', '2018-05-19 15:29:22');
+INSERT INTO `user_ticket` VALUES ('1336', 'ec964b3cf97b43cbb50241a9d9d7f963', '43ed944c496205b658d734cbc1e767a8', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-19 17:11:30', '2018-05-19 17:11:30');
+INSERT INTO `user_ticket` VALUES ('1337', '981a61a2551049b0a50269f23fb4a8e4', '194d9170e37feb1da31e5db623d674ab', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 17:54:37', '2018-05-19 17:54:37');
+INSERT INTO `user_ticket` VALUES ('1338', '8e6b06886a9c412fb386f5248464791c', '15e76243dfd67b714bc10ffa92d2aa93', null, null, '10.4.82.55', 'cheyigou', '2018-04-19 17:56:27', '2018-05-19 17:56:27');
+INSERT INTO `user_ticket` VALUES ('1339', '73d9cc8f5e684694b394bf8539b095d6', '007ef836d6c6ef86c0b5dea480a630e9', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-19 19:14:00', '2018-05-19 19:14:00');
+INSERT INTO `user_ticket` VALUES ('1340', '35ee7f1e67374be5aca98739ad2ae243', '5ed44e9e481a3749f9fc8b77db3ce9a8', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-20 11:00:49', '2018-05-20 11:00:49');
+INSERT INTO `user_ticket` VALUES ('1344', '833c9dcef04846c1985c71a741fa0634', '97cc08b326f5cab44e55c1c13fae0324', null, null, '10.4.82.55', 'cheyigou', '2018-04-23 13:25:59', '2018-05-23 13:25:59');
+INSERT INTO `user_ticket` VALUES ('1345', 'a9fb29e6255c4ccdbc1b3d2b850de325', '59225240f5dfe51120fbaa89667a5093', null, null, '10.4.82.55', 'cheyigou', '2018-04-23 16:52:38', '2018-05-23 16:52:38');
+INSERT INTO `user_ticket` VALUES ('1346', '7a32ffd52a064068859e8b6bb6ad307a', '101470aece7b1818911237f2f5c36dff', null, null, '10.2.52.152', 'oc_cpc_center', '2018-04-24 11:47:09', '2018-05-24 11:47:09');
+INSERT INTO `user_ticket` VALUES ('1347', '929a54381aee4656a52bfbb23d4fcc2e', 'eb8e93962ca8aebefd3006603a18a663', null, null, '10.4.82.55', 'cheyigou', '2018-04-24 18:37:50', '2018-05-24 18:37:50');
+INSERT INTO `user_ticket` VALUES ('1348', 'd8c890a4c9224c0bbbf4f47a2c583140', '7b424055fba54b02b2c92a1791b94a9a', null, null, '10.4.82.55', 'cheyigou', '2018-04-26 11:51:12', '2018-05-26 11:51:12');
+INSERT INTO `user_ticket` VALUES ('1349', 'e0db85e06d9245a4af3e6e165098dd07', '1bbbfa605fd744d1b62e3f1a54762c8d', null, null, '10.4.82.55', 'cheyigou', '2018-04-26 15:32:31', '2018-05-26 15:32:31');
+INSERT INTO `user_ticket` VALUES ('1352', '21523738128d4b4c9e9b1345eb4eff86', '603bc10d6791b16c7f8fe08c47d7ae6a', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-27 14:53:45', '2018-05-27 14:53:45');
+INSERT INTO `user_ticket` VALUES ('1354', '05a23c739a3f48408b04fdd40fa05d66', 'e5b98a4eb9d3b36439f267bd41b9722c', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-04-27 08:36:43', '2018-05-27 08:36:43');
+INSERT INTO `user_ticket` VALUES ('1359', '82a5db05fbb44ae3a1e90c44fa97dcc1', '76815e591392d2930e144ac775ad385d', null, null, '10.4.82.55', 'cheyigou', '2018-04-28 15:14:53', '2018-05-28 15:14:53');
+INSERT INTO `user_ticket` VALUES ('1365', '6c47d388be29403597b7b4af3fbf33d0', '57efd94db408044fed0e87088c4eb88d', null, null, '10.4.82.55', 'cheyigou', '2018-05-06 14:01:05', '2018-06-05 14:01:05');
+INSERT INTO `user_ticket` VALUES ('1367', '43b2a9246355482dad05e37b188634db', '14005178f715411d5ff6849becbddb8c', null, null, '10.4.82.55', 'cheyigou', '2018-05-07 14:25:28', '2018-06-06 14:25:28');
+INSERT INTO `user_ticket` VALUES ('1368', '1768ee22b0c843b4802ce3f39a62e393', '99887943714b816454e2ae597a2d3c06', null, null, '10.4.82.55', 'cheyigou', '2018-05-07 17:58:39', '2018-06-06 17:58:39');
+INSERT INTO `user_ticket` VALUES ('1369', '72f6f830a8b64cf18c48e6f0aca970aa', 'a7f1bbeb20367fa68761b0de647abd5f', null, null, '10.4.82.55', 'cheyigou', '2018-05-07 20:14:18', '2018-06-06 20:14:18');
+INSERT INTO `user_ticket` VALUES ('1370', '6fe383d37dc54945be38485e7fa55551', '1dccba8e54b92b9cbeb3111408a2dc91', null, null, '10.4.82.55', 'cheyigou', '2018-05-07 20:29:08', '2018-06-06 20:29:08');
+INSERT INTO `user_ticket` VALUES ('1380', '1297f1ad550a4969b0504e4ebfaeab31', 'aabb0751aa52d1110e5458d591877083', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-10 07:54:57', '2018-06-09 07:54:57');
+INSERT INTO `user_ticket` VALUES ('1381', 'c6e8bb9961c2439bbdff880588725713', '5f949b12d3c9f465190729f882fa1e4d', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-14 07:40:36', '2018-06-13 07:40:36');
+INSERT INTO `user_ticket` VALUES ('1386', 'ae570096f003486cb23bfdfc36bb9bcf', '5ad5beb484cb33060126db982c9b7951', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-17 08:30:14', '2018-06-16 08:30:14');
+INSERT INTO `user_ticket` VALUES ('1388', 'a1ac06cd807c4a838aea651c68eddb5a', '582a8aa2a4091ccd7b5321f27bb00f36', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-18 02:41:40', '2018-06-17 02:41:40');
+INSERT INTO `user_ticket` VALUES ('1390', 'fe51ed6861f64d8a90c291d7288e1e5a', '542d3e3f6fd4514e259db44f5a1952d1', null, null, '10.4.82.55', 'cheyigou', '2018-05-18 14:52:05', '2018-06-17 14:52:05');
+INSERT INTO `user_ticket` VALUES ('1391', 'bff87a76f483439a9fb9a2c39154e1f9', '142daa827755039b6e4ea4107a662e11', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 11:57:29', '2018-06-20 11:57:29');
+INSERT INTO `user_ticket` VALUES ('1392', '14a9836448fd4c5a81fa18ecbbf05f71', '811842962b7e73b2b68157b5cfddc9e8', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 12:26:38', '2018-06-20 12:26:38');
+INSERT INTO `user_ticket` VALUES ('1393', '21875fae399048888b2b5a2a30d85d16', '22d23a9951a5ab08614c957de9eceb70', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 14:39:33', '2018-06-20 14:39:33');
+INSERT INTO `user_ticket` VALUES ('1394', '76b03905a8054de4a49fb2698c4876e3', 'e5d2c316907cd10efb87f8a548e901d8', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 15:01:37', '2018-06-20 15:01:37');
+INSERT INTO `user_ticket` VALUES ('1395', '8d74315830a74e808de55b6459515fa6', '5a0b4346c8982195c93cd5031b0621b1', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 15:05:21', '2018-06-20 15:05:21');
+INSERT INTO `user_ticket` VALUES ('1396', '66bcbd7c5769428c9e05cdd8216487cd', 'd6bdbb54ef2eb9412bdbb22a5ba4acef', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 15:30:57', '2018-06-20 15:30:57');
+INSERT INTO `user_ticket` VALUES ('1397', '7dd546b0a095411aa2b8ae6be0f3608b', '5e826b803791e0cb168d8c3e8ad2f9a7', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-21 08:11:24', '2018-06-20 08:11:24');
+INSERT INTO `user_ticket` VALUES ('1398', '66875ed58f39421199bd5e6a0ad436fe', '241332f40fe42c907f2099464466d4eb', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 16:24:35', '2018-06-20 16:24:35');
+INSERT INTO `user_ticket` VALUES ('1399', 'a3dfdbd12c92488ab24b01774db17e83', 'a72d0be6d1f8bdd603714a4bfe6fe4cf', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 16:38:17', '2018-06-20 16:38:17');
+INSERT INTO `user_ticket` VALUES ('1400', 'cfc09391e5724cbcaf406f18c5eb94d9', '68820f4a30d0428e29212d0475ca5097', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 16:38:44', '2018-06-20 16:38:44');
+INSERT INTO `user_ticket` VALUES ('1401', 'c20f863526064465a8bb2f3595eb4ae0', '8ec6978ff6f72b141000e56f425358f4', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 17:06:16', '2018-06-20 17:06:16');
+INSERT INTO `user_ticket` VALUES ('1402', 'b4c9d012a74e4591b419aa6a9e94e7a3', '83b3f9efd12e73e9bc633174f5b7e1f2', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 18:36:23', '2018-06-20 18:36:23');
+INSERT INTO `user_ticket` VALUES ('1403', '11eebed807de4051b74265978283d7a3', '81598afdfec8e9177220393b53c523b7', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 18:43:28', '2018-06-20 18:43:28');
+INSERT INTO `user_ticket` VALUES ('1404', '9359b8d4ba73413bb48403bd8e98930d', '7576351ec2773caca8a3381e7333bf5f', null, null, '10.4.82.55', 'cheyigou', '2018-05-21 19:23:10', '2018-06-20 19:23:10');
+INSERT INTO `user_ticket` VALUES ('1406', 'b05c71fed0d54beab0433f19f2d1a253', '08536ba852cd2b72f9e943232c7457da', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-22 03:01:43', '2018-06-21 03:01:43');
+INSERT INTO `user_ticket` VALUES ('1407', 'e71b0068d7354fa88ba9d1f7f0f5fbb4', '0181255bf9beb97f6bb98f399b7b74f8', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 11:32:35', '2018-06-21 11:32:35');
+INSERT INTO `user_ticket` VALUES ('1408', '5530d3fea89149b880efc7bfdab7fbba', '888f5434ab809b2f3340a4da0d9a4020', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 12:10:37', '2018-06-21 12:10:37');
+INSERT INTO `user_ticket` VALUES ('1409', '7cab64195e9e49dda8c78d2f410bf166', 'c3a65369f835580c8e4bbf9ffbe18326', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 14:29:13', '2018-06-21 14:29:13');
+INSERT INTO `user_ticket` VALUES ('1410', '50ea5f4342fc492ca8d69198e59b4fe0', 'acf6db698722c411d22ac7f67f093c17', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 14:42:56', '2018-06-21 14:42:56');
+INSERT INTO `user_ticket` VALUES ('1411', '51a69e2413bc4e73b43c041efb31efa9', '331a6109fddea758c702d148f93ce620', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 14:57:51', '2018-06-21 14:57:51');
+INSERT INTO `user_ticket` VALUES ('1412', 'ccb2daa3b0554d048d28ea5d3bf1e6b8', '317d6f347b8752945c19dde4a1648565', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 15:56:01', '2018-06-21 15:56:01');
+INSERT INTO `user_ticket` VALUES ('1413', 'fdb3b13e860b48c695484964235b0162', 'c49d6bd65cc6d625d1be17b5cf024375', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 15:57:15', '2018-06-21 15:57:15');
+INSERT INTO `user_ticket` VALUES ('1414', '76d8520b3c7c44eea0a023d3ae25884c', '4b4dfe7088a97f0136abccdc73acd5cd', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:00:29', '2018-06-21 16:00:29');
+INSERT INTO `user_ticket` VALUES ('1415', 'f9a797fa5bbf4fd2ab2214d164d90412', 'ca68ed0efcf7c8de582d3d6e7290177d', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:18:07', '2018-06-21 16:18:07');
+INSERT INTO `user_ticket` VALUES ('1416', '9ca34dde9fe744cea669366277733e7f', '7085a0ea1cb86cdc0312968bf955910c', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:21:53', '2018-06-21 16:21:53');
+INSERT INTO `user_ticket` VALUES ('1417', 'a12f4caaa99f4e3d835dc699399ff3a5', '14d0e7a67ddeff837a29bcbbef9a186b', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:26:41', '2018-06-21 16:26:41');
+INSERT INTO `user_ticket` VALUES ('1418', '64b2cfe384d24084b0feba7841efd220', '60c7b4e64f8999c211fe2d737094f569', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:27:57', '2018-06-21 16:27:57');
+INSERT INTO `user_ticket` VALUES ('1419', '5b5d0600350c4ec3844df45ca5bfc7eb', '5c019d5d84dd73890c89a1e7c89adab6', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:31:18', '2018-06-21 16:31:18');
+INSERT INTO `user_ticket` VALUES ('1420', '0c13fafba1424e1c9cfe2e538fc2d7e7', '9dc6b909aa2dd849885a6bce2c897d3f', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 16:36:27', '2018-06-21 16:36:27');
+INSERT INTO `user_ticket` VALUES ('1421', '92586b5581314700ab40860f63f97cf7', 'e1abdb371b19b09793e19b057a081dd5', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 17:23:04', '2018-06-21 17:23:04');
+INSERT INTO `user_ticket` VALUES ('1422', 'b77616f8951949cc9fe790cc4868d133', '6f383b44bccaa11d3a5ec045a4d7572c', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 17:33:08', '2018-06-21 17:33:08');
+INSERT INTO `user_ticket` VALUES ('1423', '11161c25d42d4840b027144df7281fb4', '4361c27d33ee9c9afd2afee6749b53d3', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 17:41:05', '2018-06-21 17:41:05');
+INSERT INTO `user_ticket` VALUES ('1424', 'b7ffa54cc7044ba9b76946c4e75b53bd', 'aa9015d551be7caef471b05c4e6de7be', null, null, '10.4.82.55', 'cheyigou', '2018-05-22 17:54:19', '2018-06-21 17:54:19');
+INSERT INTO `user_ticket` VALUES ('1428', 'fedc28fb14f047eeb20ef6a0b4ca13ec', 'aa3121327a56570b4d84b44d97695593', null, null, '10.4.82.55', 'cheyigou', '2018-05-23 11:35:56', '2018-06-22 11:35:56');
+INSERT INTO `user_ticket` VALUES ('1429', '16b2700088a947f582f58cead621addc', '39fe7aa5a4e78ebf02bbfab75cb7239c', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-23 03:58:52', '2018-06-22 03:58:52');
+INSERT INTO `user_ticket` VALUES ('1430', '272cd334c9744775944b5db0f3795249', '18562fc868d2ec0592ccda1b31926e2f', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-23 07:06:42', '2018-06-22 07:06:42');
+INSERT INTO `user_ticket` VALUES ('1431', '2e93a1a5330c4dce936e1eff6443fcc3', 'c1c5a105eb548815e87115ee14cfd6ef', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-23 07:07:29', '2018-06-22 07:07:29');
+INSERT INTO `user_ticket` VALUES ('1432', '7126dce5a2af43f99192edbee299f53e', 'b6f068f8e9ab04d64c86fed09d06f149', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-23 08:19:52', '2018-06-22 08:19:52');
+INSERT INTO `user_ticket` VALUES ('1433', '23664ef845674137a6319ddcb7925831', 'a7da14aa043181bb4498bb3e2b62898f', null, null, '10.4.82.55', 'cheyigou', '2018-05-23 18:55:52', '2018-06-22 18:55:52');
+INSERT INTO `user_ticket` VALUES ('1434', '39325b75a666471ba602a63a8be49947', 'd02e3b624b66458ccae3114c283d1279', null, null, '10.4.82.55', 'cheyigou', '2018-05-23 19:02:54', '2018-06-22 19:02:54');
+INSERT INTO `user_ticket` VALUES ('1435', '94bc147f756a4f15b6d10ced7538d75f', 'bc17465d2b866172b9d9aca60f33e7b9', null, null, '10.4.82.23', 'renren_market', '2018-05-24 13:22:33', '2018-06-23 13:22:33');
+INSERT INTO `user_ticket` VALUES ('1436', '2e7e6c1ed2974d4b8f445ad8bab3de84', '52ba0818a8f2e1323b350a340b4b86da', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-25 11:01:03', '2018-06-24 11:01:03');
+INSERT INTO `user_ticket` VALUES ('1437', '56f6c127d0104428b02df74f1e797239', 'a54ca23b1278319692bbd5fec758c27f', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-25 16:24:29', '2018-06-24 16:24:29');
+INSERT INTO `user_ticket` VALUES ('1438', 'f00a68a32a80445d98cee66b25402b66', 'b4cd00e3e0234e6c38d75c5f0b42b484', null, null, '10.4.82.55', 'cheyigou', '2018-05-25 19:46:42', '2018-06-24 19:46:42');
+INSERT INTO `user_ticket` VALUES ('1441', 'f6e2f84457764c5f90219a419040f855', 'eeaf2d74538cb139061c2f8cb75c5909', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-28 13:05:51', '2018-06-27 13:05:51');
+INSERT INTO `user_ticket` VALUES ('1442', '4e576956b24049f48ed2851d712aecd4', 'ac0f611b8c55d30ec4f2413a3603007e', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-28 13:06:09', '2018-06-27 13:06:09');
+INSERT INTO `user_ticket` VALUES ('1444', 'd53831c6d83c48f38b1429ad2db6ab2d', 'c7013643ad0c924ffc5b1ca4255a7894', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-28 15:49:51', '2018-06-27 15:49:51');
+INSERT INTO `user_ticket` VALUES ('1445', '097ee029679e4c738e10e99fa47028c8', 'd2c18568d46191556bdaf8a641354e5b', null, null, '10.4.82.55', 'cheyigou', '2018-05-28 16:11:38', '2018-06-27 16:11:38');
+INSERT INTO `user_ticket` VALUES ('1446', 'b36adcf889014ecfabe8f5105852e04d', 'f2916e1cf11549a6bbdcdc1189f3bc94', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-28 16:51:03', '2018-06-27 16:51:03');
+INSERT INTO `user_ticket` VALUES ('1448', '40bae89f3d2d41b38fe106af1ab8de19', 'de8f82d28cf8e5fff8c8688292c8e4aa', null, null, '10.4.82.55', 'cheyigou', '2018-05-28 17:07:10', '2018-06-27 17:07:10');
+INSERT INTO `user_ticket` VALUES ('1449', 'be681dba3bf94423a044b5ec66b12ef6', '3d9186b0fb54c0c194d55101b5a940fc', null, null, '10.4.82.55', 'cheyigou', '2018-05-28 17:12:59', '2018-06-27 17:12:59');
+INSERT INTO `user_ticket` VALUES ('1450', '47e7aa83abcd464b8ab70183bfc3416a', '1377666416d99407376a75cbabc51314', null, null, '10.4.82.55', 'cheyigou', '2018-05-28 17:17:03', '2018-06-27 17:17:03');
+INSERT INTO `user_ticket` VALUES ('1451', 'ef8e2287c5664ebc851a2ce0053c9331', '233f318611d3edf7ec565be0167598f2', null, null, '10.4.82.55', 'cheyigou', '2018-05-28 18:00:07', '2018-06-27 18:00:07');
+INSERT INTO `user_ticket` VALUES ('1452', 'b0ae1654062140f1ac5f4f8131e3d226', 'b5afafa547290e5120831762addc23e2', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-28 18:50:50', '2018-06-27 18:50:50');
+INSERT INTO `user_ticket` VALUES ('1454', '321014e8c64841b491a26ea99f4b80d1', '60f5e6a6585f7dd6c8ca4590dd045081', null, null, '10.4.82.23', 'renren_market', '2018-05-29 10:37:49', '2018-06-28 10:37:49');
+INSERT INTO `user_ticket` VALUES ('1455', 'db7634df4fc94433afb898b741dcacc5', '8b6bd4360be7a5b6eebf81eb5ec7800d', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-05-29 14:53:12', '2018-06-28 14:53:12');
+INSERT INTO `user_ticket` VALUES ('1456', 'dae8ede89f7c40c49927602267c8d2b1', '7773bd297e1cb927efed20703f20c258', null, null, '10.4.82.23', 'renren_market', '2018-05-29 16:25:52', '2018-06-28 16:25:52');
+INSERT INTO `user_ticket` VALUES ('1457', '41693f28b5914b37ad2e557e021ee4e0', '04181e4eccbea90916b55c926587f3fb', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-29 16:57:18', '2018-06-28 16:57:18');
+INSERT INTO `user_ticket` VALUES ('1460', '2c10e5f9ce7f4892ab0c6919b9b450fa', 'e685386a8a82f770ae6a77ec4062341a', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-05-31 16:28:20', '2018-06-30 16:28:20');
+INSERT INTO `user_ticket` VALUES ('1461', 'a195a4b713a146da9ecb2655b2d09151', '1ceeeabace652ce4ecf60035005efd8d', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-06-01 11:30:15', '2018-07-01 11:30:15');
+INSERT INTO `user_ticket` VALUES ('1462', '80a9ad537a5d4c73858dc0ce092aaa45', 'e9c3fa950f3b5e9fc8aea01b360933ad', null, null, '10.4.82.55', 'cheyigou', '2018-06-04 09:32:42', '2018-07-04 09:32:42');
+INSERT INTO `user_ticket` VALUES ('1463', '68aba64ce32e4732bc3c8b27f28c3c18', '73ba2fb31c21da0a5a387a3c88ef11ee', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-04 14:24:04', '2018-07-04 14:24:04');
+INSERT INTO `user_ticket` VALUES ('1464', '9445bfb40fcb42688a5c93255e4e0ea7', 'dfc7e0c055daf12bce026bc703e714b9', null, null, '10.4.82.55', 'cheyigou', '2018-06-05 09:45:25', '2018-07-05 09:45:25');
+INSERT INTO `user_ticket` VALUES ('1465', '15a1877dfcc34c53ab028685ca0e4a1f', 'e4a20151fecaf32f66ad48e88eeb9250', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-06-05 13:47:30', '2018-07-05 13:47:30');
+INSERT INTO `user_ticket` VALUES ('1467', '431acfbc5d6a42aca0f16b01f73d0158', 'cdc4ee6267a2b3e5ea0f75a8e60004d4', null, null, '10.4.82.55', 'cheyigou', '2018-06-05 14:26:11', '2018-07-05 14:26:11');
+INSERT INTO `user_ticket` VALUES ('1469', '51b595a5395f4279b3baddfeca6ffd91', 'e22cc3ab22603335e4a91837c1bcfa1d', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-06 10:22:28', '2018-07-06 10:22:28');
+INSERT INTO `user_ticket` VALUES ('1470', '2d2cc93c403e42fc80ad2946892b7c76', '358892ae66c77d4cd4f83bfd462d5aae', null, null, '10.4.82.55', 'cheyigou', '2018-06-06 15:35:13', '2018-07-06 15:35:13');
+INSERT INTO `user_ticket` VALUES ('1471', '2f72539df253401b8f1b32dba3aa6767', 'fdd5660fc6fd1a0f9f952b44ea55b38c', null, null, '10.4.82.55', 'cheyigou', '2018-06-07 09:30:13', '2018-07-07 09:30:13');
+INSERT INTO `user_ticket` VALUES ('1472', '99ffd345537d4e1bb7a44becca4b8bb9', '8f2ac4fba5f64469e8d768727568de4b', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-07 09:48:34', '2018-07-07 09:48:34');
+INSERT INTO `user_ticket` VALUES ('1475', 'a947162f9add47ffb781302bff2cd56a', '3e769770e91f784814354bc7ffaa752f', null, null, '10.4.82.55', 'cheyigou', '2018-06-07 15:46:47', '2018-07-07 15:46:47');
+INSERT INTO `user_ticket` VALUES ('1477', '870098a233eb4351b16b6e479cd3f49e', 'faa455b53c4bd538bcfe8a6bb0cd4717', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-08 14:55:42', '2018-07-08 14:55:42');
+INSERT INTO `user_ticket` VALUES ('1479', 'cc3a66ab112d45e898249825cdfc6cad', 'd414a83ed9cb4530addc3d8874b9c5aa', null, null, '10.4.82.55', 'cheyigou', '2018-06-08 16:56:25', '2018-07-08 16:56:25');
+INSERT INTO `user_ticket` VALUES ('1484', '7c7b6551e2144f77b79ddac7a382d963', '1a21bb051cddf2d465cb1b0c0c04fab6', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-11 16:54:05', '2018-07-11 16:54:05');
+INSERT INTO `user_ticket` VALUES ('1485', '4140648208674ee593768eef2cd2fd03', '42e75eb28279a117d4265a4c3cf35707', null, null, '10.4.82.23', 'renren_market', '2018-06-12 15:10:22', '2018-07-12 15:10:22');
+INSERT INTO `user_ticket` VALUES ('1486', '41983a58058c44509d741e140217f81d', 'f631fbe30f2f282340e6066076470829', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-06-12 15:53:35', '2018-07-12 15:53:35');
+INSERT INTO `user_ticket` VALUES ('1487', 'ef8507926ede41eba160841e15b378a1', '0726903a7d3e6229783143b0a28f650f', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-06-12 16:03:34', '2018-07-12 16:03:34');
+INSERT INTO `user_ticket` VALUES ('1489', '953dc39cba7549538ea1fd0c7b718d05', '72fbd2cc8e37c840c66fbd304b7d8e4b', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-06-13 15:21:32', '2018-07-13 15:21:32');
+INSERT INTO `user_ticket` VALUES ('1490', '8b5054333c694e57affc55b403c2e08a', '930b412e6670a9dc28814e6409a8a87a', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-13 16:00:23', '2018-07-13 16:00:23');
+INSERT INTO `user_ticket` VALUES ('1495', '53970e47a20a4c14b8b8ee0df3bc77bb', '0bbdd048c51d381e949c1e40e697918a', null, null, '10.2.52.152', 'oc_cpc_center', '2018-06-19 11:53:17', '2018-07-19 11:53:17');
+INSERT INTO `user_ticket` VALUES ('1496', 'c4203aebe2124bc797358e5acaf63bee', '34a1999d1d1f2b4221f08b7a864b0460', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-19 15:09:16', '2018-07-19 15:09:16');
+INSERT INTO `user_ticket` VALUES ('1497', '0ebf264b1bf740368feb608cc2fe87f3', '84a080fa734733f3ab5fee6d30cf9707', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-19 15:23:14', '2018-07-19 15:23:14');
+INSERT INTO `user_ticket` VALUES ('1499', 'b3b4afe0f8cb4dba9216212d65d3a1fb', 'e2f1da4aef1eb8f4eb0b67285cd10ecf', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-21 14:49:56', '2018-07-21 14:49:56');
+INSERT INTO `user_ticket` VALUES ('1508', '5b2882368015465a96c1c81940b9abd0', 'fb94d8f98a1377c0a652628a49a44603', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-25 19:54:33', '2018-07-25 19:54:33');
+INSERT INTO `user_ticket` VALUES ('1509', '9c93405c3d714bf88473df539eb48d3f', '132e8ed40ff6c688dbe5cde2c976cafb', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-06-26 14:46:02', '2018-07-26 14:46:02');
+INSERT INTO `user_ticket` VALUES ('1512', '618028292a2e40c6b059726ab1d4f993', '0fc34b1b13e44c3f4d86677b496db142', null, null, '10.4.82.25, 172.16.100.1', 'oc_cpc_center', '2018-06-27 19:26:03', '2018-07-27 19:26:03');
+INSERT INTO `user_ticket` VALUES ('1513', '184d40026ed94086a5bd586ca34b6ffa', '1f4de78d083a5aacfe2f85deccbaa7c6', null, null, '10.4.82.25, 172.16.100.1', 'oc_cpc_center', '2018-06-27 19:27:23', '2018-07-27 19:27:23');
+INSERT INTO `user_ticket` VALUES ('1514', '8bbb0864af3342b08ade46a1f4c7154b', '407e04a6a729e64b62594a3eff666e57', null, null, '10.4.82.25, 172.16.100.1', 'oc_cpc_center', '2018-06-27 19:28:04', '2018-07-27 19:28:04');
+INSERT INTO `user_ticket` VALUES ('1515', 'dc0daebdf70543f99b6e83c2225b9371', 'd34c721126e8f0edee919b53974bc2c5', null, null, '10.4.82.25, 172.16.100.1', 'oc_cpc_center', '2018-06-27 20:15:25', '2018-07-27 20:15:25');
+INSERT INTO `user_ticket` VALUES ('1517', '949a51979b2f4522b71fc0dbf78c3a27', '08dff6dfd4552bc5dac6a472184bb3c4', null, null, '10.2.52.146', 'oc_cpc_center', '2018-06-27 21:43:50', '2018-07-27 21:43:50');
+INSERT INTO `user_ticket` VALUES ('1521', 'eabed09c6b7e47d7b6295d676723e638', '1a07e58ac24155e98ace3807f81b0d68', null, null, '10.2.203.122', 'renren_market', '2018-07-03 11:01:36', '2018-08-02 11:01:36');
+INSERT INTO `user_ticket` VALUES ('1522', '5b49dd10ffa34402b744d66c246906ab', 'a463d2477a89efefad88927626b169fc', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-07-03 14:56:05', '2018-08-02 14:56:05');
+INSERT INTO `user_ticket` VALUES ('1525', '597e27b43044456692e6fcbb86ff2a18', '9092ab1ad30ba42433ffc768ce0c1353', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-07-05 14:32:36', '2018-08-04 14:32:36');
+INSERT INTO `user_ticket` VALUES ('1528', 'bfb5af2947374b7b9926d750fe06eeb8', 'xxxxxx', null, null, '127.0.0.1', 'oc_manager', '2018-07-06 19:32:02', '2018-08-05 19:32:02');
+INSERT INTO `user_ticket` VALUES ('1531', '72f94bfcd49b47b79a6acaaf382f6e64', 'a4d9096fc3943e4aca5ce6d6b3b9fc4d', null, null, '10.4.82.74', 'oc_cpc_center', '2018-07-09 17:10:37', '2018-08-08 17:10:37');
+INSERT INTO `user_ticket` VALUES ('1534', 'b22334b4394943a5bc050765d339d098', 'f3c712b50bb896e133224c24aa048a0e', null, null, '10.4.82.74', 'oc_cpc_center', '2018-07-10 14:46:27', '2018-08-09 14:46:27');
+INSERT INTO `user_ticket` VALUES ('1535', '739bbccbaaef4c49a049531bfb1d598a', '606c8fb72eaeec126d8dc67f3f95ffdc', null, null, '10.4.82.74', 'oc_cpc_center', '2018-07-10 15:20:51', '2018-08-09 15:20:51');
+INSERT INTO `user_ticket` VALUES ('1536', 'ff313dc67bc347ea8449627cf5f4faa8', '48e287cb257058b8d9a6ea56f2fbc9a2', null, null, '10.4.82.74', 'oc_cpc_center', '2018-07-10 15:37:41', '2018-08-09 15:37:41');
+INSERT INTO `user_ticket` VALUES ('1537', '57c8b9cf323e4054b252bd8a2befbeb9', 'bedc7d9f005e51d47bce306f9524d3db', null, null, '10.4.82.74', 'oc_cpc_center', '2018-07-10 15:40:56', '2018-08-09 15:40:56');
+INSERT INTO `user_ticket` VALUES ('1538', '9bd235cf0ccf416a863694aa51b0912e', '01701e950f80436d8cb8700f93094fe1', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-07-10 18:28:53', '2018-08-09 18:28:53');
+INSERT INTO `user_ticket` VALUES ('1539', '1bba0c45a3af44488bc57ebab69a8977', 'e9f9c978ca8cfafa2f5cfcf480299a89', null, null, '10.4.82.74', 'oc_cpc_center', '2018-07-10 20:03:58', '2018-08-09 20:03:58');
+INSERT INTO `user_ticket` VALUES ('1540', 'aa68d3d87e2a4aad9753a99a76f3a919', '6c71e7110b5a7b33b5a4489629decbde', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-07-11 11:57:16', '2018-08-10 11:57:16');
+INSERT INTO `user_ticket` VALUES ('1541', '3076e843910344df84cdf5671553b9e7', '4315fc26b53e71950a87eb10aff6cf83', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-07-11 14:29:22', '2018-08-10 14:29:22');
+INSERT INTO `user_ticket` VALUES ('1542', 'feaf8bbb4d0849b68c746411b0ca15d3', 'c279ffdc208aa409209c626ca5c8625e', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-07-17 13:17:13', '2018-08-16 13:17:13');
+INSERT INTO `user_ticket` VALUES ('1543', 'a9a134c8f7614dac918f2e6cc09a3354', '86f974a082032da755f883e5afaac99b', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-07-17 15:20:49', '2018-08-16 15:20:49');
+INSERT INTO `user_ticket` VALUES ('1544', '2ff991d410bc4446b0490834c780deb0', '20d45de8f70054f6127de6b630dde847', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-07-17 15:22:37', '2018-08-16 15:22:37');
+INSERT INTO `user_ticket` VALUES ('1551', 'af77bc68f4dd4c628967eaf768ee2f1a', '94c3770f5d73b2f09147ae5ab4412a83', null, null, '10.4.82.55', 'cheyigou', '2018-08-01 18:36:54', '2018-08-31 18:36:54');
+INSERT INTO `user_ticket` VALUES ('1552', '51ab61caf35f413887bef74431c649d1', '002be529296cca3dfc858f0409aa285b', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-08-01 20:18:09', '2018-08-31 20:18:09');
+INSERT INTO `user_ticket` VALUES ('1567', '5c0d287c773b4d3ea45d26ebe6186115', 'bb6db37b2f807a6a37fdd3ee9b2e6603', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-08-13 11:02:13', '2018-09-12 11:02:13');
+INSERT INTO `user_ticket` VALUES ('1569', 'b195af5a9abf423eab21c61df3062039', 'b84958c7e5f5fb47bbe343028a7946da', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-08-15 03:00:00', '2018-09-14 03:00:00');
+INSERT INTO `user_ticket` VALUES ('1573', 'edbef0435e634e0092adf6a9fd626bc3', '6bb8a4f4bb6a7a2b0e1a350f3422af76', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-08-24 08:59:51', '2018-09-23 08:59:51');
+INSERT INTO `user_ticket` VALUES ('1577', 'af85a379f1a346de9648d336161d138c', 'e350ebb71dbf9ab556ddca7bf05f0b4c', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-09-03 10:48:52', '2018-10-03 10:48:52');
+INSERT INTO `user_ticket` VALUES ('1588', '91bb4ce5536f4fa3ad837b3122fed071', '4603929ca0b65b18e008e262dd6eb40d', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-09-06 01:30:38', '2018-10-06 01:30:38');
+INSERT INTO `user_ticket` VALUES ('1589', '98547fc1a9da470aaf902dd420f8d81c', '1cd8de8326d6076e88008914c7f53193', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-09-20 06:46:16', '2018-10-20 06:46:16');
+INSERT INTO `user_ticket` VALUES ('1590', 'dbacf26554774f70957216d648246455', '86457d0ee2fe2f685c3b14ff8aa0c853', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-09-20 06:51:55', '2018-10-20 06:51:55');
+INSERT INTO `user_ticket` VALUES ('1592', '05dacaa5b9f748de94f582f2af146206', 'ead9e9a750045f2d8f22e061b8b65580', null, null, '10.4.82.42', 'oc_cpc_center', '2018-09-27 14:43:02', '2018-10-27 14:43:02');
+INSERT INTO `user_ticket` VALUES ('1596', '6a341cc74e15424d8d12695c33ae0876', 'f5515a243e660e43ba119347e3d9830b', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-09-29 11:59:00', '2018-10-29 11:59:00');
+INSERT INTO `user_ticket` VALUES ('1608', '7dfcb207ae8f4034b3043aa3f10a9571', 'a64ead5e93c69f3864f1553c9064243d', null, null, '10.2.52.152, 172.16.100.1', 'oc_bz_auto_center', '2018-10-10 18:52:44', '2018-11-09 18:52:44');
+INSERT INTO `user_ticket` VALUES ('1613', 'd2b6f95d748548c393df41c6ad175130', 'a5526143842ead55e7ff42ba16a4bddf', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-10-11 10:29:41', '2018-11-10 10:29:41');
+INSERT INTO `user_ticket` VALUES ('1614', 'd838a06fa54f48849452f4675ebeaf07', 'd3d678b3062129320bf69ced7a27a083', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-10-11 10:30:11', '2018-11-10 10:30:11');
+INSERT INTO `user_ticket` VALUES ('1615', 'f4959ac166c74ffbb7245540e71f84e4', '74511d710532c56eceb21085e10bc602', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-10-11 10:38:44', '2018-11-10 10:38:44');
+INSERT INTO `user_ticket` VALUES ('1617', 'eebda52283804b69ba87b0db987ea50d', '1c6821a05b44e866c721cc0ab037d108', null, null, '10.4.82.22, 172.16.100.1', 'renren_market', '2018-10-11 14:56:38', '2018-11-10 14:56:38');
+INSERT INTO `user_ticket` VALUES ('1621', 'ec2f905d7c3e4ae283d11c5ed1c4a823', 'a5c520ebdaa8df8ef1619f0c68d30367', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-10-18 14:53:30', '2018-11-17 14:53:30');
+INSERT INTO `user_ticket` VALUES ('1623', 'bfb706dc4924478f9c1fb3a2ff7fa978', '87b0cce2c5f408ddfa092354442c4ef4', null, null, '10.2.52.152, 172.16.100.1', 'oc_cpc_center', '2018-10-19 18:32:23', '2018-11-18 18:32:23');
+INSERT INTO `user_ticket` VALUES ('1624', '35c1dfe74827423686ecccf20ce3f111', 'eb91f81d568eb9a23ee36ba86c99721c', null, null, '10.2.52.152, 172.16.100.1', 'oc_cpc_center', '2018-10-19 18:51:10', '2018-11-18 18:51:10');
+INSERT INTO `user_ticket` VALUES ('1627', '41dd179578834a719fbe5c21a790cf74', '32d8e7bf0028291d032ceb2623493895', null, null, '10.2.52.152, 172.16.100.1', 'oc_cpc_center', '2018-10-19 21:29:09', '2018-11-18 21:29:09');
+INSERT INTO `user_ticket` VALUES ('1628', '24cf3484d17640be887d21a62c91c7b7', '55ad0484f5c9ff9bd3bf06f5e14c073a', null, null, '10.2.52.152, 172.16.100.1', 'oc_cpc_center', '2018-10-19 21:38:48', '2018-11-18 21:38:48');
+INSERT INTO `user_ticket` VALUES ('1629', '5b027a0a7b0044cabea67e25bd204bf5', 'debc4b7f8c2317fca0d8dd402ab2de17', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-10-26 14:12:39', '2018-11-25 14:12:39');
+INSERT INTO `user_ticket` VALUES ('1630', '8938f89f5e5c44e496a9c823360e5a0a', '5335d0939e4b8641610c112e52f208f5', null, null, '10.4.82.24', 'oc_cpc_center', '2018-10-30 15:19:48', '2018-11-29 15:19:48');
+INSERT INTO `user_ticket` VALUES ('1631', 'cecd633340ae4b0b9682069d3884a138', '4f0de5f7acd9742760d14079f3ac20d5', null, null, '10.4.82.24', 'oc_cpc_center', '2018-10-30 16:15:20', '2018-11-29 16:15:20');
+INSERT INTO `user_ticket` VALUES ('1636', '5ed39e84cf364502bfabcc912964d433', '7509ad2e4be0bc4c07545dd1c4e9bee1', null, null, '10.2.52.152', 'oc_bz_auto_center', '2018-11-07 19:08:28', '2018-12-07 19:08:28');
+INSERT INTO `user_ticket` VALUES ('1644', '26c1ebbcf1e54a549113ef85a8033fce', '2c2ed87a9c594a2cf6e08b2c191d4adb', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-08 17:59:55', '2018-12-08 17:59:55');
+INSERT INTO `user_ticket` VALUES ('1646', 'f553517ec79e437786003b127cd1836e', '4fc2761f5bf7dab2c0cf96e1eb364e0a', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-11-09 14:45:08', '2018-12-09 14:45:08');
+INSERT INTO `user_ticket` VALUES ('1648', '6f999fb271a34748846dc91ad5d73e4a', 'c41c7af9c26243576542824d8c04a8b6', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-11-12 16:02:21', '2018-12-12 16:02:21');
+INSERT INTO `user_ticket` VALUES ('1656', '5ba2b0c5ebc74434be076646d9b1474a', '9bdc2e3f96364c0a61b9ac22b1ce35e0', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-13 16:47:20', '2018-12-13 16:47:20');
+INSERT INTO `user_ticket` VALUES ('1660', '5f17f1645f9e4ccaa352ee63ebdf0406', '6882941bebf06a2890c4529b662a39b2', null, null, '10.4.82.24', 'cheyigou', '2018-11-14 12:26:11', '2018-12-14 12:26:11');
+INSERT INTO `user_ticket` VALUES ('1663', 'df7df97de8d54aedbfa964849b935a15', '765921234d308337a5a3bdb3fff1a406', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-14 20:55:13', '2018-12-14 20:55:13');
+INSERT INTO `user_ticket` VALUES ('1672', '6ff5c5faf44f44908d1d2672fd5fa438', '9f12db6d80fd9160db7f307ce5633dfc', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-19 11:27:48', '2018-12-19 11:27:48');
+INSERT INTO `user_ticket` VALUES ('1676', 'fd292a1b39c24576980bf2bca90c432b', '88fafc4e6643fb2971704bc057b8c03e', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-19 15:53:52', '2018-12-19 15:53:52');
+INSERT INTO `user_ticket` VALUES ('1681', '3208a1d1f6734a619bb477f36ef3865f', '2daaac43771f26c66ddd54b123342c05', null, null, '10.4.82.24', 'oc_cpc_center', '2018-11-19 17:48:49', '2018-12-19 17:48:49');
+INSERT INTO `user_ticket` VALUES ('1682', '2ab0164e40ed4d14b5e31dfb80e5e2d9', '86f9a28d17843b287e5b186992391f61', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-19 18:56:16', '2018-12-19 18:56:16');
+INSERT INTO `user_ticket` VALUES ('1693', '7e2b13dc2c1b4c909fc0b55647e15bab', '735b6680b14ab46a63d07e4296205a38', null, null, '10.4.82.24', 'cheyigou', '2018-11-20 14:15:50', '2018-12-20 14:15:50');
+INSERT INTO `user_ticket` VALUES ('1705', 'b2ab47ae469b41bd81eae80d719868a2', 'bd18f2a76bc4582eedd698f8ee17d55e', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-20 20:01:12', '2018-12-20 20:01:12');
+INSERT INTO `user_ticket` VALUES ('1715', 'd06e47324e2a4862a4cd36dee7326a4c', '4015daebe426025f50f642c1ba3c2807', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-21 15:25:30', '2018-12-21 15:25:30');
+INSERT INTO `user_ticket` VALUES ('1723', 'e1c1ee9391404816b4197f49824fa231', '4bc07356848c439c70c80b463a06f917', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-21 16:15:45', '2018-12-21 16:15:45');
+INSERT INTO `user_ticket` VALUES ('1745', 'fb7d0fcc52244c94837b55c54ac08a24', 'c87f24b7c2f07ff3c53d1d843840d1b0', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-22 15:57:32', '2018-12-22 15:57:32');
+INSERT INTO `user_ticket` VALUES ('1748', '3ac0c9311e144ab79072f3dd4ceb9996', '7385d6eee7d5474d310769d85edc7dbb', null, null, '10.4.82.24', 'oc_cpc_center', '2018-11-22 16:28:53', '2018-12-22 16:28:53');
+INSERT INTO `user_ticket` VALUES ('1749', '5ce113a96a23497f98fffa2ec9e46d94', 'cdc881c220957397634815c515af1a45', null, null, '10.4.82.24', 'oc_cpc_center', '2018-11-22 16:41:07', '2018-12-22 16:41:07');
+INSERT INTO `user_ticket` VALUES ('1758', 'fcdbda9c760a48e5a34ce1c27b3b2487', 'abfcccbf90dd97aa3c93e25c820d3ecd', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-23 11:30:27', '2018-12-23 11:30:27');
+INSERT INTO `user_ticket` VALUES ('1765', '06cc3f46541d463b85056ca051fb2e93', '4b4d6e209f413076da881c9add5fe878', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-26 11:02:33', '2018-12-26 11:02:33');
+INSERT INTO `user_ticket` VALUES ('1792', '71dee49f691844059fdb7bb0fbf9ada2', '34f3abf5f059b08137192acb7db8c4b3', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-11-26 18:30:03', '2018-12-26 18:30:03');
+INSERT INTO `user_ticket` VALUES ('1799', '53271d06cd1445d1b9e25625b525c1a5', '70403411769bd890f973d53d5677d048', null, null, '10.4.82.74', 'oc_cpc_center', '2018-11-30 15:32:52', '2018-12-30 15:32:52');
+INSERT INTO `user_ticket` VALUES ('1801', '36e8fdec6c0d481caa0b7d8b99151985', '33e84d969c14869dca0cd073ff916deb', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-12-04 10:40:24', '2019-01-03 10:40:24');
+INSERT INTO `user_ticket` VALUES ('1803', '91adfc1e9c7a48f7942074224d927e89', '8364dda41a9b2722a2c4117e6b32a730', null, null, '10.4.82.22, 172.16.100.1', 'oc_cpc_center', '2018-12-11 10:04:18', '2019-01-10 10:04:18');
+INSERT INTO `user_ticket` VALUES ('1807', '32937e3c0b224e8787ba0e221c0ffcb3', '9818820f6c02149972f6208d27a584ff', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-12-13 11:58:34', '2019-01-12 11:58:34');
+INSERT INTO `user_ticket` VALUES ('1812', '8eb93f3204f34ef6bafe89154c7e4f11', 'b49c026a41fbad80466a58ac00616dd1', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2018-12-14 07:20:57', '2019-01-13 07:20:57');
+INSERT INTO `user_ticket` VALUES ('1818', 'b68ab473c64c47d18bf5b8092ff94e49', '831fb3d6766814542d5024c924d4a63f', null, null, '10.4.82.22, 172.16.100.1', 'cheyigou', '2018-12-18 14:47:14', '2019-01-17 14:47:14');
+INSERT INTO `user_ticket` VALUES ('1821', '06c47f1ea7e144a28e0ec66643263a6e', '22690abd712ef31bd4f09142dd27c9f3', null, null, '10.4.82.24', 'renren_market', '2018-12-25 10:26:16', '2019-01-24 10:26:16');
+INSERT INTO `user_ticket` VALUES ('1822', '47e067ac7ba14237b0354f15d071479b', 'fed0c4efe2f4ab40d227860b728f2511', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-12-25 14:14:50', '2019-01-24 14:14:50');
+INSERT INTO `user_ticket` VALUES ('1824', '2bc381e6bef940589ee49587c9f3845f', '70abe5efac56f4366e258b4307baa433', null, null, '10.4.82.211', 'oc_cpc_center', '2018-12-25 15:16:29', '2019-01-24 15:16:29');
+INSERT INTO `user_ticket` VALUES ('1825', 'e24394752671494abfc379ec1f947d5c', 'a2b61887255e76ceca98e74c9c1dbd1c', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-12-26 11:32:08', '2019-01-25 11:32:08');
+INSERT INTO `user_ticket` VALUES ('1827', '92c2cfa6ca394b1991d906cf325c63dd', 'cbd283c41eb93fda0f62628dfa8c2230', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-12-28 10:12:26', '2019-01-27 10:12:26');
+INSERT INTO `user_ticket` VALUES ('1837', '2acda4b657bb4ac99c67c3067528b7db', 'b4a5ddf7158808d85af7bbd72816d68f', null, null, '10.4.82.25', 'oc_bz_auto_center', '2018-12-28 19:18:56', '2019-01-27 19:18:56');
+INSERT INTO `user_ticket` VALUES ('1841', 'ca3b8e880af9410184297f71050d1613', 'acb0648ae64922028aaac11d0271b0cc', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2018-12-29 03:15:12', '2019-01-28 03:15:12');
+INSERT INTO `user_ticket` VALUES ('1850', '78b59e38a9c44bc69f1f3fadfa52bf8c', '3d6a037890e1f0f3109454b75f89ee9f', null, null, '10.4.82.74', 'oc_cpc_center', '2019-01-02 14:35:11', '2019-02-01 14:35:11');
+INSERT INTO `user_ticket` VALUES ('1851', '438b063621df4e2286a1afa0fef625a8', '77af1dbb92ac8fa5d5f9589ea8f505d9', null, null, '10.4.82.74', 'oc_cpc_center', '2019-01-02 14:43:54', '2019-02-01 14:43:54');
+INSERT INTO `user_ticket` VALUES ('1852', 'b2c7e21812694053897e3cee80a8563e', '1e618e7437f0eae3e63780da3917b7ef', null, null, '10.4.82.74', 'oc_cpc_center', '2019-01-02 14:48:21', '2019-02-01 14:48:21');
+INSERT INTO `user_ticket` VALUES ('1874', '661eb60458c54ff8addbd64bf7ff3c28', 'de03661ca79e5ba9c308dbfa7f7b1a43', null, null, '10.4.82.25, 172.16.100.1', 'oc_cpc_center', '2019-01-03 17:13:10', '2019-02-02 17:13:10');
+INSERT INTO `user_ticket` VALUES ('1877', '3d3022b2cfd34c84a8cf05a9e058c35b', 'dec2076b148fa347285998ddea821d1f', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-03 10:50:45', '2019-02-02 10:50:45');
+INSERT INTO `user_ticket` VALUES ('1878', '4fe44bee040545ca93e56a35fed64a59', '69c8cb9485a7c597a6b3b2f88bc5a979', null, null, '10.4.82.74', 'oc_cpc_center', '2019-01-03 19:38:54', '2019-02-02 19:38:54');
+INSERT INTO `user_ticket` VALUES ('1885', '4a6f37e4db3740bca9f9815cdd21dd82', '91e9f313575c1a5f696c1ff5e026e6ed', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-04 08:03:29', '2019-02-03 08:03:29');
+INSERT INTO `user_ticket` VALUES ('1886', '52181f561a914194b5decf0bb6e657fd', '46a5677b5edb876bd062675eb3b4109d', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-04 10:12:20', '2019-02-03 10:12:20');
+INSERT INTO `user_ticket` VALUES ('1932', '378d493b80244b50bae237fe484032f6', 'ddcb72e4f99c68e53810588105a33909', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-10 10:30:47', '2019-02-09 10:30:47');
+INSERT INTO `user_ticket` VALUES ('1949', '3085ed6fa8744f4aa7cb4d688e22e10a', 'c1450a132e299ee308ed60c54aa03eb0', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-11 08:54:29', '2019-02-10 08:54:29');
+INSERT INTO `user_ticket` VALUES ('1954', 'dfc496a6debb41b499679c6e97f97cf2', '6c2b5cc581d98464160eadabd0164659', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-11 09:40:07', '2019-02-10 09:40:07');
+INSERT INTO `user_ticket` VALUES ('1957', 'a20d930ad3ba4e32b148ed469362a89d', '100e75cf47e608916dc3dd53f2e29294', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-11 10:19:30', '2019-02-10 10:19:30');
+INSERT INTO `user_ticket` VALUES ('1960', '3bc4543592c04d6093d4eccb0fd08ee0', 'ef47292551ddc144f4bf9eb03e16db7f', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-14 10:48:54', '2019-02-13 10:48:54');
+INSERT INTO `user_ticket` VALUES ('1961', 'da9f3534471b4bf9b22e515c015d803b', 'bbba3a59a1eaccd586fd4c2b09eba81b', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-15 06:50:46', '2019-02-14 06:50:46');
+INSERT INTO `user_ticket` VALUES ('1966', 'a391b82a96db4c2b82a8aba837ba3a21', '557420e538608078b4405d4064d8cd34', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-01-15 10:24:34', '2019-02-14 10:24:34');
+INSERT INTO `user_ticket` VALUES ('1978', '3e6d64916d3d49078d48e91d000ac80f', '0e74f89b062a0625785f4bb3f7e2c9eb', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-02-20 10:20:41', '2019-03-22 10:20:41');
+INSERT INTO `user_ticket` VALUES ('1979', '5e2ce062481846ccab1e9b1c5cd8dfeb', '6c55225e8c15f29a6ae8079e8ecd5432', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-02-20 18:57:16', '2019-03-22 18:57:16');
+INSERT INTO `user_ticket` VALUES ('1980', '64ab06cb92a34fad8e79f8b70abf2d98', '1bc9293e13473af7524a5d3705f62654', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-02-21 02:55:36', '2019-03-23 02:55:36');
+INSERT INTO `user_ticket` VALUES ('1982', 'b9f432156462427da7bbd28948a81bd8', 'a8c1085c8bd70cee830ec306216eb1e7', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-02-22 05:42:30', '2019-03-24 05:42:30');
+INSERT INTO `user_ticket` VALUES ('1983', '604cb30aaa9443a5b235371899498456', 'aeb24a309be68e39ba91ccf420329bd2', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-02-22 06:05:48', '2019-03-24 06:05:48');
+INSERT INTO `user_ticket` VALUES ('1985', '7d0dc3106f2b449d817063b7fd98f67f', '778aa2f02e1355dca8f1cbba5f0c228c', null, null, '10.4.82.25, 172.16.100.1', 'oc_bz_auto_center', '2019-02-25 04:08:13', '2019-03-27 04:08:13');
+INSERT INTO `user_ticket` VALUES ('1987', '8508245c784d4dd0a31749a0cf990a47', '93e87c7d1fe72147d8e053d969016833', null, null, '10.4.82.61, 172.16.100.1', 'oc_bz_auto_center', '2019-02-25 08:38:35', '2019-03-27 08:38:35');
+INSERT INTO `user_ticket` VALUES ('1989', 'c524f927ca7d4a248869e234eabec5d2', '20350402887b2051319180ed3a1adef6', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-02-26 14:10:07', '2019-03-28 14:10:07');
+INSERT INTO `user_ticket` VALUES ('1994', 'a8d3d0a443fb4b8cb2164195a6aefe20', '2bd5500c076a3a9f0538f9ca5fbf7a0c', null, null, '10.4.82.61, 172.16.100.1', 'oc_bz_auto_center', '2019-03-01 11:12:10', '2019-03-31 11:12:10');
+INSERT INTO `user_ticket` VALUES ('2002', '06aac146fa1944d3aec9d170497d007e', '7f670e7b48b3d39c242409caa964ddd7', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-03-07 06:26:43', '2019-04-06 06:26:43');
+INSERT INTO `user_ticket` VALUES ('2005', '2d366a4ef9614c66a18e3a83affaba5c', '9688a65926faedfa42ac543d08f3fba2', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-03-08 01:58:31', '2019-04-07 01:58:31');
+INSERT INTO `user_ticket` VALUES ('2014', '446ca368d4a640fc91724bb76b718ee4', '531fa23ba4b974ba09b59835d4f3993c', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-03-25 03:01:52', '2019-04-24 03:01:52');
+INSERT INTO `user_ticket` VALUES ('2016', 'f982661f23784fc58baffef9796f65c9', '0b07e38e7ba1e44fb2ab9f4621a79da8', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-03-25 03:51:35', '2019-04-24 03:51:35');
+INSERT INTO `user_ticket` VALUES ('2017', '09a8ea841c214904955a1cd15160dff8', '5bbef912ec98496b10b0143cee34e746', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-03-25 07:01:37', '2019-04-24 07:01:37');
+INSERT INTO `user_ticket` VALUES ('2018', 'c089c9bff4e44eb187d6aceee5287ac6', 'c31a8fd8da2fb9d277cd24b8a5f4fe86', null, null, '10.4.82.24', 'renren_market', '2019-03-26 14:37:44', '2019-04-25 14:37:44');
+INSERT INTO `user_ticket` VALUES ('2019', 'e2e55f38b89d47fea61531bad7cbae19', '81a532dced34bd4fc353b412e12c720d', null, null, '10.4.82.24', 'renren_market', '2019-03-26 14:39:24', '2019-04-25 14:39:24');
+INSERT INTO `user_ticket` VALUES ('2027', '85041f9773d54c2195069fd52865c720', '4537121cfdd02a8935f8f9420c1fdc77', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-04-01 08:36:27', '2019-05-01 08:36:27');
+INSERT INTO `user_ticket` VALUES ('2028', 'd143237dbbc04b22b72098c8ada52a4c', '4e795e97fe1178347de2da7eb72c2d8f', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-04-10 06:34:30', '2019-05-10 06:34:30');
+INSERT INTO `user_ticket` VALUES ('2033', '55985576e1654001b823581889d594f2', '749039eef15409716d8eafd5afb66798', null, null, '10.4.82.35', 'oc_cpc_center', '2019-04-17 15:47:37', '2019-05-17 15:47:37');
+INSERT INTO `user_ticket` VALUES ('2035', 'da03c3565a0148cab23adf0e5fdcf047', 'b5cc71c10a3b6ccb06303d9790b32de1', null, null, '10.4.82.212, 172.16.100.1', 'cheyigou', '2019-04-18 15:17:33', '2019-05-18 15:17:33');
+INSERT INTO `user_ticket` VALUES ('2039', '24db7a2153a54b02befac7f25062af58', 'a865de02b0575d96fac1ce763e81f7cb', null, null, '10.4.82.75', 'oc_cpc_center', '2019-04-24 15:58:22', '2019-05-24 15:58:22');
+INSERT INTO `user_ticket` VALUES ('2041', '294aeb4234fa47febc75feb71d90828d', '010a5ae711c01c892af52788d9c1e0b4', null, null, '10.4.82.35', 'oc_cpc_center', '2019-04-25 11:38:08', '2019-05-25 11:38:08');
+INSERT INTO `user_ticket` VALUES ('2043', '203064a9a68d4c84bafce700dc0ff6e7', 'cf644b8ad5db98d89d1a40c307143cd0', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-04-25 15:15:09', '2019-05-25 15:15:09');
+INSERT INTO `user_ticket` VALUES ('2044', 'de43b26a60e342dcbd2502d77302a599', '9a1d2c974f71982cb187c0590c064da0', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-04-25 16:41:12', '2019-05-25 16:41:12');
+INSERT INTO `user_ticket` VALUES ('2045', 'cd2de829343b4d6c855cfa299750adb7', 'e8c6320c1fd450282d204ff1fd667505', null, null, '10.4.82.35', 'oc_cpc_center', '2019-04-25 18:06:58', '2019-05-25 18:06:58');
+INSERT INTO `user_ticket` VALUES ('2052', 'b95e7be30b8c4942ae436be9d531c523', '23f05e77593997b6765f05b29ae4be6b', null, null, '10.4.82.33', 'oc_cpc_center', '2019-05-12 17:03:21', '2019-06-11 17:03:21');
+INSERT INTO `user_ticket` VALUES ('2059', '13fa8e7050804b20a78d16df510e6554', '5c2806e4729ad33be35691078db93ce8', null, null, '10.4.82.33', 'oc_cpc_center', '2019-05-15 17:15:42', '2019-06-14 17:15:42');
+INSERT INTO `user_ticket` VALUES ('2061', '9360cb2bd46845a99a1fbd3bd0f862af', 'e25498f1ce43f6666e82ef88ac00eb95', null, null, '10.4.82.33', 'oc_cpc_center', '2019-05-17 10:33:52', '2019-06-16 10:33:52');
+INSERT INTO `user_ticket` VALUES ('2063', 'a072dafef2ec47f8996da87bf0d17555', '6c282d815b9e440e04f1ec33420e8e26', null, null, '10.4.82.33', 'oc_cpc_center', '2019-05-17 14:26:16', '2019-06-16 14:26:16');
+INSERT INTO `user_ticket` VALUES ('2064', 'ec27d9ad5e1b4eaca0d208c96a21cff1', '78d5ab0017657845b097d0dc6c8ed4cd', null, null, '10.4.82.33', 'oc_cpc_center', '2019-05-17 15:25:43', '2019-06-16 15:25:43');
+INSERT INTO `user_ticket` VALUES ('2067', '22a9741a790247c48748e7858009d274', '10dcb05b972a4567e06f522cfb5e3549', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-05-21 16:40:34', '2019-06-20 16:40:34');
+INSERT INTO `user_ticket` VALUES ('2068', '8d1aeffcf161422f8b5d5611fe0b12af', 'b150d78a3cf9be1d7649547caa424e02', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-05-21 16:41:22', '2019-06-20 16:41:22');
+INSERT INTO `user_ticket` VALUES ('2070', '6acbd5ee0dbe4cb19473d456f321d601', 'f06f8931bd858839089e8f708457122d', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-05-23 11:30:49', '2019-06-22 11:30:49');
+INSERT INTO `user_ticket` VALUES ('2071', '272c312448b046ff94c6e71a8c49ca3c', '418267bfcaf788d43c94c9f2f5f29fbe', null, null, '10.4.82.75', 'oc_cpc_center', '2019-05-23 11:33:33', '2019-06-22 11:33:33');
+INSERT INTO `user_ticket` VALUES ('2072', '995fadbde9be456999ccab339e9bb244', '91125488e97ea5a9b753dc798237773e', null, null, '10.4.82.74', 'oc_cpc_center', '2019-05-23 16:31:05', '2019-06-22 16:31:05');
+INSERT INTO `user_ticket` VALUES ('2073', '0752193c2df8468198cdac3e802cf9ca', '597bd1423b809d45f1a5be6c072051c9', null, null, '10.4.82.74', 'oc_cpc_center', '2019-05-23 20:27:01', '2019-06-22 20:27:01');
+INSERT INTO `user_ticket` VALUES ('2074', 'd595404362354c368f03f09aa35f17a8', 'cef3a241aef4c4f3d2378d6f09f980fa', null, null, '10.4.82.74', 'oc_cpc_center', '2019-05-23 20:28:15', '2019-06-22 20:28:15');
+INSERT INTO `user_ticket` VALUES ('2075', '9e4788d498d548299e8e1a2f9825ab6d', 'd5886ee4263653a60456ab32a0c1430d', null, null, '10.4.82.74', 'oc_cpc_center', '2019-05-23 20:28:35', '2019-06-22 20:28:35');
+INSERT INTO `user_ticket` VALUES ('2076', '1d33ed054ac9416eb7bcfa148859b044', 'a0348913202b277650cf1a4c7cf5b989', null, null, '10.4.82.74', 'oc_cpc_center', '2019-05-23 20:30:45', '2019-06-22 20:30:45');
+INSERT INTO `user_ticket` VALUES ('2077', '4486bc6303d842b3951a6fd784ddf883', '31f178c1f0a07bc3478e1bc3ae76361d', null, null, '10.4.82.35', 'oc_cpc_center', '2019-05-29 10:18:08', '2019-06-28 10:18:08');
+INSERT INTO `user_ticket` VALUES ('2079', '343985a05951460384e177ffb0dc9e91', 'e502ed4a484ef084e1c7c1c35e32c052', null, null, '10.4.82.33', 'oc_cpc_center', '2019-05-30 16:04:26', '2019-06-29 16:04:26');
+INSERT INTO `user_ticket` VALUES ('2081', 'd91b7d231d9245dc98ad8eb3d087b2f5', '68c2f71305df05beb49e74a001ca5a45', null, null, '10.4.82.33', 'oc_cpc_center', '2019-06-04 16:16:05', '2019-07-04 16:16:05');
+INSERT INTO `user_ticket` VALUES ('2082', 'd8f42dd57ea54c37b47652f0ead571ae', 'eac8e64e0fdd5deba17ab05434256285', null, null, '10.2.52.142', 'oc_cpc_center', '2019-06-05 11:35:48', '2019-07-05 11:35:48');
+INSERT INTO `user_ticket` VALUES ('2083', 'e47876c1bf4a46a7b7e1b22ece3d8ac1', 'e18f9a509f43e9aa9d1f6506bec17cc6', null, null, '10.4.82.35', 'oc_cpc_center', '2019-06-06 14:26:08', '2019-07-06 14:26:08');
+INSERT INTO `user_ticket` VALUES ('2086', 'f235b317acb945b9a0b7c49f5045bd5c', '4ffd4be5a9f7f9f0d03f19812a5dda27', null, null, '10.4.82.74', 'oc_cpc_center', '2019-06-10 11:33:45', '2019-07-10 11:33:45');
+INSERT INTO `user_ticket` VALUES ('2091', '27e18e040364414bb61a4a321f84d889', '8268b12c47262558ba51c048bd12d7c0', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-06-10 08:28:34', '2019-07-10 08:28:34');
+INSERT INTO `user_ticket` VALUES ('2092', '1a11191aacad4cd084f780a352b257cc', 'a49a370a9b01179c320a6e4549b97205', null, null, '10.4.82.74', 'oc_cpc_center', '2019-06-11 14:53:13', '2019-07-11 14:53:13');
+INSERT INTO `user_ticket` VALUES ('2094', '587aadbe5e17417c978f1ab26e078a87', '66322e4531a43c66081a26caf39f59d8', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-06-13 10:47:11', '2019-07-13 10:47:11');
+INSERT INTO `user_ticket` VALUES ('2096', '3e09da4dc5384361bc57ccb5b73ec06d', 'e85db7de8689c8b31d58da3f77a4e483', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-06-13 14:53:44', '2019-07-13 14:53:44');
+INSERT INTO `user_ticket` VALUES ('2098', 'c9c9a914a6b94823982acc3de295b5f9', 'cc49151890efee8e3405ce38c3fb06a6', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-06-20 07:39:22', '2019-07-20 07:39:22');
+INSERT INTO `user_ticket` VALUES ('2099', '591aafb537064335a9fb7bac7c4ba492', '112aba578ad8cc34de8a03f1e553f768', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-06-20 14:14:03', '2019-07-20 14:14:03');
+INSERT INTO `user_ticket` VALUES ('2100', 'a6fffef37e7b4665b4c25e9dfd87e15d', '1ac8fde0a470e8d967418837056132f4', null, null, '10.4.82.33', 'oc_cpc_center', '2019-06-24 14:32:22', '2019-07-24 14:32:22');
+INSERT INTO `user_ticket` VALUES ('2101', 'e99495f5196c42edbc0e5acef0fce2f0', '17fd347108d2ecdb4469d72d67f64aa9', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-06-24 09:40:43', '2019-07-24 09:40:43');
+INSERT INTO `user_ticket` VALUES ('2102', 'b8cfd8f0f7854b90b5aa91b541f7f394', '9296eff44523d35815ef0d0db1bf3305', null, null, '10.4.82.75', 'oc_cpc_center', '2019-06-25 16:15:36', '2019-07-25 16:15:36');
+INSERT INTO `user_ticket` VALUES ('2103', '812fc82b7c904894a76f02c76ab7cccc', '379317435bbb523cff44721292f29fa7', null, null, '10.4.82.75', 'oc_cpc_center', '2019-06-26 10:36:38', '2019-07-26 10:36:38');
+INSERT INTO `user_ticket` VALUES ('2104', 'f849c8afcb1e45198c185e9a8e80ee3a', '09a8c216a2e0892c03b097883115ee7c', null, null, '10.4.82.75', 'oc_cpc_center', '2019-06-26 10:37:14', '2019-07-26 10:37:14');
+INSERT INTO `user_ticket` VALUES ('2105', '9b02763cd5a54e8a9b2945e7851699e6', '42c8fcf25b03d1255f14cd3c7c746cf2', null, null, '10.4.82.75', 'oc_cpc_center', '2019-06-26 14:15:11', '2019-07-26 14:15:11');
+INSERT INTO `user_ticket` VALUES ('2106', 'a67e4d10c6b24c5ab5ae74c2ea6bfc6e', 'ba9b4ffbfd8ad75102e1e2fac5aa92c2', null, null, '10.4.82.62', 'oc_cpc_center', '2019-06-26 15:42:36', '2019-07-26 15:42:36');
+INSERT INTO `user_ticket` VALUES ('2108', '476e78ec7e5549f4888744b6f98af017', 'ec5e8a5686e1595b917d7d0d4c1dee34', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-02 10:26:40', '2019-08-01 10:26:40');
+INSERT INTO `user_ticket` VALUES ('2109', 'f0a11cf82771404cb93470de70010ba8', '306e8af404b77bef729060dfc6caf6d6', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-02 15:27:12', '2019-08-01 15:27:12');
+INSERT INTO `user_ticket` VALUES ('2110', 'f0a11cf82771404cb93470de70010ba8', '058b71371645e6e9a8720d5fb85b9fa8', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-02 15:35:51', '2019-08-01 15:35:51');
+INSERT INTO `user_ticket` VALUES ('2111', 'f0a11cf82771404cb93470de70010ba8', '93adbac839d0a9baa56958ecfd1980fa', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-02 15:40:04', '2019-08-01 15:40:04');
+INSERT INTO `user_ticket` VALUES ('2112', 'f0a11cf82771404cb93470de70010ba8', '670e71c3862bd756263c9664cd1f5edf', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-02 15:40:26', '2019-08-01 15:40:26');
+INSERT INTO `user_ticket` VALUES ('2113', 'f0a11cf82771404cb93470de70010ba8', '161c60eb68f6a1b627ce9934603bbf2b', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-02 15:41:24', '2019-08-01 15:41:24');
+INSERT INTO `user_ticket` VALUES ('2114', 'f0a11cf82771404cb93470de70010ba8', '572dca3d6ea54b01848c73b96b4b9d03', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-02 18:47:16', '2019-08-01 18:47:16');
+INSERT INTO `user_ticket` VALUES ('2115', 'f0a11cf82771404cb93470de70010ba8', 'b2358faab10383106a752b7e48f6fbef', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-03 15:22:28', '2019-08-02 15:22:28');
+INSERT INTO `user_ticket` VALUES ('2116', 'f0a11cf82771404cb93470de70010ba8', '5788f5d4be8469d7bbaa563fec0c15a4', null, null, '0:0:0:0:0:0:0:1', 'testclient', '2019-07-03 15:33:58', '2019-08-02 15:33:58');
+INSERT INTO `user_ticket` VALUES ('2129', '56b856b622dd489c96f92f361fa94c69', '31a2462736627d9fbc1badb8910d2f37', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-05 14:52:58', '2019-08-04 14:52:58');
+INSERT INTO `user_ticket` VALUES ('2130', 'cde3cb882b7d48ec9ee44fec1005320c', '04abfe3133839cdaa93fcd530a07d168', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-05 14:52:58', '2019-08-04 14:52:58');
+INSERT INTO `user_ticket` VALUES ('2138', 'b08354fdc7594e5e95d6b70e646821d9', 'a01e286920e607491074013206dc0f12', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-05 16:22:45', '2019-08-04 16:22:45');
+INSERT INTO `user_ticket` VALUES ('2139', '91376375fb6049729f8b0a73bb57ef62', '0312f8a9ac2cee8392b84227133eb5b0', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-05 17:42:38', '2019-08-04 17:42:38');
+INSERT INTO `user_ticket` VALUES ('2164', 'd93e827cfed94fac8554b70a08558755', '49270fc277ca1be3961dd932c3aa77b1', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-10 11:59:45', '2019-08-09 11:59:45');
+INSERT INTO `user_ticket` VALUES ('2165', '4e2a1b182f72407096c78a414219f328', '000ac2fd2a220eeaabecd1fa0c52131f', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-10 17:33:18', '2019-08-09 17:33:18');
+INSERT INTO `user_ticket` VALUES ('2181', 'f235b317acb945b9a0b7c49f5045bd5c', 'ffd478002a56c8b05f4229033c11721a', null, null, '127.0.0.1', 'oc_cpc_center', '2019-07-11 10:58:25', '2019-08-10 10:58:25');
+INSERT INTO `user_ticket` VALUES ('2186', 'd32f2da489734b30a68073d49da2df9c', '1aa63f6166b358130238170eeaa8887f', null, null, '10.4.82.212, 172.16.100.1', 'oc_cpc_center', '2019-07-11 14:24:19', '2019-08-10 14:24:19');
+INSERT INTO `user_ticket` VALUES ('2187', '1ed4df5350b943c08fc44a93b6f8c3dd', '138659edea6c599f066bd9dd09677e83', null, null, '10.4.82.75', 'oc_cpc_center', '2019-07-15 10:55:20', '2019-08-14 10:55:20');
+INSERT INTO `user_ticket` VALUES ('2188', 'd32f2da489734b30a68073d49da2df9c', '12c36dbf98bded3aa78e33c6ce856848', null, null, '127.0.0.1', 'oc_cpc_center', '2019-07-15 15:12:23', '2019-07-15 18:12:23');
+INSERT INTO `user_ticket` VALUES ('2189', 'd32f2da489734b30a68073d49da2df9c', '809efc3cbc7f11220a846c6252e46957', null, null, '127.0.0.1', 'oc_cpc_center', '2019-07-15 15:14:43', '2019-07-15 18:14:43');
+INSERT INTO `user_ticket` VALUES ('2190', 'd32f2da489734b30a68073d49da2df9c', 'ee7231787e9f337a5373870b1533f683', null, null, '127.0.0.1', 'oc_cpc_center', '2019-07-15 15:17:09', '2019-07-15 18:17:09');
+INSERT INTO `user_ticket` VALUES ('2192', 'bb8446f6f5204182b03b4dc659892963', 'e8f60eb08139a2a1ba5ed023e7dec858', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-17 14:11:02', '2019-08-16 14:11:02');
+INSERT INTO `user_ticket` VALUES ('2193', '1dfe0458cd62445a810d0f6ea2f9de86', 'f48fcd08f47878c85154ff334b9cc251', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-17 14:11:22', '2019-08-16 14:11:22');
+INSERT INTO `user_ticket` VALUES ('2194', '882d322b71e640fabbfcdf7ea8b98632', 'bbdd98c94769d4d5605cf648191bb592', null, null, '10.4.82.62', 'oc_cpc_center', '2019-07-17 17:54:13', '2019-08-16 17:54:13');
+INSERT INTO `user_ticket` VALUES ('2205', 'd32f2da489734b30a68073d49da2df9c', 'e1e1003c9b15de0f1be06120e1ab5b83', null, null, '127.0.0.1', 'oc_cpc_center', '2019-07-17 21:49:42', '2019-07-18 00:49:42');
+INSERT INTO `user_ticket` VALUES ('2242', '87d969915816407c9ef13506578826ba', '9ca38d13d352c36c58c7b95eb8c1e055', null, null, '10.4.82.75', 'oc_cpc_center', '2019-07-19 10:26:05', '2019-08-18 10:26:05');
+INSERT INTO `user_ticket` VALUES ('2251', 'a6fffef37e7b4665b4c25e9dfd87e15d', '2f66fafd89717d2c5155938fbf01f253', '0', null, '10.2.201.175', 'oc_cpc_center', '2019-07-19 15:23:27', '2019-07-19 18:23:27');
+INSERT INTO `user_ticket` VALUES ('2253', 'a6fffef37e7b4665b4c25e9dfd87e15d', '68905cb364c2df7029f05f1c00f9a75c', '0', null, '10.2.201.175', 'oc_cpc_center', '2019-07-19 15:29:01', '2019-07-19 18:29:01');
+INSERT INTO `user_ticket` VALUES ('2278', '4b8dd5373b4e4f518a3709e7fb9924e3', '346c8f79acd942a2af48e6602cd3b0b2', null, null, '10.4.82.33, 172.16.100.1', 'oc_bz_auto_center', '2019-07-22 07:48:10', '2019-08-21 07:48:10');
+INSERT INTO `user_ticket` VALUES ('2279', '41125bf13b014896b0058c460daf1eeb', '501a9b20f9f5b027c7b58ff7282e1fc7', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:04:08', '2019-07-22 19:04:08');
+INSERT INTO `user_ticket` VALUES ('2280', '41125bf13b014896b0058c460daf1eeb', '9d819c389c16487c586d458775830862', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:06:21', '2019-07-22 19:06:21');
+INSERT INTO `user_ticket` VALUES ('2281', '41125bf13b014896b0058c460daf1eeb', '0218e89d26223df598aa15b01212655d', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:09:03', '2019-07-22 19:09:03');
+INSERT INTO `user_ticket` VALUES ('2282', '41125bf13b014896b0058c460daf1eeb', '9024fe18feb4945e5fa3ab67feaf0afd', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:24:39', '2019-07-22 19:24:39');
+INSERT INTO `user_ticket` VALUES ('2283', '41125bf13b014896b0058c460daf1eeb', '5f59ece619875bc9792609fd2f202ce8', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:26:00', '2019-07-22 19:26:00');
+INSERT INTO `user_ticket` VALUES ('2284', '41125bf13b014896b0058c460daf1eeb', 'b6b4bde7e1fa9a1c528372a3cda3437c', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:31:32', '2019-07-22 19:31:32');
+INSERT INTO `user_ticket` VALUES ('2285', '41125bf13b014896b0058c460daf1eeb', '88e694fdf37c26c5d89b622b158d79eb', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:33:28', '2019-07-22 19:33:28');
+INSERT INTO `user_ticket` VALUES ('2286', '41125bf13b014896b0058c460daf1eeb', 'd0557812250b9fc5a4041fa1adbdfb20', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:35:13', '2019-07-22 19:35:13');
+INSERT INTO `user_ticket` VALUES ('2287', '41125bf13b014896b0058c460daf1eeb', '0934863a7717d02431446d3d7f77af70', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:35:58', '2019-07-22 19:35:58');
+INSERT INTO `user_ticket` VALUES ('2288', '41125bf13b014896b0058c460daf1eeb', 'd2c669ce8dae1e4d5b2b7d091c041f10', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:38:32', '2019-07-22 19:38:32');
+INSERT INTO `user_ticket` VALUES ('2289', '41125bf13b014896b0058c460daf1eeb', '1213d60aa899334df1c78d548ff3ba1c', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 16:40:36', '2019-07-22 19:40:36');
+INSERT INTO `user_ticket` VALUES ('2291', '41125bf13b014896b0058c460daf1eeb', '48c2fbbaad6c859a9ca7105c69c9095c', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 17:06:04', '2019-07-22 20:06:04');
+INSERT INTO `user_ticket` VALUES ('2292', '41125bf13b014896b0058c460daf1eeb', '1e76b7bd73127187257b2c860925387a', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 17:06:20', '2019-07-22 20:06:20');
+INSERT INTO `user_ticket` VALUES ('2295', '41125bf13b014896b0058c460daf1eeb', '05e34b2d17d2c6a636de835643174ccc', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 17:14:52', '2019-07-22 17:13:55');
+INSERT INTO `user_ticket` VALUES ('2297', '41125bf13b014896b0058c460daf1eeb', '2271d932ec5a0689448981170948d7b5', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 17:43:37', '2019-07-22 17:56:03');
+INSERT INTO `user_ticket` VALUES ('2298', '41125bf13b014896b0058c460daf1eeb', 'b959c2769ce45437c4bb90343509c574', '0', null, '10.2.54.143', 'saas_mgr_app', '2019-07-22 18:03:18', '2019-07-22 18:00:20');
+INSERT INTO `user_ticket` VALUES ('2300', '41125bf13b014896b0058c460daf1eeb', '464e5a72e4b6939a372365e9f6926582', '0', '1', '10.2.54.143', 'saas_mgr_app', '2019-07-22 18:12:58', '2019-07-22 21:12:58');
+INSERT INTO `user_ticket` VALUES ('2302', '41125bf13b014896b0058c460daf1eeb', 'f9a041b8ea7191298ec2ec456349fbfe', '0', '1', '10.2.54.143', 'saas_mgr_app', '2019-07-22 18:20:06', '2019-07-22 21:20:06');
+INSERT INTO `user_ticket` VALUES ('2303', '41125bf13b014896b0058c460daf1eeb', 'ca0c9bbdd605dd03386428a48457c99d', '0', '1', '10.2.54.143', 'saas_mgr_app', '2019-07-22 18:31:09', '2019-07-22 21:31:09');
+INSERT INTO `user_ticket` VALUES ('2304', '41125bf13b014896b0058c460daf1eeb', 'fc10b7082fb96bca04841169526af6fe', '0', '1', '10.2.54.143', 'saas_mgr_app', '2019-07-22 18:42:04', '2019-07-22 21:42:04');
+INSERT INTO `user_ticket` VALUES ('2305', '41125bf13b014896b0058c460daf1eeb', 'cef74651409479d0e9a62a3b5ed925c1', '0', '1', '10.2.54.143', 'saas_mgr_app', '2019-07-22 19:07:30', '2019-07-22 22:07:30');
+INSERT INTO `user_ticket` VALUES ('2306', '41125bf13b014896b0058c460daf1eeb', '95532dd9a33efb5a14a30eb4e025c73d', '0', '1', '10.2.54.143', 'saas_mgr_app', '2019-07-22 19:12:58', '2019-07-22 22:12:58');
+INSERT INTO `user_ticket` VALUES ('2307', 'b87561cf601a4ca7902610d65bbe1b44', '80b7e46522e909af413d8cee8a971b31', null, null, '10.4.82.33', 'oc_cpc_center', '2019-07-23 10:19:41', '2019-08-22 10:19:41');
