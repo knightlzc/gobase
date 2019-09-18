@@ -52,11 +52,8 @@ public class GoodsService {
 		return goodsHome.save(goodsDO);
 	}
 	
-	public PageContent<GoodsDO> pageAuditGoods(int pageNum,int pageSize,Integer status,Integer shopId,Integer cityId){
+	public PageContent<GoodsDO> pageAuditGoods(int pageNum,int pageSize,Integer shopId,Integer cityId){
 		GoodsQueryParam param = new GoodsQueryParam();
-		if(null != status) {
-			param.setStatus(status);
-		}
 		if(null != shopId) {
 			param.setShopId(shopId);
 		}
