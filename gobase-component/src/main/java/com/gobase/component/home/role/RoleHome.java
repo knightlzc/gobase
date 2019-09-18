@@ -18,6 +18,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.gobase.component.bean.mall.role.Role;
 import com.gobase.component.bean.mall.role.RoleExample;
@@ -76,5 +77,20 @@ public class RoleHome {
 			});
 		}
 		return roleCodes;
+	}
+	
+	@Transactional
+	public void saveUserRoles(String uid,List<String> roleCodes) {
+		PfUserRoleRefExample example = new PfUserRoleRefExample();
+		example.createCriteria().andUidEqualTo(uid);
+		pfUserRoleRefMapper.deleteByExample(example);
+		if(CollectionUtils.isNotEmpty(roleCodes)) {
+			roleCodes.forEach(r -> {
+				PfUserRoleRef ref = new PfUserRoleRef();
+				ref.setUid(uid);
+				ref.setRoleCode(r);
+				pfUserRoleRefMapper.insertSelective(ref);
+			});
+		}
 	}
 }

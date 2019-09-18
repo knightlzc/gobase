@@ -9,9 +9,12 @@
 package com.gobase.platform.controller.user;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.collections.CollectionUtils;
+import org.apache.commons.lang.StringUtils;
+import org.assertj.core.util.Arrays;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,6 +29,7 @@ import com.gobase.platform.controller.user.response.PfUserResponse;
 import com.gobase.platform.response.TableResponse;
 import com.gobase.platform.utils.ResponseUtil;
 import com.gobase.service.service.pfuser.PfuserService;
+import com.gobase.tools.common.CommonUtils;
 import com.gobase.tools.response.PageContent;
 import com.gobase.tools.response.ResultResponse;
 
@@ -86,7 +90,7 @@ public class PfUserController {
 			return ResultResponse.success(new PageContent<>(pageResult.getPageNum(), pageResult.getPageSize(), pageResult.getTotalNum(), responses), "查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResultResponse.fail("500","查询用户列表异常 "+e.getMessage());
+			return ResultResponse.fail("查询用户列表异常 "+e.getMessage(),"500");
 			
 		}
 	}
@@ -99,7 +103,7 @@ public class PfUserController {
 			return ResultResponse.success(userId+"", "添加成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return ResultResponse.fail("500","添加用户列表异常 "+e.getMessage());
+			return ResultResponse.fail("添加用户列表异常 "+e.getMessage(),"500");
 			
 		}
 	}
@@ -110,5 +114,22 @@ public class PfUserController {
 		model.addAttribute("user",user);
 
 		return "pfuser/config_role_page";
+	}
+	
+	@ResponseBody
+	@RequestMapping("saveUserRoles")
+	public ResultResponse<String> saveUserRoles(String uid,String roleCodes){
+		try {
+			List<String> roleCodesList =CommonUtils.getListByStr(roleCodes, ";");
+//			if(CollectionUtils.isEmpty(roleCodesList)) {
+//				return ResultResponse.fail("请选择至少一个角色", "500");
+//			}
+			roleHome.saveUserRoles(uid, roleCodesList);
+			return ResultResponse.success(uid,"保存成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultResponse.fail("保存用户角色异常 "+e.getMessage(),"500");
+			
+		}
 	}
 }

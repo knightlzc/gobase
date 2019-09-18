@@ -3,6 +3,7 @@ package com.gobase.component.bean.mall.role;
 import java.util.Date;
 
 public class PfUserRoleRef {
+	
 	/**
 	*
 	*/
