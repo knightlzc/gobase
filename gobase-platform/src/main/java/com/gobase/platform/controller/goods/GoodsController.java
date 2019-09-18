@@ -57,6 +57,12 @@ public class GoodsController {
 		return "goods/goods_list";
 	}
 	
+	@RequestMapping("auditListPage")
+	public String auditListPage(){
+		
+		return "goods/audit_list";
+	}
+	
 	@ResponseBody
 	@RequestMapping("list")
 	public ResultResponse<PageContent<GoodsDO>> list(String goodsId,String search,Integer shopId,Integer page,Integer limit){

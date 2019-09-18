@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import com.gobase.component.bean.mall.goods.Goods;
 import com.gobase.component.bean.mall.goods.GoodsExample;
 import com.gobase.component.dao.IBaseMapper;
+import com.gobase.component.param.mall.goods.GoodsQueryParam;
 public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
 	
 	public static final String TABLE = " `goods` ";
@@ -77,4 +78,37 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		"</script>")
     int countSearchGoods(@Param("search")String search,@Param("goodsId")String goodsId,@Param("category1")String category1,
     		@Param("category2")String category2,@Param("category3")String category3,@Param("cityId")Integer cityId,@Param("shopId")Integer shopId);
+    
+    @Select("<script>"+
+    		" select "+SELECT_JOIN_COLS+" from "+TABLE+ " g left join shop s on s.id = g.shop_id"+
+    		" where 1=1 "+
+    		" <if test='param.search != null'> "+
+    		" and g.full_name like CONCAT('%',#{param.search},'%') "+
+    		" </if>"+
+    		" <if test='param.cityId != null'> "+
+    		" and s.city_id = #{param.cityId} "+
+    		" </if>"+
+    		" <if test='param.shopId != null'> "+
+    		" and s.shop_id = #{param.shopId} "+
+    		" </if>"+
+    		" <if test='start != null and limit != null '> "+
+    		" limit #{start},#{limit} "+
+    		" </if>"+
+    		"</script>")
+    List<Goods> searchByParam(@Param("param")GoodsQueryParam param, @Param("start")Integer start,@Param("limit")Integer limit);
+    
+    @Select("<script>"+
+    		" select count(1) from "+TABLE+ " g left join shop s on s.id = g.shop_id"+
+    		" where 1=1 "+
+    		" <if test='param.search != null'> "+
+    		" and g.full_name like CONCAT('%',#{param.search},'%') "+
+    		" </if>"+
+    		" <if test='param.cityId != null'> "+
+    		" and s.city_id = #{param.cityId} "+
+    		" </if>"+
+    		" <if test='param.shopId != null'> "+
+    		" and s.shop_id = #{param.shopId} "+
+    		" </if>"+
+    		"</script>")
+    int countByParam(@Param("param")GoodsQueryParam param);
 }
