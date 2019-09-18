@@ -11,6 +11,7 @@ package com.gobase.service.service.goods;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gobase.component.bean.mall.goods.Goods;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,8 +53,9 @@ public class GoodsService {
 		return goodsHome.save(goodsDO);
 	}
 	
-	public PageContent<GoodsDO> pageAuditGoods(int pageNum,int pageSize,Integer shopId,Integer cityId){
+	public PageContent<GoodsDO> pageAuditGoods(int pageNum,int pageSize,String search,Integer shopId,Integer cityId){
 		GoodsQueryParam param = new GoodsQueryParam();
+		param.setAuditStatus(Goods.AUDIT_STATUS_AUDITING);
 		if(null != shopId) {
 			param.setShopId(shopId);
 		}

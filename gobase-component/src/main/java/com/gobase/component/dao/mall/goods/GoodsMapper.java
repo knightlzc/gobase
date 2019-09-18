@@ -91,6 +91,12 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" <if test='param.shopId != null'> "+
     		" and s.shop_id = #{param.shopId} "+
     		" </if>"+
+			" <if test='param.status != null'> "+
+			" and g.status = #{param.status} "+
+			" </if>"+
+			" <if test='param.auditStatus != null'> "+
+			" and g.audit_status = #{param.auditStatus} "+
+			" </if>"+
     		" <if test='start != null and limit != null '> "+
     		" limit #{start},#{limit} "+
     		" </if>"+
@@ -109,6 +115,12 @@ public interface GoodsMapper extends IBaseMapper<GoodsExample,Goods>{
     		" <if test='param.shopId != null'> "+
     		" and s.shop_id = #{param.shopId} "+
     		" </if>"+
+			" <if test='param.status != null'> "+
+			" and g.status = #{param.status} "+
+			" </if>"+
+			" <if test='param.auditStatus != null'> "+
+			" and g.audit_status = #{param.auditStatus} "+
+			" </if>"+
     		"</script>")
     int countByParam(@Param("param")GoodsQueryParam param);
 }

@@ -111,4 +111,17 @@ public class GoodsController {
 			
 		}
 	}
+
+	@ResponseBody
+	@RequestMapping("auditList")
+	public ResultResponse<PageContent<GoodsDO>> auditList(String search,Integer page,Integer limit){
+		try {
+			PageContent<GoodsDO> pageResult = goodsService.pageAuditGoods(page,limit,search,null,null);
+			return ResultResponse.success(new PageContent<>(pageResult.getPageNum(), pageResult.getPageSize(), 0, pageResult.getContent()), "查询成功");
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResultResponse.fail("500","查询商品列表异常 "+e.getMessage());
+
+		}
+	}
 }

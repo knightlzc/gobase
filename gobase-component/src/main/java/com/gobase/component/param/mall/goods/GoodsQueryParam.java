@@ -19,7 +19,9 @@ public class GoodsQueryParam {
 	private String search;
 
 	private Integer status;
-	
+
+	private Integer auditStatus;
+
 	private Integer shopId;
 	
 	private Integer cityId;
@@ -55,5 +57,12 @@ public class GoodsQueryParam {
 	public void setCityId(Integer cityId) {
 		this.cityId = cityId;
 	}
-	
+
+	public Integer getAuditStatus() {
+		return auditStatus;
+	}
+
+	public void setAuditStatus(Integer auditStatus) {
+		this.auditStatus = auditStatus;
+	}
 }
