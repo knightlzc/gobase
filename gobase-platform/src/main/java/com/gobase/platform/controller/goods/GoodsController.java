@@ -11,8 +11,12 @@ package com.gobase.platform.controller.goods;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.gobase.component.bean.mall.shop.Shop;
+import com.gobase.component.home.shop.ShopHome;
+import com.gobase.platform.controller.goods.response.GoodsDetailResponse;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,9 +51,13 @@ public class GoodsController {
 	
 	@Autowired
 	private GoodsCategoryHome goodsCategoryHome;
-	
+
+
 	@Autowired
 	private GoodsService goodsService;
+
+	@Autowired
+	private ShopHome shopHome;
 	
 	@RequestMapping("listPage")
 	public String listPage(){
@@ -62,7 +70,8 @@ public class GoodsController {
 		
 		return "goods/audit_list";
 	}
-	
+
+
 	@ResponseBody
 	@RequestMapping("list")
 	public ResultResponse<PageContent<GoodsDO>> list(String goodsId,String search,Integer shopId,Integer page,Integer limit){
@@ -97,6 +106,15 @@ public class GoodsController {
 		}
 		return "goods/goods_edit";
 	}
+
+	@RequestMapping("detail")
+	public String detail(Model model,String goodsId){
+		GoodsDO goods = goodsHome.getByGoodsId(goodsId);
+		if(null != goods) {
+			model.addAttribute("goods",this.toGoodsDetailResponse(goods));
+		}
+		return "goods/goods_detail";
+	}
 	
 	@ResponseBody
 	@RequestMapping("save")
@@ -123,5 +141,31 @@ public class GoodsController {
 			return ResultResponse.fail("500","查询商品列表异常 "+e.getMessage());
 
 		}
+	}
+
+	public GoodsDetailResponse toGoodsDetailResponse(GoodsDO goodsDO){
+		GoodsDetailResponse response = new GoodsDetailResponse();
+		if(null == goodsDO){
+			return response;
+		}
+
+		BeanUtils.copyProperties(goodsDO,response);
+		GoodsCategory category = goodsCategoryHome.getByCode(goodsDO.getCategory1());
+		if(null != category){
+			response.setCategory1(category.getName());
+		}
+		category = goodsCategoryHome.getByCode(goodsDO.getCategory2());
+		if(null != category){
+			response.setCategory2(category.getName());
+		}
+		category = goodsCategoryHome.getByCode(goodsDO.getCategory3());
+		if(null != category){
+			response.setCategory3(category.getName());
+		}
+		Shop shop = shopHome.getById(goodsDO.getShopId());
+		if(shop != null){
+			response.setShopName(shop.getShopName());
+		}
+		return response;
 	}
 }

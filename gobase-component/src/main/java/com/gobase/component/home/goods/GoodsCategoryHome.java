@@ -10,6 +10,7 @@ package com.gobase.component.home.goods;
 
 import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +27,7 @@ import com.gobase.component.dao.mall.goods.GoodsCategoryMapper;
 public class GoodsCategoryHome {
 
 	@Autowired
-	private GoodsCategoryMapper<GoodsCategory, GoodsCategoryExample> goodsCategoryMapper;
+	private GoodsCategoryMapper goodsCategoryMapper;
 	
 	/**
 	 * <br/>Description:查询全部
@@ -57,6 +58,16 @@ public class GoodsCategoryHome {
 		}
 		List<GoodsCategory> list = goodsCategoryMapper.selectByExample(example);
 		return list;
+	}
+
+	public GoodsCategory getByCode(String code){
+		GoodsCategoryExample example = new GoodsCategoryExample();
+		example.createCriteria().andCodeEqualTo(code);
+		List<GoodsCategory> list = goodsCategoryMapper.selectByExample(example);
+		if(CollectionUtils.isNotEmpty(list)){
+			return list.get(0);
+		}
+		return null;
 	}
 	
 }

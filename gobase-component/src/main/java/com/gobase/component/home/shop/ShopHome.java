@@ -131,4 +131,8 @@ public class ShopHome {
         List<ShopListVo> content = shopMapper.findPageList(search, start, limit);
         return new PageContent<>(pageNum, pageSize, count, content);
     }
+
+    public Shop getById(int shopId){
+        return shopMapper.selectByPrimaryKey(shopId);
+    }
 }

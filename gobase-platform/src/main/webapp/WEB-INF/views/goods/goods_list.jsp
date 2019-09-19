@@ -25,7 +25,7 @@
 <table class="layui-hide" id="LAY_table_goods" lay-filter="goods"></table> 
 
 <script type="text/html" id="barDemo">
-  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+  <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail" href="/goods/detail?goodsId={{d.goodsId}}">查看</a>
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 <%--  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">下架</a>--%>
 </script>               
